@@ -81,7 +81,7 @@ namespace WpfFinanciera.Vistas
 
         private void SeleccionarReferenciaTrabajo()
         {
-            ListaReferenciaTrabajosPagina lista = new ListaReferenciaTrabajosPagina();
+            ListaReferenciaTrabajosPagina lista = new ListaReferenciaTrabajosPagina(this);
             MainWindow principal = (MainWindow)Window.GetWindow(this);
             principal.CambiarPagina(lista);
         }

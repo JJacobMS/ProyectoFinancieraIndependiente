@@ -71,7 +71,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Background="#065758">
-            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
+            <Button Style="{StaticResource estiloBtnRegresar}"/>
             <TextBlock FontFamily="{StaticResource LeagueSpartanFont}" FontSize="50" Foreground="#FFFFFF" FontWeight="Medium"
                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18">Registro de Cliente</TextBlock>
         </Grid>

@@ -56,6 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Utilidades\VentanaMensaje.xaml.cs">
+      <DependentUpon>VentanaMensaje.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FormularioClientePagina.xaml.cs">
       <DependentUpon>FormularioClientePagina.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recursos\Diccionarios\InicioSesionDiccionario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recursos\Diccionarios\VentanaMensajeDiccionario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Utilidades\VentanaMensaje.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -151,6 +162,10 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\info.png" />
+    <Resource Include="Recursos\error.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
