@@ -24,5 +24,10 @@ namespace WpfFinanciera
         {
             InitializeComponent();
         }
+
+        public void CambiarPagina(Page pagina)
+        {
+            frmPrincipal.Navigate(pagina);
+        }
     }
 }

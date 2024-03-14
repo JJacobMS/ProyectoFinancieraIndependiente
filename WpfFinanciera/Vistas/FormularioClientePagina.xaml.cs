@@ -73,6 +73,18 @@ namespace WpfFinanciera.Vistas
             btnDocumento.Click += ClicAgregarArchivo;
 
         }
+
+        private void ClicSeleccionarReferenciaTrabajo(object sender, RoutedEventArgs e)
+        {
+            SeleccionarReferenciaTrabajo();
+        }
+
+        private void SeleccionarReferenciaTrabajo()
+        {
+            ListaReferenciaTrabajosPagina lista = new ListaReferenciaTrabajosPagina();
+            MainWindow principal = (MainWindow)Window.GetWindow(this);
+            principal.CambiarPagina(lista);
+        }
     }
 
     public enum TipoArchivo

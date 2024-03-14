@@ -173,7 +173,7 @@
                         <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" TextWrapping="Wrap" Height="49"
                                  Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}">Lores vbujsfbv Lores vbujsfbv Lores vbujsfbv Lores vbujsfbv Lores vbujsfbv</TextBox>
                         <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="5">2281367803</TextBox>
-                        <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}">Seleccionar referencia de trabajo</Button>
+                        <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}" Click="ClicSeleccionarReferenciaTrabajo">Seleccionar referencia de trabajo</Button>
                     </Grid>
                 </Border>
                 <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" Margin="20 0 0 5">Referencia del Cliente:</TextBlock>
