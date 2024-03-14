@@ -1,0 +1,124 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="estiloTxtBlockFormularioCliente" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+        <Setter Property="FontSize" Value="30"/>
+    </Style>
+
+    <Style x:Key="estiloTxtBlockFormularioClienteCampos" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0 11 0 3"/>
+    </Style>
+
+    <Style x:Key="estiloTxtBlockFormularioClienteReferenciasCampos" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+
+    <Style x:Key="estiloTxtBoxFormularioCliente" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border Background="#127B7C" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
+                        <ScrollViewer Margin="15 10 0 10" x:Name="PART_ContentHost"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="estiloBtnAgregarDocumentoFormularioCliente" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Margin" Value="12 10"/>
+        <Setter Property="Background" Value="#000000"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="20">
+                        <ContentPresenter Margin="10 8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#083838"/>
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="estiloBtnAgregarReferenciaFormularioCliente" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Margin" Value="10 5"/>
+        <Setter Property="Background" Value="#000000"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                        <ContentPresenter Margin="10 8" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#065758"/>
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="estiloTxtBoxFormularioClienteReferencias" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="IsReadOnly" Value="True"/>
+        <Setter Property="IsHitTestVisible" Value="False"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border Background="#A9D4D6" CornerRadius="10">
+                        <ScrollViewer Margin="10 8 10 8" x:Name="PART_ContentHost"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="estiloBtnRegistrarClienteFormulario" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="Width" Value="300"/>
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="Background" Value="#B46058"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                        <ContentPresenter Margin="0 20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#9B2E24"/>
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

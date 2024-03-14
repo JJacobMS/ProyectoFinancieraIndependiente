@@ -1,0 +1,82 @@
+﻿<Page x:Class="WpfFinanciera.Vistas.FormularioReferenciaClientePagina"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfFinanciera.Vistas"
+      mc:Ignorable="d"  
+      d:DesignHeight="768" d:DesignWidth="1336">
+
+    <Page.Resources>
+        <Style x:Key="estiloTxtBlockFormularioReferenciaCliente" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="FontSize" Value="26"/>
+        </Style>
+
+        <Style x:Key="estiloTxtBoxFormularioReferenciaCliente" TargetType="TextBox" BasedOn="{StaticResource estiloTxtBoxFormularioCliente}">
+            <Setter Property="FontSize" Value="28"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#FFFFFF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Background="#065758">
+            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
+            <TextBlock FontFamily="{StaticResource LeagueSpartanFont}" FontSize="50" Foreground="#FFFFFF" FontWeight="Medium"
+               HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18">Referencia del Cliente #1</TextBlock>
+        </Grid>
+        <Viewbox  Grid.Row="1" >
+            <Border Background="#E2F0EF" BorderBrush="#000000" BorderThickness="1" CornerRadius="10" Margin="30"
+                    Height="620" Width="1276">
+                <StackPanel VerticalAlignment="Center">
+                    <Grid Margin="0 20 0 20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.8*"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource estiloTxtBlockFormularioReferenciaCliente}" Margin="30 20 0 10">Nombre(s):</TextBlock>
+                            <TextBox Style="{StaticResource estiloTxtBoxFormularioReferenciaCliente}" Margin="30 0 45 0">Lores Lores Lores  Lores Lores Lores Lores Lores  pivndfuav</TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Style="{StaticResource estiloTxtBlockFormularioReferenciaCliente}" Margin="0 20 0 10">Teléfono:</TextBlock>
+                            <TextBox Style="{StaticResource estiloTxtBoxFormularioReferenciaCliente}" Margin="0 0 30 0">2281367802</TextBox>
+                        </StackPanel>
+                    </Grid>
+
+                    <TextBlock Style="{StaticResource estiloTxtBlockFormularioReferenciaCliente}" Margin="30 20 0 15">Apellidos:</TextBlock>
+                    <TextBox Style="{StaticResource estiloTxtBoxFormularioReferenciaCliente}" Margin="30 0 30 0" >Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores  pivndfuav</TextBox>
+
+                    <Grid Margin="0 20">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Style="{StaticResource estiloTxtBlockFormularioReferenciaCliente}" Margin="30 15 0 15">Descripción:</TextBlock>
+                            <TextBox Style="{StaticResource estiloTxtBoxFormularioReferenciaCliente}" Height="270" Margin="30 0 30 15" TextWrapping="Wrap">
+                                Lores undozgbr pag bfobspfon pag Lores undozgbr pag bfobspfon  pag pag bfobspfon bfobspfon bfobspfon Lores undozgbr pag bfobspfon pag Lores undozgbr pag bfobspfon  pag pag bfobspfon bfobspfon bfobspfon Lores undozgbr pag bfobspfon pag Lores undozgbr pag bfobspfon  pag pag bfobspfon bfobspfon bfobspfon
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1">
+                            <TextBlock Style="{StaticResource estiloTxtBlockFormularioReferenciaCliente}" Margin="30 15 0 15">Identificación oficial:</TextBlock>
+                            <Border Background="#127B7C" BorderBrush="#000000" BorderThickness="1" CornerRadius="10" Margin="30 0 30 30" Height="120">
+                                <Button Style="{StaticResource estiloBtnAgregarDocumentoFormularioCliente}" Width="300" Margin="0 20">
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="26">Agregar documento</TextBlock>
+                                </Button>
+                            </Border>
+                            <Button Style="{StaticResource estiloBtnRegistrarClienteFormulario}" Margin="7">
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="10">Agregar Referencia Cliente #1</TextBlock>
+                            </Button>
+                        </StackPanel>
+
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Viewbox>
+    </Grid>
+</Page>

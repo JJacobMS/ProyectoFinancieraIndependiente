@@ -1,0 +1,47 @@
+﻿<Page x:Class="WpfFinanciera.Vistas.FormularioReferenciaTrabajoPagina"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfFinanciera.Vistas"
+      mc:Ignorable="d" 
+      d:DesignHeight="550" d:DesignWidth="800">
+
+    <Grid Background="#FFFFFF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Background="#065758">
+            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
+            <TextBlock FontFamily="{StaticResource LeagueSpartanFont}" FontSize="40" Foreground="#FFFFFF" FontWeight="Medium"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18">Referencia de Trabajo</TextBlock>
+        </Grid>
+        <Viewbox Grid.Row="1">
+            <Border Background="#E2F0EF" BorderBrush="#000000" BorderThickness="1" CornerRadius="10" Margin="20"
+                    Height="430" Width="760">
+                <StackPanel VerticalAlignment="Center">
+                    <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}" Margin="30 20 0 15">Nombre:</TextBlock>
+                    <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}" Height="60" Margin="30 0 30 15" TextWrapping="WrapWithOverflow">Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores  pivndfuav</TextBox>
+                    <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}" Margin="30 15 0 15">Dirección:</TextBlock>
+                    <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}" Margin="30 0 30 15" TextWrapping="Wrap">
+                        Lores undozgbr pag bfobspfon pag Lores undozgbr pag bfobspfon  pag pag bfobspfon bfobspfon bfobspfon Lores undozgbr pag bfobspfon pag Lores undozgbr pag bfobspfon  pag pag bfobspfon bfobspfon bfobspfon Lores undozgbr pag bfobspfon pag Lores undozgbr pag bfobspfon  pag pag bfobspfon bfobspfon bfobspfon
+                    </TextBox>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel>
+                            <TextBlock Margin="30 15 0 15" Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Teléfono:</TextBlock>
+                            <TextBox Margin="30 0 20 15" Style="{StaticResource estiloTxtBoxFormularioCliente}">Lores pivndfuav</TextBox>
+                        </StackPanel>
+                        <Button Grid.Column="1" Style="{StaticResource estiloBtnRegistrarClienteFormulario}" Margin="7">
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Center">Adjuntar referencia al cliente</TextBlock>
+                        </Button>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Viewbox>
+    </Grid>
+</Page>

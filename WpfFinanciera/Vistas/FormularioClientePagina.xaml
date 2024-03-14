@@ -1,0 +1,229 @@
+﻿<Page x:Class="WpfFinanciera.Vistas.FormularioClientePagina"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfFinanciera.Vistas"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1336">
+
+    <Page.Resources>
+        <Style x:Key="estiloBtnEliminarArchivoX" TargetType="Button">
+            <Setter Property="Background" Value="#065758"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" Height="30" Width="30" CornerRadius="15">
+                            <TextBlock Foreground="#FFFFFF" Text="X" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#BA1313"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="estiloBtnArchivoAdjuntado" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="#FFFFFF" BorderBrush="#065758" BorderThickness="3" CornerRadius="10" Height="80" Width="161">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Margin="10 10 10 10" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                                           Style="{StaticResource estiloTxtBlockFormularioCliente}" FontSize="16" TextWrapping="Wrap" Text="{Binding}"></TextBlock>
+                                <Button Style="{StaticResource estiloBtnEliminarArchivoX}" Click="ClicEliminarDocumento"
+                                        CommandParameter="{TemplateBinding CommandParameter}"></Button>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="estiloBtnAgregarArchivo" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="#127B7C" BorderBrush="#000000" BorderThickness="1" CornerRadius="10" Height="84" Width="161">
+                            <Button Style="{StaticResource estiloBtnAgregarDocumentoFormularioCliente}" >
+                                <ContentPresenter>
+                                    <ContentPresenter.ContentTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </ContentPresenter.ContentTemplate>
+                                </ContentPresenter>
+                            </Button>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#FFFFFF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Background="#065758">
+            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
+            <TextBlock FontFamily="{StaticResource LeagueSpartanFont}" FontSize="50" Foreground="#FFFFFF" FontWeight="Medium"
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18">Registro de Cliente</TextBlock>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width=".7*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox>            
+            <StackPanel Height="680" Width="785">
+                <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" Margin="60 20 0 10">Datos personales:</TextBlock>
+                <Border BorderBrush="#000000" BorderThickness="1" CornerRadius="10" Background="#E2F0EF" Margin="20 0">
+                    <StackPanel Margin="25 10">
+                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Nombre(s):</TextBlock>
+                        <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Apellidos:</TextBlock>
+                        <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="1.3*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Margin="0 0 20 0">
+                                <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Teléfono Casa:</TextBlock>
+                                <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Margin="10 0 10 0">
+                                <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Teléfono Personal:</TextBlock>
+                                <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2" Margin="20 0 0 0">
+                                <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">RFC:</TextBlock>
+                                <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                            </StackPanel>
+                        </Grid>
+                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Cuenta de cobro:</TextBlock>
+                        <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Correo Electrónico:</TextBlock>
+                        <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Dirección:</TextBlock>
+                        <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                    </StackPanel>
+                </Border>
+                <Border Background="#E2F0EF" BorderBrush="#000000" BorderThickness="1" CornerRadius="10" Margin="20 10 20 0">
+                    <Grid Margin="10 0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Margin="10 20 10 20">
+                            <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" FontSize="15" Margin="0 0 0 10">Identificación oficial:</TextBlock>
+                            <Button Name="btnAgregarArchivoIdentificacion" CommandParameter="IdentificacionOficial" Click="ClicAgregarArchivo"
+                                        Style="{StaticResource estiloBtnAgregarArchivo}">Agregar identificación oficial</Button>
+                        </StackPanel>
+
+                        <StackPanel Margin="10 20 10 20" Grid.Column="1">
+                            <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" FontSize="15" Margin="0 0 0 10">Comprobante De Domicilio:</TextBlock>
+                            <Button Name="btnAgregarComprobanteDomicilio" CommandParameter="ComprobanteDomicilio" Click="ClicAgregarArchivo"
+                                Style="{StaticResource estiloBtnAgregarArchivo}">Agregar comprobante de domicilio</Button>
+                        </StackPanel>
+
+                        <StackPanel Margin="10 20 10 20" Grid.Column="2">
+                            <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" FontSize="15" Margin="0 0 0 10">Comprobante De Ingreso:</TextBlock>
+                            <Button Name="btnAgregarComprobanteIngreso" CommandParameter="ComprobanteIngreso" Click="ClicAgregarArchivo"
+                                Style="{StaticResource estiloBtnAgregarArchivo}">Agregar comprobante de ingreso</Button>
+                        </StackPanel>
+
+                        <StackPanel Margin="10 20 10 20" Grid.Column="3">
+                            <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" FontSize="15" Margin="0 0 0 10">Comprobante De Trabajo:</TextBlock>
+                                <Button Name="btnAgregarComprobanteTrabajo" CommandParameter="ComprobanteTrabajo" Click="ClicAgregarArchivo"
+                                    Style="{StaticResource estiloBtnAgregarArchivo}">Agregar comprobante de trabajo</Button>
+                        </StackPanel>
+                    </Grid>                    
+                </Border>
+            </StackPanel>
+            </Viewbox>
+            <Viewbox Grid.Column="1">
+                <StackPanel Height="710" Width="560" Margin="0 0 20 0" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" Margin="20 20 0 10">Referencia de Trabajo</TextBlock>
+                <Border Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000" Margin="0 0 0 15">
+                    <Grid Margin="15 5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="2*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}">Nombre:</TextBlock>
+                        <TextBlock Grid.Row="1" Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" VerticalAlignment="Top" Margin="0 8 0 0">Dirección:</TextBlock>
+                            <TextBlock Grid.Row="2" Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" >Teléfono:</TextBlock>
+                            <TextBox Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="5">Lores A</TextBox>
+                        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" TextWrapping="Wrap" Height="49"
+                                 Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}">Lores vbujsfbv Lores vbujsfbv Lores vbujsfbv Lores vbujsfbv Lores vbujsfbv</TextBox>
+                        <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="5">2281367803</TextBox>
+                        <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}">Seleccionar referencia de trabajo</Button>
+                    </Grid>
+                </Border>
+                <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" Margin="20 0 0 5">Referencia del Cliente:</TextBlock>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Margin="0 0 10 0">
+                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" FontSize="22" HorizontalAlignment="Center" Margin="0 0 0 5">Referencia #1:</TextBlock>
+                        <Border Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
+                            <StackPanel Margin="15">
+                                    <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" >Nombre:</TextBlock>
+                                <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="45" TextWrapping="Wrap">Lores Lores Lores Lores Lores Lores Lores s</TextBox>
+                                    <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}">Dirección:</TextBlock>
+                                <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="98" TextWrapping="Wrap">
+                                    Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores s</TextBox>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 15">
+                                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" Margin="0 0 8 0" >Teléfono:</TextBlock>
+                                    <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Padding="5 0 5 0">2281367803</TextBox>
+                                </StackPanel>
+                                <Button Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}" Margin="20 0">
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center">Registrar Referencia del Cliente</TextBlock></Button>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1" Margin="10 0 0 0">
+                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" FontSize="22" HorizontalAlignment="Center" Margin="0 0 0 5">Referencia #2:</TextBlock>
+                        <Border Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
+                            <StackPanel Margin="15">
+                                    <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}">Nombre:</TextBlock>
+                                <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="45" TextWrapping="Wrap">Lores Lores Lores Lores Lores Lores Lores s</TextBox>
+                                    <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" >Dirección:</TextBlock>
+                                <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="98" TextWrapping="Wrap">
+                                    Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores s</TextBox>
+                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 15">
+                                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" Margin="0 0 8 0">Teléfono:</TextBlock>
+                                    <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Padding="5 0 5 0">2281367803</TextBox>
+                                </StackPanel>
+                                <Button Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}" Margin="20 0">
+                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center">Registrar Referencia del Cliente</TextBlock>
+                                </Button>
+                            </StackPanel>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+                <Button Style="{StaticResource estiloBtnRegistrarClienteFormulario}" Margin="10">Registrar Cliente</Button>
+                
+            </StackPanel>
+            </Viewbox>
+        </Grid>
+    </Grid>
+</Page>

@@ -1,0 +1,57 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <FontFamily x:Key="LeagueSpartanFont">/WpfFinanciera;component/Fonts/LeagueSpartan-VariableFont_wght.ttf#League Spartan</FontFamily>
+    <Style x:Key="estiloTxtBlockInicioSesionCampos" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+        <Setter Property="FontSize" Value="45"/>
+    </Style>
+
+    <Style x:Key="estiloTxtBoxInicioSesion" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Border>
+                        <StackPanel Margin="25 20">
+                            <ScrollViewer Margin="10 4 10 0" x:Name="PART_ContentHost"/>
+                            <Border Height="3" Background="#000000" Margin="0 8 0 0"/>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="estiloBtnFondoNegro" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="Width" Value="450"/>
+        <Setter Property="FontSize" Value="40"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="#000000" CornerRadius="30">
+                        <ContentPresenter Margin="0 20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="estiloBtnFondoRosa" TargetType="Button">
+        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="Width" Value="300"/>
+        <Setter Property="FontSize" Value="36"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="#C46960" CornerRadius="30">
+                        <ContentPresenter Margin="0 20" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
