@@ -7,6 +7,32 @@
         mc:Ignorable="d" Height="250" Width="475" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
+        <Style x:Key="estiloBtnVentanaMensajeERRORRAZONES" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="#FFFFFF" Margin="15" CornerRadius="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="2.6*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="2.6*"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.ColumnSpan="2" Style="{StaticResource estiloTxtBlockVentanaMensajeTitulo}" FontSize="28" Text="{Binding titulo}"></TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource estiloTxtBlockVentanaMensajeTextoPrincipal}" FontSize="18" Text="{Binding razones}"></TextBlock>
+                                <Image Grid.Row="1" Source="/Recursos/error.png"/>
+                                <Button Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource estiloBtnRojoVentanaMensaje}" Click="ClicAceptar">Aceptar</Button>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
         <Style x:Key="estiloBtnVentanaMensajeERROR" TargetType="Button">
             <Setter Property="Template">
                 <Setter.Value>
@@ -48,13 +74,39 @@
                                     <RowDefinition Height="2.6*"/>
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
-                                <TextBlock Grid.ColumnSpan="2" Style="{StaticResource estiloTxtBlockVentanaMensajeTitulo}">¡Confirmación!</TextBlock>
+                                <TextBlock Grid.ColumnSpan="2" Style="{StaticResource estiloTxtBlockVentanaMensajeTitulo}">Advertencia</TextBlock>
                                 <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource estiloTxtBlockVentanaMensajeTextoPrincipal}" FontSize="30" Text="{Binding}"></TextBlock>
                                 <Image Grid.Row="1" Source="/Recursos/info.png"/>
                                 <StackPanel Grid.Row="2" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Center">
-                                    <Button Style="{StaticResource estiloBtnRojoVentanaMensaje}" Background="#446CFF" Margin="0 0 50 5" Click="Button_Click">Confirmar</Button>
+                                    <Button Style="{StaticResource estiloBtnRojoVentanaMensaje}" Background="#446CFF" Margin="0 0 50 5" Click="ClicConfirmar">Confirmar</Button>
                                     <Button Style="{StaticResource estiloBtnRojoVentanaMensaje}" Click="ClicCancelar">Cancelar</Button>
                                 </StackPanel>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="estiloBtnVentanaMensajeEXITO" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="#FFFFFF" Margin="15" CornerRadius="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="2.6*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="2.6*"/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Grid.ColumnSpan="2" Style="{StaticResource estiloTxtBlockVentanaMensajeTitulo}">Operación exitosa</TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource estiloTxtBlockVentanaMensajeTextoPrincipal}" Text="{Binding}"></TextBlock>
+                                <Image Grid.Row="1" Source="/Recursos/success.png"/>
+                                <Button Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource estiloBtnRojoVentanaMensaje}" Background="#052E2F" Click="ClicAceptar">Aceptar</Button>
                             </Grid>
                         </Border>
                     </ControlTemplate>

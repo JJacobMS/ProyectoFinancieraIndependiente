@@ -32,8 +32,21 @@ namespace WpfFinanciera.Utilidades
                     btnBackground.Style = (Style)FindResource("estiloBtnVentanaMensajeCONFIRMACION");
                     break;
                 case Mensaje.EXITO:
+                    grdBackground.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#052E2F");
+                    btnBackground.Style = (Style)FindResource("estiloBtnVentanaMensajeEXITO");
                     break;
             }
+        }
+
+        public VentanaMensaje(string titulo, string razones)
+        {
+            InitializeComponent();
+            btnBackground.Style = (Style)FindResource("estiloBtnVentanaMensajeERRORRAZONES");
+            var contexto = new
+            {
+                titulo, razones
+            };
+            btnBackground.DataContext = contexto;
         }
 
         public void Mostrar()
