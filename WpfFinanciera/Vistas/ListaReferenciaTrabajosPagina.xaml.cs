@@ -54,6 +54,18 @@ namespace WpfFinanciera.Vistas
             MainWindow principal = (MainWindow)Window.GetWindow(this);
             principal.CambiarPagina(_formularioPagina);
         }
+
+        private void ClicAgregarNuevaReferencia(object sender, RoutedEventArgs e)
+        {
+            CargarFormularioReferenciaTrabajo();
+        }
+        
+        private void CargarFormularioReferenciaTrabajo()
+        {
+            FormularioReferenciaTrabajoPagina formularioReferenciaTrabajoPagina = new FormularioReferenciaTrabajoPagina(this, _formularioPagina);
+            MainWindow principal = (MainWindow)Window.GetWindow(this);
+            principal.CambiarPagina(formularioReferenciaTrabajoPagina);
+        }
     }
 
     public class ReferenciaTrabajo

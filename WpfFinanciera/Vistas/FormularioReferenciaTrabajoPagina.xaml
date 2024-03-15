@@ -13,7 +13,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Background="#065758">
-            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
+            <Button Style="{StaticResource estiloBtnRegresar}" Click="ClickRegresar"/>
             <TextBlock FontFamily="{StaticResource LeagueSpartanFont}" FontSize="40" Foreground="#FFFFFF" FontWeight="Medium"
                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18">Referencia de Trabajo</TextBlock>
         </Grid>
@@ -22,10 +22,9 @@
                     Height="430" Width="760">
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}" Margin="30 20 0 15">Nombre:</TextBlock>
-                    <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}" Height="60" Margin="30 0 30 15" TextWrapping="WrapWithOverflow">Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores  pivndfuav</TextBox>
+                    <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}" Height="60" Margin="30 0 30 15" TextWrapping="WrapWithOverflow"></TextBox>
                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}" Margin="30 15 0 15">Dirección:</TextBlock>
-                    <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}" Margin="30 0 30 15" TextWrapping="Wrap">
-                        Lores undozgbr pag bfobspfon pag Lores undozgbr pag bfobspfon  pag pag bfobspfon bfobspfon bfobspfon Lores undozgbr pag bfobspfon pag Lores undozgbr pag bfobspfon  pag pag bfobspfon bfobspfon bfobspfon Lores undozgbr pag bfobspfon pag Lores undozgbr pag bfobspfon  pag pag bfobspfon bfobspfon bfobspfon
+                    <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}" Height="110" Margin="30 0 30 15" TextWrapping="Wrap">
                     </TextBox>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -34,9 +33,9 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel>
                             <TextBlock Margin="30 15 0 15" Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Teléfono:</TextBlock>
-                            <TextBox Margin="30 0 20 15" Style="{StaticResource estiloTxtBoxFormularioCliente}">Lores pivndfuav</TextBox>
+                            <TextBox Margin="30 0 20 15" Style="{StaticResource estiloTxtBoxFormularioCliente}" PreviewKeyDown="PreviewKeyDownValidarNumero"></TextBox>
                         </StackPanel>
-                        <Button Grid.Column="1" Style="{StaticResource estiloBtnRegistrarClienteFormulario}" Margin="7">
+                        <Button Grid.Column="1" Style="{StaticResource estiloBtnRegistrarClienteFormulario}" Margin="7" Click="ClicAdjuntarReferenciaTrabajoCliente">
                             <TextBlock TextWrapping="Wrap" TextAlignment="Center">Adjuntar referencia al cliente</TextBlock>
                         </Button>
                     </Grid>

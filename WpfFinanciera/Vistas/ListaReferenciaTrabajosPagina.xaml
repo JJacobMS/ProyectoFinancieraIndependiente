@@ -186,7 +186,7 @@
                             </Button>
                         </Grid>
                     </Border>
-                    <Button Grid.Column="1" Style="{StaticResource estiloBtnAgregarNuevaReferencia}" Margin="0 20 60 20">
+                    <Button Grid.Column="1" Style="{StaticResource estiloBtnAgregarNuevaReferencia}" Margin="0 20 60 20" Click="ClicAgregarNuevaReferencia">
                         <TextBlock TextWrapping="Wrap" TextAlignment="Center">Agregar nueva referencia de trabajo</TextBlock>
                     </Button>
                 </StackPanel>
