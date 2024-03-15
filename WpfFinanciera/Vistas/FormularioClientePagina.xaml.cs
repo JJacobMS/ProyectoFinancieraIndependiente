@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFinanciera.Utilidades;
 
 namespace WpfFinanciera.Vistas
 {
@@ -72,6 +73,18 @@ namespace WpfFinanciera.Vistas
             btnDocumento.Style = (Style)FindResource("estiloBtnAgregarArchivo");
             btnDocumento.Click += ClicAgregarArchivo;
 
+        }
+
+        private void ClicSeleccionarReferenciaTrabajo(object sender, RoutedEventArgs e)
+        {
+            SeleccionarReferenciaTrabajo();
+        }
+
+        private void SeleccionarReferenciaTrabajo()
+        {
+            ListaReferenciaTrabajosPagina listaRTpagina = new ListaReferenciaTrabajosPagina(this);
+            MainWindow principal = (MainWindow)Window.GetWindow(this);
+            principal.CambiarPagina(listaRTpagina);
         }
     }
 
