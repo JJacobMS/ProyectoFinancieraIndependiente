@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFinanciera.Utilidades;
 using static System.Net.Mime.MediaTypeNames;
 
 namespace WpfFinanciera.Vistas
@@ -39,17 +40,80 @@ namespace WpfFinanciera.Vistas
 
         private void ClicAdjuntarReferenciaTrabajoCliente(object sender, RoutedEventArgs e)
         {
-
+            bool sonCamposValidos = ValidarCampoVaciosYValidos();
+            if (sonCamposValidos)
+            {
+                MostrarVentanaConfirmacion();
+            }
         }
 
-        private void ValidarCampoVaciosYValidos()
+        private bool ValidarCampoVaciosYValidos()
         {
+            ResetearCampos();
+            bool sonCamposValidos = true;
+            string razones = "";
+            string nombre = txtBoxNombre.Text;
+            string direccion = txtBoxDireccion.Text;
+            string telefono = txtBoxTelefono.Text;
 
+            if (String.IsNullOrWhiteSpace(nombre) || nombre.Length > 100)
+            {
+                txtBoxNombre.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
+                sonCamposValidos = false;
+                razones += "Nombre ";
+            }
+
+            if (String.IsNullOrWhiteSpace(direccion) || direccion.Length > 50)
+            {
+                txtBoxDireccion.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
+                sonCamposValidos = false;
+                razones = (razones.Length > 0 ) ? razones + ", Dirección " : "Dirección";
+            }
+
+            if (String.IsNullOrWhiteSpace(telefono) || telefono.Length > 12)
+            {
+                txtBoxTelefono.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
+                sonCamposValidos = false;
+                razones = (razones.Length > 0) ? razones + ", Teléfono " : "Teléfono";
+            }
+
+            if (!sonCamposValidos)
+            {
+                MostrarVentanaCamposNoValidos(razones);
+            }
+
+            return sonCamposValidos;
+        }
+
+        private void MostrarVentanaConfirmacion()
+        {
+            VentanaMensaje ventana = new VentanaMensaje("¿Desea agregar la referencia de trabajo?", Mensaje.CONFIRMACION);
+            if (ventana.MostrarConfirmacion())
+            {
+                
+            }
+            else
+            {
+                
+            }
+        }
+
+        private void ResetearCampos()
+        {
+            txtBoxNombre.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#127B7C");
+            txtBoxDireccion.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#127B7C");
+            txtBoxTelefono.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#127B7C");
+        }
+
+        private void MostrarVentanaCamposNoValidos(string razones)
+        {
+            VentanaMensaje mensajeError = new VentanaMensaje("Los campos ingresados no son válidos", razones);
+            mensajeError.Mostrar();
         }
 
         private void PreviewKeyDownValidarNumero(object sender, KeyEventArgs e)
         {
-            if (!char.IsDigit((char)KeyInterop.VirtualKeyFromKey(e.Key)))
+            if (!char.IsDigit((char)KeyInterop.VirtualKeyFromKey(e.Key)) && e.Key != Key.Delete && e.Key != Key.Back)
             {
                 e.Handled = true;
             }

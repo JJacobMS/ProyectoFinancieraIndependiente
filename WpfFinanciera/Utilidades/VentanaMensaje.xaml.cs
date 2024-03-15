@@ -19,6 +19,7 @@ namespace WpfFinanciera.Utilidades
     /// </summary>
     public partial class VentanaMensaje : Window
     {
+        private bool _respuesta;
         public VentanaMensaje(string mensaje, Mensaje tipoMensaje)
         {
             InitializeComponent();
@@ -54,6 +55,12 @@ namespace WpfFinanciera.Utilidades
             Show();
         }
 
+        public bool MostrarConfirmacion()
+        {
+            ShowDialog();
+            return _respuesta;
+        }
+
         private void ClicAceptar(object sender, RoutedEventArgs e)
         {
             Close();
@@ -66,6 +73,7 @@ namespace WpfFinanciera.Utilidades
 
         private void ClicConfirmar(object sender, RoutedEventArgs e)
         {
+            _respuesta = true;
             Close();
         }
     }

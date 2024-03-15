@@ -22,9 +22,9 @@
                     Height="430" Width="760">
                 <StackPanel VerticalAlignment="Center">
                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}" Margin="30 20 0 15">Nombre:</TextBlock>
-                    <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}" Height="60" Margin="30 0 30 15" TextWrapping="WrapWithOverflow"></TextBox>
+                    <TextBox x:Name="txtBoxNombre" Style="{StaticResource estiloTxtBoxFormularioCliente}" Height="60" Margin="30 0 30 15" TextWrapping="WrapWithOverflow"></TextBox>
                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}" Margin="30 15 0 15">Dirección:</TextBlock>
-                    <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}" Height="110" Margin="30 0 30 15" TextWrapping="Wrap">
+                    <TextBox x:Name="txtBoxDireccion" Style="{StaticResource estiloTxtBoxFormularioCliente}" Height="110" Margin="30 0 30 15" TextWrapping="Wrap">
                     </TextBox>
                     <Grid>
                         <Grid.ColumnDefinitions>
@@ -33,7 +33,7 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel>
                             <TextBlock Margin="30 15 0 15" Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Teléfono:</TextBlock>
-                            <TextBox Margin="30 0 20 15" Style="{StaticResource estiloTxtBoxFormularioCliente}" PreviewKeyDown="PreviewKeyDownValidarNumero"></TextBox>
+                            <TextBox x:Name="txtBoxTelefono" Margin="30 0 20 15" Style="{StaticResource estiloTxtBoxFormularioCliente}" PreviewKeyDown="PreviewKeyDownValidarNumero"></TextBox>
                         </StackPanel>
                         <Button Grid.Column="1" Style="{StaticResource estiloBtnRegistrarClienteFormulario}" Margin="7" Click="ClicAdjuntarReferenciaTrabajoCliente">
                             <TextBlock TextWrapping="Wrap" TextAlignment="Center">Adjuntar referencia al cliente</TextBlock>

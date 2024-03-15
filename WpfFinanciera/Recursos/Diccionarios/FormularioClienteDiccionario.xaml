@@ -25,10 +25,11 @@
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Foreground" Value="#FFFFFF"/>
         <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="Background" Value="#127B7C"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="TextBox">
-                    <Border Background="#127B7C" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
                         <ScrollViewer Margin="15 10 0 10" x:Name="PART_ContentHost"/>
                     </Border>
                 </ControlTemplate>
