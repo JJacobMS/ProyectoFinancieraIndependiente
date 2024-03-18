@@ -4,12 +4,14 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfFinanciera"
+      xmlns:r="clr-namespace:WpfFinanciera.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1336"
       Title="FormularioPoliticaOtorgamientoPagina">
 
 
-    <Grid>
+    <Viewbox Stretch="Fill">
+    <Grid Height="768" Width="1336">
         <Grid.Background>
             <SolidColorBrush Color="White"/>
         </Grid.Background>
@@ -21,15 +23,12 @@
                 <RowDefinition Height="85"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            
             <Border  Grid.Column="0" Grid.Row="0" Background="#065758" >
-                <TextBlock Text="Registrar Politica de Otorgamiento" FontSize="50" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
-
+                <TextBlock Name="txtBlockTitulo" Text="Registrar Politica de Otorgamiento" FontSize="50" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
             </Border>
-            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
-            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
-            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
-
-            <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="30,30,30,30">
+                <Image Style="{StaticResource estiloImgFlecha}"/>
+                <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="30,30,30,30">
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -41,12 +40,23 @@
                         <RowDefinition Height="*"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Nombre" FontSize="45"  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Descripción" FontSize="45"  HorizontalAlignment="Center" VerticalAlignment="Center"  FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Fecha Vigencia" FontSize="45" Grid.ColumnSpan="2" Margin="0,0,50,60"  HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
+                    
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Nombre" FontSize="50" HorizontalAlignment="Center" Margin="0,0,20,0" VerticalAlignment="Center" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
+                    <TextBox Name="txtBoxNombre" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="0,25,0,10" VerticalContentAlignment="Center" Height="70" Width="635" FontSize="40" Style="{StaticResource estiloTxtBoxFormulario}" TextChanged="TextChangedtxtBoxNombre"/>
+
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Descripción" FontSize="50"  HorizontalAlignment="Center" Margin="30,0,0,35" VerticalAlignment="Center"  FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
+                    <TextBox Name="txtBoxDescripcion" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Left"  TextWrapping="Wrap" Margin="0,45,0,20" Height="137" Width="735" FontSize="40" Style="{StaticResource estiloTxtBoxFormulario}" TextChanged="TextChangedtxtBoxDescripcion"/>
+                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                        <TextBlock  Text="Fecha Vigencia" FontSize="50" FontFamily="{StaticResource LeagueSpartanFont}" HorizontalAlignment="Center" Margin="0,25,150,0" />
+                        <DatePicker Name="dtPickerFechaVigencia" Margin="0,35,150,0" Width="350" Height="60" Style="{StaticResource estiloDatePickerFormularioPoliticaOtorgamiento}" />
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Margin="0,0,35,30" >
+                        <Button Grid.Row="2" Grid.Column="2" Width="210" Height="75" Style="{StaticResource estiloBtnFormulario}" Click="ClicAceptar" Content="Aceptar" FontSize="27" Margin="0,10,35,10"/>
+                        <Button Grid.Row="2" Grid.Column="2" Width="220" Height="75" Style="{StaticResource estiloBtnFormulario}" Click="ClicCancelar" Content="Cancelar" FontSize="27"  />
+                    </StackPanel>
                 </Grid>
-                
             </Border>
         </Grid>
     </Grid>
+</Viewbox>
 </Page>

@@ -1,0 +1,96 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Style x:Key="estiloDatePickerFormularioPoliticaOtorgamiento" TargetType="{x:Type DatePicker}" BasedOn="{StaticResource estiloDatePicker}">
+        <Setter Property="IsTodayHighlighted" Value="True" />
+        <Setter Property="SelectedDateFormat" Value="Short" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePicker}">
+                    <Border BorderThickness="0" Padding="{TemplateBinding Padding}" CornerRadius="10" BorderBrush="Transparent">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#127B7C" Offset="1" />
+                                <GradientStop Color="#127B7C" Offset="2" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="PART_Button" Grid.Column="1" Focusable="False"   
+                            HorizontalAlignment="Left" Margin="3,0,3,0" Grid.Row="0" 
+                            Style="{StaticResource estiloBotonDesplegable}" VerticalAlignment="Center" />
+                            <DatePickerTextBox x:Name="PART_TextBox"  Grid.Column="0" Foreground="{TemplateBinding Foreground}" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Stretch" Grid.Row="0" Background="Transparent" VerticalContentAlignment="Stretch" Style="{StaticResource CustomDatePickerTextBoxStyle}" />
+                            <Grid x:Name="PART_DisabledVisual" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Grid.Column="0" RadiusY="1" Grid.Row="0" RadiusX="1" />
+                                <Rectangle Grid.Column="1" Height="18" Margin="3,0,3,0" RadiusY="1" Grid.Row="0" RadiusX="1" Width="19" />
+                                <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" StaysOpen="False" Cursor="Hand">
+                                    <Calendar Style="{DynamicResource estiloDatePickerCalendario}" />
+                                </Popup>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsPressed" Value="True">
+                            <Setter TargetName="PART_Button" Property="Background" Value="#FFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="estiloDatePickerFormularioPoliticaOtorgamientoRojo" TargetType="{x:Type DatePicker}" BasedOn="{StaticResource estiloDatePicker}">
+        <Setter Property="IsTodayHighlighted" Value="True" />
+        <Setter Property="SelectedDateFormat" Value="Short" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePicker}">
+                    <Border BorderThickness="2" Padding="{TemplateBinding Padding}" CornerRadius="10" BorderBrush="#9B2E24">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#CE7F77" Offset="1" />
+                                <GradientStop Color="#CE7F77" Offset="2" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="PART_Button" Grid.Column="1" Focusable="False"
+                        HorizontalAlignment="Left" Margin="3,0,3,0" Grid.Row="0" 
+                        Style="{StaticResource estiloBotonDesplegable}" VerticalAlignment="Center" />
+                            <DatePickerTextBox x:Name="PART_TextBox"  Grid.Column="0" Foreground="{TemplateBinding Foreground}" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Stretch" Grid.Row="0" Background="Transparent" VerticalContentAlignment="Stretch" Style="{StaticResource CustomDatePickerTextBoxStyle}" />
+                            <Grid x:Name="PART_DisabledVisual" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Grid.Column="0" RadiusY="1" Grid.Row="0" RadiusX="1" />
+                                <Rectangle Grid.Column="1" Height="18" Margin="3,0,3,0" RadiusY="1" Grid.Row="0" RadiusX="1" Width="19" />
+                                <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" StaysOpen="False" Cursor="Hand">
+                                    <Calendar Style="{DynamicResource estiloDatePickerCalendario}" />
+                                </Popup>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsPressed" Value="True">
+                            <Setter TargetName="PART_Button" Property="Background" Value="#FFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>
