@@ -77,14 +77,24 @@ namespace WpfFinanciera.Vistas
 
         private void ClicSeleccionarReferenciaTrabajo(object sender, RoutedEventArgs e)
         {
-            SeleccionarReferenciaTrabajo();
-        }
-
-        private void SeleccionarReferenciaTrabajo()
-        {
             ListaReferenciaTrabajosPagina listaRTpagina = new ListaReferenciaTrabajosPagina(this);
             MainWindow principal = (MainWindow)Window.GetWindow(this);
             principal.CambiarPagina(listaRTpagina);
+        }
+
+        public void AgregarReferenciaTrabajo(ReferenciaTrabajo referenciaTrabajo)
+        {
+            txtBoxNombreReferenciaTrabajo.Text = referenciaTrabajo.Nombre;
+            txtBoxDireccionReferenciaTrabajo.Text = referenciaTrabajo.Direccion;
+            txtBoxTelefonoReferenciaTrabajo.Text = referenciaTrabajo.Telefono;
+        }
+
+        private void ClicRegistrarReferenciaCliente(object sender, RoutedEventArgs e)
+        {
+            Button btnReferenciaCliente = sender as Button;
+            FormularioReferenciaClientePagina formularioReferenciaCliente = new FormularioReferenciaClientePagina(this, btnReferenciaCliente.CommandParameter.ToString());
+            MainWindow principal = (MainWindow)Window.GetWindow(this);
+            principal.CambiarPagina(formularioReferenciaCliente);
         }
     }
 

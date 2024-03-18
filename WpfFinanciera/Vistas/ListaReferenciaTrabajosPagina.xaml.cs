@@ -37,7 +37,8 @@ namespace WpfFinanciera.Vistas
             _listaReferenciasTrabajo = new List<ReferenciaTrabajo>
             {
                 new ReferenciaTrabajo{ Nombre = "Lores undozgbr pag bfobspfon Lores undozgbr pag bfobspfon", Direccion = "Lores undozgbr pag bfobspfon Lores undozgbr pag bfobspfon", Telefono = "2281367802"},
-                new ReferenciaTrabajo{ Nombre = "Lores BNUDIZB pag bfobspfon Lores undozgbr pag bfobspfon", Direccion = "VNSO undozgbr pag bfobspfon Lores undozgbr pag bfobspfon", Telefono = "2234567802"}
+                new ReferenciaTrabajo{ Nombre = "Lores BNUDIZB pag bfobspfon Lores undozgbr pag bfobspfon", Direccion = "VNSO undozgbr pag bfobspfon Lores undozgbr pag bfobspfon", Telefono = "6598694"},
+                new ReferenciaTrabajo{ Nombre = "Universidad Veracruazna", Direccion = "Avila Acamacho numero 500000", Telefono = "458937053894"}
 
             };
 
@@ -66,6 +67,37 @@ namespace WpfFinanciera.Vistas
             MainWindow principal = (MainWindow)Window.GetWindow(this);
             principal.CambiarPagina(formularioReferenciaTrabajoPagina);
         }
+
+        private void ClicBuscarReferenciaTrabajo(object sender, RoutedEventArgs e)
+        {
+            FiltrarReferenciasTrabajo(txtBoxBarraBuscar.Text);
+        }
+
+        private void FiltrarReferenciasTrabajo(string busqueda)
+        {
+            lstBoxReferenciasTrabajo.Style = (Style)FindResource("estiloLstBoxReferenciaTrabajo");
+            if (string.IsNullOrWhiteSpace(busqueda))
+            {
+                CargarListaReferenciasTrabajo(_listaReferenciasTrabajo);
+            }
+            else
+            {
+                List<ReferenciaTrabajo> referenciaTrabajos = _listaReferenciasTrabajo.Where(
+                    referencia => referencia.Nombre.Contains(busqueda) || referencia.Direccion.Contains(busqueda) || referencia.Telefono.Contains(busqueda))
+                    .ToList();
+                CargarListaReferenciasTrabajo(referenciaTrabajos);
+            }
+        }
+
+        private void ClicAdjuntarReferenciaAlCliente(object sender, RoutedEventArgs e)
+        {
+            Button btnReferenciaTrabajo = sender as Button;
+            ReferenciaTrabajo referenciaTrabajo = (ReferenciaTrabajo) btnReferenciaTrabajo.CommandParameter;
+            _formularioPagina.AgregarReferenciaTrabajo(referenciaTrabajo);
+            MainWindow ventana = (MainWindow)Window.GetWindow(this);
+            ventana.CambiarPagina(_formularioPagina);
+        }
+
     }
 
     public class ReferenciaTrabajo
