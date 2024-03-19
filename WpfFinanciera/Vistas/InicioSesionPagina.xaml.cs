@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFinanciera.ServicioFinancieraIndependiente;
+using WpfFinanciera.Utilidades;
 
 namespace WpfFinanciera.Vistas
 {
@@ -23,6 +26,104 @@ namespace WpfFinanciera.Vistas
         public InicioSesionPagina()
         {
             InitializeComponent();
+        }
+
+        private void ClicVerificarUsuario(object sender, RoutedEventArgs e)
+        {
+            ResetearCampos();
+            bool sonCamposValidos = true;
+            string correo = txtBlockCorreoElectronico.Text;
+            string contrasena = pssBoxContrasena.Password;
+
+            if (string.IsNullOrWhiteSpace(correo) || correo.Length > 100)
+            {
+                sonCamposValidos = false;
+                txtBlockCorreoElectronico.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
+            }
+            if (string.IsNullOrWhiteSpace(contrasena))
+            {
+                sonCamposValidos = false;
+                pssBoxContrasena.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
+
+            }
+
+            if (sonCamposValidos)
+            {
+                VerificarUsuario(correo, contrasena);
+            }
+            
+        }
+
+        private void VerificarUsuario(string correo, string contrasena)
+        {
+            Codigo codigo;
+            Usuario usuario = null;
+            try
+            {
+                UsuarioClient proxy = new UsuarioClient();
+                (usuario, codigo) = proxy.ValidarUsuario(correo, contrasena);
+            }
+            catch (CommunicationException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+
+            VentanaMensaje ventanaMensaje;
+
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    EntrarSistema(usuario);
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+                    ventanaMensaje.Mostrar();
+                    break;
+                case Codigo.ERROR_BD:
+                    ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+                    ventanaMensaje.Mostrar();
+                    break;
+            }
+
+        }
+
+        private void EntrarSistema(Usuario usuario)
+        {
+            if (usuario == null)
+            {
+                txtBlockErrorCorreo.Visibility = Visibility.Visible;
+            }
+            else if (usuario.idUsuario == 0)
+            {
+                txtBlockErrorContrasena.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                //Enviar por tipo de usuario
+                MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+                MenuPrincipalAsesorCredito menuAsesor = new MenuPrincipalAsesorCredito();
+                ventanaPrincipal.CambiarPagina(menuAsesor);
+            }
+        }
+
+        private void ResetearCampos()
+        {
+            pssBoxContrasena.Background = Brushes.Transparent;
+            txtBlockCorreoElectronico.Background = Brushes.Transparent;
+            txtBlockErrorCorreo.Visibility = Visibility.Hidden;
+            txtBlockErrorContrasena.Visibility = Visibility.Hidden;
+        }
+
+        private void ClicSalir(object sender, RoutedEventArgs e)
+        {
+            Window ventana = Window.GetWindow(this);
+            ventana.Close();
         }
     }
 }

@@ -1,0 +1,19 @@
+﻿<Page x:Class="WpfFinanciera.Vistas.MenuPrincipalAsesorCredito"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfFinanciera.Vistas"
+      mc:Ignorable="d" d:DesignHeight="768" d:DesignWidth="1336">
+
+    <Grid Background="#FFFFFF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="60">Menú Principal Asesor de Crédito</TextBlock>
+        <StackPanel Grid.Row="1">
+            <Button FontSize="40">Registrar Cliente</Button>
+        </StackPanel>
+    </Grid>
+</Page>

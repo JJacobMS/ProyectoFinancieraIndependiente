@@ -9,7 +9,225 @@
 //------------------------------------------------------------------------------
 
 namespace WpfFinanciera.ServicioFinancieraIndependiente {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Usuario", Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente")]
+    [System.SerializableAttribute()]
+    public partial class Usuario : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.TipoUsuario TipoUsuarioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TipoUsuario_idTipoUsuarioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string apellidosField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string contrasenhaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string correoElectronicoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idUsuarioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nombresField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.TipoUsuario TipoUsuario {
+            get {
+                return this.TipoUsuarioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TipoUsuarioField, value) != true)) {
+                    this.TipoUsuarioField = value;
+                    this.RaisePropertyChanged("TipoUsuario");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TipoUsuario_idTipoUsuario {
+            get {
+                return this.TipoUsuario_idTipoUsuarioField;
+            }
+            set {
+                if ((this.TipoUsuario_idTipoUsuarioField.Equals(value) != true)) {
+                    this.TipoUsuario_idTipoUsuarioField = value;
+                    this.RaisePropertyChanged("TipoUsuario_idTipoUsuario");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string apellidos {
+            get {
+                return this.apellidosField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.apellidosField, value) != true)) {
+                    this.apellidosField = value;
+                    this.RaisePropertyChanged("apellidos");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string contrasenha {
+            get {
+                return this.contrasenhaField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.contrasenhaField, value) != true)) {
+                    this.contrasenhaField = value;
+                    this.RaisePropertyChanged("contrasenha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string correoElectronico {
+            get {
+                return this.correoElectronicoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.correoElectronicoField, value) != true)) {
+                    this.correoElectronicoField = value;
+                    this.RaisePropertyChanged("correoElectronico");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idUsuario {
+            get {
+                return this.idUsuarioField;
+            }
+            set {
+                if ((this.idUsuarioField.Equals(value) != true)) {
+                    this.idUsuarioField = value;
+                    this.RaisePropertyChanged("idUsuario");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nombres {
+            get {
+                return this.nombresField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nombresField, value) != true)) {
+                    this.nombresField = value;
+                    this.RaisePropertyChanged("nombres");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Codigo", Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente")]
+    public enum Codigo : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        EXITO = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ERROR_SERVIDOR = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        ERROR_BD = 2,
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="TipoUsuario", Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente")]
+    [System.SerializableAttribute()]
+    public partial class TipoUsuario : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idTipoUsuarioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string nombreField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idTipoUsuario {
+            get {
+                return this.idTipoUsuarioField;
+            }
+            set {
+                if ((this.idTipoUsuarioField.Equals(value) != true)) {
+                    this.idTipoUsuarioField = value;
+                    this.RaisePropertyChanged("idTipoUsuario");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string nombre {
+            get {
+                return this.nombreField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.nombreField, value) != true)) {
+                    this.nombreField = value;
+                    this.RaisePropertyChanged("nombre");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioFinancieraIndependiente.IPoliticaOtorgamiento")]
@@ -55,6 +273,53 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<int> GuardarPoliticaOtorgamientoAsync(int numero) {
             return base.Channel.GuardarPoliticaOtorgamientoAsync(numero);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioFinancieraIndependiente.IUsuario")]
+    public interface IUsuario {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsuario/ValidarUsuario", ReplyAction="http://tempuri.org/IUsuario/ValidarUsuarioResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Usuario, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ValidarUsuario(string correo, string contrasena);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsuario/ValidarUsuario", ReplyAction="http://tempuri.org/IUsuario/ValidarUsuarioResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Usuario, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> ValidarUsuarioAsync(string correo, string contrasena);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IUsuarioChannel : WpfFinanciera.ServicioFinancieraIndependiente.IUsuario, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class UsuarioClient : System.ServiceModel.ClientBase<WpfFinanciera.ServicioFinancieraIndependiente.IUsuario>, WpfFinanciera.ServicioFinancieraIndependiente.IUsuario {
+        
+        public UsuarioClient() {
+        }
+        
+        public UsuarioClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public UsuarioClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public UsuarioClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public UsuarioClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Usuario, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ValidarUsuario(string correo, string contrasena) {
+            return base.Channel.ValidarUsuario(correo, contrasena);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Usuario, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> ValidarUsuarioAsync(string correo, string contrasena) {
+            return base.Channel.ValidarUsuarioAsync(correo, contrasena);
         }
     }
 }
