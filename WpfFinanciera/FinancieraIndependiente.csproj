@@ -69,6 +69,9 @@
     <Compile Include="Vistas\FormularioClientePagina.xaml.cs">
       <DependentUpon>FormularioClientePagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FormularioDictamenPagina.xaml.cs">
+      <DependentUpon>FormularioDictamenPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FormularioPoliticaOtorgamientoPagina.xaml.cs">
       <DependentUpon>FormularioPoliticaOtorgamientoPagina.xaml</DependentUpon>
     </Compile>
@@ -121,6 +124,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\FormularioClientePagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\FormularioDictamenPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
