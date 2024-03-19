@@ -13,8 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Xml.Linq;
+using WpfFinanciera.ServicioFinancieraIndependiente;
 using WpfFinanciera.Utilidades;
 
 namespace WpfFinanciera.Vistas
@@ -26,11 +26,15 @@ namespace WpfFinanciera.Vistas
     {
         private FormularioClientePagina _formularioCliente;
         private byte[] _documentoReferencia;
+        private string _nombreArchivo;
+        private string _numeroReferenciaCliente;
         public FormularioReferenciaClientePagina(FormularioClientePagina formularioCliente, string numeroReferenciaCliente)
         {
             InitializeComponent();
             _formularioCliente = formularioCliente;
             _documentoReferencia = null;
+            _nombreArchivo = null;
+            _numeroReferenciaCliente = numeroReferenciaCliente;
             CargarPaginaFormularioReferenciaCliente(numeroReferenciaCliente);
         }
 
@@ -67,12 +71,13 @@ namespace WpfFinanciera.Vistas
                 btnAgregarArchivo.DataContext = nombreArchivo;
 
                 _documentoReferencia = File.ReadAllBytes(ventanaArchivo.FileName);
-
+                _nombreArchivo = nombreArchivo;
             }
         }
         private void ClicEliminarDocumento(object sender, RoutedEventArgs e)
         {
             _documentoReferencia = null;
+            _nombreArchivo = null;
             btnAgregarArchivo.Style = (Style)FindResource("estiloBtnAgregarArchivo");
             btnAgregarArchivo.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#127B7C");
             btnAgregarArchivo.Click += ClicAdjuntarDocumento;
@@ -189,6 +194,23 @@ namespace WpfFinanciera.Vistas
         }
         private void EnviarReferenciaCliente()
         {
+            TipoDocumento tipo = new TipoDocumento { descripcion = "Referencia Cliente " +  _numeroReferenciaCliente};
+            Documento documentoReferencia = new Documento
+            {
+                idDocumento = 0, archivo = _documentoReferencia, nombre = Path.GetFileNameWithoutExtension(_nombreArchivo), 
+                extension = Path.GetExtension(_nombreArchivo), TipoDocumento = tipo
+            };
+            ReferenciaCliente referenciaCliente = new ReferenciaCliente
+            {
+                idReferenciaCliente = 0,
+                nombres = txtBoxNombreReferencia.Text,
+                apellidos = txtBoxApellidosReferencia.Text,
+                descripcion = txtBoxDescripcionReferencia.Text,
+                telefono = txtBoxTelefonoReferencia.Text
+            };
+            _formularioCliente.AgregarReferenciaCliente(referenciaCliente, documentoReferencia, _numeroReferenciaCliente);
+            MainWindow ventana = (MainWindow)Window.GetWindow(this);
+            ventana.CambiarPagina(_formularioCliente);
 
         }
 

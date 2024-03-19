@@ -105,10 +105,20 @@ namespace WpfFinanciera.Vistas
             }
             else
             {
-                //Enviar por tipo de usuario
-                MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
-                MenuPrincipalAsesorCredito menuAsesor = new MenuPrincipalAsesorCredito();
-                ventanaPrincipal.CambiarPagina(menuAsesor);
+                DirigirPaginaMenuPrincipal(usuario);
+            }
+        }
+
+        private void DirigirPaginaMenuPrincipal(Usuario usuario)
+        {
+            MainWindow ventanaPrincipal = (MainWindow) Window.GetWindow(this);
+            switch (usuario.TipoUsuario.nombre)
+            {
+                case "Asesor de Crédito":
+                    MenuPrincipalAsesorCredito menu = new MenuPrincipalAsesorCredito();
+                    ventanaPrincipal.CambiarPagina(menu);
+                    break;
+                
             }
         }
 

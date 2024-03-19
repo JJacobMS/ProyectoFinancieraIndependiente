@@ -186,6 +186,12 @@
     <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Codigo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.TipoUsuario.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Usuario.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>

@@ -31,4 +31,28 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RecuperarTiposUsuario">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarTiposUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarTiposUsuarioResult" type="q3:ValueTupleOfArrayOfTipoUsuarioCodigoglhsIKFj" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarReferenciasTrabajo">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarReferenciasTrabajoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarReferenciasTrabajoResult" type="q4:ValueTupleOfArrayOfReferenciaTrabajoCodigoglhsIKFj" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

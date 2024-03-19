@@ -110,10 +110,8 @@
   <xs:element name="ArrayOfDocumento" nillable="true" type="tns:ArrayOfDocumento" />
   <xs:complexType name="Documento">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Cliente" nillable="true" type="tns:Cliente" />
       <xs:element minOccurs="0" name="Cliente_idCliente" type="xs:int" />
       <xs:element minOccurs="0" name="TipoDocumento" nillable="true" type="tns:TipoDocumento" />
-      <xs:element minOccurs="0" name="TipoDocumento_idTipoDocumento" type="xs:int" />
       <xs:element minOccurs="0" name="archivo" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="extension" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idDocumento" type="xs:int" />
@@ -123,7 +121,6 @@
   <xs:element name="Documento" nillable="true" type="tns:Documento" />
   <xs:complexType name="TipoDocumento">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Documento" nillable="true" type="tns:ArrayOfDocumento" />
       <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idTipoDocumento" type="xs:int" />
     </xs:sequence>
@@ -137,7 +134,6 @@
   <xs:element name="ArrayOfReferenciaCliente" nillable="true" type="tns:ArrayOfReferenciaCliente" />
   <xs:complexType name="ReferenciaCliente">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Cliente" nillable="true" type="tns:Cliente" />
       <xs:element minOccurs="0" name="Cliente_idCliente" type="xs:int" />
       <xs:element minOccurs="0" name="apellidos" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
@@ -149,7 +145,6 @@
   <xs:element name="ReferenciaCliente" nillable="true" type="tns:ReferenciaCliente" />
   <xs:complexType name="ReferenciaTrabajo">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Cliente" nillable="true" type="tns:ArrayOfCliente" />
       <xs:element minOccurs="0" name="direccion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idReferenciaTrabajo" type="xs:int" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
@@ -157,12 +152,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReferenciaTrabajo" nillable="true" type="tns:ReferenciaTrabajo" />
-  <xs:complexType name="ArrayOfCliente">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cliente" nillable="true" type="tns:Cliente" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfCliente" nillable="true" type="tns:ArrayOfCliente" />
   <xs:complexType name="ArrayOfTelefono">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Telefono" nillable="true" type="tns:Telefono" />
@@ -248,4 +237,16 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="Codigo" nillable="true" type="tns:Codigo" />
+  <xs:complexType name="ArrayOfTipoUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="TipoUsuario" nillable="true" type="tns:TipoUsuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfTipoUsuario" nillable="true" type="tns:ArrayOfTipoUsuario" />
+  <xs:complexType name="ArrayOfReferenciaTrabajo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReferenciaTrabajo" nillable="true" type="tns:ReferenciaTrabajo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReferenciaTrabajo" nillable="true" type="tns:ArrayOfReferenciaTrabajo" />
 </xs:schema>

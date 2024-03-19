@@ -148,11 +148,11 @@
                                     </Grid.RowDefinitions>
                                     <Border Background="#065758" Height="100" Width="8" VerticalAlignment="Center" Grid.RowSpan="4" Margin="5 0"/>
                                     <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoCampo}" Height="20">Nombre:</TextBlock>
-                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Nombre}" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Margin="10 0 0 0" TextWrapping="Wrap" ></TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=nombre}" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Margin="10 0 0 0" TextWrapping="Wrap" ></TextBlock>
                                     <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoCampo}">Teléfono:</TextBlock>
-                                    <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Text="{Binding Path=Telefono}"></TextBlock>
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Text="{Binding Path=telefono}"></TextBlock>
                                     <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoCampo}" Margin="10 0 0 0">Dirección:</TextBlock>
-                                    <TextBlock Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Margin="20 0 15 10" TextWrapping="Wrap" Text="{Binding Path=Direccion}"></TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Margin="20 0 15 10" TextWrapping="Wrap" Text="{Binding Path=direccion}"></TextBlock>
                                     <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="4" Style="{StaticResource estiloBtnAdjuntarReferencia}" Click="ClicAdjuntarReferenciaAlCliente" CommandParameter="{Binding}">
                                         <TextBlock TextWrapping="Wrap" TextAlignment="Center">Adjuntar referencia al cliente</TextBlock>
                                     </Button>

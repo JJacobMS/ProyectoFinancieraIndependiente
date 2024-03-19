@@ -13,7 +13,13 @@
         </Grid.RowDefinitions>
         <TextBlock FontSize="60">Menú Principal Asesor de Crédito</TextBlock>
         <StackPanel Grid.Row="1">
+            <Button FontSize="40">Registrar Solicitud de Crédito</Button>
+            <Button FontSize="40">Consultar Solcitides de Crédito</Button>
+            <Button FontSize="40">Registrar Nueva Condición de Crédito</Button>
             <Button FontSize="40">Registrar Cliente</Button>
+            <Button FontSize="40">Evaluar Solicitud de Crédito</Button>
+            <Button FontSize="40">Registrar Política de Otorgmaiento de Crédito</Button>
+            <Button FontSize="40">Registrar Checklist</Button>
         </StackPanel>
     </Grid>
 </Page>

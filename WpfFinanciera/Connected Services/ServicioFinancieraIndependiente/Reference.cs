@@ -1404,9 +1404,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfFinanciera.ServicioFinancieraIndependiente.Cliente[] ClienteField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string direccionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1425,19 +1422,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfFinanciera.ServicioFinancieraIndependiente.Cliente[] Cliente {
-            get {
-                return this.ClienteField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ClienteField, value) != true)) {
-                    this.ClienteField = value;
-                    this.RaisePropertyChanged("Cliente");
-                }
             }
         }
         
@@ -1513,16 +1497,10 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfFinanciera.ServicioFinancieraIndependiente.Cliente ClienteField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int Cliente_idClienteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfFinanciera.ServicioFinancieraIndependiente.TipoDocumento TipoDocumentoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int TipoDocumento_idTipoDocumentoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] archivoField;
@@ -1543,19 +1521,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfFinanciera.ServicioFinancieraIndependiente.Cliente Cliente {
-            get {
-                return this.ClienteField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ClienteField, value) != true)) {
-                    this.ClienteField = value;
-                    this.RaisePropertyChanged("Cliente");
-                }
             }
         }
         
@@ -1581,19 +1546,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
                 if ((object.ReferenceEquals(this.TipoDocumentoField, value) != true)) {
                     this.TipoDocumentoField = value;
                     this.RaisePropertyChanged("TipoDocumento");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int TipoDocumento_idTipoDocumento {
-            get {
-                return this.TipoDocumento_idTipoDocumentoField;
-            }
-            set {
-                if ((this.TipoDocumento_idTipoDocumentoField.Equals(value) != true)) {
-                    this.TipoDocumento_idTipoDocumentoField = value;
-                    this.RaisePropertyChanged("TipoDocumento_idTipoDocumento");
                 }
             }
         }
@@ -1670,9 +1622,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfFinanciera.ServicioFinancieraIndependiente.Cliente ClienteField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int Cliente_idClienteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1697,19 +1646,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfFinanciera.ServicioFinancieraIndependiente.Cliente Cliente {
-            get {
-                return this.ClienteField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ClienteField, value) != true)) {
-                    this.ClienteField = value;
-                    this.RaisePropertyChanged("Cliente");
-                }
             }
         }
         
@@ -1904,9 +1840,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfFinanciera.ServicioFinancieraIndependiente.Documento[] DocumentoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string descripcionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1919,19 +1852,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfFinanciera.ServicioFinancieraIndependiente.Documento[] Documento {
-            get {
-                return this.DocumentoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DocumentoField, value) != true)) {
-                    this.DocumentoField = value;
-                    this.RaisePropertyChanged("Documento");
-                }
             }
         }
         
@@ -2278,6 +2198,100 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Usuario, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> ValidarUsuarioAsync(string correo, string contrasena) {
             return base.Channel.ValidarUsuarioAsync(correo, contrasena);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioFinancieraIndependiente.ITipoUsuario")]
+    public interface ITipoUsuario {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITipoUsuario/RecuperarTiposUsuario", ReplyAction="http://tempuri.org/ITipoUsuario/RecuperarTiposUsuarioResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.TipoUsuario[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarTiposUsuario();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITipoUsuario/RecuperarTiposUsuario", ReplyAction="http://tempuri.org/ITipoUsuario/RecuperarTiposUsuarioResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.TipoUsuario[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarTiposUsuarioAsync();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ITipoUsuarioChannel : WpfFinanciera.ServicioFinancieraIndependiente.ITipoUsuario, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class TipoUsuarioClient : System.ServiceModel.ClientBase<WpfFinanciera.ServicioFinancieraIndependiente.ITipoUsuario>, WpfFinanciera.ServicioFinancieraIndependiente.ITipoUsuario {
+        
+        public TipoUsuarioClient() {
+        }
+        
+        public TipoUsuarioClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public TipoUsuarioClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public TipoUsuarioClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public TipoUsuarioClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.TipoUsuario[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarTiposUsuario() {
+            return base.Channel.RecuperarTiposUsuario();
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.TipoUsuario[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarTiposUsuarioAsync() {
+            return base.Channel.RecuperarTiposUsuarioAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioFinancieraIndependiente.IReferenciaTrabajo")]
+    public interface IReferenciaTrabajo {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajo", ReplyAction="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajoResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarReferenciasTrabajo();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajo", ReplyAction="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajoResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarReferenciasTrabajoAsync();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IReferenciaTrabajoChannel : WpfFinanciera.ServicioFinancieraIndependiente.IReferenciaTrabajo, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ReferenciaTrabajoClient : System.ServiceModel.ClientBase<WpfFinanciera.ServicioFinancieraIndependiente.IReferenciaTrabajo>, WpfFinanciera.ServicioFinancieraIndependiente.IReferenciaTrabajo {
+        
+        public ReferenciaTrabajoClient() {
+        }
+        
+        public ReferenciaTrabajoClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ReferenciaTrabajoClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ReferenciaTrabajoClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ReferenciaTrabajoClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarReferenciasTrabajo() {
+            return base.Channel.RecuperarReferenciasTrabajo();
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarReferenciasTrabajoAsync() {
+            return base.Channel.RecuperarReferenciasTrabajoAsync();
         }
     }
 }
