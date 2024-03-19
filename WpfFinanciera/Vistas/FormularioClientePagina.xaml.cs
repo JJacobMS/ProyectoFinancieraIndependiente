@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFinanciera.ServicioFinancieraIndependiente;
 using WpfFinanciera.Utilidades;
 
 namespace WpfFinanciera.Vistas
@@ -22,15 +23,29 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class FormularioClientePagina : Page
     {
-        private Dictionary<TipoArchivo, Button> botonesTipoArchivo = new Dictionary<TipoArchivo, Button>();
-
+        private Dictionary<TipoArchivo, Button> _botonesTipoArchivo = new Dictionary<TipoArchivo, Button>();
+        private ReferenciaTrabajo _referenciaTrabajo;
+        private Dictionary<string, Documento> _documentosCliente = new Dictionary<string, Documento>();
+        private Dictionary<string, ReferenciaCliente> _referenciasCliente = new Dictionary<string, ReferenciaCliente>();
         public FormularioClientePagina()
         {
             InitializeComponent();
-            botonesTipoArchivo.Add(TipoArchivo.IdentificacionOficial, btnAgregarArchivoIdentificacion);
-            botonesTipoArchivo.Add(TipoArchivo.ComprobanteDomicilio, btnAgregarComprobanteDomicilio);
-            botonesTipoArchivo.Add(TipoArchivo.ComprobanteIngreso, btnAgregarComprobanteIngreso);
-            botonesTipoArchivo.Add(TipoArchivo.ComprobanteTrabajo, btnAgregarComprobanteTrabajo);
+            _referenciaTrabajo = null;
+
+            _referenciasCliente.Add("1", null);
+            _referenciasCliente.Add("2", null);
+
+            _documentosCliente.Add("Identificación Oficial", null);
+            _documentosCliente.Add("Comprobante Domicilio", null);
+            _documentosCliente.Add("Comprobante Ingreso", null);
+            _documentosCliente.Add("Comprobante Trabajo", null);
+            _documentosCliente.Add("Referencia Cliente 1", null);
+            _documentosCliente.Add("Referencia Cliente 2", null);
+
+            _botonesTipoArchivo.Add(TipoArchivo.IdentificacionOficial, btnAgregarArchivoIdentificacion);
+            _botonesTipoArchivo.Add(TipoArchivo.ComprobanteDomicilio, btnAgregarComprobanteDomicilio);
+            _botonesTipoArchivo.Add(TipoArchivo.ComprobanteIngreso, btnAgregarComprobanteIngreso);
+            _botonesTipoArchivo.Add(TipoArchivo.ComprobanteTrabajo, btnAgregarComprobanteTrabajo);
         }
 
         private void ClicAgregarArchivo(object sender, RoutedEventArgs e)
@@ -50,7 +65,7 @@ namespace WpfFinanciera.Vistas
             ventanaArchivo.Filter = "Solo archivos PDF (*.pdf)|*.pdf";
             bool respuesta = (bool)ventanaArchivo.ShowDialog();
 
-            Button btnDocumento = botonesTipoArchivo[tipoArchivo];
+            Button btnDocumento = _botonesTipoArchivo[tipoArchivo];
 
             if (respuesta)
             {
@@ -69,7 +84,7 @@ namespace WpfFinanciera.Vistas
             TipoArchivo tipoArchivo = (TipoArchivo)Enum.Parse(typeof(TipoArchivo), tipoCadena);
             string nombreArchivo = btnEliminar.DataContext.ToString();
 
-            Button btnDocumento = botonesTipoArchivo[tipoArchivo];
+            Button btnDocumento = _botonesTipoArchivo[tipoArchivo];
             btnDocumento.Style = (Style)FindResource("estiloBtnAgregarArchivo");
             btnDocumento.Click += ClicAgregarArchivo;
 
@@ -84,9 +99,10 @@ namespace WpfFinanciera.Vistas
 
         public void AgregarReferenciaTrabajo(ReferenciaTrabajo referenciaTrabajo)
         {
-            txtBoxNombreReferenciaTrabajo.Text = referenciaTrabajo.Nombre;
-            txtBoxDireccionReferenciaTrabajo.Text = referenciaTrabajo.Direccion;
-            txtBoxTelefonoReferenciaTrabajo.Text = referenciaTrabajo.Telefono;
+            _referenciaTrabajo = referenciaTrabajo;
+            txtBoxNombreReferenciaTrabajo.Text = referenciaTrabajo.nombre;
+            txtBoxDireccionReferenciaTrabajo.Text = referenciaTrabajo.direccion;
+            txtBoxTelefonoReferenciaTrabajo.Text = referenciaTrabajo.telefono;
         }
 
         private void ClicRegistrarReferenciaCliente(object sender, RoutedEventArgs e)
@@ -95,6 +111,26 @@ namespace WpfFinanciera.Vistas
             FormularioReferenciaClientePagina formularioReferenciaCliente = new FormularioReferenciaClientePagina(this, btnReferenciaCliente.CommandParameter.ToString());
             MainWindow principal = (MainWindow)Window.GetWindow(this);
             principal.CambiarPagina(formularioReferenciaCliente);
+        }
+
+        public void AgregarReferenciaCliente(ReferenciaCliente referenciaCliente, Documento documentoReferencia, string numeroReferencia)
+        {
+            _referenciasCliente[numeroReferencia] = referenciaCliente;
+            _documentosCliente[documentoReferencia.TipoDocumento.descripcion] = documentoReferencia;
+            
+            switch (numeroReferencia)
+            {
+                case "1":
+                    txtBoxNombreReferenciaCliente1.Text = referenciaCliente.nombres + " " + referenciaCliente.apellidos;
+                    txtBoxDescripcionReferenciaCliente1.Text = referenciaCliente.descripcion;
+                    txtBoxTelefonoReferenciaCliente1.Text = referenciaCliente.telefono;
+                    break;
+                case "2":
+                    txtBoxNombreReferenciaCliente2.Text = referenciaCliente.nombres + " " + referenciaCliente.apellidos;
+                    txtBoxDescripcionReferenciaCliente2.Text = referenciaCliente.descripcion;
+                    txtBoxTelefonoReferenciaCliente2.Text = referenciaCliente.telefono;
+                    break;
+            }
         }
     }
 

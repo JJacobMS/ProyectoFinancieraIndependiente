@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFinanciera.ServicioFinancieraIndependiente;
 using WpfFinanciera.Utilidades;
 
 namespace WpfFinanciera.Vistas
@@ -32,23 +34,49 @@ namespace WpfFinanciera.Vistas
         }
         private void CargarPaginaListaReferenciasTrabajo()
         {
-            //Client proxy = new Client();
-            //proxy.RecuperarReferenciasTrabajo();
-            _listaReferenciasTrabajo = new List<ReferenciaTrabajo>
+            Codigo codigo;
+            try
             {
-                new ReferenciaTrabajo{ Nombre = "Lores undozgbr pag bfobspfon Lores undozgbr pag bfobspfon", Direccion = "Lores undozgbr pag bfobspfon Lores undozgbr pag bfobspfon", Telefono = "2281367802"},
-                new ReferenciaTrabajo{ Nombre = "Lores BNUDIZB pag bfobspfon Lores undozgbr pag bfobspfon", Direccion = "VNSO undozgbr pag bfobspfon Lores undozgbr pag bfobspfon", Telefono = "6598694"},
-                new ReferenciaTrabajo{ Nombre = "Universidad Veracruazna", Direccion = "Avila Acamacho numero 500000", Telefono = "458937053894"}
+                ReferenciaTrabajo[] referencias;
+                ReferenciaTrabajoClient proxy = new ReferenciaTrabajoClient();
+                (referencias, codigo) = proxy.RecuperarReferenciasTrabajo();
+                if (referencias != null)
+                {
+                    _listaReferenciasTrabajo = referencias.ToList();
+                }
+            }
+            catch (CommunicationException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
 
-            };
+            VentanaMensaje ventanaMensaje;
 
-            //swith(codigo)
-            CargarListaReferenciasTrabajo(_listaReferenciasTrabajo);
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    CargarListaReferenciasTrabajo(_listaReferenciasTrabajo);
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+                    ventanaMensaje.Mostrar();
+                    break;
+                case Codigo.ERROR_BD:
+                    ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+                    ventanaMensaje.Mostrar();
+                    break;
+            }
 
         }
-        private void CargarListaReferenciasTrabajo(List<ReferenciaTrabajo> referenciasTrabajos)
+        private void CargarListaReferenciasTrabajo(List<ReferenciaTrabajo> referenciasTrabajoRegistradas)
         {
-            lstBoxReferenciasTrabajo.ItemsSource = referenciasTrabajos;
+            lstBoxReferenciasTrabajo.ItemsSource = referenciasTrabajoRegistradas;
         }
         private void ClicRegresar(object sender, RoutedEventArgs e)
         {
@@ -83,7 +111,7 @@ namespace WpfFinanciera.Vistas
             else
             {
                 List<ReferenciaTrabajo> referenciaTrabajos = _listaReferenciasTrabajo.Where(
-                    referencia => referencia.Nombre.Contains(busqueda) || referencia.Direccion.Contains(busqueda) || referencia.Telefono.Contains(busqueda))
+                    referencia => referencia.nombre.Contains(busqueda) || referencia.direccion.Contains(busqueda) || referencia.telefono.Contains(busqueda))
                     .ToList();
                 CargarListaReferenciasTrabajo(referenciaTrabajos);
             }
@@ -98,18 +126,5 @@ namespace WpfFinanciera.Vistas
             ventana.CambiarPagina(_formularioPagina);
         }
 
-    }
-
-    public class ReferenciaTrabajo
-    {
-        public int IdReferenciaTrabajo { get; set; }
-        public string Nombre { get; set; }
-        public string Direccion { get; set; }
-        public string Telefono { get; set; }
-
-        public ReferenciaTrabajo()
-        {
-            
-        }
     }
 }

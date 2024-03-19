@@ -87,6 +87,9 @@
     <Compile Include="Vistas\ListaReferenciaTrabajosPagina.xaml.cs">
       <DependentUpon>ListaReferenciaTrabajosPagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\MenuPrincipalAsesorCredito.xaml.cs">
+      <DependentUpon>MenuPrincipalAsesorCredito.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -151,6 +154,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\MenuPrincipalAsesorCredito.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -179,7 +186,22 @@
     <None Include="Connected Services\ServicioFinancieraIndependiente\item2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item21.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\ServiciosFinancieraIndependiente.wsdl" />
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Codigo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.TipoUsuario.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Usuario.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
