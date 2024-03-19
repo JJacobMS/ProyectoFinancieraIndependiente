@@ -71,7 +71,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Background="#065758">
-            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
+            <Button Style="{StaticResource estiloBtnRegresar}"/>
             <TextBlock FontFamily="{StaticResource LeagueSpartanFont}" FontSize="50" Foreground="#FFFFFF" FontWeight="Medium"
                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18">Registro de Cliente</TextBlock>
         </Grid>
@@ -169,10 +169,10 @@
                         <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}">Nombre:</TextBlock>
                         <TextBlock Grid.Row="1" Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" VerticalAlignment="Top" Margin="0 8 0 0">Dirección:</TextBlock>
                             <TextBlock Grid.Row="2" Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" >Teléfono:</TextBlock>
-                            <TextBox Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="5">Lores A</TextBox>
-                        <TextBox Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" TextWrapping="Wrap" Height="49"
-                                 Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}">Lores vbujsfbv Lores vbujsfbv Lores vbujsfbv Lores vbujsfbv Lores vbujsfbv</TextBox>
-                        <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="5">2281367803</TextBox>
+                            <TextBox Name="txtBoxNombreReferenciaTrabajo" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="5"></TextBox>
+                            <TextBox Name="txtBoxDireccionReferenciaTrabajo" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" TextWrapping="Wrap" Height="49"
+                                 Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}"></TextBox>
+                            <TextBox Name="txtBoxTelefonoReferenciaTrabajo" Grid.Row="2" Grid.Column="1" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="5"></TextBox>
                         <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}" Click="ClicSeleccionarReferenciaTrabajo">Seleccionar referencia de trabajo</Button>
                     </Grid>
                 </Border>
@@ -195,7 +195,7 @@
                                         <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" Margin="0 0 8 0" >Teléfono:</TextBlock>
                                     <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Padding="5 0 5 0">2281367803</TextBox>
                                 </StackPanel>
-                                <Button Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}" Margin="20 0">
+                                <Button Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}" Margin="20 0" Click="ClicRegistrarReferenciaCliente" CommandParameter="1">
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Center">Registrar Referencia del Cliente</TextBlock></Button>
                             </StackPanel>
                         </Border>
@@ -213,7 +213,7 @@
                                         <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" Margin="0 0 8 0">Teléfono:</TextBlock>
                                     <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Padding="5 0 5 0">2281367803</TextBox>
                                 </StackPanel>
-                                <Button Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}" Margin="20 0">
+                                <Button Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}" Margin="20 0" Click="ClicRegistrarReferenciaCliente" CommandParameter="2">
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Center">Registrar Referencia del Cliente</TextBlock>
                                 </Button>
                             </StackPanel>

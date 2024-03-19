@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFinanciera.Utilidades;
 
 namespace WpfFinanciera.Vistas
 {
@@ -76,14 +77,24 @@ namespace WpfFinanciera.Vistas
 
         private void ClicSeleccionarReferenciaTrabajo(object sender, RoutedEventArgs e)
         {
-            SeleccionarReferenciaTrabajo();
+            ListaReferenciaTrabajosPagina listaRTpagina = new ListaReferenciaTrabajosPagina(this);
+            MainWindow principal = (MainWindow)Window.GetWindow(this);
+            principal.CambiarPagina(listaRTpagina);
         }
 
-        private void SeleccionarReferenciaTrabajo()
+        public void AgregarReferenciaTrabajo(ReferenciaTrabajo referenciaTrabajo)
         {
-            ListaReferenciaTrabajosPagina lista = new ListaReferenciaTrabajosPagina();
+            txtBoxNombreReferenciaTrabajo.Text = referenciaTrabajo.Nombre;
+            txtBoxDireccionReferenciaTrabajo.Text = referenciaTrabajo.Direccion;
+            txtBoxTelefonoReferenciaTrabajo.Text = referenciaTrabajo.Telefono;
+        }
+
+        private void ClicRegistrarReferenciaCliente(object sender, RoutedEventArgs e)
+        {
+            Button btnReferenciaCliente = sender as Button;
+            FormularioReferenciaClientePagina formularioReferenciaCliente = new FormularioReferenciaClientePagina(this, btnReferenciaCliente.CommandParameter.ToString());
             MainWindow principal = (MainWindow)Window.GetWindow(this);
-            principal.CambiarPagina(lista);
+            principal.CambiarPagina(formularioReferenciaCliente);
         }
     }
 

@@ -12,13 +12,25 @@
             <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
             <Setter Property="FontSize" Value="26"/>
             <Setter Property="Foreground" Value="#000000"/>
-            <Setter Property="FontWeight" Value="Light"/>
+            <Setter Property="FontWeight" Value="Regular"/>
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="TextBox">
+                    <ControlTemplate TargetType="{x:Type TextBox}">
                         <Border>
-                            <ScrollViewer Margin="25 20" x:Name="PART_ContentHost"/>
+                            <Grid>
+                                <ScrollViewer Margin="25 20" x:Name="PART_ContentHost"/>
+                                <TextBlock x:Name="placeHolderBuscar" VerticalAlignment="Center" Margin="25 0 0 0" FontWeight="Light"
+                                           Visibility="Collapsed">Buscar</TextBlock>
+                            </Grid>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="Text" Value="">
+                                <Setter Property="Visibility" TargetName="placeHolderBuscar" Value="Visible"/>
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter Property="Visibility" TargetName="placeHolderBuscar" Value="Collapsed"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -136,14 +148,12 @@
                                     </Grid.RowDefinitions>
                                     <Border Background="#065758" Height="100" Width="8" VerticalAlignment="Center" Grid.RowSpan="4" Margin="5 0"/>
                                     <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoCampo}" Height="20">Nombre:</TextBlock>
-                                    <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Margin="10 0 0 0" TextWrapping="Wrap" >Lores undozgbr pag bfobspfon Lores undozgbr pag bfobspfon</TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Nombre}" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Margin="10 0 0 0" TextWrapping="Wrap" ></TextBlock>
                                     <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoCampo}">Teléfono:</TextBlock>
-                                    <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}">XX-XX-XX-XX-XX</TextBlock>
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Text="{Binding Path=Telefono}"></TextBlock>
                                     <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoCampo}" Margin="10 0 0 0">Dirección:</TextBlock>
-                                    <TextBlock Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Margin="20 0 15 10" TextWrapping="Wrap" >
-                                        Lores undozgbr pag bfobspfon pag Lores undozgbr pag bfobspfon  pag pag bfobspfon bfobspfon bfobspfon
-                                    </TextBlock>
-                                    <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="4" Style="{StaticResource estiloBtnAdjuntarReferencia}">
+                                    <TextBlock Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Margin="20 0 15 10" TextWrapping="Wrap" Text="{Binding Path=Direccion}"></TextBlock>
+                                    <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="4" Style="{StaticResource estiloBtnAdjuntarReferencia}" Click="ClicAdjuntarReferenciaAlCliente" CommandParameter="{Binding}">
                                         <TextBlock TextWrapping="Wrap" TextAlignment="Center">Adjuntar referencia al cliente</TextBlock>
                                     </Button>
                                 </Grid>
@@ -158,6 +168,30 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="estiloLstBoxReferenciaTrabajo" TargetType="ListBox">
+            <Style.Triggers>
+                <Trigger Property="HasItems" Value="False">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate>
+                                <Border CornerRadius="20" BorderThickness="1" BorderBrush="#000000" Margin="20 0 20 0">
+                                    <Grid VerticalAlignment="Center" HorizontalAlignment="Center">
+                                        <Border Background="#C46960" CornerRadius="10" Width="500">
+                                            <StackPanel Orientation="Vertical">
+                                                <Image Height="280" Width="280" Source="/Recursos/empty.png" Margin="20"/>
+                                                <TextBlock FontFamily="{StaticResource LeagueSpartanFont}" FontSize="30" Foreground="#FFFFFF" TextAlignment="Center" TextWrapping="Wrap" Margin="20 0 20 20">
+                                                    No se ha encontrado la referencia de trabajo buscada</TextBlock>
+                                            </StackPanel>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
 
     <Grid Background="#FFFFFF">
@@ -166,7 +200,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Background="#065758">
-            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
+            <Button Style="{StaticResource estiloBtnRegresar}" Click="ClicRegresar"/>
             <TextBlock FontFamily="{StaticResource LeagueSpartanFont}" FontSize="50" Foreground="#FFFFFF" FontWeight="Medium"
                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18">Trabajos Registrados</TextBlock>
         </Grid>
@@ -183,12 +217,12 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Style="{StaticResource estiloTxtBoxBusquedaReferenciaTrabajo}">Buscar</TextBox>
-                            <Button Grid.Column="1" Style="{StaticResource estiloBtnBuscarReferenciaTrabajo}">
+                            <TextBox Style="{StaticResource estiloTxtBoxBusquedaReferenciaTrabajo}" Name="txtBoxBarraBuscar" ></TextBox>
+                            <Button Grid.Column="1" Style="{StaticResource estiloBtnBuscarReferenciaTrabajo}" Click="ClicBuscarReferenciaTrabajo">
                             </Button>
                         </Grid>
                     </Border>
-                    <Button Grid.Column="1" Style="{StaticResource estiloBtnAgregarNuevaReferencia}" Margin="0 20 60 20">
+                    <Button Grid.Column="1" Style="{StaticResource estiloBtnAgregarNuevaReferencia}" Margin="0 20 60 20" Click="ClicAgregarNuevaReferencia">
                         <TextBlock TextWrapping="Wrap" TextAlignment="Center">Agregar nueva referencia de trabajo</TextBlock>
                     </Button>
                 </StackPanel>
@@ -197,13 +231,11 @@
 
             <Viewbox Grid.Row="1">
                 <Border BorderBrush="#000000"  Margin="0 10 0 20" Height="520" Width="1300">
-                    <ListBox HorizontalAlignment="Center">
-                        <ListBoxItem Style="{StaticResource estiloLstItemReferenciaTrabajo}"/>
-                        <ListBoxItem Style="{StaticResource estiloLstItemReferenciaTrabajo}"/>
-                        <ListBoxItem Style="{StaticResource estiloLstItemReferenciaTrabajo}"/>
-                        <ListBoxItem Style="{StaticResource estiloLstItemReferenciaTrabajo}"/>
-
-                    </ListBox>
+                    <Grid>
+                        <ListBox HorizontalAlignment="Center" Name="lstBoxReferenciasTrabajo" Width="1290"
+                                 ItemContainerStyle="{StaticResource estiloLstItemReferenciaTrabajo}" ScrollViewer.VerticalScrollBarVisibility="Visible">
+                        </ListBox>
+                    </Grid>
                 </Border>
             </Viewbox>
             
