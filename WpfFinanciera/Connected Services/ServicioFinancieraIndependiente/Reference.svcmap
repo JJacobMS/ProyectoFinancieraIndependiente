@@ -22,6 +22,7 @@
     <MetadataSource Address="http://localhost:8082" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="bd030144-aabf-47af-aeac-14cf0f803a78" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd2" />
     <MetadataFile FileName="ServiciosFinancieraIndependiente.wsdl" MetadataType="Wsdl" ID="488f6e0d-2d9f-43f1-b655-4d661eb52b49" SourceId="1" SourceUrl="http://localhost:8082/?wsdl" />
     <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="258239e9-557b-430f-888d-1907d95bbee2" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd0" />
     <MetadataFile FileName="item.disco" MetadataType="Disco" ID="02e2f895-532c-4587-b7bd-df294366d8e1" SourceId="1" SourceUrl="http://localhost:8082/?disco" />
