@@ -468,8 +468,31 @@ namespace WpfFinanciera.Vistas
                 codigo = Codigo.ERROR_SERVIDOR;
                 Console.WriteLine(ex);
             }
-            Console.WriteLine(codigo);
+
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    MostrarVentanaExitoRegistro();
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBaseDatos();
+                    break;
+            }
         }
+
+        private void MostrarVentanaExitoRegistro()
+        {
+            MainWindow ventanaPrincipal = (MainWindow) Window.GetWindow(this);
+            MenuPrincipalAsesorCreditoPagina menuAsesor = new MenuPrincipalAsesorCreditoPagina();
+            ventanaPrincipal.CambiarPagina(menuAsesor);
+
+            VentanaMensaje ventana = new VentanaMensaje("Se ha registrado al cliente exitosamente", Mensaje.EXITO);
+            ventana.Mostrar();
+        }
+
     }
 
 }
