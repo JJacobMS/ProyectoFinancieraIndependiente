@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.ServiceModel;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -221,19 +222,12 @@ namespace WpfFinanciera.Vistas
                 razones = (razones.Length > 0) ? razones + ", " : razones;
                 razones += "Teléfono personal (debe ser menor a 16 caracteres)";
             }
-            if (string.IsNullOrWhiteSpace(rfc) || rfc.Length > 20)
+            if (string.IsNullOrWhiteSpace(rfc) || rfc.Length == 13)
             {
                 txtBoxRFCCliente.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
                 razones = (razones.Length > 0) ? razones + ", " : razones;
-                razones += "RFC (debe ser menor a 21 caracteres)";
-            }
-            if (string.IsNullOrWhiteSpace(rfc) || rfc.Length > 13)
-            {
-                txtBoxRFCCliente.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
-                sonCamposValidos = false;
-                razones = (razones.Length > 0) ? razones + ", " : razones;
-                razones += "RFC (debe ser menor a 14 caracteres)";
+                razones += "RFC (debe ser igual a 13 caracteres)";
             }
             if (string.IsNullOrWhiteSpace(cuentaCobro) || cuentaCobro.Length > 50)
             {
@@ -249,14 +243,14 @@ namespace WpfFinanciera.Vistas
                 razones = (razones.Length > 0) ? razones + ", " : razones;
                 razones += "Cuenta de depósito (debe ser menor a 51 caracteres)";
             }
-            if (string.IsNullOrWhiteSpace(correoElectronico) || correoElectronico.Length > 100)
+            if (string.IsNullOrWhiteSpace(correoElectronico) || correoElectronico.Length > 100 || !Regex.IsMatch(correoElectronico, @"^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com|outlook\.com|estudiantes\.uv\.mx|uv\.mx|yahoo\.com)$"))
             {
                 txtBoxCorreoCliente.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
                 razones = (razones.Length > 0) ? razones + ", " : razones;
                 razones += "Correo Electrónico (debe ser menor a 101 caracteres)";
             }
-            if (string.IsNullOrWhiteSpace(direccion) || direccion.Length > 20)
+            if (string.IsNullOrWhiteSpace(direccion) || direccion.Length > 50)
             {
                 txtBoxDireccionCliente.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
