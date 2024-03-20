@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFinanciera.ServicioFinancieraIndependiente;
 using WpfFinanciera.Utilidades;
 
 namespace WpfFinanciera.Vistas
@@ -22,6 +23,8 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class BusquedaRFCCliente : Page
     {
+        private Cliente cliente;
+
         public BusquedaRFCCliente()
         {
             InitializeComponent();
@@ -35,18 +38,70 @@ namespace WpfFinanciera.Vistas
 
             if (esValido)
             {
-
+                BuscarClientePorRFC(rfc);
             }
+        }
+
+        private void BuscarClientePorRFC(string rfc)
+        {
+            ClienteRFCClient clienteRFCClient = new ClienteRFCClient();
+
+            var respuesta = clienteRFCClient.BuscarClientePorRFC(rfc);
+            var (codigo, cliente) = respuesta;
+
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    if(cliente != null)
+                    {
+                        this.cliente = cliente;
+
+                        MostrarOpciones();
+                    }
+                    else
+                    {
+                        //TODO Lógica para redirigir a Registro
+                    }
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBD();
+                    break;
+            }
+        }
+
+        private void MostrarOpciones()
+        {
+            btnBuscar.Visibility = Visibility.Collapsed;
+            txtBoxRfc.IsEnabled = false;
+            stkPanelOpciones.Visibility = Visibility.Visible;
+            txtBlockRfcCliente.Text = "Cliente encontrado";
+        }
+
+        private void MostrarVentanaErrorBD()
+        {
+            VentanaMensaje errorServidor = new VentanaMensaje(
+                "Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            errorServidor.Mostrar();
+        }
+
+        private void MostrarVentanaErrorServidor()
+        {
+            VentanaMensaje errorBaseDatos = new VentanaMensaje(
+                "Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            errorBaseDatos.Mostrar();
         }
 
         private void ClicSolicitarCredito(object sender, RoutedEventArgs e)
         {
-
+            
         }
 
         private void ClicActualizarDatos(object sender, RoutedEventArgs e)
         {
-
+            //TODO Redirección a Actualizar Datos de Cliente
         }
 
         private void CambioTextoRfc(object sender, TextChangedEventArgs e)
