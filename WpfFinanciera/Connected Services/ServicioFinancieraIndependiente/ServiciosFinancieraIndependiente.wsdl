@@ -12,10 +12,60 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IUsuario_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_ITipoUsuario_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IReferenciaTrabajo_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IChecklist_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
+      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_InputMessage">
@@ -24,10 +74,88 @@
   <wsdl:message name="IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_OutputMessage">
     <wsdl:part name="parameters" element="tns:GuardarPoliticaOtorgamientoResponse" />
   </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticasChecklist_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklist" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_RecuperarChecklist_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarChecklist" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_RecuperarChecklist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarChecklistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_GuardarDictamen_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarDictamen" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_GuardarDictamen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarDictamenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuario_ValidarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IUsuario_ValidarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITipoUsuario_RecuperarTiposUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarTiposUsuario" />
+  </wsdl:message>
+  <wsdl:message name="ITipoUsuario_RecuperarTiposUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarTiposUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReferenciaTrabajo_RecuperarReferenciasTrabajo_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarReferenciasTrabajo" />
+  </wsdl:message>
+  <wsdl:message name="IReferenciaTrabajo_RecuperarReferenciasTrabajo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarReferenciasTrabajoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChecklist_RecuperarChecklist2_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarChecklist2" />
+  </wsdl:message>
+  <wsdl:message name="IChecklist_RecuperarChecklist2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarChecklist2Response" />
+  </wsdl:message>
   <wsdl:portType name="IPoliticaOtorgamiento">
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamientoResponse" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarPoliticasChecklist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklistResponse" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarChecklist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarChecklist" message="tns:IPoliticaOtorgamiento_RecuperarChecklist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarChecklistResponse" message="tns:IPoliticaOtorgamiento_RecuperarChecklist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GuardarDictamen">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarDictamen" message="tns:IPoliticaOtorgamiento_GuardarDictamen_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarDictamenResponse" message="tns:IPoliticaOtorgamiento_GuardarDictamen_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IUsuario">
+    <wsdl:operation name="ValidarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuario/ValidarUsuario" message="tns:IUsuario_ValidarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuario/ValidarUsuarioResponse" message="tns:IUsuario_ValidarUsuario_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ITipoUsuario">
+    <wsdl:operation name="RecuperarTiposUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITipoUsuario/RecuperarTiposUsuario" message="tns:ITipoUsuario_RecuperarTiposUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITipoUsuario/RecuperarTiposUsuarioResponse" message="tns:ITipoUsuario_RecuperarTiposUsuario_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IReferenciaTrabajo">
+    <wsdl:operation name="RecuperarReferenciasTrabajo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajo" message="tns:IReferenciaTrabajo_RecuperarReferenciasTrabajo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajoResponse" message="tns:IReferenciaTrabajo_RecuperarReferenciasTrabajo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IChecklist">
+    <wsdl:operation name="RecuperarChecklist2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChecklist/RecuperarChecklist2" message="tns:IChecklist_RecuperarChecklist2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChecklist/RecuperarChecklist2Response" message="tns:IChecklist_RecuperarChecklist2_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPoliticaOtorgamiento" type="tns:IPoliticaOtorgamiento">
@@ -42,9 +170,112 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RecuperarPoliticasChecklist">
+      <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarChecklist">
+      <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarChecklist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarDictamen">
+      <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/GuardarDictamen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IUsuario" type="tns:IUsuario">
+    <wsp:PolicyReference URI="#NetTcpBinding_IUsuario_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ValidarUsuario">
+      <soap12:operation soapAction="http://tempuri.org/IUsuario/ValidarUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_ITipoUsuario" type="tns:ITipoUsuario">
+    <wsp:PolicyReference URI="#NetTcpBinding_ITipoUsuario_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="RecuperarTiposUsuario">
+      <soap12:operation soapAction="http://tempuri.org/ITipoUsuario/RecuperarTiposUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IReferenciaTrabajo" type="tns:IReferenciaTrabajo">
+    <wsp:PolicyReference URI="#NetTcpBinding_IReferenciaTrabajo_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="RecuperarReferenciasTrabajo">
+      <soap12:operation soapAction="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IChecklist" type="tns:IChecklist">
+    <wsp:PolicyReference URI="#NetTcpBinding_IChecklist_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="RecuperarChecklist2">
+      <soap12:operation soapAction="http://tempuri.org/IChecklist/RecuperarChecklist2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ServiciosFinancieraIndependiente">
     <wsdl:port name="NetTcpBinding_IPoliticaOtorgamiento" binding="tns:NetTcpBinding_IPoliticaOtorgamiento">
+      <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IUsuario" binding="tns:NetTcpBinding_IUsuario">
+      <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_ITipoUsuario" binding="tns:NetTcpBinding_ITipoUsuario">
+      <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IReferenciaTrabajo" binding="tns:NetTcpBinding_IReferenciaTrabajo">
+      <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IChecklist" binding="tns:NetTcpBinding_IChecklist">
       <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>

@@ -6,23 +6,6 @@
         <Setter Property="FontSize" Value="45"/>
     </Style>
 
-    <Style x:Key="estiloTxtBoxInicioSesion" TargetType="TextBox">
-        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
-        <Setter Property="FontSize" Value="26"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="TextBox">
-                    <Border>
-                        <StackPanel Margin="25 20">
-                            <ScrollViewer Margin="10 4 10 0" x:Name="PART_ContentHost"/>
-                            <Border Height="3" Background="#000000" Margin="0 8 0 0"/>
-                        </StackPanel>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-
     <Style x:Key="estiloBtnFondoNegro" TargetType="Button">
         <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
         <Setter Property="Foreground" Value="#FFFFFF"/>
@@ -37,6 +20,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="estiloBtnFondoRosa" TargetType="Button">
@@ -53,5 +41,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

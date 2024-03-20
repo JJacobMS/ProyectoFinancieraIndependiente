@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Recursos/Diccionarios/VentanaMensajeDiccionario.xaml"/>
                 <ResourceDictionary Source="Recursos/Diccionarios/GeneralDiccionario.xaml"/>
                 <ResourceDictionary Source="Recursos/Diccionarios/FormularioPoliticaOtorgamientoDiccionario.xaml"/>
+                <ResourceDictionary Source="Recursos/Diccionarios/FormularioDictamenDiccionario.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

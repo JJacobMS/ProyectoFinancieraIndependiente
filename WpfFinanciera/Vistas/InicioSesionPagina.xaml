@@ -8,7 +8,56 @@
       d:DesignHeight="768" d:DesignWidth="1336">
 
     <Page.Resources>
-        
+        <Style x:Key="estiloTxtBoxInicioSesionCorreo" TargetType="TextBox">
+            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border CornerRadius="20" Background="{TemplateBinding Background}">
+                            <StackPanel Margin="25 20">
+                                <Grid Margin="10 4 10 0">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Grid>
+                                <Border Height="3" Background="#000000" Margin="0 8 0 0"/>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="estiloPssBoxInicioSesionContrasena" TargetType="PasswordBox">
+            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type PasswordBox}">
+                        <Border CornerRadius="20" Background="{TemplateBinding Background}">
+                            <StackPanel Margin="25 20">
+                                <Grid Margin="10 4 10 0">
+                                    <ScrollViewer x:Name="PART_ContentHost"/>
+                                </Grid>
+                                <Border Height="3" Background="#000000" Margin="0 8 0 0"/>
+                            </StackPanel>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="estiloTxtBlockErrorInicioSesion" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+            <Setter Property="FontSize" Value="28"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 0 0 20"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="Foreground" Value="#941910"/>
+            <Setter Property="Visibility" Value="Hidden"/>
+        </Style>
     </Page.Resources>
 
     <Grid Background="#E2F0EF">
@@ -16,22 +65,28 @@
             <ColumnDefinition Width=".6*"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <StackPanel>
-            <TextBlock Text="INICIO DE SESIÓN" FontSize="110" TextWrapping="Wrap" Margin="60 50 0 0" FontFamily="{StaticResource LeagueSpartanFont}" FontWeight="Bold"/>
-            <Border Margin="0 20 0 0" Height="342" Width="374" Background="#065758" CornerRadius="60"/>
-        </StackPanel>
-        <Border Grid.Column="1" CornerRadius="100 0 0 100" Background="#A9D4D6">
-            <StackPanel VerticalAlignment="Center" Margin="20 0 20 0">
-                <TextBlock Text="Sistema de Finanzas" FontSize="64" FontFamily="{StaticResource LeagueSpartanFont}" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 50"/>
-                <TextBlock Text="Correo Electrónico:" Style="{StaticResource estiloTxtBlockInicioSesionCampos}" Margin="50 0 0 10"/>
-                <TextBox Style="{StaticResource estiloTxtBoxInicioSesion}" FontWeight="Light" Margin="0 0 0 40">Ingrese su correo</TextBox>
-                <TextBlock Text="Contraseña:" Style="{StaticResource estiloTxtBlockInicioSesionCampos}" Margin="50 0 0 10"/>
-                <TextBox Style="{StaticResource estiloTxtBoxInicioSesion}" FontWeight="Light" Margin="0 0 0 40">Ingrese su contraseña</TextBox>
-                <Button Style="{StaticResource estiloBtnFondoNegro}" Margin="0 0 0 20">Ingresar al sistema</Button>
-                <Button Style="{StaticResource estiloBtnFondoRosa}">Salir</Button>
+        <Viewbox>
+            <StackPanel Height="768" Width="500">
+                <TextBlock Text="INICIO DE SESIÓN" FontSize="110" TextWrapping="Wrap" Margin="60 50 0 0" FontFamily="{StaticResource LeagueSpartanFont}" FontWeight="Bold"/>
+                <Border Margin="0 20 0 0" Height="342" Width="374" Background="#065758" CornerRadius="60"/>
             </StackPanel>
-            
-
-        </Border>
+        </Viewbox>
+        <Border Grid.Column="1" CornerRadius="100 0 0 100" Background="#A9D4D6"/>
+        <Viewbox Grid.Column="1" HorizontalAlignment="Center">
+            <Border Height="768" Width="836">
+                <StackPanel VerticalAlignment="Center" Margin="20 0 20 0">
+                    <TextBlock Text="Sistema de Finanzas" FontSize="64" FontFamily="{StaticResource LeagueSpartanFont}" FontWeight="Bold" HorizontalAlignment="Center" Margin="0 0 0 50"/>
+                    <TextBlock Text="Correo Electrónico:" Style="{StaticResource estiloTxtBlockInicioSesionCampos}" Margin="50 0 0 10"/>
+                    <TextBox Name="txtBlockCorreoElectronico" Style="{StaticResource estiloTxtBoxInicioSesionCorreo}" Margin="0 0 0 20"></TextBox>
+                    <TextBlock Name="txtBlockErrorCorreo" Style="{StaticResource estiloTxtBlockErrorInicioSesion}">El correo electrónico ingresado no está registrado</TextBlock>
+                    <TextBlock Text="Contraseña:" Style="{StaticResource estiloTxtBlockInicioSesionCampos}" Margin="50 0 0 10"/>
+                    <PasswordBox Name="pssBoxContrasena" Style="{StaticResource estiloPssBoxInicioSesionContrasena}"  Margin="0 0 0 20"></PasswordBox>
+                    <TextBlock Name="txtBlockErrorContrasena" Style="{StaticResource estiloTxtBlockErrorInicioSesion}">La constraseña ingresada es incorrecta</TextBlock>
+                    <Button Style="{StaticResource estiloBtnFondoNegro}" Margin="0 0 0 40" Click="ClicVerificarUsuario">Ingresar al sistema</Button>
+                    <Button Style="{StaticResource estiloBtnFondoRosa}" Click="ClicSalir">Salir</Button>
+                </StackPanel>
+            </Border>
+        </Viewbox>
+        
     </Grid>
 </Page>

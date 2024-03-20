@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFinanciera.ServicioFinancieraIndependiente;
 using WpfFinanciera.Utilidades;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -56,21 +57,21 @@ namespace WpfFinanciera.Vistas
             string direccion = txtBoxDireccion.Text;
             string telefono = txtBoxTelefono.Text;
 
-            if (String.IsNullOrWhiteSpace(nombre) || nombre.Length > 100)
+            if (string.IsNullOrWhiteSpace(nombre) || nombre.Length > 100)
             {
                 txtBoxNombre.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
                 razones += "Nombre ";
             }
 
-            if (String.IsNullOrWhiteSpace(direccion) || direccion.Length > 50)
+            if (string.IsNullOrWhiteSpace(direccion) || direccion.Length > 50)
             {
                 txtBoxDireccion.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
                 razones = (razones.Length > 0 ) ? razones + ", Dirección " : "Dirección";
             }
 
-            if (String.IsNullOrWhiteSpace(telefono) || telefono.Length > 12)
+            if (string.IsNullOrWhiteSpace(telefono) || telefono.Length > 12)
             {
                 txtBoxTelefono.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
@@ -90,14 +91,17 @@ namespace WpfFinanciera.Vistas
             VentanaMensaje ventana = new VentanaMensaje("¿Desea agregar la referencia de trabajo?", Mensaje.CONFIRMACION);
             if (ventana.MostrarConfirmacion())
             {
-                
-            }
-            else
-            {
-                
+                EnviarReferenciaTrabajoFormulario();
             }
         }
+        private void EnviarReferenciaTrabajoFormulario()
+        {
+            ReferenciaTrabajo referencia = new ReferenciaTrabajo { idReferenciaTrabajo = 0, nombre = txtBoxNombre.Text, direccion = txtBoxDireccion.Text, telefono = txtBoxTelefono.Text };
+            _formularioPagina.AgregarReferenciaTrabajo(referencia);
+            MainWindow ventana = (MainWindow) Window.GetWindow(this);
+            ventana.CambiarPagina(_formularioPagina);
 
+        }
         private void ResetearCampos()
         {
             txtBoxNombre.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#127B7C");
