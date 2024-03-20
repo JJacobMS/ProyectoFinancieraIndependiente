@@ -62,6 +62,12 @@
   <wsdl:message name="IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_OutputMessage">
     <wsdl:part name="parameters" element="tns:GuardarPoliticaOtorgamientoResponse" />
   </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticasChecklist_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklist" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklistResponse" />
+  </wsdl:message>
   <wsdl:message name="IUsuario_ValidarUsuario_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidarUsuario" />
   </wsdl:message>
@@ -84,6 +90,10 @@
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamientoResponse" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarPoliticasChecklist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklistResponse" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUsuario">
@@ -109,6 +119,15 @@
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
       <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarPoliticasChecklist">
+      <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

@@ -2,22 +2,6 @@
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
   <xs:import schemaLocation="http://localhost:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="ValueTupleOfCodigoArrayOfPoliticaglhsIKFj">
-    <xs:annotation>
-      <xs:appinfo>
-        <GenericType Name="ValueTupleOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-          <GenericParameter Name="Codigo" Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
-          <GenericParameter Name="ArrayOfPolitica" Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
-        </GenericType>
-        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" type="q1:Codigo" />
-      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" nillable="true" type="q2:ArrayOfPolitica" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ValueTupleOfCodigoArrayOfPoliticaglhsIKFj" nillable="true" type="tns:ValueTupleOfCodigoArrayOfPoliticaglhsIKFj" />
   <xs:complexType name="ValueTupleOfUsuarioCodigoglhsIKFj">
     <xs:annotation>
       <xs:appinfo>
@@ -29,8 +13,8 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" nillable="true" type="q3:Usuario" />
-      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" type="q4:Codigo" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" nillable="true" type="q1:Usuario" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" type="q2:Codigo" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ValueTupleOfUsuarioCodigoglhsIKFj" nillable="true" type="tns:ValueTupleOfUsuarioCodigoglhsIKFj" />
@@ -45,8 +29,8 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" nillable="true" type="q5:ArrayOfTipoUsuario" />
-      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" type="q6:Codigo" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" nillable="true" type="q3:ArrayOfTipoUsuario" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" type="q4:Codigo" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ValueTupleOfArrayOfTipoUsuarioCodigoglhsIKFj" nillable="true" type="tns:ValueTupleOfArrayOfTipoUsuarioCodigoglhsIKFj" />
@@ -61,8 +45,8 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" nillable="true" type="q7:ArrayOfReferenciaTrabajo" />
-      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" type="q8:Codigo" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" nillable="true" type="q5:ArrayOfReferenciaTrabajo" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" type="q6:Codigo" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ValueTupleOfArrayOfReferenciaTrabajoCodigoglhsIKFj" nillable="true" type="tns:ValueTupleOfArrayOfReferenciaTrabajoCodigoglhsIKFj" />

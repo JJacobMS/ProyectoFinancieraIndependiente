@@ -37,19 +37,19 @@
                     <TextBlock Grid.Row="0" Grid.Column="1" Text="Solicitante: Jesus Jacob Montiel Salas" FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
                 </Grid>
                 <Border Grid.Column="0" Grid.Row="2" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="30,20,30,20">
-                    <ListView x:Name="lstViewPoliticasOtorgamiento" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent" IsHitTestVisible="False"
-                     BorderBrush="Transparent" Grid.Column="0" Grid.Row="2" Margin="0,0,0,0" VerticalAlignment="Center" Padding="0,0,0,0" Height="258" >
+                    <ListView x:Name="lstViewPoliticasOtorgamiento" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent" IsHitTestVisible="True"
+                     BorderBrush="Transparent" Grid.Column="0" Grid.Row="2" Margin="0,0,0,0" VerticalAlignment="Center" Padding="0,0,0,0" Height="258"  >
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False"  >
+                            <GridView AllowsColumnReorder="False" >
                                 <GridViewColumn x:Name="d" Width="Auto">
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
-                                            <Border Background="#A9D4D6" Width="100" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                            <Border Background="#A9D4D6" Width="80" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                         </DataTemplate>
                                     </GridViewColumn.HeaderTemplate>
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Border Background="#A9D4D6" Width="100" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                            <Border Background="#A9D4D6" Width="80" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                 <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                                                     <CheckBox Checked="Checked" Unchecked="Unchecked" VerticalAlignment="Center" CommandParameter="{Binding}"   Background="White"   BorderThickness="2" BorderBrush="#065758" FontFamily="Segoe UI"  HorizontalAlignment="Center" HorizontalContentAlignment="Center"  />
                                                 </Grid>
@@ -57,10 +57,10 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn x:Name="GrdViewColumnNombrePolitica" Width="Auto">
+                                <GridViewColumn x:Name="GrdViewColumnNombrePolitica" Width="Auto" >
                                     <GridViewColumn.HeaderTemplate  >
                                         <DataTemplate>
-                                            <Border Background="#A9D4D6" Width="340" Height="60" CornerRadius="10" BorderBrush="Black" BorderThickness="1">
+                                            <Border Background="#A9D4D6" Width="340" Height="60" CornerRadius="6" BorderBrush="Black" BorderThickness="1">
                                                 <Grid>
                                                     <TextBlock Text="Nombre Politica" TextAlignment="Center"  TextWrapping="Wrap" Foreground="Black" FontFamily="{StaticResource LeagueSpartanFont}" FontSize="30" Background="#A9D4D6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                 </Grid>
@@ -69,7 +69,7 @@
                                     </GridViewColumn.HeaderTemplate>
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Border Background="#A9D4D6" Width="340" Height="60" CornerRadius="10" BorderBrush="Black" BorderThickness="1">
+                                            <Border Background="#A9D4D6" Width="340" Height="60" CornerRadius="6" BorderBrush="Black" BorderThickness="1">
                                                 <Grid>
                                                     <TextBlock Text="{Binding Path=nombre}" TextAlignment="Center" TextWrapping="Wrap" Foreground="Black" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource LeagueSpartanFont}" Background="#A9D4D6" />
                                                 </Grid>
@@ -91,7 +91,7 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <Border Background="#A9D4D6" Width="630" CornerRadius="6"  Height="60"  BorderBrush="Black" BorderThickness="1">
-                                                <TextBlock Text="{Binding Path=descripcion}" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" HorizontalAlignment="Center" Foreground="Black" FontFamily="{StaticResource LeagueSpartanFont}" Background="#A9D4D6" />
+                                                <TextBlock Text="{Binding Path=descripcion}" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontFamily="{StaticResource LeagueSpartanFont}" Background="#A9D4D6"  />
                                             </Border>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
@@ -99,25 +99,22 @@
                                 <GridViewColumn x:Name="GrdViewColumnFechaPolitica" Width="Auto">
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
-                                            <Border Background="#A9D4D6" Width="140" CornerRadius="6"  Height="60"  BorderBrush="Black" BorderThickness="1">
+                                            <Border Background="#A9D4D6" Width="160" CornerRadius="6"  Height="60"  BorderBrush="Black" BorderThickness="1">
                                                 <TextBlock Text="Fecha Vigencia" TextWrapping="Wrap" TextAlignment="Center" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" FontFamily="{StaticResource LeagueSpartanFont}" Background="#A9D4D6" />
                                             </Border>
                                         </DataTemplate>
                                     </GridViewColumn.HeaderTemplate>
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Border Background="#A9D4D6" Width="140" CornerRadius="6"  Height="60"  BorderBrush="Black" BorderThickness="1">
-                                                <TextBlock Text="{Binding Path=vigencia}" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" HorizontalAlignment="Center" Foreground="Black" FontFamily="{StaticResource LeagueSpartanFont}" Background="#A9D4D6" />
+                                            <Border Background="#A9D4D6" Width="160" CornerRadius="6"  Height="60"  BorderBrush="Black" BorderThickness="1">
+                                                <TextBlock Text="{Binding Path=vigencia, StringFormat={}{0:dd/MM/yyyy}}"  TextWrapping="Wrap" TextAlignment="Center" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontFamily="{StaticResource LeagueSpartanFont}" Background="#A9D4D6" />
                                             </Border>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
                             </GridView>
                         </ListView.View>
-                        <ListBoxItem/>
-
                     </ListView>
-
 
                 </Border>
                 <Grid Grid.Column="0" Grid.Row="3">
@@ -126,7 +123,7 @@
                         <ColumnDefinition Width="400"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Anotaciones: " Margin="34,0,0,0" FontSize="30" VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
-                    <TextBox Name="txtBoxNombre" Grid.Column="0" Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="30,40,30,45" Style="{StaticResource estiloTxtBoxFormulario}"/>
+                    <TextBox Name="txtBoxNombre"  FontSize="30" TextWrapping="Wrap" Grid.Column="0" Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="30,40,30,45" Style="{StaticResource estiloTxtBoxFormulario}"/>
                     <StackPanel  Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Margin="0,0,25,50" >
                         <Button Width="180" Height="60" Style="{StaticResource estiloBtnFormulario}" Click="ClicAceptar" Content="Aceptar" FontSize="27" Margin="0,10,25,10"/>
                         <Button  Width="180" Height="60" Style="{StaticResource estiloBtnFormulario}" Click="ClicCancelar" Content="Cancelar" FontSize="27"  />
