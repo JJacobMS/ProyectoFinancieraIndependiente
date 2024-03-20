@@ -124,16 +124,16 @@
         <StackPanel Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
             <TextBlock Style="{StaticResource estiloTxtBlockFormularioCondicionCreditoCampo}" 
                    Text="Identificador:" Margin="0,20,0,10" TextWrapping="Wrap" Width="337" HorizontalAlignment="Left"/>
-            <TextBox Name="txtBoxIdentificador" Style="{StaticResource estiloTxtBoxFormularioCondicionCredito}" MaxLength="10" Text="A01" Width="350" HorizontalAlignment="Left"/>
+            <TextBox Name="txtBoxIdentificador" Style="{StaticResource estiloTxtBoxFormularioCondicionCredito}" MaxLength="10" Width="350" HorizontalAlignment="Left"/>
             <TextBlock Style="{StaticResource estiloTxtBlockFormularioCondicionCreditoCampo}" 
                    Text="Descripción:" Margin="0,30,0,10" TextWrapping="Wrap" Width="337" HorizontalAlignment="Left"/>
-            <TextBox Name="txtBoxDescripcion" Style="{StaticResource estiloTxtBoxFormularioCondicionCredito}" MaxLength="15" Text="Vivienda" Width="350" HorizontalAlignment="Left"/>
+            <TextBox Name="txtBoxDescripcion" Style="{StaticResource estiloTxtBoxFormularioCondicionCredito}" MaxLength="15" Width="350" HorizontalAlignment="Left"/>
             <TextBlock Style="{StaticResource estiloTxtBlockFormularioCondicionCreditoCampo}" 
                        Text="Plazo (Meses):" Margin="0,30,0,10" TextWrapping="Wrap" Width="337" HorizontalAlignment="Left"/>
-            <TextBox Name="txtBoxPlazo" Style="{StaticResource estiloTxtBoxFormularioCondicionCredito}" MaxLength="3" Text="180" Width="350" HorizontalAlignment="Left" PreviewTextInput="PrevenirTextoNoNumerico"/>
+            <TextBox Name="txtBoxPlazo" Style="{StaticResource estiloTxtBoxFormularioCondicionCredito}" MaxLength="3" Width="350" HorizontalAlignment="Left" PreviewTextInput="PrevenirTextoNoNumerico"/>
             <TextBlock Style="{StaticResource estiloTxtBlockFormularioCondicionCreditoCampo}" 
                        Text="Tasa de Interés:" Margin="0,30,0,10" TextWrapping="Wrap" Width="337" HorizontalAlignment="Left"/>
-            <TextBox Name="txtBoxInteres" Style="{StaticResource estiloTxtBoxFormularioCondicionCreditoTasaInteres}" Text="4" Width="350" PreviewTextInput="PrevenirTextoNoNumerico" MaxLength="2" HorizontalAlignment="Left"/>
+            <TextBox Name="txtBoxInteres" Style="{StaticResource estiloTxtBoxFormularioCondicionCreditoTasaInteres}" Width="350" PreviewTextInput="PrevenirTextoNoNumerico" MaxLength="2" HorizontalAlignment="Left"/>
             <StackPanel Orientation="Horizontal" Margin="0,30,30,30">
                 <TextBlock Style="{StaticResource estiloTxtBlockFormularioCondicionCreditoCampo}" Text="IVA:" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 <CheckBox x:Name="chkBoxIVA" Margin="30,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="False" Style="{StaticResource estiloChkBoxCirularIVA}" Width="20" Height="20"/>

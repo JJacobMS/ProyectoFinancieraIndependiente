@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFinanciera.ServicioFinancieraIndependiente;
 using WpfFinanciera.Utilidades;
 
 namespace WpfFinanciera.Vistas
@@ -117,9 +118,60 @@ namespace WpfFinanciera.Vistas
             VentanaMensaje ventana = new VentanaMensaje("¿Desea registrar la condición de crédito?", Mensaje.CONFIRMACION);
             if (ventana.MostrarConfirmacion())
             {
+                GuardarCondicionCredito();
                 LimpiarCampos();
             }
         }
+
+        private void GuardarCondicionCredito()
+        {
+            Codigo codigo;
+
+            CondicionCredito condicionCredito = new CondicionCredito();
+            condicionCredito.identificador = txtBoxIdentificador.Text.Trim();
+            condicionCredito.descripcion = txtBoxDescripcion.Text.Trim();
+            condicionCredito.plazoMeses = int.Parse(txtBoxPlazo.Text.Trim());
+            condicionCredito.tieneIVA = (bool)chkBoxIVA.IsChecked;
+            condicionCredito.estaActiva = true;
+
+            CondicionCreditoClient condicionCreditoClient = new CondicionCreditoClient();
+            codigo = condicionCreditoClient.GuardarCondicionCredito(condicionCredito);
+
+            switch(codigo)
+            {
+                case Codigo.EXITO:
+                    MostrarVentanaRegistroExito();
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBD();
+                    break;
+            }
+        }
+
+        private void MostrarVentanaErrorBD()
+        {
+            VentanaMensaje errorServidor = new VentanaMensaje(
+                "Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            errorServidor.Mostrar();
+        }
+
+        private void MostrarVentanaErrorServidor()
+        {
+            VentanaMensaje errorBaseDatos = new VentanaMensaje(
+                "Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            errorBaseDatos.Mostrar();
+        }
+
+        private void MostrarVentanaRegistroExito()
+        {
+            VentanaMensaje exito = new VentanaMensaje(
+                "Se ha registrado la condicion de credito exitosamente", Mensaje.EXITO);
+            exito.Mostrar();
+        }
+
         private void LimpiarCampos()
         {
             txtBoxIdentificador.Text = "";

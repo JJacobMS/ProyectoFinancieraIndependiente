@@ -201,7 +201,25 @@
     <None Include="Connected Services\ServicioFinancieraIndependiente\item1.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item21.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\ServiciosFinancieraIndependiente.wsdl" />
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Codigo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.TipoUsuario.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Usuario.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

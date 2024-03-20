@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFinanciera.ServicioFinancieraIndependiente;
 
 namespace WpfFinanciera.Vistas
 {
@@ -30,33 +31,12 @@ namespace WpfFinanciera.Vistas
         {
             lstBoxCondicionesCredito.ItemsSource = new List<CondicionCredito>
             {
-                new CondicionCredito("Inversión",60,2, true),
-                new CondicionCredito("Vivienda",100,2, false),
-                new CondicionCredito("Préstamo 50,000",30,5, true),
-                new CondicionCredito("Carro",180,2, false),
-                new CondicionCredito("Mobiliario",10,2, true)
             };
         }
 
         private void ClicSolicitarCredito(object sender, RoutedEventArgs e)
         {
 
-        }
-    }
-
-    class CondicionCredito
-    {
-        public string Descripcion { get; set; }
-        public int Plazo { get; set; }
-        public double TasaInteres { get; set; }
-        public bool TieneIVA { get; set; }
-
-        public CondicionCredito(string descripcion, int plazo, double tasaInteres, bool tieneIVA)
-        {
-            Descripcion = descripcion;
-            Plazo = plazo;
-            TasaInteres = tasaInteres;
-            TieneIVA = tieneIVA;
         }
     }
 }

@@ -34,8 +34,8 @@ namespace WpfFinanciera.Vistas
             {
                 Console.WriteLine("Validos");
                 PoliticaOtorgamientoClient proxy = new PoliticaOtorgamientoClient();
-                int respuesta = proxy.GuardarPoliticaOtorgamiento(1);
-                Console.WriteLine("Respuesta "+respuesta);
+                //int respuesta = proxy.GuardarPoliticaOtorgamiento(1);
+                //Console.WriteLine("Respuesta "+respuesta);
             }
             else
             {
