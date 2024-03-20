@@ -28,6 +28,9 @@ namespace WpfFinanciera.Vistas
         private string[] clienteTelefonos = new string[0];
         private bool seMostroVentanaErrorBD = false;
         private bool seMostroVentanaErrorServidor = false;
+        private CondicionCredito condicionCreditoActual;
+        private Checklist checklistActual;
+        private int montoActual;
 
         public FormularioSolicitudCreditoPagina(Cliente clienteActual, string[] clienteTelefonos)
         {
@@ -66,8 +69,7 @@ namespace WpfFinanciera.Vistas
                     else
                     {
                         bdrChecklistTabla.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
-                        txtBlockMensajeNoChecklists.Visibility = Visibility.Visible;
-                        lstBoxChecklists.Visibility = Visibility.Collapsed;
+                        MostrarMensajeNoChecklists();
                         btnSolicitarCredito.IsEnabled = false;
                     }
                     break;
@@ -78,6 +80,12 @@ namespace WpfFinanciera.Vistas
                     MostrarVentanaErrorBD();
                     break;
             }
+        }
+
+        private void MostrarMensajeNoChecklists()
+        {
+            txtBlockMensajeNoChecklists.Visibility = Visibility.Visible;
+            lstBoxChecklists.Visibility = Visibility.Collapsed;
         }
 
         private void MostrarVentanaErrorBD()
@@ -120,9 +128,7 @@ namespace WpfFinanciera.Vistas
                     else
                     {
                         bdrCondicionesCreditoTabla.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
-                        txtBlockMensajeNoCondiciones.Visibility = Visibility.Visible;
-                        lstBoxCondicionesCredito.Visibility = Visibility.Collapsed;
-                        grdEncabezadosCondicionCredito.Visibility = Visibility.Collapsed;
+                        MostrarMensajeNoCondiciones();
                         btnSolicitarCredito.IsEnabled = false;
                     }
                     break;
@@ -135,9 +141,135 @@ namespace WpfFinanciera.Vistas
             }
         }
 
+        private void MostrarMensajeNoCondiciones()
+        {
+            txtBlockMensajeNoCondiciones.Visibility = Visibility.Visible;
+            lstBoxCondicionesCredito.Visibility = Visibility.Collapsed;
+            grdEncabezadosCondicionCredito.Visibility = Visibility.Collapsed;
+        }
+
         private void ClicSolicitarCredito(object sender, RoutedEventArgs e)
         {
+            string monto = txtBoxMonto.Text;
+            CondicionCredito condicionSeleccionada = lstBoxCondicionesCredito.SelectedItem as CondicionCredito;
+            Checklist checklistSeleccionada = lstBoxChecklists.SelectedItem as Checklist;
 
+            condicionCreditoActual = condicionSeleccionada;
+            checklistActual = checklistSeleccionada;
+            SolicitarCredito(clienteActual, monto, condicionSeleccionada, checklistSeleccionada);
+        }
+
+        private void SolicitarCredito(Cliente clienteActual, string monto, CondicionCredito condicionSeleccionada, Checklist checklistSeleccionada)
+        {
+            if (ValidarDatos(monto))
+            {
+                MostrarVentanaConfirmacion();
+            }
+        }
+
+        private bool ValidarDatos(string monto)
+        {
+            txtBoxMonto.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#A9D4D6");
+            bool esValido = true;
+
+            if (string.IsNullOrEmpty(monto))
+            {
+                txtBoxMonto.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
+                MostrarVentanaCamposNoValidos("Monto");
+                esValido = false;
+            }
+            else
+            {
+                montoActual = int.Parse(monto);
+            }
+
+            return esValido;
+        }
+
+        private void MostrarVentanaCamposNoValidos(string razones)
+        {
+            VentanaMensaje mensajeError = new VentanaMensaje("Los campos ingresados no son válidos", razones);
+            mensajeError.Mostrar();
+        }
+
+        private void MostrarVentanaConfirmacion()
+        {
+            VentanaMensaje ventana = new VentanaMensaje($"Crédito {condicionCreditoActual.descripcion}  por ${montoActual}", 
+                Mensaje.CONFIRMACION);
+            if (ventana.MostrarConfirmacion())
+            {
+                GuardarInformacionSolicitud();
+            }
+        }
+
+        private void GuardarInformacionSolicitud()
+        {
+            Codigo codigo;
+
+            Credito credito = new Credito();
+            credito.Cliente_idCliente = clienteActual.idCliente;
+            credito.Checklist_idChecklist = checklistActual.idChecklist;
+            credito.CondicionCredito_idCondicionCredito = condicionCreditoActual.idCondicionCredito;
+            credito.monto = montoActual;
+            credito.fechaSolicitud = DateTime.Now;
+            credito.saldoPendiente = montoActual;
+            credito.deudaExtra = 0;
+
+            CreditoClient creditoClient = new CreditoClient();
+            codigo = creditoClient.GuardarInformacionSolicitud(credito);
+
+            switch(codigo)
+            {
+                case Codigo.EXITO:
+                    MostrarVentanaRegistroExito();
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBD();
+                    break;
+            }
+        }
+
+        private void MostrarVentanaRegistroExito()
+        {
+            VentanaMensaje exito = new VentanaMensaje(
+                            "Se ha registrado la solicitud de credito exitosamente", Mensaje.EXITO);
+            exito.Mostrar();
+        }
+
+        private void PrevenirTextoNoNumerico(object sender, TextCompositionEventArgs e)
+        {
+            if (!EsNumerico(e.Text) || e.Text.Contains(" "))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool EsNumerico(string texto)
+        {
+            return int.TryParse(texto, out _);
+        }
+
+        private void SeleccionarCondicionCredito(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox listBox = sender as ListBox;
+
+            if (lstBoxChecklists.SelectedItem != null)
+            {
+                btnSolicitarCredito.IsEnabled = true;
+            }
+        }
+
+        private void SeleccionarChecklist(object sender, SelectionChangedEventArgs e)
+        {
+            ListBox listBox = sender as ListBox;
+
+            if (lstBoxCondicionesCredito.SelectedItem != null)
+            {
+                btnSolicitarCredito.IsEnabled = true;
+            }
         }
     }
 }
