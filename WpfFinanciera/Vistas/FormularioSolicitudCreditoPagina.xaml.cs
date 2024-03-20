@@ -21,17 +21,40 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class FormularioSolicitudCreditoPagina : Page
     {
-        public FormularioSolicitudCreditoPagina()
+        private static readonly string PREFIJO_DATOS_OCULTOS = "••••";
+
+        private Cliente clienteActual = new Cliente();
+        private string[] clienteTelefonos = new string[0];
+
+        public FormularioSolicitudCreditoPagina(Cliente clienteActual, string[] clienteTelefonos)
         {
             InitializeComponent();
 
+            this.clienteActual = clienteActual;
+            this.clienteTelefonos = clienteTelefonos;
         }
 
         private void CargarPagina(object sender, RoutedEventArgs e)
         {
-            lstBoxCondicionesCredito.ItemsSource = new List<CondicionCredito>
-            {
-            };
+            txtBlockCorreo.Text = clienteActual.correoElectronico;
+            txtBlockCuentaCobro.Text = PREFIJO_DATOS_OCULTOS + clienteActual.cuentaCobro;
+            txtBlockCuentaDeposito.Text = PREFIJO_DATOS_OCULTOS + clienteActual.cuentaDeposito;
+            txtBlockNombre.Text = clienteActual.nombres + " " + clienteActual.apellidos;
+            txtBlockTelefonoCasa.Text = PREFIJO_DATOS_OCULTOS + clienteTelefonos[1];
+            txtBlockTelefonoPersonal.Text = PREFIJO_DATOS_OCULTOS + clienteTelefonos[3];
+
+            CargarCondicionesCredito();
+            CargarChecklists();
+        }
+
+        private void CargarChecklists()
+        {
+
+        }
+
+        private void CargarCondicionesCredito()
+        {
+
         }
 
         private void ClicSolicitarCredito(object sender, RoutedEventArgs e)
