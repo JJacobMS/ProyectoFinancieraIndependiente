@@ -260,7 +260,7 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private WpfFinanciera.ServicioFinancieraIndependiente.ChecklistPolitica[] ChecklistPoliticaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfFinanciera.ServicioFinancieraIndependiente.CondicionCredito[] CondicionCreditoField;
+        private WpfFinanciera.ServicioFinancieraIndependiente.Credito[] CreditoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string descripcionField;
@@ -295,14 +295,14 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfFinanciera.ServicioFinancieraIndependiente.CondicionCredito[] CondicionCredito {
+        public WpfFinanciera.ServicioFinancieraIndependiente.Credito[] Credito {
             get {
-                return this.CondicionCreditoField;
+                return this.CreditoField;
             }
             set {
-                if ((object.ReferenceEquals(this.CondicionCreditoField, value) != true)) {
-                    this.CondicionCreditoField = value;
-                    this.RaisePropertyChanged("CondicionCredito");
+                if ((object.ReferenceEquals(this.CreditoField, value) != true)) {
+                    this.CreditoField = value;
+                    this.RaisePropertyChanged("Credito");
                 }
             }
         }
@@ -358,9 +358,9 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="CondicionCredito", Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Credito", Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente")]
     [System.SerializableAttribute()]
-    public partial class CondicionCredito : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Credito : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -370,173 +370,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int Checklist_idChecklistField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfFinanciera.ServicioFinancieraIndependiente.Credito[] CreditoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string descripcionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool estaActivaField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int idCondicionCreditoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int plazoMesesField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int tasaInteresField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool tieneIVAField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfFinanciera.ServicioFinancieraIndependiente.Checklist Checklist {
-            get {
-                return this.ChecklistField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.ChecklistField, value) != true)) {
-                    this.ChecklistField = value;
-                    this.RaisePropertyChanged("Checklist");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Checklist_idChecklist {
-            get {
-                return this.Checklist_idChecklistField;
-            }
-            set {
-                if ((this.Checklist_idChecklistField.Equals(value) != true)) {
-                    this.Checklist_idChecklistField = value;
-                    this.RaisePropertyChanged("Checklist_idChecklist");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfFinanciera.ServicioFinancieraIndependiente.Credito[] Credito {
-            get {
-                return this.CreditoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CreditoField, value) != true)) {
-                    this.CreditoField = value;
-                    this.RaisePropertyChanged("Credito");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string descripcion {
-            get {
-                return this.descripcionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.descripcionField, value) != true)) {
-                    this.descripcionField = value;
-                    this.RaisePropertyChanged("descripcion");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool estaActiva {
-            get {
-                return this.estaActivaField;
-            }
-            set {
-                if ((this.estaActivaField.Equals(value) != true)) {
-                    this.estaActivaField = value;
-                    this.RaisePropertyChanged("estaActiva");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int idCondicionCredito {
-            get {
-                return this.idCondicionCreditoField;
-            }
-            set {
-                if ((this.idCondicionCreditoField.Equals(value) != true)) {
-                    this.idCondicionCreditoField = value;
-                    this.RaisePropertyChanged("idCondicionCredito");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int plazoMeses {
-            get {
-                return this.plazoMesesField;
-            }
-            set {
-                if ((this.plazoMesesField.Equals(value) != true)) {
-                    this.plazoMesesField = value;
-                    this.RaisePropertyChanged("plazoMeses");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int tasaInteres {
-            get {
-                return this.tasaInteresField;
-            }
-            set {
-                if ((this.tasaInteresField.Equals(value) != true)) {
-                    this.tasaInteresField = value;
-                    this.RaisePropertyChanged("tasaInteres");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool tieneIVA {
-            get {
-                return this.tieneIVAField;
-            }
-            set {
-                if ((this.tieneIVAField.Equals(value) != true)) {
-                    this.tieneIVAField = value;
-                    this.RaisePropertyChanged("tieneIVA");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Credito", Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente")]
-    [System.SerializableAttribute()]
-    public partial class Credito : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfFinanciera.ServicioFinancieraIndependiente.Cliente ClienteField;
@@ -587,6 +420,32 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Checklist Checklist {
+            get {
+                return this.ChecklistField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ChecklistField, value) != true)) {
+                    this.ChecklistField = value;
+                    this.RaisePropertyChanged("Checklist");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Checklist_idChecklist {
+            get {
+                return this.Checklist_idChecklistField;
+            }
+            set {
+                if ((this.Checklist_idChecklistField.Equals(value) != true)) {
+                    this.Checklist_idChecklistField = value;
+                    this.RaisePropertyChanged("Checklist_idChecklist");
+                }
             }
         }
         
@@ -1021,6 +880,163 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CondicionCredito", Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente")]
+    [System.SerializableAttribute()]
+    public partial class CondicionCredito : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.Credito[] CreditoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string descripcionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool estaActivaField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int idCondicionCreditoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string identificadorField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int plazoMesesField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int tasaInteresField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool tieneIVAField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Credito[] Credito {
+            get {
+                return this.CreditoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CreditoField, value) != true)) {
+                    this.CreditoField = value;
+                    this.RaisePropertyChanged("Credito");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string descripcion {
+            get {
+                return this.descripcionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.descripcionField, value) != true)) {
+                    this.descripcionField = value;
+                    this.RaisePropertyChanged("descripcion");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool estaActiva {
+            get {
+                return this.estaActivaField;
+            }
+            set {
+                if ((this.estaActivaField.Equals(value) != true)) {
+                    this.estaActivaField = value;
+                    this.RaisePropertyChanged("estaActiva");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int idCondicionCredito {
+            get {
+                return this.idCondicionCreditoField;
+            }
+            set {
+                if ((this.idCondicionCreditoField.Equals(value) != true)) {
+                    this.idCondicionCreditoField = value;
+                    this.RaisePropertyChanged("idCondicionCredito");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string identificador {
+            get {
+                return this.identificadorField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.identificadorField, value) != true)) {
+                    this.identificadorField = value;
+                    this.RaisePropertyChanged("identificador");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int plazoMeses {
+            get {
+                return this.plazoMesesField;
+            }
+            set {
+                if ((this.plazoMesesField.Equals(value) != true)) {
+                    this.plazoMesesField = value;
+                    this.RaisePropertyChanged("plazoMeses");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int tasaInteres {
+            get {
+                return this.tasaInteresField;
+            }
+            set {
+                if ((this.tasaInteresField.Equals(value) != true)) {
+                    this.tasaInteresField = value;
+                    this.RaisePropertyChanged("tasaInteres");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool tieneIVA {
+            get {
+                return this.tieneIVAField;
+            }
+            set {
+                if ((this.tieneIVAField.Equals(value) != true)) {
+                    this.tieneIVAField = value;
+                    this.RaisePropertyChanged("tieneIVA");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="EstatusCredito", Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente")]
     [System.SerializableAttribute()]
     public partial class EstatusCredito : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
@@ -1372,6 +1388,9 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.Cliente[] ClienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string direccionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1390,6 +1409,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Cliente[] Cliente {
+            get {
+                return this.ClienteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ClienteField, value) != true)) {
+                    this.ClienteField = value;
+                    this.RaisePropertyChanged("Cliente");
+                }
             }
         }
         
@@ -1465,10 +1497,16 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.Cliente ClienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int Cliente_idClienteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfFinanciera.ServicioFinancieraIndependiente.TipoDocumento TipoDocumentoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int TipoDocumento_idTipoDocumentoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private byte[] archivoField;
@@ -1489,6 +1527,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Cliente Cliente {
+            get {
+                return this.ClienteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ClienteField, value) != true)) {
+                    this.ClienteField = value;
+                    this.RaisePropertyChanged("Cliente");
+                }
             }
         }
         
@@ -1514,6 +1565,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
                 if ((object.ReferenceEquals(this.TipoDocumentoField, value) != true)) {
                     this.TipoDocumentoField = value;
                     this.RaisePropertyChanged("TipoDocumento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TipoDocumento_idTipoDocumento {
+            get {
+                return this.TipoDocumento_idTipoDocumentoField;
+            }
+            set {
+                if ((this.TipoDocumento_idTipoDocumentoField.Equals(value) != true)) {
+                    this.TipoDocumento_idTipoDocumentoField = value;
+                    this.RaisePropertyChanged("TipoDocumento_idTipoDocumento");
                 }
             }
         }
@@ -1590,6 +1654,9 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.Cliente ClienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int Cliente_idClienteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1614,6 +1681,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Cliente Cliente {
+            get {
+                return this.ClienteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ClienteField, value) != true)) {
+                    this.ClienteField = value;
+                    this.RaisePropertyChanged("Cliente");
+                }
             }
         }
         
@@ -1808,6 +1888,9 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.Documento[] DocumentoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string descripcionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1820,6 +1903,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Documento[] Documento {
+            get {
+                return this.DocumentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DocumentoField, value) != true)) {
+                    this.DocumentoField = value;
+                    this.RaisePropertyChanged("Documento");
+                }
             }
         }
         
@@ -1869,6 +1965,9 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.Dictamen[] DictamenField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfFinanciera.ServicioFinancieraIndependiente.TipoUsuario TipoUsuarioField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1896,6 +1995,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Dictamen[] Dictamen {
+            get {
+                return this.DictamenField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DictamenField, value) != true)) {
+                    this.DictamenField = value;
+                    this.RaisePropertyChanged("Dictamen");
+                }
             }
         }
         
@@ -2010,6 +2122,9 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.Usuario[] UsuarioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idTipoUsuarioField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2022,6 +2137,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Usuario[] Usuario {
+            get {
+                return this.UsuarioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsuarioField, value) != true)) {
+                    this.UsuarioField = value;
+                    this.RaisePropertyChanged("Usuario");
+                }
             }
         }
         
@@ -2080,10 +2208,16 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
     public interface IPoliticaOtorgamiento {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamientoResponse")]
-        int GuardarPoliticaOtorgamiento(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica);
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo GuardarPoliticaOtorgamiento(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamientoResponse")]
-        System.Threading.Tasks.Task<int> GuardarPoliticaOtorgamientoAsync(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica);
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarPoliticaOtorgamientoAsync(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklistResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticasChecklist(int folioCredito);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklistResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasChecklistAsync(int folioCredito);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2113,12 +2247,20 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
                 base(binding, remoteAddress) {
         }
         
-        public int GuardarPoliticaOtorgamiento(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica) {
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo GuardarPoliticaOtorgamiento(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica) {
             return base.Channel.GuardarPoliticaOtorgamiento(politica);
         }
         
-        public System.Threading.Tasks.Task<int> GuardarPoliticaOtorgamientoAsync(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica) {
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarPoliticaOtorgamientoAsync(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica) {
             return base.Channel.GuardarPoliticaOtorgamientoAsync(politica);
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticasChecklist(int folioCredito) {
+            return base.Channel.RecuperarPoliticasChecklist(folioCredito);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasChecklistAsync(int folioCredito) {
+            return base.Channel.RecuperarPoliticasChecklistAsync(folioCredito);
         }
     }
     
@@ -2321,6 +2463,100 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarInformacionClienteAsync(WpfFinanciera.ServicioFinancieraIndependiente.Cliente cliente, WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo, WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente[] referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento[] documentos) {
             return base.Channel.GuardarInformacionClienteAsync(cliente, referenciaTrabajo, referenciaCliente, documentos);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioFinancieraIndependiente.IDictamen")]
+    public interface IDictamen {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictamen/GuardarDictamen", ReplyAction="http://tempuri.org/IDictamen/GuardarDictamenResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo GuardarDictamen(WpfFinanciera.ServicioFinancieraIndependiente.Dictamen dictamen);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictamen/GuardarDictamen", ReplyAction="http://tempuri.org/IDictamen/GuardarDictamenResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarDictamenAsync(WpfFinanciera.ServicioFinancieraIndependiente.Dictamen dictamen);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IDictamenChannel : WpfFinanciera.ServicioFinancieraIndependiente.IDictamen, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class DictamenClient : System.ServiceModel.ClientBase<WpfFinanciera.ServicioFinancieraIndependiente.IDictamen>, WpfFinanciera.ServicioFinancieraIndependiente.IDictamen {
+        
+        public DictamenClient() {
+        }
+        
+        public DictamenClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public DictamenClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public DictamenClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public DictamenClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo GuardarDictamen(WpfFinanciera.ServicioFinancieraIndependiente.Dictamen dictamen) {
+            return base.Channel.GuardarDictamen(dictamen);
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarDictamenAsync(WpfFinanciera.ServicioFinancieraIndependiente.Dictamen dictamen) {
+            return base.Channel.GuardarDictamenAsync(dictamen);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioFinancieraIndependiente.IChecklist")]
+    public interface IChecklist {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/RecuperarChecklist", ReplyAction="http://tempuri.org/IChecklist/RecuperarChecklistResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, string> RecuperarChecklist(int folioCredito);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/RecuperarChecklist", ReplyAction="http://tempuri.org/IChecklist/RecuperarChecklistResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, string>> RecuperarChecklistAsync(int folioCredito);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IChecklistChannel : WpfFinanciera.ServicioFinancieraIndependiente.IChecklist, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ChecklistClient : System.ServiceModel.ClientBase<WpfFinanciera.ServicioFinancieraIndependiente.IChecklist>, WpfFinanciera.ServicioFinancieraIndependiente.IChecklist {
+        
+        public ChecklistClient() {
+        }
+        
+        public ChecklistClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ChecklistClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ChecklistClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ChecklistClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, string> RecuperarChecklist(int folioCredito) {
+            return base.Channel.RecuperarChecklist(folioCredito);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, string>> RecuperarChecklistAsync(int folioCredito) {
+            return base.Channel.RecuperarChecklistAsync(folioCredito);
         }
     }
 }

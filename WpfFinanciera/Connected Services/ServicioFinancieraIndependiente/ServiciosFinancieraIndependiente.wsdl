@@ -60,6 +60,30 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IDictamen_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IChecklist_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -73,6 +97,12 @@
   </wsdl:message>
   <wsdl:message name="IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_OutputMessage">
     <wsdl:part name="parameters" element="tns:GuardarPoliticaOtorgamientoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticasChecklist_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklist" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklistResponse" />
   </wsdl:message>
   <wsdl:message name="IUsuario_ValidarUsuario_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidarUsuario" />
@@ -104,10 +134,26 @@
   <wsdl:message name="ICliente_GuardarInformacionCliente_OutputMessage">
     <wsdl:part name="parameters" element="tns:GuardarInformacionClienteResponse" />
   </wsdl:message>
+  <wsdl:message name="IDictamen_GuardarDictamen_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarDictamen" />
+  </wsdl:message>
+  <wsdl:message name="IDictamen_GuardarDictamen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarDictamenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IChecklist_RecuperarChecklist_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarChecklist" />
+  </wsdl:message>
+  <wsdl:message name="IChecklist_RecuperarChecklist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarChecklistResponse" />
+  </wsdl:message>
   <wsdl:portType name="IPoliticaOtorgamiento">
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamientoResponse" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarPoliticasChecklist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklistResponse" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUsuario">
@@ -138,11 +184,32 @@
       <wsdl:output wsaw:Action="http://tempuri.org/ICliente/GuardarInformacionClienteResponse" message="tns:ICliente_GuardarInformacionCliente_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
+  <wsdl:portType name="IDictamen">
+    <wsdl:operation name="GuardarDictamen">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDictamen/GuardarDictamen" message="tns:IDictamen_GuardarDictamen_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDictamen/GuardarDictamenResponse" message="tns:IDictamen_GuardarDictamen_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IChecklist">
+    <wsdl:operation name="RecuperarChecklist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChecklist/RecuperarChecklist" message="tns:IChecklist_RecuperarChecklist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChecklist/RecuperarChecklistResponse" message="tns:IChecklist_RecuperarChecklist_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPoliticaOtorgamiento" type="tns:IPoliticaOtorgamiento">
     <wsp:PolicyReference URI="#NetTcpBinding_IPoliticaOtorgamiento_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
       <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarPoliticasChecklist">
+      <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -212,6 +279,32 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IDictamen" type="tns:IDictamen">
+    <wsp:PolicyReference URI="#NetTcpBinding_IDictamen_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GuardarDictamen">
+      <soap12:operation soapAction="http://tempuri.org/IDictamen/GuardarDictamen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IChecklist" type="tns:IChecklist">
+    <wsp:PolicyReference URI="#NetTcpBinding_IChecklist_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="RecuperarChecklist">
+      <soap12:operation soapAction="http://tempuri.org/IChecklist/RecuperarChecklist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="ServiciosFinancieraIndependiente">
     <wsdl:port name="NetTcpBinding_IPoliticaOtorgamiento" binding="tns:NetTcpBinding_IPoliticaOtorgamiento">
       <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
@@ -238,6 +331,18 @@
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_ICliente" binding="tns:NetTcpBinding_ICliente">
+      <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IDictamen" binding="tns:NetTcpBinding_IDictamen">
+      <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IChecklist" binding="tns:NetTcpBinding_IChecklist">
       <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>

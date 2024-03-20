@@ -67,6 +67,9 @@
     <Compile Include="Utilidades\VentanaMensaje.xaml.cs">
       <DependentUpon>VentanaMensaje.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FormularioChecklistPagina.xaml.cs">
+      <DependentUpon>FormularioChecklistPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FormularioClientePagina.xaml.cs">
       <DependentUpon>FormularioClientePagina.xaml</DependentUpon>
     </Compile>
@@ -84,6 +87,9 @@
     </Compile>
     <Compile Include="Vistas\ListaReferenciaTrabajosPagina.xaml.cs">
       <DependentUpon>ListaReferenciaTrabajosPagina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\ListaSeleccionPoliticasPagina.xaml.cs">
+      <DependentUpon>ListaSeleccionPoliticasPagina.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\MenuPrincipalAdministradorPagina.xaml.cs">
       <DependentUpon>MenuPrincipalAdministradorPagina.xaml</DependentUpon>
@@ -110,6 +116,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Recursos\Diccionarios\FormularioDictamenDiccionario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Recursos\Diccionarios\FormularioPoliticaOtorgamientoDiccionario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -129,6 +139,10 @@
     <Page Include="Utilidades\VentanaMensaje.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\FormularioChecklistPagina.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Vistas\FormularioClientePagina.xaml">
       <SubType>Designer</SubType>
@@ -153,6 +167,10 @@
     <Page Include="Vistas\ListaReferenciaTrabajosPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\ListaSeleccionPoliticasPagina.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Vistas\MenuPrincipalAdministradorPagina.xaml">
       <SubType>Designer</SubType>
@@ -199,6 +217,9 @@
     </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\ServiciosFinancieraIndependiente.wsdl" />
     <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Codigo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Politica1.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo.datasource">
