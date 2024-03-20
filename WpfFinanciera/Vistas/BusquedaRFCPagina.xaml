@@ -9,21 +9,20 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
 
-        <!-- Encabezado -->
         <Grid Background="#065758">
             <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
             <TextBlock FontFamily="{StaticResource LeagueSpartanFont}" FontSize="50" Foreground="#FFFFFF" FontWeight="Medium"
                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18">Búsqueda de Cliente</TextBlock>
         </Grid>
 
-        <!-- Contenido -->
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Name="txtBlockRfcCliente" Style="{StaticResource estiloTxtBlockIngresoRFCCliente}" 
                        Text="Ingrese el RFC del cliente:" Margin="0,0,0,10" TextWrapping="Wrap" Width="337"/>
-            <TextBox Name="txtBoxRfc" Style="{StaticResource estiloTxtBoxRFCCliente}" Text="ABCD010203ZXY" Width="350"/>
+            <TextBox Name="txtBoxRfc" Style="{StaticResource estiloTxtBoxRFCCliente}" 
+                     TextChanged="CambioTextoRfc" PreviewTextInput="PrevenirTextoNoAlfanumerico" Width="350" MaxLength="13"/>
 
             <Button Name="btnBuscar" Click="ClicBuscarCliente" Style="{StaticResource estiloBtnRojoBusquedaRFC}" 
-                    Margin="0,26,0,0" Content="Buscar" Width="215" />
+                    Margin="0,26,0,0" Content="Buscar" Width="215" IsEnabled="False" />
 
             <StackPanel x:Name="stkPanelOpciones" Visibility="Collapsed" Orientation="Horizontal" Margin="0,26,0,0">
                 <Button Style="{StaticResource estiloBtnVerdeBusquedaRFC}" Margin ="0,0,20,0" Content="Actualizar datos" 
