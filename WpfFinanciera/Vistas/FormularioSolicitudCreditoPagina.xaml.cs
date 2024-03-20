@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfFinanciera.ServicioFinancieraIndependiente;
+using WpfFinanciera.Utilidades;
 
 namespace WpfFinanciera.Vistas
 {
@@ -25,6 +26,8 @@ namespace WpfFinanciera.Vistas
 
         private Cliente clienteActual = new Cliente();
         private string[] clienteTelefonos = new string[0];
+        private bool seMostroVentanaErrorBD = false;
+        private bool seMostroVentanaErrorServidor = false;
 
         public FormularioSolicitudCreditoPagina(Cliente clienteActual, string[] clienteTelefonos)
         {
@@ -43,18 +46,93 @@ namespace WpfFinanciera.Vistas
             txtBlockTelefonoCasa.Text = PREFIJO_DATOS_OCULTOS + clienteTelefonos[1];
             txtBlockTelefonoPersonal.Text = PREFIJO_DATOS_OCULTOS + clienteTelefonos[3];
 
-            CargarCondicionesCredito();
-            CargarChecklists();
+            ObtenerCondicionesCredito();
+            ObtenerChecklists();
         }
 
-        private void CargarChecklists()
+        private void ObtenerChecklists()
         {
+            ChecklistSolClient checklistSolClient = new ChecklistSolClient();
+            var respuesta = checklistSolClient.ObtenerChecklists();
+            var (codigo, checklists) = respuesta;
 
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    if (checklists != null)
+                    {
+                        lstBoxChecklists.ItemsSource = checklists;
+                    }
+                    else
+                    {
+                        bdrChecklistTabla.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
+                        txtBlockMensajeNoChecklists.Visibility = Visibility.Visible;
+                        lstBoxChecklists.Visibility = Visibility.Collapsed;
+                        btnSolicitarCredito.IsEnabled = false;
+                    }
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBD();
+                    break;
+            }
         }
 
-        private void CargarCondicionesCredito()
+        private void MostrarVentanaErrorBD()
         {
+            if (seMostroVentanaErrorBD)
+            {
+                VentanaMensaje errorServidor = new VentanaMensaje(
+                "Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+                errorServidor.Mostrar();
 
+                seMostroVentanaErrorBD = true;
+            }
+        }
+
+        private void MostrarVentanaErrorServidor()
+        {
+            if (seMostroVentanaErrorServidor)
+            {
+                VentanaMensaje errorBaseDatos = new VentanaMensaje(
+               "Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+                errorBaseDatos.Mostrar();
+
+                seMostroVentanaErrorServidor = true;
+            }
+        }
+
+        private void ObtenerCondicionesCredito()
+        {
+            CondicionCreditoClient condicionCreditoClient = new CondicionCreditoClient();
+            var respuesta = condicionCreditoClient.ObtenerCondicionesCreditoActivas();
+            var (codigo, condicionesCredito) = respuesta;
+
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    if (condicionesCredito != null)
+                    {
+                        lstBoxCondicionesCredito.ItemsSource = condicionesCredito;
+                    }
+                    else
+                    {
+                        bdrCondicionesCreditoTabla.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
+                        txtBlockMensajeNoCondiciones.Visibility = Visibility.Visible;
+                        lstBoxCondicionesCredito.Visibility = Visibility.Collapsed;
+                        grdEncabezadosCondicionCredito.Visibility = Visibility.Collapsed;
+                        btnSolicitarCredito.IsEnabled = false;
+                    }
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBD();
+                    break;
+            }
         }
 
         private void ClicSolicitarCredito(object sender, RoutedEventArgs e)

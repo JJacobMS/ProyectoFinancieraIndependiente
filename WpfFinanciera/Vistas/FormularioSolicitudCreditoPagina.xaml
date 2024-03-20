@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WpfFinanciera.Vistas"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="798.4" d:DesignWidth="800"
       Title="FormularioSolicitudCreditoPagina" Loaded="CargarPagina">
 
     <Page.Resources>
@@ -72,6 +72,9 @@
                     <Setter Property="Background" Value="#9B2E24"/>
                     <Setter Property="Cursor" Value="Hand"/>
                 </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.6"/>
+                </Trigger>
             </Style.Triggers>
         </Style>
     </Page.Resources>
@@ -137,14 +140,15 @@
                         <TextBlock Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" HorizontalAlignment="Center" Margin="20,20,0,10"><Run Text="Ingrese el monto del préstamo:"/></TextBlock>
                         <TextBox Style="{StaticResource estiloTxtBoxFormularioSolicitudCredito}" MaxWidth="210" MinWidth="100"/>
                         <TextBlock Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" HorizontalAlignment="Center" Margin="20,20,0,10"><Run Text="Seleccione la condición de crédito"/></TextBlock>
-                        <Border BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Margin="20 0" Background="Transparent" Padding="2" >
+                        <Border x:Name="bdrCondicionesCreditoTabla" BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Margin="20 0" Width="753" Height="126" Background="Transparent" Padding="2" >
                             <Grid Height="120">
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
-                                <Grid Grid.Row="0" Height="Auto" Width="Auto" Margin="0,5,25,0">
+                                <Grid x:Name="grdEncabezadosCondicionCredito" Grid.Row="0" Height="Auto" Width="Auto" Margin="0,5,25,0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="*"/>
                                         <ColumnDefinition Width="*"/>
@@ -168,9 +172,9 @@
                                                         <ColumnDefinition Width="*"/>
                                                         <ColumnDefinition Width="*"/>
                                                     </Grid.ColumnDefinitions>
-                                                    <TextBlock Text="{Binding Descripcion}" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" HorizontalAlignment="Center"/>
-                                                    <TextBlock Text="{Binding Plazo}" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Grid.Column="1" HorizontalAlignment="Center"/>
-                                                    <TextBlock Text="{Binding TasaInteres, StringFormat=\{0\}%}" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Grid.Column="2" HorizontalAlignment="Center"/>
+                                                    <TextBlock Text="{Binding descripcion}" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" HorizontalAlignment="Center"/>
+                                                    <TextBlock Text="{Binding plazoMeses}" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Grid.Column="1" HorizontalAlignment="Center"/>
+                                                    <TextBlock Text="{Binding tasaInteres, StringFormat=\{0\}%}" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Grid.Column="2" HorizontalAlignment="Center"/>
                                                     <TextBlock Grid.Column="3" HorizontalAlignment="Center">
                                                         <TextBlock.Style>
                                                             <Style TargetType="{x:Type TextBlock}">
@@ -179,7 +183,7 @@
                                                                 <Setter Property="FontSize" Value="22"/>
                                                                 <Setter Property="FontWeight" Value="Regular"/>
                                                                 <Style.Triggers>
-                                                                    <DataTrigger Binding="{Binding TieneIVA}" Value="True">
+                                                                    <DataTrigger Binding="{Binding tieneIVA}" Value="True">
                                                                         <Setter Property="Text" Value="Si"/>
                                                                     </DataTrigger>
                                                                 </Style.Triggers>
@@ -191,28 +195,37 @@
                                         </DataTemplate>
                                     </ListBox.ItemTemplate>
                                 </ListBox>
+
+                                <TextBlock x:Name="txtBlockMensajeNoCondiciones" Grid.Row="1" Foreground="White" Visibility="Collapsed" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Text="No se han encontrado condiciones de crédito activas o registradas en el sistema" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300"/>
                             </Grid>
                         </Border>
 
                         <TextBlock Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" HorizontalAlignment="Center" Margin="20,20,0,10"><Run Text="Seleccione la Checklist para el crédito"/></TextBlock>
-                        <Border BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Margin="20 0" Background="Transparent" Padding="2" Width="400" >
-                            <ListBox x:Name="lstBoxChecklists" ScrollViewer.VerticalScrollBarVisibility="Visible" d:ItemsSource="{d:SampleData ItemCount=5}" Background="{x:Null}" BorderThickness="0" Height="100" Width="381">
-                                <ListBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <Border Margin="0,0,2,2" BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Background="#E2F0EF" Padding="0,2,0,2" Width="350">
-                                            <Grid Height="Auto" Width="Auto">
-                                                <Grid.ColumnDefinitions>
-                                                    <ColumnDefinition Width="*"/>
-                                                </Grid.ColumnDefinitions>
-                                                <TextBlock Text="{Binding Nombre}" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" HorizontalAlignment="Center"/>
-                                            </Grid>
-                                        </Border>
-                                    </DataTemplate>
-                                </ListBox.ItemTemplate>
-                            </ListBox>
+                        <Border x:Name="bdrChecklistTabla" BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Margin="20 0" Background="Transparent" Padding="2" Width="390" Height="105">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
 
+                                <ListBox x:Name="lstBoxChecklists" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Visible" d:ItemsSource="{d:SampleData ItemCount=5}" Background="{x:Null}" BorderThickness="0">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Margin="0,0,2,2" BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Background="#E2F0EF" Padding="0,2,0,2" Width="350">
+                                                <Grid Height="Auto" Width="Auto">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Text="{Binding nombre}" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" HorizontalAlignment="Center"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                                <TextBlock x:Name="txtBlockMensajeNoChecklists" Grid.Row="1" Foreground="White" Visibility="Collapsed" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Text="No se han encontrado condiciones de crédito activas o registradas en el sistema" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300"/>
+                            </Grid>
                         </Border>
-
                         <Button x:Name="btnSolicitarCredito" Style="{StaticResource estiloBtnRojoSolicitarCredito}" Click="ClicSolicitarCredito" Content="Solicitar Crédito" Width="320" Margin="0,10,30,10" HorizontalAlignment="Right"/>
                     </StackPanel>
                 </Grid>
