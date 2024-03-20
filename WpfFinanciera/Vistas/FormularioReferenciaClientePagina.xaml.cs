@@ -70,9 +70,23 @@ namespace WpfFinanciera.Vistas
                 btnAgregarArchivo.Click -= ClicAdjuntarDocumento;
                 btnAgregarArchivo.DataContext = nombreArchivo;
 
-                _documentoReferencia = File.ReadAllBytes(ventanaArchivo.FileName);
-                _nombreArchivo = nombreArchivo;
+                try
+                {
+                    _documentoReferencia = File.ReadAllBytes(ventanaArchivo.FileName);
+                    _nombreArchivo = nombreArchivo;
+                }
+                catch (IOException ex)
+                {
+                    Console.WriteLine(ex);
+                    MostrarMensajeErrorArchivo();
+                }
+
             }
+        }
+        private void MostrarMensajeErrorArchivo()
+        {
+            VentanaMensaje ventanaMensaje = new VentanaMensaje("Error. No se pudo agregar el documento", Mensaje.ERROR);
+            ventanaMensaje.Mostrar();
         }
         private void ClicEliminarDocumento(object sender, RoutedEventArgs e)
         {
@@ -112,13 +126,14 @@ namespace WpfFinanciera.Vistas
             {
                 txtBoxNombreReferencia.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
-                razones += "Nombre";
+                razones += "Nombre (debe ser menor a 51 caracteres)";
             }
             if (string.IsNullOrWhiteSpace(apellidos) || apellidos.Length > 50)
             {
                 txtBoxApellidosReferencia.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
-                razones = (razones.Length > 0) ? razones + ", Apellidos" : "Apellidos";
+                razones = (razones.Length > 0) ? razones + ", " : razones;
+                razones += "Apellidos (debe ser menor a 51 caracteres)";
             }
             if (string.IsNullOrWhiteSpace(telefono) || telefono.Length > 12)
             {
@@ -132,11 +147,12 @@ namespace WpfFinanciera.Vistas
                 sonCamposValidos = false;
                 razones = (razones.Length > 0) ? razones + ", Descripción" : "Descripción";
             }
-            if (_documentoReferencia == null)
+            if (_documentoReferencia == null || _nombreArchivo.Length > 50)
             {
                 btnAgregarArchivo.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
-                razones = (razones.Length > 0) ? razones + ", Documento Referencia Cliente" : "Documento Referencia Cliente";
+                razones = (razones.Length > 0) ? razones + ", " : razones;
+                razones += "Documento Referencia Cliente (el nombre debe ser menor a 51 caracteres)";
             }
 
             if (!sonCamposValidos)

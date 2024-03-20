@@ -66,11 +66,9 @@
   <xs:element name="Credito" nillable="true" type="tns:Credito" />
   <xs:complexType name="Cliente">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Credito" nillable="true" type="tns:ArrayOfCredito" />
       <xs:element minOccurs="0" name="Documento" nillable="true" type="tns:ArrayOfDocumento" />
       <xs:element minOccurs="0" name="ReferenciaCliente" nillable="true" type="tns:ArrayOfReferenciaCliente" />
       <xs:element minOccurs="0" name="ReferenciaTrabajo" nillable="true" type="tns:ReferenciaTrabajo" />
-      <xs:element minOccurs="0" name="ReferenciaTrabajo_idReferenciaTrabajo" type="xs:int" />
       <xs:element minOccurs="0" name="Telefono" nillable="true" type="tns:ArrayOfTelefono" />
       <xs:element minOccurs="0" name="apellidos" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="correoElectronico" nillable="true" type="xs:string" />

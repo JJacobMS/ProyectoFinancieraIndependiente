@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace WpfFinanciera.Vistas
 {
     /// <summary>
-    /// Lógica de interacción para MenuPrincipalAsesorCredito.xaml
+    /// Lógica de interacción para MenuPrincipalAnalistaCreditoPagina.xaml
     /// </summary>
-    public partial class MenuPrincipalAsesorCredito : Page
+    public partial class MenuPrincipalAnalistaCreditoPagina : Page
     {
-        public MenuPrincipalAsesorCredito()
+        public MenuPrincipalAnalistaCreditoPagina()
         {
             InitializeComponent();
         }

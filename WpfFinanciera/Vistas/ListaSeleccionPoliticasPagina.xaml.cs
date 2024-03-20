@@ -45,5 +45,10 @@ namespace WpfFinanciera.Vistas
             Politica politica = checkBox.CommandParameter as Politica;
             listIdPoliticas_.Remove(politica.idPolitica);
         }
+
+        private void ClicBuscarReferenciaTrabajo(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
