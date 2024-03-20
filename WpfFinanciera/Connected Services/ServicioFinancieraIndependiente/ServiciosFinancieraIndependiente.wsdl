@@ -68,6 +68,18 @@
   <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklistResponse" />
   </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_RecuperarChecklist_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarChecklist" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_RecuperarChecklist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarChecklistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_GuardarDictamen_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarDictamen" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_GuardarDictamen_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarDictamenResponse" />
+  </wsdl:message>
   <wsdl:message name="IUsuario_ValidarUsuario_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidarUsuario" />
   </wsdl:message>
@@ -94,6 +106,14 @@
     <wsdl:operation name="RecuperarPoliticasChecklist">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklistResponse" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarChecklist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarChecklist" message="tns:IPoliticaOtorgamiento_RecuperarChecklist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarChecklistResponse" message="tns:IPoliticaOtorgamiento_RecuperarChecklist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GuardarDictamen">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarDictamen" message="tns:IPoliticaOtorgamiento_GuardarDictamen_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarDictamenResponse" message="tns:IPoliticaOtorgamiento_GuardarDictamen_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUsuario">
@@ -128,6 +148,24 @@
     </wsdl:operation>
     <wsdl:operation name="RecuperarPoliticasChecklist">
       <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarChecklist">
+      <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarChecklist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarDictamen">
+      <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/GuardarDictamen" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

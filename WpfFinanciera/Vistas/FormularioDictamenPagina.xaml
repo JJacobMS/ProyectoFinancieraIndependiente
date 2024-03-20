@@ -32,16 +32,16 @@
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Folio de Solicitud: 1234567890" FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Checklist: " Margin="25,0,0,-10" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
-                    <TextBlock Grid.Row="0" Grid.Column="1" Text="Solicitante: Jesus Jacob Montiel Salas" FontSize="35" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
+                    <TextBlock x:Name="txtBlockFolio" Grid.Row="0" Grid.Column="0" Text="Folio de Solicitud: 1234567890" Width="650" FontSize="35" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
+                    <TextBlock x:Name="txtBlockChecklist" Grid.Row="0" Grid.Column="0" Text="Checklist: " Margin="35,0,0,-10" Width="650" FontSize="30" VerticalAlignment="Bottom" HorizontalAlignment="Left" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
+                    <TextBlock x:Name="txtBlockSolicitante" Grid.Row="0" Grid.Column="1" Text="Solicitante: Jesus Jacob Montiel Salas" Width="650" FontSize="35" TextAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
                 </Grid>
                 <Border Grid.Column="0" Grid.Row="2" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="30,20,30,20">
-                    <ListView x:Name="lstViewPoliticasOtorgamiento" ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent" IsHitTestVisible="True"
+                    <ListView x:Name="lstViewPoliticasOtorgamiento"  ScrollViewer.HorizontalScrollBarVisibility="Hidden" ScrollViewer.VerticalScrollBarVisibility="Auto" Background="Transparent" IsHitTestVisible="True"
                      BorderBrush="Transparent" Grid.Column="0" Grid.Row="2" Margin="0,0,0,0" VerticalAlignment="Center" Padding="0,0,0,0" Height="258"  >
                         <ListView.View>
-                            <GridView AllowsColumnReorder="False" >
-                                <GridViewColumn x:Name="d" Width="Auto">
+                            <GridView AllowsColumnReorder="False">
+                                <GridViewColumn x:Name="d" Width="Auto" >
                                     <GridViewColumn.HeaderTemplate>
                                         <DataTemplate>
                                             <Border Background="#A9D4D6" Width="80" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
@@ -114,6 +114,7 @@
                                 </GridViewColumn>
                             </GridView>
                         </ListView.View>
+                        
                     </ListView>
 
                 </Border>
@@ -123,10 +124,9 @@
                         <ColumnDefinition Width="400"/>
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Anotaciones: " Margin="34,0,0,0" FontSize="30" VerticalAlignment="Top" HorizontalAlignment="Left" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
-                    <TextBox Name="txtBoxNombre"  FontSize="30" TextWrapping="Wrap" Grid.Column="0" Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="30,40,30,45" Style="{StaticResource estiloTxtBoxFormulario}"/>
+                    <TextBox Name="txtBoxAnotaciones"  FontSize="30" TextWrapping="Wrap" Grid.Column="0" Grid.Row="2" BorderBrush="Black" BorderThickness="1" Margin="30,40,30,45" Style="{StaticResource estiloTxtBoxFormulario}"/>
                     <StackPanel  Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Margin="0,0,25,50" >
                         <Button Width="180" Height="60" Style="{StaticResource estiloBtnFormulario}" Click="ClicAceptar" Content="Aceptar" FontSize="27" Margin="0,10,25,10"/>
-                        <Button  Width="180" Height="60" Style="{StaticResource estiloBtnFormulario}" Click="ClicCancelar" Content="Cancelar" FontSize="27"  />
                     </StackPanel>
                 </Grid>
             </Grid>

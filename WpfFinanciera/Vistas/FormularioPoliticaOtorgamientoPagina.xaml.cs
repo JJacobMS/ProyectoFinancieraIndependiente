@@ -168,12 +168,6 @@ namespace WpfFinanciera.Vistas
             mensajeError.Mostrar();
         }
 
-
-        private void ClicCancelar(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void TextChangedtxtBoxDescripcion(object sender, TextChangedEventArgs e)
         {
             int tamañoMaximoDescripcion = 70;
