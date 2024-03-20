@@ -75,6 +75,9 @@
     <Compile Include="Vistas\FormularioCondicionCreditoPagina.xaml.cs">
       <DependentUpon>FormularioCondicionCreditoPagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FormularioDictamenPagina.xaml.cs">
+      <DependentUpon>FormularioDictamenPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FormularioPoliticaOtorgamientoPagina.xaml.cs">
       <DependentUpon>FormularioPoliticaOtorgamientoPagina.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,9 @@
     </Compile>
     <Compile Include="Vistas\SolicitudesCreditoPagina.xaml.cs">
       <DependentUpon>SolicitudesCreditoPagina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\MenuPrincipalAsesorCredito.xaml.cs">
+      <DependentUpon>MenuPrincipalAsesorCredito.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -148,6 +154,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\FormularioDictamenPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\FormularioPoliticaOtorgamientoPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -173,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\SolicitudesCreditoPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\MenuPrincipalAsesorCredito.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

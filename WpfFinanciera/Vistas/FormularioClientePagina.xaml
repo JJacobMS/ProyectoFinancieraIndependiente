@@ -187,13 +187,12 @@
                         <Border Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
                             <StackPanel Margin="15">
                                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" >Nombre:</TextBlock>
-                                <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="45" TextWrapping="Wrap">Lores Lores Lores Lores Lores Lores Lores s</TextBox>
-                                    <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}">Dirección:</TextBlock>
-                                <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="98" TextWrapping="Wrap">
-                                    Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores s</TextBox>
+                                    <TextBox Name="txtBoxNombreReferenciaCliente1" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="45" TextWrapping="Wrap"></TextBox>
+                                    <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}">Descripción:</TextBlock>
+                                    <TextBox Name="txtBoxDescripcionReferenciaCliente1" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="98" TextWrapping="Wrap"></TextBox>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 15">
                                         <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" Margin="0 0 8 0" >Teléfono:</TextBlock>
-                                    <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Padding="5 0 5 0">2281367803</TextBox>
+                                        <TextBox Name="txtBoxTelefonoReferenciaCliente1" Width="150" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Padding="5 0 5 0"></TextBox>
                                 </StackPanel>
                                 <Button Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}" Margin="20 0" Click="ClicRegistrarReferenciaCliente" CommandParameter="1">
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Center">Registrar Referencia del Cliente</TextBlock></Button>
@@ -205,13 +204,12 @@
                         <Border Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
                             <StackPanel Margin="15">
                                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}">Nombre:</TextBlock>
-                                <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="45" TextWrapping="Wrap">Lores Lores Lores Lores Lores Lores Lores s</TextBox>
-                                    <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" >Dirección:</TextBlock>
-                                <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="98" TextWrapping="Wrap">
-                                    Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores Lores s</TextBox>
+                                    <TextBox Name="txtBoxNombreReferenciaCliente2" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="45" TextWrapping="Wrap"></TextBox>
+                                    <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" >Descripción:</TextBlock>
+                                    <TextBox Name="txtBoxDescripcionReferenciaCliente2" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="98" TextWrapping="Wrap"></TextBox>
                                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 0 0 15">
                                         <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" Margin="0 0 8 0">Teléfono:</TextBlock>
-                                    <TextBox Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Padding="5 0 5 0">2281367803</TextBox>
+                                        <TextBox Name="txtBoxTelefonoReferenciaCliente2" Width="150" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Padding="5 0 5 0"></TextBox>
                                 </StackPanel>
                                 <Button Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}" Margin="20 0" Click="ClicRegistrarReferenciaCliente" CommandParameter="2">
                                     <TextBlock TextWrapping="Wrap" TextAlignment="Center">Registrar Referencia del Cliente</TextBlock>

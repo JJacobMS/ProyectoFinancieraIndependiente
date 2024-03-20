@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfFinanciera.ServicioFinancieraIndependiente;
+using WpfFinanciera.Utilidades;
 
 namespace WpfFinanciera.Vistas
 {
@@ -29,31 +31,70 @@ namespace WpfFinanciera.Vistas
 
         private void ClicAceptar(object sender, RoutedEventArgs e)
         {
-            bool sonCamposValidos = ValidarCampos();
-            if (sonCamposValidos)
-            {
-                Console.WriteLine("Validos");
-                PoliticaOtorgamientoClient proxy = new PoliticaOtorgamientoClient();
-                //int respuesta = proxy.GuardarPoliticaOtorgamiento(1);
-                //Console.WriteLine("Respuesta "+respuesta);
-            }
-            else
-            {
-                MostrarVentanaCamposNoValidos();
 
+            try {
+                bool sonCamposValidos = ValidarCampos();
+                if (sonCamposValidos)
+                {
+                    Politica politicaNueva = new Politica
+                    {
+                        nombre = txtBoxNombre.Text,
+                        descripcion = txtBoxDescripcion.Text,
+                        vigencia = (DateTime)dtPickerFechaVigencia.SelectedDate,
+                        estaActiva = true
+                    };
+                    PoliticaOtorgamientoClient proxy = new PoliticaOtorgamientoClient();
+                    int respuesta = proxy.GuardarPoliticaOtorgamiento(politicaNueva);
+                    Console.WriteLine(respuesta);
+                    //MostrarVentanaErrorBaseDatos
+                    //MostrarVentanaExito()
+
+                }
             }
+            catch (CommunicationException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                MostrarVentanaErrorServidor();
+            }
+            catch (TimeoutException ex)
+            {
+                Console.WriteLine(ex.ToString());
+                MostrarVentanaErrorServidor();
+            }
+
+        }
+        
+
+        private void MostrarVentanaExito()
+        {
+            VentanaMensaje mensajeError = new VentanaMensaje("Se ha registrado la política de otorgamiento exitosamente", Mensaje.EXITO);
+            mensajeError.Mostrar();
+        }
+
+        private void MostrarVentanaErrorServidor()
+        {
+            VentanaMensaje mensajeError = new VentanaMensaje("Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            mensajeError.Mostrar();
+        }
+        private void MostrarVentanaErrorBaseDatos()
+        {
+            VentanaMensaje mensajeError = new VentanaMensaje("Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            mensajeError.Mostrar();
         }
 
         private bool ValidarCampos()
         {
-            bool esValido = true;
+            bool sonCamposValidos = true;
             string nombrePolitica = txtBoxNombre.Text;
             string descripcionPolitica = txtBoxDescripcion.Text;
             DateTime? fechaVigencia = dtPickerFechaVigencia.SelectedDate;
+            string razones = "";
+
             if (String.IsNullOrWhiteSpace(nombrePolitica))
             { 
-                esValido = false;
+                sonCamposValidos = false;
                 txtBoxNombre.Style = (Style)FindResource("estiloTxtBoxFormularioRojo");
+                razones += "Nombre politica";
             }
             else
             {
@@ -61,8 +102,9 @@ namespace WpfFinanciera.Vistas
             }
             if (String.IsNullOrWhiteSpace(descripcionPolitica))
             {
-                esValido = false;
+                sonCamposValidos = false;
                 txtBoxDescripcion.Style = (Style) FindResource("estiloTxtBoxFormularioRojo");
+                razones = (razones.Length > 0) ? razones + ", Descripción" : "Descripción";
             }
             else
             {
@@ -70,8 +112,9 @@ namespace WpfFinanciera.Vistas
             }
             if (!fechaVigencia.HasValue)
             {
-                esValido = false;
+                sonCamposValidos = false;
                 dtPickerFechaVigencia.Style = (Style)FindResource("estiloDatePickerFormularioPoliticaOtorgamientoRojo");
+                razones = (razones.Length > 0) ? razones + ", Fecha vigencia" : "Fecha vigencia";
             }
             else
             {
@@ -79,13 +122,19 @@ namespace WpfFinanciera.Vistas
                 dtPickerFechaVigencia.Style = (Style)FindResource("estiloDatePickerFormularioPoliticaOtorgamiento");
 
             }
-            return esValido;
+            if (!sonCamposValidos)
+            {
+                MostrarVentanaCamposNoValidos(razones);
+            }
+            return sonCamposValidos;
         }
 
-        private void MostrarVentanaCamposNoValidos()
+        private void MostrarVentanaCamposNoValidos(string razones)
         {
-            Console.WriteLine("No son campos validos");
+            VentanaMensaje mensajeError = new VentanaMensaje("Los campos ingresados no son válidos", razones);
+            mensajeError.Mostrar();
         }
+
 
         private void ClicCancelar(object sender, RoutedEventArgs e)
         {
@@ -111,10 +160,5 @@ namespace WpfFinanciera.Vistas
                 txtBoxNombre.SelectionStart = txtBoxNombre.Text.Length;
             }
         }
-
-        
-        
-
-
     }
 }

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFinanciera.ServicioFinancieraIndependiente;
 using WpfFinanciera.Utilidades;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -95,7 +96,7 @@ namespace WpfFinanciera.Vistas
         }
         private void EnviarReferenciaTrabajoFormulario()
         {
-            ReferenciaTrabajo referencia = new ReferenciaTrabajo { Nombre = txtBoxNombre.Text, Direccion = txtBoxDireccion.Text, Telefono = txtBoxTelefono.Text };
+            ReferenciaTrabajo referencia = new ReferenciaTrabajo { idReferenciaTrabajo = 0, nombre = txtBoxNombre.Text, direccion = txtBoxDireccion.Text, telefono = txtBoxTelefono.Text };
             _formularioPagina.AgregarReferenciaTrabajo(referencia);
             MainWindow ventana = (MainWindow) Window.GetWindow(this);
             ventana.CambiarPagina(_formularioPagina);
