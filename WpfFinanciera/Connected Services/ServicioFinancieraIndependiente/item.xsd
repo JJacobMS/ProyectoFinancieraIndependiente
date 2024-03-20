@@ -97,4 +97,18 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="RecuperarChecklist2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="folioCredito" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarChecklist2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarChecklist2Result" type="q10:ValueTupleOfCodigostringb9iN3L_Pt" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

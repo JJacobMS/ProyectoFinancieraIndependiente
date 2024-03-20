@@ -90,6 +90,9 @@
     <Compile Include="Vistas\ListaReferenciaTrabajosPagina.xaml.cs">
       <DependentUpon>ListaReferenciaTrabajosPagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\ListaSeleccionPoliticasPagina.xaml.cs">
+      <DependentUpon>ListaSeleccionPoliticasPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\MenuPrincipalAsesorCredito.xaml.cs">
       <DependentUpon>MenuPrincipalAsesorCredito.xaml</DependentUpon>
     </Compile>
@@ -162,6 +165,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\ListaReferenciaTrabajosPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\ListaSeleccionPoliticasPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

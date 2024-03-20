@@ -2464,4 +2464,51 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             return base.Channel.RecuperarReferenciasTrabajoAsync();
         }
     }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioFinancieraIndependiente.IChecklist")]
+    public interface IChecklist {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/RecuperarChecklist2", ReplyAction="http://tempuri.org/IChecklist/RecuperarChecklist2Response")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, string> RecuperarChecklist2(int folioCredito);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/RecuperarChecklist2", ReplyAction="http://tempuri.org/IChecklist/RecuperarChecklist2Response")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, string>> RecuperarChecklist2Async(int folioCredito);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IChecklistChannel : WpfFinanciera.ServicioFinancieraIndependiente.IChecklist, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ChecklistClient : System.ServiceModel.ClientBase<WpfFinanciera.ServicioFinancieraIndependiente.IChecklist>, WpfFinanciera.ServicioFinancieraIndependiente.IChecklist {
+        
+        public ChecklistClient() {
+        }
+        
+        public ChecklistClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ChecklistClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ChecklistClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ChecklistClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, string> RecuperarChecklist2(int folioCredito) {
+            return base.Channel.RecuperarChecklist2(folioCredito);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, string>> RecuperarChecklist2Async(int folioCredito) {
+            return base.Channel.RecuperarChecklist2Async(folioCredito);
+        }
+    }
 }

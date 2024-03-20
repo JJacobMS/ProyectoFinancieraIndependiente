@@ -39,5 +39,10 @@ namespace WpfFinanciera.Vistas
             politicaOtorgamiento.Content = nombrePolitica;
             stcPanelPolitica.Children.Add(politicaOtorgamiento);
         }
+
+        private void ClicAñadirPoliticas(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

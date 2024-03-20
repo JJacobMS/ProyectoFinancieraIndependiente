@@ -73,7 +73,52 @@
         </Setter>
     </Style>
 
+    <Style x:Key="estiloTxtBoxBusquedaPoliticaOtorgamiento" TargetType="TextBox">
+        <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="Foreground" Value="#000000"/>
+        <Setter Property="FontWeight" Value="Regular"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border>
+                        <Grid>
+                            <ScrollViewer Margin="25 20" x:Name="PART_ContentHost"/>
+                            <TextBlock x:Name="placeHolderBuscar" VerticalAlignment="Center" Margin="25 0 0 0" FontWeight="Light"
+                                   Visibility="Collapsed">Buscar</TextBlock>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Text" Value="">
+                            <Setter Property="Visibility" TargetName="placeHolderBuscar" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter Property="Visibility" TargetName="placeHolderBuscar" Value="Collapsed"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
+    <Style x:Key="estiloBtnBuscarPoliticaOtorgamiento" TargetType="Button">
+        <Setter Property="Background" Value="#B46058"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}" CornerRadius="0 7 7 0">
+                        <Image Height="60" Width="60" Source="/Recursos/search.png"></Image>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#9B2E24"/>
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
     <Style x:Key="estiloTxtBoxFormulario" TargetType="TextBox">
         <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
@@ -265,5 +310,53 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="estiloDatePickerFormularioListaSeleccionPagina" TargetType="{x:Type DatePicker}" BasedOn="{StaticResource estiloDatePicker}">
+        <Setter Property="IsTodayHighlighted" Value="True" />
+        <Setter Property="SelectedDateFormat" Value="Short" />
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DatePicker}">
+                    <Border BorderThickness="0" Padding="{TemplateBinding Padding}" CornerRadius="10" BorderBrush="Transparent">
+                        <Border.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#B46058" Offset="1" />
+                                <GradientStop Color="#B46058" Offset="2" />
+                            </LinearGradientBrush>
+                        </Border.Background>
+                        <Grid >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Button x:Name="PART_Button" Grid.Column="1" Focusable="False"   
+                            HorizontalAlignment="Left" Margin="3,0,3,0" Grid.Row="0" 
+                            Style="{StaticResource estiloBotonDesplegable}" VerticalAlignment="Center" />
+                            <DatePickerTextBox x:Name="PART_TextBox"  Grid.Column="0" Foreground="{TemplateBinding Foreground}" Focusable="{TemplateBinding Focusable}" HorizontalContentAlignment="Stretch" Grid.Row="0" Background="Transparent" VerticalContentAlignment="Stretch" Style="{StaticResource CustomDatePickerTextBoxStyle}" />
+                            <Grid x:Name="PART_DisabledVisual" HorizontalAlignment="Center" Grid.ColumnSpan="2" Grid.Column="0" IsHitTestVisible="False" Opacity="0" Grid.Row="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Rectangle Grid.Column="0" RadiusY="1" Grid.Row="0" RadiusX="1" />
+                                <Rectangle Grid.Column="1" Height="18" Margin="3,0,3,0" RadiusY="1" Grid.Row="0" RadiusX="1" Width="19" />
+                                <Popup x:Name="PART_Popup" AllowsTransparency="True" Placement="Bottom" StaysOpen="False" Cursor="Hand">
+                                    <Calendar Style="{DynamicResource estiloDatePickerCalendario}" />
+                                </Popup>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="Button.IsPressed" Value="True">
+                            <Setter TargetName="PART_Button" Property="Background" Value="#FFFFFF"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
 </ResourceDictionary>
