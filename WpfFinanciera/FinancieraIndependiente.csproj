@@ -179,7 +179,7 @@
     <None Include="Connected Services\ServicioFinancieraIndependiente\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServicioFinancieraIndependiente\item21.xsd">
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item3.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\ServiciosFinancieraIndependiente.wsdl" />

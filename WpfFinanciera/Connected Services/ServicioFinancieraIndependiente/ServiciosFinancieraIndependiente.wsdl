@@ -48,6 +48,18 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_ICliente_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -80,6 +92,18 @@
   <wsdl:message name="IReferenciaTrabajo_RecuperarReferenciasTrabajo_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarReferenciasTrabajoResponse" />
   </wsdl:message>
+  <wsdl:message name="ICliente_ValidarRfcClienteUnico_InputMessage">
+    <wsdl:part name="parameters" element="tns:ValidarRfcClienteUnico" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_ValidarRfcClienteUnico_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ValidarRfcClienteUnicoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_GuardarInformacionCliente_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarInformacionCliente" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_GuardarInformacionCliente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarInformacionClienteResponse" />
+  </wsdl:message>
   <wsdl:portType name="IPoliticaOtorgamiento">
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_InputMessage" />
@@ -102,6 +126,16 @@
     <wsdl:operation name="RecuperarReferenciasTrabajo">
       <wsdl:input wsaw:Action="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajo" message="tns:IReferenciaTrabajo_RecuperarReferenciasTrabajo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajoResponse" message="tns:IReferenciaTrabajo_RecuperarReferenciasTrabajo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ICliente">
+    <wsdl:operation name="ValidarRfcClienteUnico">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/ValidarRfcClienteUnico" message="tns:ICliente_ValidarRfcClienteUnico_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/ValidarRfcClienteUnicoResponse" message="tns:ICliente_ValidarRfcClienteUnico_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GuardarInformacionCliente">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/GuardarInformacionCliente" message="tns:ICliente_GuardarInformacionCliente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/GuardarInformacionClienteResponse" message="tns:ICliente_GuardarInformacionCliente_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPoliticaOtorgamiento" type="tns:IPoliticaOtorgamiento">
@@ -156,6 +190,28 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_ICliente" type="tns:ICliente">
+    <wsp:PolicyReference URI="#NetTcpBinding_ICliente_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ValidarRfcClienteUnico">
+      <soap12:operation soapAction="http://tempuri.org/ICliente/ValidarRfcClienteUnico" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarInformacionCliente">
+      <soap12:operation soapAction="http://tempuri.org/ICliente/GuardarInformacionCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="ServiciosFinancieraIndependiente">
     <wsdl:port name="NetTcpBinding_IPoliticaOtorgamiento" binding="tns:NetTcpBinding_IPoliticaOtorgamiento">
       <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
@@ -176,6 +232,12 @@
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IReferenciaTrabajo" binding="tns:NetTcpBinding_IReferenciaTrabajo">
+      <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_ICliente" binding="tns:NetTcpBinding_ICliente">
       <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>

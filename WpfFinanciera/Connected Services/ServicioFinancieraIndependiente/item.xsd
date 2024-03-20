@@ -55,4 +55,35 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ValidarRfcClienteUnico">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="rfcCliente" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ValidarRfcClienteUnicoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ValidarRfcClienteUnicoResult" type="q5:ValueTupleOfbooleanCodigo2hGfKC_Pq" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuardarInformacionCliente">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="cliente" nillable="true" type="q6:Cliente" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="referenciaTrabajo" nillable="true" type="q7:ReferenciaTrabajo" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="referenciaCliente" nillable="true" type="q8:ArrayOfReferenciaCliente" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="documentos" nillable="true" type="q9:ArrayOfDocumento" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuardarInformacionClienteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="GuardarInformacionClienteResult" type="q10:Codigo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

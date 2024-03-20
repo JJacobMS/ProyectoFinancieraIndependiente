@@ -792,9 +792,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfFinanciera.ServicioFinancieraIndependiente.Credito[] CreditoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfFinanciera.ServicioFinancieraIndependiente.Documento[] DocumentoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -802,9 +799,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo ReferenciaTrabajoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ReferenciaTrabajo_idReferenciaTrabajoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfFinanciera.ServicioFinancieraIndependiente.Telefono[] TelefonoField;
@@ -847,19 +841,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfFinanciera.ServicioFinancieraIndependiente.Credito[] Credito {
-            get {
-                return this.CreditoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.CreditoField, value) != true)) {
-                    this.CreditoField = value;
-                    this.RaisePropertyChanged("Credito");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
         public WpfFinanciera.ServicioFinancieraIndependiente.Documento[] Documento {
             get {
                 return this.DocumentoField;
@@ -894,19 +875,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
                 if ((object.ReferenceEquals(this.ReferenciaTrabajoField, value) != true)) {
                     this.ReferenciaTrabajoField = value;
                     this.RaisePropertyChanged("ReferenciaTrabajo");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ReferenciaTrabajo_idReferenciaTrabajo {
-            get {
-                return this.ReferenciaTrabajo_idReferenciaTrabajoField;
-            }
-            set {
-                if ((this.ReferenciaTrabajo_idReferenciaTrabajoField.Equals(value) != true)) {
-                    this.ReferenciaTrabajo_idReferenciaTrabajoField = value;
-                    this.RaisePropertyChanged("ReferenciaTrabajo_idReferenciaTrabajo");
                 }
             }
         }
@@ -2292,6 +2260,67 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarReferenciasTrabajoAsync() {
             return base.Channel.RecuperarReferenciasTrabajoAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioFinancieraIndependiente.ICliente")]
+    public interface ICliente {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/ValidarRfcClienteUnico", ReplyAction="http://tempuri.org/ICliente/ValidarRfcClienteUnicoResponse")]
+        System.ValueTuple<bool, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ValidarRfcClienteUnico(string rfcCliente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/ValidarRfcClienteUnico", ReplyAction="http://tempuri.org/ICliente/ValidarRfcClienteUnicoResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<bool, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> ValidarRfcClienteUnicoAsync(string rfcCliente);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/GuardarInformacionCliente", ReplyAction="http://tempuri.org/ICliente/GuardarInformacionClienteResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo GuardarInformacionCliente(WpfFinanciera.ServicioFinancieraIndependiente.Cliente cliente, WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo, WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente[] referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento[] documentos);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/GuardarInformacionCliente", ReplyAction="http://tempuri.org/ICliente/GuardarInformacionClienteResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarInformacionClienteAsync(WpfFinanciera.ServicioFinancieraIndependiente.Cliente cliente, WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo, WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente[] referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento[] documentos);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IClienteChannel : WpfFinanciera.ServicioFinancieraIndependiente.ICliente, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ClienteClient : System.ServiceModel.ClientBase<WpfFinanciera.ServicioFinancieraIndependiente.ICliente>, WpfFinanciera.ServicioFinancieraIndependiente.ICliente {
+        
+        public ClienteClient() {
+        }
+        
+        public ClienteClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ClienteClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ClienteClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ClienteClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public System.ValueTuple<bool, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ValidarRfcClienteUnico(string rfcCliente) {
+            return base.Channel.ValidarRfcClienteUnico(rfcCliente);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<bool, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> ValidarRfcClienteUnicoAsync(string rfcCliente) {
+            return base.Channel.ValidarRfcClienteUnicoAsync(rfcCliente);
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo GuardarInformacionCliente(WpfFinanciera.ServicioFinancieraIndependiente.Cliente cliente, WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo, WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente[] referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento[] documentos) {
+            return base.Channel.GuardarInformacionCliente(cliente, referenciaTrabajo, referenciaCliente, documentos);
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarInformacionClienteAsync(WpfFinanciera.ServicioFinancieraIndependiente.Cliente cliente, WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo, WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente[] referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento[] documentos) {
+            return base.Channel.GuardarInformacionClienteAsync(cliente, referenciaTrabajo, referenciaCliente, documentos);
         }
     }
 }

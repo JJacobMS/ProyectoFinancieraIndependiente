@@ -50,4 +50,20 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ValueTupleOfArrayOfReferenciaTrabajoCodigoglhsIKFj" nillable="true" type="tns:ValueTupleOfArrayOfReferenciaTrabajoCodigoglhsIKFj" />
+  <xs:complexType name="ValueTupleOfbooleanCodigo2hGfKC_Pq">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ValueTupleOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" />
+          <GenericParameter Name="Codigo" Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
+        </GenericType>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Item1" type="xs:boolean" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" type="q7:Codigo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValueTupleOfbooleanCodigo2hGfKC_Pq" nillable="true" type="tns:ValueTupleOfbooleanCodigo2hGfKC_Pq" />
 </xs:schema>
