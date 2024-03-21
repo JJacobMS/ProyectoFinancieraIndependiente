@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:WpfFinanciera.Vistas"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SolicitudesCreditoPagina">
+      Title="SolicitudesCreditoPagina" Loaded="CargarPagina">
 
     <Page.Resources>
         <Style x:Key="estiloTxtBoxBusquedaSolicitudCredito" TargetType="TextBox">
@@ -81,59 +81,6 @@
             <Setter Property="FontSize" Value="22"/>
             <Setter Property="Margin" Value="10 0 0 0"/>
         </Style>
-
-        <Style x:Key="estiloLstItemSolicitudCredito" TargetType="ListBoxItem">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="ListBoxItem">
-                        <Border Name="BackgroundBorder">
-                            <Border Name="Border" BorderThickness="1" BorderBrush="#065758" CornerRadius="10" Margin="10 5">
-                                <Border.Background>
-                                    <LinearGradientBrush>
-                                        <GradientStop Color="#E2F0EF" Offset="0"/>
-                                        <GradientStop Color="#E2F0EF" Offset="0.5"/>
-                                        <GradientStop Color="#A9D4D6" Offset="1"/>
-                                    </LinearGradientBrush>
-                                </Border.Background>
-                                <Grid Margin="10 10">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="18"/>
-                                        <ColumnDefinition Width="380"/>
-                                        <ColumnDefinition Width="350"/>
-                                        <ColumnDefinition Width="450"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="20"/>
-                                        <RowDefinition Height="45"/>
-                                        <RowDefinition Height="20"/>
-                                        <RowDefinition Height="20"/>
-                                    </Grid.RowDefinitions>
-                                    <Border Background="#065758" Height="100" VerticalAlignment="Top" Grid.RowSpan="4" Margin="5,2,5,0"/>
-                                    <TextBlock Grid.Column="1" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoCampo}" Height="20" Margin="5,0,0,0">Folio:</TextBlock>
-                                    <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoInfo}" Margin="10,0,0,0" TextWrapping="Wrap">000000000</TextBlock>
-                                    <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoCampo}" Height="18" Margin="5,0,0,0">RFC del cliente:</TextBlock>
-                                    <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoInfo}" Margin="10,0,0,0">ABCD123456E7F</TextBlock>
-                                    <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoInfo}" TextAlignment="Center" Margin="10,0,0,0">Inversión</TextBlock>
-                                    <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoCampo}" Height="18" Margin="5,0,0,0">Monto:</TextBlock>
-                                    <TextBlock Grid.Row="3" Grid.Column="2" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoInfo}" Margin="10,0,0,0">$00,000</TextBlock>
-                                    <TextBlock Grid.Row="1" Grid.Column="3" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoCampo}" Margin="10,0,0,0" Height="18">Fecha de Solicitud:</TextBlock>
-                                    <TextBlock Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoInfo}" Margin="20 0 15 10" >DD/MM/AAAA HH:MM</TextBlock>
-                                    <Button Grid.Row="0" Grid.Column="4" Grid.RowSpan="4" Style="{StaticResource estiloBtnEvaluarSolicitud}" Margin="10,10,10,10">
-                                        <TextBlock TextWrapping="Wrap" TextAlignment="Center">Evaluar Solicitud</TextBlock>
-                                    </Button>
-                                </Grid>
-                            </Border>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=Border}" Value="true">
-                                <Setter TargetName="BackgroundBorder" Property="Background" Value="Transparent"/>
-                            </DataTrigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
     </Page.Resources>
 
     <Grid Background="#FFFFFF">
@@ -159,29 +106,63 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBox Style="{StaticResource estiloTxtBoxBusquedaSolicitudCredito}">Buscar</TextBox>
-                            <Button Grid.Column="1" Style="{StaticResource estiloBtnBuscarSolicitudCredito}">
+                            <TextBox x:Name="txtBoxBusquedaRFCSolicitudCredito" Style="{StaticResource estiloTxtBoxBusquedaSolicitudCredito}"></TextBox>
+                            <Button Click="ClicBuscar" Grid.Column="1" Style="{StaticResource estiloBtnBuscarSolicitudCredito}">
                             </Button>
                         </Grid>
                     </Border>
-                    <DatePicker FirstDayOfWeek="Monday" Width="332" Height="62"/>
+                    <DatePicker Name="dtPickerBusquedaFechaSolicitudCredito" SelectedDateChanged="IngresarFecha" FirstDayOfWeek="Monday" Width="332" Height="62"/>
                 </StackPanel>
             </Viewbox>
 
 
             <Viewbox Grid.Row="1">
                 <Border BorderBrush="#000000"  Margin="0 10 0 20" Height="520" Width="1465">
-                    <ListBox HorizontalAlignment="Center" Width="1465">
-                        <ListBoxItem Style="{StaticResource estiloLstItemSolicitudCredito}"/>
-                        <ListBoxItem Style="{StaticResource estiloLstItemSolicitudCredito}"/>
-                        <ListBoxItem Style="{StaticResource estiloLstItemSolicitudCredito}"/>
-                        <ListBoxItem Style="{StaticResource estiloLstItemSolicitudCredito}"/>
-
+                    <ListBox x:Name="lstBoxSolicitudesCredito" HorizontalAlignment="Center" Width="1471" d:ItemsSource="{d:SampleData ItemCount=5}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Border BorderBrush="#065758" CornerRadius="10" Margin="10 5" BorderThickness="1">
+                                    <Border.Background>
+                                        <LinearGradientBrush>
+                                            <GradientStop Color="#E2F0EF" Offset="0"/>
+                                            <GradientStop Color="#E2F0EF" Offset="0.5"/>
+                                            <GradientStop Color="#A9D4D6" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                    <Grid Margin="10 10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="18"/>
+                                            <ColumnDefinition Width="380"/>
+                                            <ColumnDefinition Width="350"/>
+                                            <ColumnDefinition Width="450"/>
+                                            <ColumnDefinition/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="20"/>
+                                            <RowDefinition Height="45"/>
+                                            <RowDefinition Height="20"/>
+                                            <RowDefinition Height="20"/>
+                                        </Grid.RowDefinitions>
+                                        <Border Background="#065758" Height="100" VerticalAlignment="Top" Grid.RowSpan="4" Margin="5,2,5,0"/>
+                                        <TextBlock Grid.Column="1" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoCampo}" Height="20" Margin="5,0,0,0">Folio:</TextBlock>
+                                        <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoInfo}" Margin="10,0,0,0" Text="{Binding FolioCredito}"/>
+                                        <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoCampo}" Height="18" Margin="5,0,0,0">RFC del cliente:</TextBlock>
+                                        <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoInfo}" Margin="10,0,0,0" Text="{Binding RfcCliente}"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoInfo}" TextAlignment="Center" Margin="10,0,0,0">Inversión</TextBlock>
+                                        <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoCampo}" Height="18" Margin="5,0,0,0">Monto:</TextBlock>
+                                        <TextBlock Grid.Row="3" Grid.Column="2" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoInfo}" Margin="10,0,0,0" Text="{Binding Monto, StringFormat=\{0:C\}}"/>
+                                        <TextBlock Grid.Row="1" Grid.Column="3" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoCampo}" Margin="10,0,0,0" Height="18">Fecha de Solicitud:</TextBlock>
+                                        <TextBlock Grid.Row="2" Grid.Column="3" Grid.RowSpan="2" Style="{StaticResource estiloTxtBlockItemSolicitudCreditoInfo}" Margin="20 0 15 10" Text="{Binding TiempoSolicitud, StringFormat=dd/MM/yyyy HH:mm}"/>
+                                        <Button Click="ClicEvaluarSolicitud" Grid.Row="0" Grid.Column="4" Grid.RowSpan="4" Style="{StaticResource estiloBtnEvaluarSolicitud}" Margin="10,10,10,10">
+                                            <TextBlock TextWrapping="Wrap" TextAlignment="Center">Evaluar Solicitud</TextBlock>
+                                        </Button>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
                     </ListBox>
                 </Border>
             </Viewbox>
-
-
         </Grid>
     </Grid>
 </Page>
