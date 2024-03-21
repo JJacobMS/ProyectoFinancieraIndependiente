@@ -35,7 +35,7 @@ namespace WpfFinanciera.Vistas
         {
             folio_ = 1;
             idUsuario_ = 1;
-            nombreSolicitante_ = "Jesus Jacobobo";
+            nombreSolicitante_ = "Jesus Jacob";
             InitializeComponent();
             RecuperarDatosPagina();
         }
@@ -47,10 +47,11 @@ namespace WpfFinanciera.Vistas
             politicas_ = new Politica[]{};
 
             try
-            {   
+            {
                 PoliticaOtorgamientoClient proxy = new PoliticaOtorgamientoClient();
                 (codigo, politicas_) = proxy.RecuperarPoliticasChecklist(1);
-                (codigo, nombreChecklist_) = proxy.RecuperarChecklist(1);
+                ChecklistClient proxyChecklist = new ChecklistClient();
+                (codigo, nombreChecklist_) = proxyChecklist.RecuperarChecklist(1);
                 Console.WriteLine(nombreChecklist_ + " ");
             }
             catch (CommunicationException ex)
@@ -147,7 +148,7 @@ namespace WpfFinanciera.Vistas
             Codigo codigo;
             try
             {
-                PoliticaOtorgamientoClient proxy = new PoliticaOtorgamientoClient();
+                DictamenClient proxy = new DictamenClient();
                 codigo = proxy.GuardarDictamen(dictamen);
             }
             catch (CommunicationException ex)
@@ -237,6 +238,11 @@ namespace WpfFinanciera.Vistas
             CheckBox checkBox = sender as CheckBox;
             Politica politica = checkBox.CommandParameter as Politica;
             listIdPoliticas_.Remove(politica.idPolitica);
+        }
+
+        private void ClicRegresar(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

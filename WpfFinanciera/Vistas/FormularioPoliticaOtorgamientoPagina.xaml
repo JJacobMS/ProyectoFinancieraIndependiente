@@ -27,7 +27,7 @@
             <Border  Grid.Column="0" Grid.Row="0" Background="#065758" >
                 <TextBlock Name="txtBlockTitulo" Text="Registrar Politica de Otorgamiento" FontSize="50" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
             </Border>
-                <Image Style="{StaticResource estiloImgFlecha}"/>
+                <Button Style="{StaticResource estiloBtnRegresar}" Click="ClicRegresar"/>
                 <Border Grid.Column="0" Grid.Row="1" BorderBrush="Black" BorderThickness="1" CornerRadius="10" Margin="30,30,30,30">
                 <Grid>
                     <Grid.ColumnDefinitions>

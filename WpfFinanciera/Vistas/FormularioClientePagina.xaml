@@ -45,10 +45,11 @@
         </Style>
 
         <Style x:Key="estiloBtnAgregarArchivo" TargetType="Button">
+            <Setter Property="Background" Value="#127B7C"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border Background="#127B7C" BorderBrush="#000000" BorderThickness="1" CornerRadius="10" Height="84" Width="161">
+                        <Border Background="{TemplateBinding Background}" BorderBrush="#000000" BorderThickness="1" CornerRadius="10" Height="84" Width="161">
                             <Button Style="{StaticResource estiloBtnAgregarDocumentoFormularioCliente}" >
                                 <ContentPresenter>
                                     <ContentPresenter.ContentTemplate>
@@ -86,9 +87,9 @@
                 <Border BorderBrush="#000000" BorderThickness="1" CornerRadius="10" Background="#E2F0EF" Margin="20 0">
                     <StackPanel Margin="25 10">
                         <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Nombre(s):</TextBlock>
-                        <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                        <TextBox Name="txtBoxNombreCliente" Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
                         <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Apellidos:</TextBlock>
-                        <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                        <TextBox Name="txtBoxApellidoCliente" Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition/>
@@ -97,23 +98,36 @@
                             </Grid.ColumnDefinitions>
                             <StackPanel Margin="0 0 20 0">
                                 <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Teléfono Casa:</TextBlock>
-                                <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                                <TextBox Name="txtBoxTelefonoCasaCliente" Style="{StaticResource estiloTxtBoxFormularioCliente}" PreviewKeyDown="PreviewKeyDownValidarNumero"></TextBox>
                             </StackPanel>
                             <StackPanel Grid.Column="1" Margin="10 0 10 0">
                                 <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Teléfono Personal:</TextBlock>
-                                <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                                <TextBox Name="txtBoxTelefonoPersonalCliente" Style="{StaticResource estiloTxtBoxFormularioCliente}" PreviewKeyDown="PreviewKeyDownValidarNumero"></TextBox>
                             </StackPanel>
                             <StackPanel Grid.Column="2" Margin="20 0 0 0">
                                 <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">RFC:</TextBlock>
-                                <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                                <TextBox Name="txtBoxRFCCliente" Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
                             </StackPanel>
                         </Grid>
-                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Cuenta de cobro:</TextBlock>
-                        <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Margin="0 0 10 0">
+                                    <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Cuenta de Cobro:</TextBlock>
+                                    <TextBox Name="txtBoxCuentaCobroCliente" Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Margin="10 0 0 0">
+                                    <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Cuenta de Depósito:</TextBlock>
+                                    <TextBox Name="txtBoxCuentaDepositoCliente" Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                                </StackPanel>
+                            </Grid>
+                        
                         <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Correo Electrónico:</TextBlock>
-                        <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                        <TextBox Name="txtBoxCorreoCliente" Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
                         <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Dirección:</TextBlock>
-                        <TextBox Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
+                        <TextBox Name="txtBoxDireccionCliente" Style="{StaticResource estiloTxtBoxFormularioCliente}"></TextBox>
                     </StackPanel>
                 </Border>
                 <Border Background="#E2F0EF" BorderBrush="#000000" BorderThickness="1" CornerRadius="10" Margin="20 10 20 0">
@@ -126,25 +140,25 @@
                         </Grid.ColumnDefinitions>
                         <StackPanel Margin="10 20 10 20">
                             <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" FontSize="15" Margin="0 0 0 10">Identificación oficial:</TextBlock>
-                            <Button Name="btnAgregarArchivoIdentificacion" CommandParameter="IdentificacionOficial" Click="ClicAgregarArchivo"
+                            <Button Name="btnAgregarArchivoIdentificacion" CommandParameter="Identificación Oficial" Click="ClicAgregarArchivo"
                                         Style="{StaticResource estiloBtnAgregarArchivo}">Agregar identificación oficial</Button>
                         </StackPanel>
 
                         <StackPanel Margin="10 20 10 20" Grid.Column="1">
                             <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" FontSize="15" Margin="0 0 0 10">Comprobante De Domicilio:</TextBlock>
-                            <Button Name="btnAgregarComprobanteDomicilio" CommandParameter="ComprobanteDomicilio" Click="ClicAgregarArchivo"
+                            <Button Name="btnAgregarComprobanteDomicilio" CommandParameter="Comprobante Domicilio" Click="ClicAgregarArchivo"
                                 Style="{StaticResource estiloBtnAgregarArchivo}">Agregar comprobante de domicilio</Button>
                         </StackPanel>
 
                         <StackPanel Margin="10 20 10 20" Grid.Column="2">
                             <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" FontSize="15" Margin="0 0 0 10">Comprobante De Ingreso:</TextBlock>
-                            <Button Name="btnAgregarComprobanteIngreso" CommandParameter="ComprobanteIngreso" Click="ClicAgregarArchivo"
+                            <Button Name="btnAgregarComprobanteIngreso" CommandParameter="Comprobante Ingreso" Click="ClicAgregarArchivo"
                                 Style="{StaticResource estiloBtnAgregarArchivo}">Agregar comprobante de ingreso</Button>
                         </StackPanel>
 
                         <StackPanel Margin="10 20 10 20" Grid.Column="3">
                             <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" FontSize="15" Margin="0 0 0 10">Comprobante De Trabajo:</TextBlock>
-                                <Button Name="btnAgregarComprobanteTrabajo" CommandParameter="ComprobanteTrabajo" Click="ClicAgregarArchivo"
+                                <Button Name="btnAgregarComprobanteTrabajo" CommandParameter="Comprobante Trabajo" Click="ClicAgregarArchivo"
                                     Style="{StaticResource estiloBtnAgregarArchivo}">Agregar comprobante de trabajo</Button>
                         </StackPanel>
                     </Grid>                    
@@ -154,7 +168,7 @@
             <Viewbox Grid.Column="1">
                 <StackPanel Height="710" Width="560" Margin="0 0 20 0" VerticalAlignment="Center">
                 <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" Margin="20 20 0 10">Referencia de Trabajo</TextBlock>
-                <Border Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000" Margin="0 0 0 15">
+                <Border Name="brdReferenciaTrabajoBackground" Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000" Margin="0 0 0 15">
                     <Grid Margin="15 5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -184,7 +198,7 @@
                     </Grid.ColumnDefinitions>
                     <StackPanel Margin="0 0 10 0">
                         <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" FontSize="22" HorizontalAlignment="Center" Margin="0 0 0 5">Referencia #1:</TextBlock>
-                        <Border Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
+                        <Border Name="brdReferenciaCliente1" Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
                             <StackPanel Margin="15">
                                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" >Nombre:</TextBlock>
                                     <TextBox Name="txtBoxNombreReferenciaCliente1" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="45" TextWrapping="Wrap"></TextBox>
@@ -201,7 +215,7 @@
                     </StackPanel>
                     <StackPanel Grid.Column="1" Margin="10 0 0 0">
                         <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" FontSize="22" HorizontalAlignment="Center" Margin="0 0 0 5">Referencia #2:</TextBlock>
-                        <Border Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
+                        <Border Name="brdReferenciaCliente2" Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
                             <StackPanel Margin="15">
                                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}">Nombre:</TextBlock>
                                     <TextBox Name="txtBoxNombreReferenciaCliente2" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="0 5 0 10" Height="45" TextWrapping="Wrap"></TextBox>
@@ -218,7 +232,7 @@
                         </Border>
                     </StackPanel>
                 </Grid>
-                <Button Style="{StaticResource estiloBtnRegistrarClienteFormulario}" Margin="10">Registrar Cliente</Button>
+                <Button Style="{StaticResource estiloBtnRegistrarClienteFormulario}" Margin="10" Click="ClicRegistrarCliente">Registrar Cliente</Button>
                 
             </StackPanel>
             </Viewbox>

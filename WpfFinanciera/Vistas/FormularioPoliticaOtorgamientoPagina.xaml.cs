@@ -187,5 +187,10 @@ namespace WpfFinanciera.Vistas
                 txtBoxNombre.SelectionStart = txtBoxNombre.Text.Length;
             }
         }
+
+        private void ClicRegresar(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

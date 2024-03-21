@@ -23,7 +23,9 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.ColumnSpan="2" Style="{StaticResource estiloTxtBlockVentanaMensajeTitulo}" FontSize="28" Text="{Binding titulo}"></TextBlock>
-                                <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource estiloTxtBlockVentanaMensajeTextoPrincipal}" FontSize="18" Text="{Binding razones}"></TextBlock>
+                                <ScrollViewer Grid.Row="1" Grid.Column="2" >
+                                    <TextBlock TextAlignment="Justify" Style="{StaticResource estiloTxtBlockVentanaMensajeTextoPrincipal}" FontSize="18" Text="{Binding razones}"></TextBlock>
+                                </ScrollViewer>
                                 <Image Grid.Row="1" Source="/Recursos/error.png"/>
                                 <Button Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource estiloBtnRojoVentanaMensaje}" Click="ClicAceptar">Aceptar</Button>
                             </Grid>
@@ -49,7 +51,9 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <TextBlock Grid.ColumnSpan="2" Style="{StaticResource estiloTxtBlockVentanaMensajeTitulo}">¡Ocurrió un error!</TextBlock>
-                                <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource estiloTxtBlockVentanaMensajeTextoPrincipal}" Text="{Binding}"></TextBlock>
+                                <ScrollViewer Grid.Row="1" Grid.Column="2" >
+                                    <TextBlock Style="{StaticResource estiloTxtBlockVentanaMensajeTextoPrincipal}" Text="{Binding}"></TextBlock>
+                                </ScrollViewer>
                                 <Image Grid.Row="1" Source="/Recursos/error.png"/>
                                 <Button Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource estiloBtnRojoVentanaMensaje}" Click="ClicAceptar">Aceptar</Button>
                             </Grid>
