@@ -1,0 +1,235 @@
+﻿<Page x:Class="WpfFinanciera.Vistas.FormularioSolicitudCreditoPagina"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfFinanciera.Vistas"
+      mc:Ignorable="d" 
+      d:DesignHeight="798.4" d:DesignWidth="800"
+      Title="FormularioSolicitudCreditoPagina" Loaded="CargarPagina">
+
+    <Page.Resources>
+        <Style x:Key="estiloTxtBlockResumenDatosCliente" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+            <Setter Property="FontSize" Value="32"/>
+        </Style>
+
+        <Style x:Key="estiloTxtBlockSolicitudCreditoCampo" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Light"/>
+        </Style>
+
+        <Style x:Key="estiloTxtBlockSolicitudCreditoInfo" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+        </Style>
+
+        <Style x:Key="estiloLblHeaderCondicionCredito" TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+        </Style>
+
+
+        <Style x:Key="estiloTxtBoxFormularioSolicitudCredito" TargetType="TextBox">
+            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Grid>
+                            <Border Background="#A9D4D6" CornerRadius="10" BorderThickness="1" BorderBrush="#065758">
+                                <ScrollViewer Margin="45 8 0 8" x:Name="PART_ContentHost"/>
+                            </Border>
+                            <TextBlock Text="$" FontSize="22" Foreground="#000000" Margin="10,8,0,8" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="estiloBtnRojoSolicitarCredito" TargetType="Button">
+            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+            <Setter Property="Foreground" Value="#FFFFFF"/>
+            <Setter Property="Width" Value="Auto"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="Background" Value="#B46058"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10">
+                            <ContentPresenter Margin="6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#9B2E24"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" Value="0.6"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#FFFFFF">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid Background="#065758">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
+            <TextBlock Grid.Column="1" FontFamily="{StaticResource LeagueSpartanFont}" FontSize="50" Foreground="#FFFFFF" FontWeight="Medium" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18" Text="Registro de Solicitud de Crédito"/>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <ScrollViewer>
+                <Grid>
+                    <StackPanel Margin="0,0,-10,0">
+                        <TextBlock Style="{StaticResource estiloTxtBlockResumenDatosCliente}" Margin="60 20 0 10" HorizontalAlignment="Center"><Run Text="Resumen de datos del cliente"/></TextBlock>
+                        <Border BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Margin="20 0" Background="#E2F0EF" Width="430" >
+                            <Grid Margin="25 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <TextBlock Grid.Column="0" Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" VerticalAlignment="Center" HorizontalAlignment="Right"><Run Text="Nombre Completo:"/></TextBlock>
+                                <TextBlock x:Name="txtBlockNombre" Grid.Row="0" Grid.Column="1" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Margin="20,0,0,0"></TextBlock>
+
+                                <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,10,0,0"><Run Text="Correo electrónico:"/></TextBlock>
+                                <TextBlock x:Name="txtBlockCorreo" Grid.Column="1" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Margin="20,20,0,0" Grid.RowSpan="2" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+
+                                <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" VerticalAlignment="Center" Margin="0,10,0,0" HorizontalAlignment="Right"><Run Text="Teléfono de casa:"/></TextBlock>
+                                <TextBlock x:Name="txtBlockTelefonoCasa" Grid.Row="2" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Grid.Column="1" Margin="20,10,0,0" HorizontalAlignment="Left"></TextBlock>
+
+                                <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" VerticalAlignment="Center" Margin="0,10,0,0" HorizontalAlignment="Right"><Run Text="Teléfono personal:"/></TextBlock>
+                                <TextBlock x:Name="txtBlockTelefonoPersonal" Grid.Row="3" Grid.Column="1" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+
+                                <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" VerticalAlignment="Center" Margin="0,10,0,0" HorizontalAlignment="Right"><Run Text="Cuenta de depósito:"/></TextBlock>
+                                <TextBlock x:Name="txtBlockCuentaDeposito" Grid.Row="4" Grid.Column="1" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+
+                                <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" VerticalAlignment="Center" Margin="0,10,0,0" HorizontalAlignment="Right"><Run Text="Cuenta de cobro"/></TextBlock>
+                                <TextBlock x:Name="txtBlockCuentaCobro" Grid.Row="5" Grid.Column="1" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Margin="20,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+                            </Grid>
+                        </Border>
+                        <TextBlock Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" HorizontalAlignment="Center" Margin="20,20,0,10"><Run Text="Ingrese el monto del préstamo:"/></TextBlock>
+                        <TextBox x:Name="txtBoxMonto" Style="{StaticResource estiloTxtBoxFormularioSolicitudCredito}" MaxWidth="210" MinWidth="100" PreviewTextInput="PrevenirTextoNoNumerico"/>
+                        <TextBlock Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" HorizontalAlignment="Center" Margin="20,20,0,10"><Run Text="Seleccione la condición de crédito"/></TextBlock>
+                        <Border x:Name="bdrCondicionesCreditoTabla" BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Margin="20 0" Width="753" Height="126" Background="Transparent" Padding="2" >
+                            <Grid Height="120">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <Grid x:Name="grdEncabezadosCondicionCredito" Grid.Row="0" Height="Auto" Width="Auto" Margin="0,5,25,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Text="Tipo" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Plazo (meses)" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Grid.Column="1" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="Tasa de Interés" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Grid.Column="2" HorizontalAlignment="Center"/>
+                                    <TextBlock Text="IVA" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Grid.Column="3" HorizontalAlignment="Center"/>
+                                </Grid>
+
+                                <ListBox x:Name="lstBoxCondicionesCredito" SelectionChanged="SeleccionarCondicionCredito" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" d:ItemsSource="{d:SampleData ItemCount=5}" Background="{x:Null}" BorderThickness="0">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Margin="0,0,2,2" BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Background="#E2F0EF" Padding="0,2,0,2" Width="716">
+                                                <Grid Height="Auto" Width="Auto">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Text="{Binding descripcion}" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" HorizontalAlignment="Center"/>
+                                                    <TextBlock Text="{Binding plazoMeses}" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Grid.Column="1" HorizontalAlignment="Center"/>
+                                                    <TextBlock Text="{Binding tasaInteres, StringFormat=\{0\}%}" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Grid.Column="2" HorizontalAlignment="Center"/>
+                                                    <TextBlock Grid.Column="3" HorizontalAlignment="Center">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="{x:Type TextBlock}">
+                                                                <Setter Property="Text" Value="No"/>
+                                                                <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+                                                                <Setter Property="FontSize" Value="22"/>
+                                                                <Setter Property="FontWeight" Value="Regular"/>
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding tieneIVA}" Value="True">
+                                                                        <Setter Property="Text" Value="Si"/>
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                                <TextBlock x:Name="txtBlockMensajeNoCondiciones" Grid.Row="1" Foreground="White" Visibility="Collapsed" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Text="No se han encontrado condiciones de crédito activas o registradas en el sistema" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300"/>
+                            </Grid>
+                        </Border>
+
+                        <TextBlock Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" HorizontalAlignment="Center" Margin="20,20,0,10"><Run Text="Seleccione la Checklist para el crédito"/></TextBlock>
+                        <Border x:Name="bdrChecklistTabla" BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Margin="20 0" Background="Transparent" Padding="2" Width="390" Height="105">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <ListBox x:Name="lstBoxChecklists" SelectionChanged="SeleccionarChecklist" Grid.Row="0" ScrollViewer.VerticalScrollBarVisibility="Visible" d:ItemsSource="{d:SampleData ItemCount=5}" Background="{x:Null}" BorderThickness="0">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <Border Margin="0,0,2,2" BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Background="#E2F0EF" Padding="0,2,0,2" Width="350">
+                                                <Grid Height="Auto" Width="Auto">
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <TextBlock Text="{Binding nombre}" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" HorizontalAlignment="Center"/>
+                                                </Grid>
+                                            </Border>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+
+                                <TextBlock x:Name="txtBlockMensajeNoChecklists" Grid.Row="1" Foreground="White" Visibility="Collapsed" Style="{StaticResource estiloTxtBlockSolicitudCreditoInfo}" Text="No se han encontrado condiciones de crédito activas o registradas en el sistema" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300"/>
+                            </Grid>
+                        </Border>
+                        <Button x:Name="btnSolicitarCredito" Style="{StaticResource estiloBtnRojoSolicitarCredito}" IsEnabled="False" Click="ClicSolicitarCredito" Content="Solicitar Crédito" Width="320" Margin="0,10,30,10" HorizontalAlignment="Right"/>
+                    </StackPanel>
+                </Grid>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>
