@@ -327,5 +327,15 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\calculo.png" />
+    <Resource Include="Recursos\checklist.png" />
+    <Resource Include="Recursos\cliente.png" />
+    <Resource Include="Recursos\condicion.png" />
+    <Resource Include="Recursos\credito.png" />
+    <Resource Include="Recursos\politica.png" />
+    <Resource Include="Recursos\solicitud.png" />
+    <Resource Include="Recursos\user.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
