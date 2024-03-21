@@ -181,5 +181,12 @@ namespace WpfFinanciera.Vistas
 
             chkBoxIVA.IsChecked = false;
         }
+
+        private void ClicRegresar(object sender, MouseButtonEventArgs e)
+        {
+            MenuPrincipalAnalistaCreditoPagina menuPrincipal = new MenuPrincipalAnalistaCreditoPagina();
+
+            NavigationService.Navigate(menuPrincipal);
+        }
     }
 }

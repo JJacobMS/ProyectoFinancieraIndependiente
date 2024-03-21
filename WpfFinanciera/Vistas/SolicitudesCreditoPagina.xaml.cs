@@ -133,5 +133,11 @@ namespace WpfFinanciera.Vistas
             return listaFiltrada;
         }
 
+        private void ClicRegresar(object sender, MouseButtonEventArgs e)
+        {
+            MenuPrincipalAnalistaCreditoPagina menuPrincipal = new MenuPrincipalAnalistaCreditoPagina();
+
+            NavigationService.Navigate(menuPrincipal);
+        }
     }
 }

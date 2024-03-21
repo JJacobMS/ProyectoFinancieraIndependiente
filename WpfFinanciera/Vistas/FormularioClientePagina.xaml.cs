@@ -35,6 +35,14 @@ namespace WpfFinanciera.Vistas
             CargarPaginaFormularioCliente();
         }
 
+        public FormularioClientePagina(string rfcClienteNuevo)
+        {
+            InitializeComponent();
+            CargarPaginaFormularioCliente();
+
+            txtBoxRFCCliente.Text = rfcClienteNuevo;
+        }
+
         private void CargarPaginaFormularioCliente()
         {
             _referenciaTrabajo = null;

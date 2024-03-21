@@ -271,5 +271,12 @@ namespace WpfFinanciera.Vistas
                 btnSolicitarCredito.IsEnabled = true;
             }
         }
+
+        private void ClicRegresar(object sender, MouseButtonEventArgs e)
+        {
+            BusquedaRFCCliente busquedaRFCCliente = new BusquedaRFCCliente();
+
+            NavigationService.Navigate(busquedaRFCCliente);
+        }
     }
 }
