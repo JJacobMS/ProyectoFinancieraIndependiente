@@ -73,6 +73,9 @@
     <Compile Include="Vistas\FormularioClientePagina.xaml.cs">
       <DependentUpon>FormularioClientePagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FormularioDictamenPagina.xaml.cs">
+      <DependentUpon>FormularioDictamenPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FormularioPoliticaOtorgamientoPagina.xaml.cs">
       <DependentUpon>FormularioPoliticaOtorgamientoPagina.xaml</DependentUpon>
     </Compile>
@@ -148,6 +151,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Vistas\FormularioDictamenPagina.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Vistas\FormularioPoliticaOtorgamientoPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -213,6 +220,9 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item4.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\ServiciosFinancieraIndependiente.wsdl" />

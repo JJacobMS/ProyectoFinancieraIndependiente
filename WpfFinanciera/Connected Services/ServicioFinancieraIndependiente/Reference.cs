@@ -26,6 +26,9 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private WpfFinanciera.ServicioFinancieraIndependiente.ChecklistPolitica[] ChecklistPoliticaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private bool checkboxField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string descripcionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -59,6 +62,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
                 if ((object.ReferenceEquals(this.ChecklistPoliticaField, value) != true)) {
                     this.ChecklistPoliticaField = value;
                     this.RaisePropertyChanged("ChecklistPolitica");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public bool checkbox {
+            get {
+                return this.checkboxField;
+            }
+            set {
+                if ((this.checkboxField.Equals(value) != true)) {
+                    this.checkboxField = value;
+                    this.RaisePropertyChanged("checkbox");
                 }
             }
         }
@@ -2218,6 +2234,12 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklistResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasChecklistAsync(int folioCredito);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticas", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticas();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticas", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2261,6 +2283,14 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasChecklistAsync(int folioCredito) {
             return base.Channel.RecuperarPoliticasChecklistAsync(folioCredito);
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticas() {
+            return base.Channel.RecuperarPoliticas();
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasAsync() {
+            return base.Channel.RecuperarPoliticasAsync();
         }
     }
     
@@ -2522,6 +2552,12 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/RecuperarChecklist", ReplyAction="http://tempuri.org/IChecklist/RecuperarChecklistResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, string>> RecuperarChecklistAsync(int folioCredito);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/GuardarChecklist", ReplyAction="http://tempuri.org/IChecklist/GuardarChecklistResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo GuardarChecklist(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] listaIdPoliticas);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/GuardarChecklist", ReplyAction="http://tempuri.org/IChecklist/GuardarChecklistResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarChecklistAsync(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] listaIdPoliticas);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2557,6 +2593,14 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, string>> RecuperarChecklistAsync(int folioCredito) {
             return base.Channel.RecuperarChecklistAsync(folioCredito);
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo GuardarChecklist(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] listaIdPoliticas) {
+            return base.Channel.GuardarChecklist(checklist, listaIdPoliticas);
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarChecklistAsync(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] listaIdPoliticas) {
+            return base.Channel.GuardarChecklistAsync(checklist, listaIdPoliticas);
         }
     }
 }

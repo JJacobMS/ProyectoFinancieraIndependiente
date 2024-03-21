@@ -90,6 +90,7 @@
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_InputMessage">
@@ -103,6 +104,12 @@
   </wsdl:message>
   <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticas_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarPoliticas" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarPoliticasResponse" />
   </wsdl:message>
   <wsdl:message name="IUsuario_ValidarUsuario_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidarUsuario" />
@@ -146,6 +153,12 @@
   <wsdl:message name="IChecklist_RecuperarChecklist_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarChecklistResponse" />
   </wsdl:message>
+  <wsdl:message name="IChecklist_GuardarChecklist_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarChecklist" />
+  </wsdl:message>
+  <wsdl:message name="IChecklist_GuardarChecklist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarChecklistResponse" />
+  </wsdl:message>
   <wsdl:portType name="IPoliticaOtorgamiento">
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_InputMessage" />
@@ -154,6 +167,10 @@
     <wsdl:operation name="RecuperarPoliticasChecklist">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklistResponse" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarPoliticas">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticas" message="tns:IPoliticaOtorgamiento_RecuperarPoliticas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasResponse" message="tns:IPoliticaOtorgamiento_RecuperarPoliticas_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUsuario">
@@ -195,6 +212,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IChecklist/RecuperarChecklist" message="tns:IChecklist_RecuperarChecklist_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChecklist/RecuperarChecklistResponse" message="tns:IChecklist_RecuperarChecklist_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GuardarChecklist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChecklist/GuardarChecklist" message="tns:IChecklist_GuardarChecklist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChecklist/GuardarChecklistResponse" message="tns:IChecklist_GuardarChecklist_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPoliticaOtorgamiento" type="tns:IPoliticaOtorgamiento">
     <wsp:PolicyReference URI="#NetTcpBinding_IPoliticaOtorgamiento_policy" />
@@ -210,6 +231,15 @@
     </wsdl:operation>
     <wsdl:operation name="RecuperarPoliticasChecklist">
       <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarPoliticas">
+      <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticas" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -297,6 +327,15 @@
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="RecuperarChecklist">
       <soap12:operation soapAction="http://tempuri.org/IChecklist/RecuperarChecklist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarChecklist">
+      <soap12:operation soapAction="http://tempuri.org/IChecklist/GuardarChecklist" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

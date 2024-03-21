@@ -3,6 +3,7 @@
   <xs:complexType name="Politica">
     <xs:sequence>
       <xs:element minOccurs="0" name="ChecklistPolitica" nillable="true" type="tns:ArrayOfChecklistPolitica" />
+      <xs:element minOccurs="0" name="checkbox" type="xs:boolean" />
       <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="estaActiva" type="xs:boolean" />
       <xs:element minOccurs="0" name="idPolitica" type="xs:int" />
