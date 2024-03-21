@@ -74,7 +74,9 @@ namespace WpfFinanciera.Vistas
                     }
                     else
                     {
-                        //TODO Lógica para redirigir a Registro
+                        FormularioClientePagina formularioClientePagina = new FormularioClientePagina(rfc);
+
+                        NavigationService.Navigate(formularioClientePagina);
                     }
                     break;
                 case Codigo.ERROR_SERVIDOR:
@@ -168,6 +170,13 @@ namespace WpfFinanciera.Vistas
         {
             VentanaMensaje camposIncorrectos = new VentanaMensaje("Los campos ingresados no son válidos", razones);
             camposIncorrectos.Mostrar();
+        }
+
+        private void ClicRegresar(object sender, MouseButtonEventArgs e)
+        {
+            MenuPrincipalAnalistaCreditoPagina menuPrincipal = new MenuPrincipalAnalistaCreditoPagina();
+
+            NavigationService.Navigate(menuPrincipal);
         }
     }
 }
