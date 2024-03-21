@@ -102,10 +102,13 @@ namespace WpfFinanciera.Vistas
 
         private void IngresarFecha(object sender, SelectionChangedEventArgs e)
         {
-            DateTime fechaSeleccionada = dtPickerBusquedaFechaSolicitudCredito.SelectedDate ?? DateTime.MinValue;
-            List<SolicitudCredito> listaFiltrada = FiltrarListaPorFecha(fechaSeleccionada);
+            if (dtPickerBusquedaFechaSolicitudCredito.SelectedDate.HasValue)
+            {
+                DateTime fechaSeleccionada = dtPickerBusquedaFechaSolicitudCredito.SelectedDate.Value;
+                List<SolicitudCredito> listaFiltrada = FiltrarListaPorFecha(fechaSeleccionada);
 
-            lstBoxSolicitudesCredito.ItemsSource = listaFiltrada;
+                lstBoxSolicitudesCredito.ItemsSource = listaFiltrada;
+            }
         }
 
         private List<SolicitudCredito> FiltrarListaPorFecha(DateTime fecha)
