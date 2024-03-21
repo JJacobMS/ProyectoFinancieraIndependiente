@@ -189,7 +189,7 @@ namespace WpfFinanciera.Vistas
             string apellidos = txtBoxApellidoCliente.Text;
             string telefonoCasa = txtBoxTelefonoCasaCliente.Text;
             string telefonoPersonal = txtBoxTelefonoPersonalCliente.Text;
-            string rfc = txtBoxRFCCliente.Text;
+            string rfc = txtBoxRFCCliente.Text.Trim();
             string cuentaCobro = txtBoxCuentaCobroCliente.Text;
             string cuentaDeposito = txtBoxCuentaDepositoCliente.Text;
             string correoElectronico = txtBoxCorreoCliente.Text;
@@ -222,7 +222,7 @@ namespace WpfFinanciera.Vistas
                 razones = (razones.Length > 0) ? razones + ", " : razones;
                 razones += "Teléfono personal (debe ser menor a 16 caracteres)";
             }
-            if (string.IsNullOrWhiteSpace(rfc) || rfc.Length == 13)
+            if (string.IsNullOrWhiteSpace(rfc) || rfc.Length != 13)
             {
                 txtBoxRFCCliente.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
@@ -280,7 +280,14 @@ namespace WpfFinanciera.Vistas
             }
             foreach(KeyValuePair<string, Documento> entrada in _documentos)
             {
-                if (entrada.Value == null && entrada.Key != "Referencia Cliente 1" && entrada.Key != "Referencia Cliente 2" || entrada.Value.nombre.Length > 50)
+                if (entrada.Value == null && !entrada.Key.Equals("Referencia Cliente 1") && !entrada.Key.Equals("Referencia Cliente 2"))
+                {
+                    _botonesTipoArchivo[entrada.Key].Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
+                    sonCamposValidos = false;
+                    razones = (razones.Length > 0) ? razones + ", " : razones;
+                    razones += entrada.Key + " (el documento es un campo obligatorio)";
+                }
+                else if (entrada.Value != null && entrada.Value.nombre.Length > 50)
                 {
                     _botonesTipoArchivo[entrada.Key].Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                     sonCamposValidos = false;
@@ -331,7 +338,7 @@ namespace WpfFinanciera.Vistas
             try
             {
                 ClienteClient proxy = new ClienteClient();
-                (esUnicoRfc, codigo) = proxy.ValidarRfcClienteUnico(txtBoxRFCCliente.Text);
+                (esUnicoRfc, codigo) = proxy.ValidarRfcClienteUnico(txtBoxRFCCliente.Text.Trim());
             }
             catch (CommunicationException ex)
             {
@@ -436,7 +443,7 @@ namespace WpfFinanciera.Vistas
                  nombres = txtBoxNombreCliente.Text,
                  esDeudor = false,
                  apellidos = txtBoxApellidoCliente.Text,
-                 rfc = txtBoxRFCCliente.Text,
+                 rfc = txtBoxRFCCliente.Text.Trim(),
                  cuentaCobro = txtBoxCuentaCobroCliente.Text,
                  cuentaDeposito = txtBoxCuentaDepositoCliente.Text,
                  correoElectronico = txtBoxCorreoCliente.Text,
