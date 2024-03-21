@@ -52,14 +52,6 @@ namespace WpfFinanciera.Vistas
             listNombrePoliticas_ = listNombrePoliticas;
             listIdPoliticas_ = listIdPoliticas;
             listIdPoliticasAntiguas_ = new List<int>(listIdPoliticas);
-            foreach (int item in listIdPoliticasAntiguas_)
-            {
-                Console.WriteLine("Cerrar politicas antiguas " + item);
-            }
-            foreach (int item in listIdPoliticas_)
-            {
-                Console.WriteLine("Cerrar politicas actuales " + item);
-            }
             nombre_ = nombre;
             descripcion_ = descripcion;
             RecuperarPoliticas();
@@ -123,14 +115,6 @@ namespace WpfFinanciera.Vistas
         {
             MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
             FormularioChecklistPagina formularioChecklist = new FormularioChecklistPagina();
-            foreach (int item in listIdPoliticasAntiguas_)
-            {
-                Console.WriteLine("Cerrar politicas antiguas " + item);
-            }
-            foreach (int item in listIdPoliticas_)
-            {
-                Console.WriteLine("Cerrar politicas actuales " + item);
-            }
             formularioChecklist.CargarPoliticasOtorgamiento(listIdPoliticasAntiguas_, listNombrePoliticasAntiguas_, nombre_, descripcion_);
             ventanaPrincipal.CambiarPagina(formularioChecklist);
         }
@@ -169,14 +153,6 @@ namespace WpfFinanciera.Vistas
             Politica politica = checkBox.CommandParameter as Politica;
             listIdPoliticas_.Add(politica.idPolitica);
             listNombrePoliticas_.Add(politica.nombre);
-            foreach (int item in listIdPoliticasAntiguas_)
-            {
-                Console.WriteLine("Cerrar politicas antiguas " + item);
-            }
-            foreach (int item in listIdPoliticas_)
-            {
-                Console.WriteLine("Cerrar politicas actuales " + item);
-            }
         }
 
         private void Unchecked(object sender, RoutedEventArgs e)
