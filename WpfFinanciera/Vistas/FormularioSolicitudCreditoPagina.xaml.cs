@@ -24,7 +24,7 @@ namespace WpfFinanciera.Vistas
     {
         private static readonly string PREFIJO_DATOS_OCULTOS = "••••";
 
-        private Cliente clienteActual = new Cliente();
+        private ClienteRFC clienteActual = new ClienteRFC();
         private string[] clienteTelefonos = new string[0];
         private bool seMostroVentanaErrorBD = false;
         private bool seMostroVentanaErrorServidor = false;
@@ -32,7 +32,7 @@ namespace WpfFinanciera.Vistas
         private Checklist checklistActual;
         private int montoActual;
 
-        public FormularioSolicitudCreditoPagina(Cliente clienteActual, string[] clienteTelefonos)
+        public FormularioSolicitudCreditoPagina(ClienteRFC clienteActual, string[] clienteTelefonos)
         {
             InitializeComponent();
 
@@ -42,10 +42,10 @@ namespace WpfFinanciera.Vistas
 
         private void CargarPagina(object sender, RoutedEventArgs e)
         {
-            txtBlockCorreo.Text = clienteActual.correoElectronico;
-            txtBlockCuentaCobro.Text = PREFIJO_DATOS_OCULTOS + clienteActual.cuentaCobro;
-            txtBlockCuentaDeposito.Text = PREFIJO_DATOS_OCULTOS + clienteActual.cuentaDeposito;
-            txtBlockNombre.Text = clienteActual.nombres + " " + clienteActual.apellidos;
+            txtBlockCorreo.Text = clienteActual.CorreoElectronico;
+            txtBlockCuentaCobro.Text = PREFIJO_DATOS_OCULTOS + clienteActual.CuentaCobro;
+            txtBlockCuentaDeposito.Text = PREFIJO_DATOS_OCULTOS + clienteActual.CuentaDeposito;
+            txtBlockNombre.Text = clienteActual.Nombres + " " + clienteActual.Apellidos;
             txtBlockTelefonoCasa.Text = PREFIJO_DATOS_OCULTOS + clienteTelefonos[1];
             txtBlockTelefonoPersonal.Text = PREFIJO_DATOS_OCULTOS + clienteTelefonos[3];
 
@@ -55,7 +55,7 @@ namespace WpfFinanciera.Vistas
 
         private void ObtenerChecklists()
         {
-            ChecklistSolClient checklistSolClient = new ChecklistSolClient();
+            ChecklistClient checklistSolClient = new ChecklistClient();
             var respuesta = checklistSolClient.ObtenerChecklists();
             var (codigo, checklists) = respuesta;
 
@@ -159,7 +159,7 @@ namespace WpfFinanciera.Vistas
             SolicitarCredito(clienteActual, monto, condicionSeleccionada, checklistSeleccionada);
         }
 
-        private void SolicitarCredito(Cliente clienteActual, string monto, CondicionCredito condicionSeleccionada, Checklist checklistSeleccionada)
+        private void SolicitarCredito(ClienteRFC clienteActual, string monto, CondicionCredito condicionSeleccionada, Checklist checklistSeleccionada)
         {
             if (ValidarDatos(monto))
             {
@@ -207,7 +207,7 @@ namespace WpfFinanciera.Vistas
             Codigo codigo;
 
             Credito credito = new Credito();
-            credito.Cliente_idCliente = clienteActual.idCliente;
+            credito.Cliente_idCliente = clienteActual.IdCliente;
             credito.Checklist_idChecklist = checklistActual.idChecklist;
             credito.CondicionCredito_idCondicionCredito = condicionCreditoActual.idCondicionCredito;
             credito.monto = montoActual;

@@ -23,7 +23,7 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class BusquedaRFCCliente : Page
     {
-        private Cliente clienteActual = new Cliente();
+        private ClienteRFC clienteActual = new ClienteRFC();
         private string[] clienteTelefonos = new string[0];
 
         public BusquedaRFCCliente()
@@ -45,7 +45,7 @@ namespace WpfFinanciera.Vistas
 
         private void BuscarClientePorRFC(string rfc)
         {
-            ClienteRFCClient clienteRFCClient = new ClienteRFCClient();
+            ClienteClient clienteRFCClient = new ClienteClient();
 
             var respuesta = clienteRFCClient.BuscarClientePorRFC(rfc);
             var (codigo, cliente) = respuesta;
@@ -55,17 +55,17 @@ namespace WpfFinanciera.Vistas
                 case Codigo.EXITO:
                     if(cliente != null)
                     {
-                        clienteActual = new Cliente
+                        clienteActual = new ClienteRFC
                         {
-                            idCliente = cliente.IdCliente,
-                            apellidos = cliente.Apellidos,
-                            correoElectronico = cliente.CorreoElectronico,
-                            cuentaCobro = cliente.CuentaCobro,
-                            cuentaDeposito = cliente.CuentaDeposito,
-                            direccion = cliente.Direccion,
-                            esDeudor = cliente.EsDeudor,
-                            rfc = cliente.Rfc,
-                            nombres = cliente.Nombres
+                            IdCliente = cliente.IdCliente,
+                            Apellidos = cliente.Apellidos,
+                            CorreoElectronico = cliente.CorreoElectronico,
+                            CuentaCobro = cliente.CuentaCobro,
+                            CuentaDeposito = cliente.CuentaDeposito,
+                            Direccion = cliente.Direccion,
+                            EsDeudor = cliente.EsDeudor,
+                            Rfc = cliente.Rfc,
+                            Nombres = cliente.Nombres
                         };
 
                         clienteTelefonos = cliente.Telefonos;

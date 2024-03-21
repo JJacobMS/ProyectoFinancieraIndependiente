@@ -111,14 +111,23 @@ namespace WpfFinanciera.Vistas
 
         private void DirigirPaginaMenuPrincipal(Usuario usuario)
         {
+            UsuarioSingleton.SettearUsuario(usuario);
+
             MainWindow ventanaPrincipal = (MainWindow) Window.GetWindow(this);
             switch (usuario.TipoUsuario.nombre)
             {
                 case "Asesor de Crédito":
-                    MenuPrincipalAsesorCredito menu = new MenuPrincipalAsesorCredito();
-                    ventanaPrincipal.CambiarPagina(menu);
+                    MenuPrincipalAsesorCreditoPagina menuAsesor = new MenuPrincipalAsesorCreditoPagina();
+                    ventanaPrincipal.CambiarPagina(menuAsesor);
                     break;
-                
+                case "Analista de Crédito":
+                    MenuPrincipalAnalistaCreditoPagina menuAnalista = new MenuPrincipalAnalistaCreditoPagina();
+                    ventanaPrincipal.CambiarPagina(menuAnalista);
+                    break;
+                case "Administrador":
+                    MenuPrincipalAdministradorPagina menuAdmin = new MenuPrincipalAdministradorPagina();
+                    ventanaPrincipal.CambiarPagina(menuAdmin);
+                    break;
             }
         }
 

@@ -63,20 +63,21 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Utilidades\UsuarioSingleton.cs" />
     <Compile Include="Utilidades\VentanaMensaje.xaml.cs">
       <DependentUpon>VentanaMensaje.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\BusquedaRFCPagina.xaml.cs">
       <DependentUpon>BusquedaRFCPagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FormularioChecklistPagina.xaml.cs">
+      <DependentUpon>FormularioChecklistPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FormularioClientePagina.xaml.cs">
       <DependentUpon>FormularioClientePagina.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\FormularioCondicionCreditoPagina.xaml.cs">
       <DependentUpon>FormularioCondicionCreditoPagina.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Vistas\FormularioDictamenPagina.xaml.cs">
-      <DependentUpon>FormularioDictamenPagina.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\FormularioPoliticaOtorgamientoPagina.xaml.cs">
       <DependentUpon>FormularioPoliticaOtorgamientoPagina.xaml</DependentUpon>
@@ -96,11 +97,20 @@
     <Compile Include="Vistas\ListaReferenciaTrabajosPagina.xaml.cs">
       <DependentUpon>ListaReferenciaTrabajosPagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\ListaSeleccionPoliticasPagina.xaml.cs">
+      <DependentUpon>ListaSeleccionPoliticasPagina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\MenuPrincipalAdministradorPagina.xaml.cs">
+      <DependentUpon>MenuPrincipalAdministradorPagina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\MenuPrincipalAnalistaCreditoPagina.xaml.cs">
+      <DependentUpon>MenuPrincipalAnalistaCreditoPagina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\MenuPrincipalAsesorCreditoPagina.xaml.cs">
+      <DependentUpon>MenuPrincipalAsesorCreditoPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\SolicitudesCreditoPagina.xaml.cs">
       <DependentUpon>SolicitudesCreditoPagina.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Vistas\MenuPrincipalAsesorCredito.xaml.cs">
-      <DependentUpon>MenuPrincipalAsesorCredito.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -115,12 +125,16 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Recursos\Diccionarios\BusquedaRFCDiccionario.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Recursos\Diccionarios\FormularioClienteDiccionario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recursos\Diccionarios\FormularioDictamenDiccionario.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Recursos\Diccionarios\FormularioPoliticaOtorgamientoDiccionario.xaml">
       <SubType>Designer</SubType>
@@ -143,20 +157,20 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\BusquedaRFCPagina.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vistas\FormularioChecklistPagina.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Vistas\FormularioClientePagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\FormularioCondicionCreditoPagina.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Vistas\FormularioDictamenPagina.xaml">
       <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\FormularioPoliticaOtorgamientoPagina.xaml">
       <SubType>Designer</SubType>
@@ -171,8 +185,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\FormularioSolicitudCreditoPagina.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Vistas\InicioSesionPagina.xaml">
       <SubType>Designer</SubType>
@@ -182,13 +196,25 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\SolicitudesCreditoPagina.xaml">
+    <Page Include="Vistas\ListaSeleccionPoliticasPagina.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vistas\MenuPrincipalAdministradorPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\MenuPrincipalAsesorCredito.xaml">
+    <Page Include="Vistas\MenuPrincipalAnalistaCreditoPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\MenuPrincipalAsesorCreditoPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\SolicitudesCreditoPagina.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -218,14 +244,35 @@
     <None Include="Connected Services\ServicioFinancieraIndependiente\item2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServicioFinancieraIndependiente\item21.xsd">
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item41.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\ServiciosFinancieraIndependiente.wsdl" />
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Checklist.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.ClienteRFC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Codigo.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.CondicionCredito.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Politica1.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.SolicitudCredito.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.TipoUsuario.datasource">

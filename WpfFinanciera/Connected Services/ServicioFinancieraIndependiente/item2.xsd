@@ -59,7 +59,6 @@
       <xs:element minOccurs="0" name="fechaSolicitud" type="xs:dateTime" />
       <xs:element minOccurs="0" name="folioCredito" type="xs:int" />
       <xs:element minOccurs="0" name="monto" type="xs:double" />
-      <xs:element minOccurs="0" name="porcentajeAumento" type="xs:double" />
       <xs:element minOccurs="0" name="saldoPendiente" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
@@ -232,6 +231,12 @@
     </xs:restriction>
   </xs:simpleType>
   <xs:element name="Codigo" nillable="true" type="tns:Codigo" />
+  <xs:complexType name="ArrayOfPolitica">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Politica" nillable="true" type="tns:Politica" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfPolitica" nillable="true" type="tns:ArrayOfPolitica" />
   <xs:complexType name="ArrayOfTipoUsuario">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="TipoUsuario" nillable="true" type="tns:TipoUsuario" />
@@ -244,4 +249,16 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfReferenciaTrabajo" nillable="true" type="tns:ArrayOfReferenciaTrabajo" />
+  <xs:complexType name="ArrayOfCondicionCredito">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CondicionCredito" nillable="true" type="tns:CondicionCredito" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCondicionCredito" nillable="true" type="tns:ArrayOfCondicionCredito" />
+  <xs:complexType name="ArrayOfChecklist">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Checklist" nillable="true" type="tns:Checklist" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfChecklist" nillable="true" type="tns:ArrayOfChecklist" />
 </xs:schema>

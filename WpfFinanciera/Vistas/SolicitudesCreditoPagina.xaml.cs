@@ -22,7 +22,7 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class SolicitudesCreditoPagina : Page
     {
-        Credito1[] listaSolicitudesCredito;
+        SolicitudCredito[] listaSolicitudesCredito;
 
         public SolicitudesCreditoPagina()
         {
@@ -73,14 +73,14 @@ namespace WpfFinanciera.Vistas
         {
             string filtro = txtBoxBusquedaRFCSolicitudCredito.Text.ToLower();
 
-            List<Credito1> listaFiltrada = FiltrarLista(filtro);
+            List<SolicitudCredito> listaFiltrada = FiltrarLista(filtro);
 
             lstBoxSolicitudesCredito.ItemsSource = listaFiltrada;
         }
 
-        private List<Credito1> FiltrarLista(string filtro)
+        private List<SolicitudCredito> FiltrarLista(string filtro)
         {
-            List<Credito1> listaFiltrada = new List<Credito1>();
+            List<SolicitudCredito> listaFiltrada = new List<SolicitudCredito>();
 
             if (listaSolicitudesCredito != null && !string.IsNullOrEmpty(filtro))
             {
@@ -94,7 +94,7 @@ namespace WpfFinanciera.Vistas
             }
             else
             {
-                listaFiltrada = new List<Credito1>(listaSolicitudesCredito);
+                listaFiltrada = new List<SolicitudCredito>(listaSolicitudesCredito);
             }
 
             return listaFiltrada;
@@ -103,14 +103,14 @@ namespace WpfFinanciera.Vistas
         private void IngresarFecha(object sender, SelectionChangedEventArgs e)
         {
             DateTime fechaSeleccionada = dtPickerBusquedaFechaSolicitudCredito.SelectedDate ?? DateTime.MinValue;
-            List<Credito1> listaFiltrada = FiltrarListaPorFecha(fechaSeleccionada);
+            List<SolicitudCredito> listaFiltrada = FiltrarListaPorFecha(fechaSeleccionada);
 
             lstBoxSolicitudesCredito.ItemsSource = listaFiltrada;
         }
 
-        private List<Credito1> FiltrarListaPorFecha(DateTime fecha)
+        private List<SolicitudCredito> FiltrarListaPorFecha(DateTime fecha)
         {
-            List<Credito1> listaFiltrada = new List<Credito1>();
+            List<SolicitudCredito> listaFiltrada = new List<SolicitudCredito>();
 
             if (listaSolicitudesCredito != null)
             {
@@ -124,7 +124,7 @@ namespace WpfFinanciera.Vistas
             }
             else
             {
-                listaFiltrada = new List<Credito1>(listaSolicitudesCredito);
+                listaFiltrada = new List<SolicitudCredito>(listaSolicitudesCredito);
             }
 
             return listaFiltrada;

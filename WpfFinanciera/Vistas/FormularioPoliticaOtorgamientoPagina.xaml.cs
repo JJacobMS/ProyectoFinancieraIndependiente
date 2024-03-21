@@ -31,40 +31,71 @@ namespace WpfFinanciera.Vistas
 
         private void ClicAceptar(object sender, RoutedEventArgs e)
         {
-
-            try {
+            Codigo codigo = new Codigo();
+            try 
+            {
                 bool sonCamposValidos = ValidarCampos();
                 if (sonCamposValidos)
                 {
+                    DateTime? fechaVigencia = dtPickerFechaVigencia.SelectedDate;
+                    DateTime fechaActual = DateTime.Now.Date;
+                    DateTime fechaSeleccionada = fechaVigencia.Value.Date;
+                    bool estaActiva = fechaSeleccionada > fechaActual ? true : false;
                     Politica politicaNueva = new Politica
                     {
                         nombre = txtBoxNombre.Text,
                         descripcion = txtBoxDescripcion.Text,
                         vigencia = (DateTime)dtPickerFechaVigencia.SelectedDate,
-                        estaActiva = true
+                        estaActiva = estaActiva
                     };
                     PoliticaOtorgamientoClient proxy = new PoliticaOtorgamientoClient();
-                    int respuesta = proxy.GuardarPoliticaOtorgamiento(politicaNueva);
-                    Console.WriteLine(respuesta);
-                    //MostrarVentanaErrorBaseDatos
-                    //MostrarVentanaExito()
-
+                    codigo = proxy.GuardarPoliticaOtorgamiento(politicaNueva);
                 }
             }
             catch (CommunicationException ex)
             {
+                codigo = Codigo.ERROR_SERVIDOR;
                 Console.WriteLine(ex.ToString());
-                MostrarVentanaErrorServidor();
             }
             catch (TimeoutException ex)
             {
+                codigo = Codigo.ERROR_SERVIDOR;
                 Console.WriteLine(ex.ToString());
-                MostrarVentanaErrorServidor();
             }
-
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    LimpiarCampos();
+                    MostrarVentanaExito();
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBaseDatos();
+                    break;
+            }
         }
-        
 
+        private void LimpiarCampos() 
+        {
+            txtBoxNombre.Text = "";
+            txtBoxDescripcion.Text = "";
+            dtPickerFechaVigencia.SelectedDate = null;
+            dtPickerFechaVigencia.Style = (Style)FindResource("estiloDatePickerFormularioPoliticaOtorgamiento");
+            if (dtPickerFechaVigencia.Template != null)
+            {
+                var textBox = dtPickerFechaVigencia.Template.FindName("PART_TextBox", dtPickerFechaVigencia) as DatePickerTextBox;
+                if (textBox != null)
+                {
+                    var defaultText = "Seleccione una fecha";
+                    if (textBox.Text != defaultText)
+                    {
+                        textBox.Text = defaultText;
+                    }
+                }
+            }
+        }
         private void MostrarVentanaExito()
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Se ha registrado la política de otorgamiento exitosamente", Mensaje.EXITO);
@@ -88,6 +119,9 @@ namespace WpfFinanciera.Vistas
             string nombrePolitica = txtBoxNombre.Text;
             string descripcionPolitica = txtBoxDescripcion.Text;
             DateTime? fechaVigencia = dtPickerFechaVigencia.SelectedDate;
+
+            
+
             string razones = "";
 
             if (String.IsNullOrWhiteSpace(nombrePolitica))
@@ -120,7 +154,6 @@ namespace WpfFinanciera.Vistas
             {
                 Console.WriteLine(fechaVigencia);
                 dtPickerFechaVigencia.Style = (Style)FindResource("estiloDatePickerFormularioPoliticaOtorgamiento");
-
             }
             if (!sonCamposValidos)
             {
@@ -133,12 +166,6 @@ namespace WpfFinanciera.Vistas
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Los campos ingresados no son válidos", razones);
             mensajeError.Mostrar();
-        }
-
-
-        private void ClicCancelar(object sender, RoutedEventArgs e)
-        {
-
         }
 
         private void TextChangedtxtBoxDescripcion(object sender, TextChangedEventArgs e)

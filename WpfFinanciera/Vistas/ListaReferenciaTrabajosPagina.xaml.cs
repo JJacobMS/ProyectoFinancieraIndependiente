@@ -56,7 +56,6 @@ namespace WpfFinanciera.Vistas
                 Console.WriteLine(ex);
             }
 
-            VentanaMensaje ventanaMensaje;
 
             switch (codigo)
             {
@@ -64,12 +63,10 @@ namespace WpfFinanciera.Vistas
                     CargarListaReferenciasTrabajo(_listaReferenciasTrabajo);
                     break;
                 case Codigo.ERROR_SERVIDOR:
-                    ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
-                    ventanaMensaje.Mostrar();
+                    MostrarVentanaErrorServidor();
                     break;
                 case Codigo.ERROR_BD:
-                    ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
-                    ventanaMensaje.Mostrar();
+                    MostrarVentanaErrorBaseDatos();
                     break;
             }
 
@@ -124,6 +121,18 @@ namespace WpfFinanciera.Vistas
             _formularioPagina.AgregarReferenciaTrabajo(referenciaTrabajo);
             MainWindow ventana = (MainWindow)Window.GetWindow(this);
             ventana.CambiarPagina(_formularioPagina);
+        }
+
+        private void MostrarVentanaErrorServidor()
+        {
+            VentanaMensaje ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            ventanaMensaje.Mostrar();
+        }
+
+        private void MostrarVentanaErrorBaseDatos()
+        {
+            VentanaMensaje ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            ventanaMensaje.Mostrar();
         }
 
     }

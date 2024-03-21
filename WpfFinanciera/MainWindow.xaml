@@ -6,6 +6,6 @@
         xmlns:local="clr-namespace:WpfFinanciera"
         mc:Ignorable="d" Height="768" Width="1336">
     <Grid>
-        <Frame Name="frmPrincipal" Source="Vistas/InicioSesionPagina.xaml" NavigationUIVisibility="Hidden"/>
+        <Frame Name="frmPrincipal" Source="Vistas/BusquedaRFCPagina.xaml" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
