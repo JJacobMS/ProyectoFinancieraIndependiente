@@ -514,14 +514,15 @@ namespace WpfFinanciera.Vistas
         {
             if (_esRedirigidoBusquedaRFC == true)
             {
+                MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
                 BusquedaRFCCliente busquedaRFCCliente = new BusquedaRFCCliente();
-
-                NavigationService.Navigate(busquedaRFCCliente);
+                ventanaPrincipal.CambiarPagina(busquedaRFCCliente);
             }
             else
             {
+                MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
                 MenuPrincipalAsesorCreditoPagina menuAsesor = new MenuPrincipalAsesorCreditoPagina();
-                NavigationService.Navigate(menuAsesor);
+                ventanaPrincipal.CambiarPagina(menuAsesor);
             }
         }
     }

@@ -348,5 +348,8 @@
     <Resource Include="Recursos\solicitud.png" />
     <Resource Include="Recursos\user.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\salir.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
