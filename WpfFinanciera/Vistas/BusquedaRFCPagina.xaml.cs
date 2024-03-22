@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -45,30 +46,49 @@ namespace WpfFinanciera.Vistas
 
         private void BuscarClientePorRFC(string rfc)
         {
-            ClienteClient clienteRFCClient = new ClienteClient();
+            Codigo codigoRespuesta = new Codigo();
+            ClienteRFC clienteRespuesta = new ClienteRFC();
 
-            var respuesta = clienteRFCClient.BuscarClientePorRFC(rfc);
-            var (codigo, cliente) = respuesta;
+            try
+            {
+                ClienteClient clienteRFCClient = new ClienteClient();
 
-            switch (codigo)
+                var respuesta = clienteRFCClient.BuscarClientePorRFC(rfc);
+                var (codigo, cliente) = respuesta;
+
+                codigoRespuesta = codigo;
+                clienteRespuesta = cliente;
+            }
+            catch (CommunicationException ex)
+            {
+                codigoRespuesta = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex.ToString());
+            }
+            catch (TimeoutException ex)
+            {
+                codigoRespuesta = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex.ToString());
+            }
+
+            switch (codigoRespuesta)
             {
                 case Codigo.EXITO:
-                    if(cliente != null)
+                    if(clienteRespuesta != null)
                     {
                         clienteActual = new ClienteRFC
                         {
-                            IdCliente = cliente.IdCliente,
-                            Apellidos = cliente.Apellidos,
-                            CorreoElectronico = cliente.CorreoElectronico,
-                            CuentaCobro = cliente.CuentaCobro,
-                            CuentaDeposito = cliente.CuentaDeposito,
-                            Direccion = cliente.Direccion,
-                            EsDeudor = cliente.EsDeudor,
-                            Rfc = cliente.Rfc,
-                            Nombres = cliente.Nombres
+                            IdCliente = clienteRespuesta.IdCliente,
+                            Apellidos = clienteRespuesta.Apellidos,
+                            CorreoElectronico = clienteRespuesta.CorreoElectronico,
+                            CuentaCobro = clienteRespuesta.CuentaCobro,
+                            CuentaDeposito = clienteRespuesta.CuentaDeposito,
+                            Direccion = clienteRespuesta.Direccion,
+                            EsDeudor = clienteRespuesta.EsDeudor,
+                            Rfc = clienteRespuesta.Rfc,
+                            Nombres = clienteRespuesta.Nombres
                         };
 
-                        clienteTelefonos = cliente.Telefonos;
+                        clienteTelefonos = clienteRespuesta.Telefonos;
 
                         MostrarOpciones();
                     }

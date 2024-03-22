@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -134,10 +135,23 @@ namespace WpfFinanciera.Vistas
             condicionCredito.tieneIVA = (bool)chkBoxIVA.IsChecked;
             condicionCredito.estaActiva = true;
 
-            CondicionCreditoClient condicionCreditoClient = new CondicionCreditoClient();
-            codigo = condicionCreditoClient.GuardarCondicionCredito(condicionCredito);
+            try
+            {
+                CondicionCreditoClient condicionCreditoClient = new CondicionCreditoClient();
+                codigo = condicionCreditoClient.GuardarCondicionCredito(condicionCredito);
+            }
+            catch (CommunicationException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex.ToString());
+            }
+            catch (TimeoutException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex.ToString());
+            }
 
-            switch(codigo)
+            switch (codigo)
             {
                 case Codigo.EXITO:
                     MostrarVentanaRegistroExito();

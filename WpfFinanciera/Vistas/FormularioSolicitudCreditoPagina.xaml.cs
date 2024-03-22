@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -25,6 +26,7 @@ namespace WpfFinanciera.Vistas
         private static readonly string PREFIJO_DATOS_OCULTOS = "••••";
 
         private ClienteRFC clienteActual = new ClienteRFC();
+        private string[] clienteTelefonos = new string[0];
         private string[] clienteTelefonos = new string[0];
         private bool seMostroVentanaErrorBD = false;
         private bool seMostroVentanaErrorServidor = false;
@@ -55,16 +57,32 @@ namespace WpfFinanciera.Vistas
 
         private void ObtenerChecklists()
         {
-            ChecklistClient checklistSolClient = new ChecklistClient();
-            var respuesta = checklistSolClient.ObtenerChecklists();
-            var (codigo, checklists) = respuesta;
+            Codigo codigoRespuesta = new Codigo();
+            Checklist[] listaChecklists = new Checklist[0];
 
-            switch (codigo)
+            try
+            {
+                ChecklistClient checklistSolClient = new ChecklistClient();
+                var respuesta = checklistSolClient.ObtenerChecklists();
+                var (codigo, checklists) = respuesta;
+            }
+            catch (CommunicationException ex)
+            {
+                codigoRespuesta = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex.ToString());
+            }
+            catch (TimeoutException ex)
+            {
+                codigoRespuesta = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex.ToString());
+            }
+
+            switch (codigoRespuesta)
             {
                 case Codigo.EXITO:
-                    if (checklists != null)
+                    if (listaChecklists != null)
                     {
-                        lstBoxChecklists.ItemsSource = checklists;
+                        lstBoxChecklists.ItemsSource = listaChecklists;
                     }
                     else
                     {
