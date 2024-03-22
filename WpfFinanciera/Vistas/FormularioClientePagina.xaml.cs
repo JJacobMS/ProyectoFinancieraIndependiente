@@ -500,6 +500,12 @@ namespace WpfFinanciera.Vistas
             ventana.Mostrar();
         }
 
+        private void ClicRegresar(object sender, RoutedEventArgs e)
+        {
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            MenuPrincipalAsesorCreditoPagina menuAsesor = new MenuPrincipalAsesorCreditoPagina();
+            ventanaPrincipal.CambiarPagina(menuAsesor);
+        }
     }
 
 }

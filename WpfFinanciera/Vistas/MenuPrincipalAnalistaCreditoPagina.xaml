@@ -15,14 +15,16 @@
         <Border Background="#01171C">
             <Grid>
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition/>
                     <ColumnDefinition Width=".9*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel>
+                <Button Style="{StaticResource estiloBtnSalirMenuPrincipal}" Click="ClicSalirInicioSesion"/>
+                <StackPanel Grid.Column="1">
                     <TextBlock Style="{StaticResource estilotxtBlockTituloMenuPrincipal}">Menú Principal</TextBlock>
-                    <TextBlock Name="txtBlockNombre" Style="{StaticResource estilotxtBlockBienvenidaMenuPrincipal}" FontSize="30">Bienvenido Jazmin</TextBlock>
+                    <TextBlock Name="txtBlockNombre" Style="{StaticResource estilotxtBlockBienvenidaMenuPrincipal}" FontSize="30">Bienvenido</TextBlock>
                 </StackPanel>
-                <Border Grid.Column="1" Background="#ECFBFF" Width="490" CornerRadius="35" Height="80">
+                <Border Grid.Column="2" Background="#ECFBFF" Width="490" CornerRadius="35" Height="80">
                     <TextBlock Style="{StaticResource estilotxtBlockTipoUsuarioMenuPrincipal}">Analista de Crédito</TextBlock>
                 </Border>
             </Grid>
@@ -39,10 +41,10 @@
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-                    <Button Style="{StaticResource estiloBtnMenuPrincipalPequenio}" Margin="50 40 30 20" DataContext="Consulte las solicitudes de crédito pendiente" CommandParameter="Solicitudes de Crédito">
+                    <Button Click="ClicConsultarSolicitudes" Style="{StaticResource estiloBtnMenuPrincipalPequenio}" Margin="50 40 30 20" DataContext="Consulte las solicitudes de crédito pendiente" CommandParameter="Solicitudes de Crédito">
                         <Image Source="/Recursos/solicitud.png" HorizontalAlignment="Center"></Image>
                     </Button>
-                    <Button Grid.Row="1" Style="{StaticResource estiloBtnMenuPrincipalPequenio}" Margin="50 0 30 40" DataContext="Consulte los clientes registrados" CommandParameter="Clientes"
+                    <Button Click="ClicConsultarClientes" Grid.Row="1" Style="{StaticResource estiloBtnMenuPrincipalPequenio}" Margin="50 0 30 40" DataContext="Consulte los clientes registrados" CommandParameter="Clientes"
                             Background="#EBEBEB" BorderBrush="#000000">
                         <Image Source="/Recursos/cliente.png" HorizontalAlignment="Center"></Image>
                     </Button>
@@ -50,7 +52,7 @@
             </Viewbox>
             <Viewbox Grid.Column="1" >
                 <Grid VerticalAlignment="Center" Width="595" Height="620">
-                    <Button Style="{StaticResource estiloBtnMenuPrincipalGrande}" Margin="0 0 50 0">Cálculo de Eficiencias Mensuales</Button>
+                    <Button Click="ClicConsultarCalculo" Style="{StaticResource estiloBtnMenuPrincipalGrande}" Margin="0 0 50 0">Cálculo de Eficiencias Mensuales</Button>
                 </Grid>
             </Viewbox>
         </Grid>
