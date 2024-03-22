@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,15 +32,33 @@ namespace WpfFinanciera.Vistas
 
         private void CargarPagina(object sender, RoutedEventArgs e)
         {
-            CreditoClient creditoClient = new CreditoClient();
-            var respuesta = creditoClient.ObtenerSolicitudesCredito();
-            var (codigo, solicitudesCredito) = respuesta;
+            Codigo codigoRespuesta = new Codigo();
+            SolicitudCredito[] listaSolicitudes = new SolicitudCredito[0];
 
-            switch (codigo)
+            try
+            {
+                CreditoClient creditoClient = new CreditoClient();
+                var respuesta = creditoClient.ObtenerSolicitudesCredito();
+                var (codigo, solicitudesCredito) = respuesta;
+
+                codigoRespuesta = codigo;
+                listaSolicitudes = solicitudesCredito;
+            }
+            catch (CommunicationException ex)
+            {
+                codigoRespuesta = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex.ToString());
+            }
+            catch (TimeoutException ex)
+            {
+                codigoRespuesta = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex.ToString());
+            }
+            switch (codigoRespuesta)
             {
                 case Codigo.EXITO:
-                    lstBoxSolicitudesCredito.ItemsSource = solicitudesCredito;
-                    listaSolicitudesCredito = solicitudesCredito;
+                    lstBoxSolicitudesCredito.ItemsSource = listaSolicitudes;
+                    listaSolicitudesCredito = listaSolicitudes;
                     break;
                 case Codigo.ERROR_SERVIDOR:
                     MostrarVentanaErrorServidor();
