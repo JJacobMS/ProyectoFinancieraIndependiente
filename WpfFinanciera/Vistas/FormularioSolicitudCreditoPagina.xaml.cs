@@ -24,6 +24,8 @@ namespace WpfFinanciera.Vistas
     public partial class FormularioSolicitudCreditoPagina : Page
     {
         private static readonly string _PREFIJO_DATOS_OCULTOS = "••••";
+        private static readonly int _MONTO_MINIMO_CREDITO = 1;
+        private static readonly int _MONTO_MAXIMO_CREDITO = 2700000;
 
         private ClienteRFC _clienteActual = new ClienteRFC();
         private string[] _clienteTelefonos = new string[0];
@@ -198,6 +200,19 @@ namespace WpfFinanciera.Vistas
             else
             {
                 _montoActual = int.Parse(monto);
+
+                if(_montoActual <= _MONTO_MINIMO_CREDITO)
+                {
+                    txtBoxMonto.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
+                    MostrarVentanaCamposNoValidos("Monto. Ingrese una cantidad mayor a $0");
+                    esValido = false;
+                }
+                else if (_montoActual > _MONTO_MAXIMO_CREDITO)
+                {
+                    txtBoxMonto.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
+                    MostrarVentanaCamposNoValidos("Monto. Ingrese una cantidad igual o menor a $2,700,000");
+                    esValido = false;
+                }
             }
 
             return esValido;
