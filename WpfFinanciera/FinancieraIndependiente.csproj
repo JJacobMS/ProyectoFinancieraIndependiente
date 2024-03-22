@@ -151,6 +151,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Recursos\Diccionarios\MenuPrincipalDiccionario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Recursos\Diccionarios\VentanaMensajeDiccionario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

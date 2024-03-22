@@ -6,6 +6,6 @@
         xmlns:local="clr-namespace:WpfFinanciera"
         mc:Ignorable="d" Height="768" Width="1336">
     <Grid>
-        <Frame Name="frmPrincipal" Source="Vistas/FormularioDictamenPagina.xaml" NavigationUIVisibility="Hidden"/>
+        <Frame Name="frmPrincipal" Source="Vistas/MenuPrincipalAdministradorPagina.xaml" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>

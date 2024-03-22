@@ -7,54 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1336">
 
-    <Page.Resources>
-        <Style x:Key="estilotxtBlockTituloMenuPrincipal" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
-            <Setter Property="FontWeight" Value="Medium"/>
-            <Setter Property="Foreground" Value="#FFFFFF"/>
-            <Setter Property="FontSize" Value="60"/>
-            <Setter Property="Margin" Value="45 35 0 15"/>
-        </Style>
-
-        <Style x:Key="estilotxtBlockBienvenidaMenuPrincipal" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
-            <Setter Property="FontWeight" Value="Light"/>
-            <Setter Property="Foreground" Value="#FFFFFF"/>
-            <Setter Property="FontSize" Value="30"/>
-            <Setter Property="Margin" Value="45 0 0 15"/>
-        </Style>
-
-        <Style x:Key="estilotxtBlockTipoUsuarioMenuPrincipal" TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
-            <Setter Property="FontWeight" Value="Light"/>
-            <Setter Property="Foreground" Value="#01171C"/>
-            <Setter Property="FontSize" Value="60"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Margin" Value="0 10 0 0"/>
-        </Style>
-
-        <Style x:Key="estiloBtnMenuPrincipalPequenio" TargetType="Button">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border>
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition/>
-                                    <ColumnDefinition/>
-                                </Grid.ColumnDefinitions>
-                                <StackPanel>
-                                    <ContentPresenter/>
-                                </StackPanel>
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Resources>
-
     <Grid Background="#FFFFFF">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -76,24 +28,36 @@
             </Grid>
         </Border>
         
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="1" VerticalAlignment="Center">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width=".8*"/>
             </Grid.ColumnDefinitions>
-            <StackPanel>
-                <Button FontSize="40" Style="{StaticResource estiloBtnMenuPrincipalPequenio}">Usuarios</Button>
-                <Button FontSize="40">Registrar Nuevo Usuario</Button>
-                <Button FontSize="40">Condiciones de Crédito</Button>
-                <Button FontSize="40">Registrar Nueva Condición de Crédito</Button>
-                <Button FontSize="40">Checklist</Button>
-                <Button FontSize="40">Registrar Nueva Checklist</Button>
-            </StackPanel>
-            <StackPanel Grid.Column="1">
-                <Button FontSize="40">Cálculo de Eficiencias Mensuales</Button>
-                <Button FontSize="40">Política de Otorgamiento de Crédito</Button>
-                <Button FontSize="40">Registrar Nueva Política de Otorgamiento de Crédito</Button>
-            </StackPanel>
+            <Viewbox>
+                <Grid VerticalAlignment="Center" Width="740" Height="620">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Style="{StaticResource estiloBtnMenuPrincipalPequenioDos}" Margin="60 20 30 20" DataContext="Consultar a los clientes ya registrados" CommandParameter="Clientes">
+                        <Image Source="/Recursos/cliente.png" HorizontalAlignment="Center"></Image>
+                    </Button>
+                    <Button Grid.Row="1" Style="{StaticResource estiloBtnMenuPrincipalSinImagen}" Margin="60 0 30 0">Registrar Nuevo Cliente</Button>
+                    <Button Grid.Row="2" Style="{StaticResource estiloBtnMenuPrincipalPequenioDos}" Margin="60 0 30 0" DataContext="Consultar la tabla de pagos, el dictamen o realizar un cobro de algún crédito aprobado" CommandParameter="Créditos"
+                            Background="#EBEBEB" BorderBrush="#000000">
+                        <Image Source="/Recursos/credito.png" HorizontalAlignment="Center"></Image>
+                    </Button>
+                    <Button Grid.Row="3" Style="{StaticResource estiloBtnMenuPrincipalSinImagen}" Background="#EBEBEB" BorderBrush="#000000"
+                            Margin="60 0 30 20">Registrar Solicitud de Crédito</Button>
+                </Grid>
+            </Viewbox>
+            <Viewbox Grid.Column="1" >
+                <Grid VerticalAlignment="Center" Width="595" Height="620">
+                    <Button Style="{StaticResource estiloBtnMenuPrincipalGrande}" Margin="0 0 50 0">Cálculo de Eficiencias Mensuales</Button>
+                </Grid>
+            </Viewbox>
         </Grid>
     </Grid>
 </Page>
