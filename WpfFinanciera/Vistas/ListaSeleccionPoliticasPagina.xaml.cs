@@ -94,7 +94,7 @@ namespace WpfFinanciera.Vistas
 
         private void MostrarVentanaPoliticasVacias()
         {
-            VentanaMensaje mensajeError = new VentanaMensaje("Error. No existen politicas actualmente, Intentelo mas tarde", Mensaje.ERROR);
+            VentanaMensaje mensajeError = new VentanaMensaje("Error. No existen politicas actualmente o no se encuentran vigentes, Intentelo mas tarde", Mensaje.ERROR);
             mensajeError.Mostrar();
         }
         private void MostrarVentanaErrorServidor()

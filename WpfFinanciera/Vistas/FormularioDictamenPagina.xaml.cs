@@ -112,7 +112,9 @@ namespace WpfFinanciera.Vistas
 
         private void Cerrar()
         {
-
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            SolicitudesCreditoPagina solicitudesCredito = new SolicitudesCreditoPagina();
+            ventanaPrincipal.CambiarPagina(solicitudesCredito);
         }
 
         private void ClicAceptar(object sender, RoutedEventArgs e)
