@@ -53,29 +53,31 @@ namespace WpfFinanciera.Vistas
             ResetearCampos();
             bool sonCamposValidos = true;
             string razones = "";
-            string nombre = txtBoxNombre.Text;
-            string direccion = txtBoxDireccion.Text;
-            string telefono = txtBoxTelefono.Text;
+            string nombre = txtBoxNombre.Text.Trim();
+            string direccion = txtBoxDireccion.Text.Trim();
+            string telefono = txtBoxTelefono.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(nombre) || nombre.Length > 100)
             {
                 txtBoxNombre.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
-                razones += "Nombre ";
+                razones += "Nombre (debe ser menor a 101 caracteres)";
             }
 
             if (string.IsNullOrWhiteSpace(direccion) || direccion.Length > 50)
             {
                 txtBoxDireccion.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
-                razones = (razones.Length > 0 ) ? razones + ", Dirección " : "Dirección";
+                razones = (razones.Length > 0 ) ? razones + ",  " : razones;
+                razones += "Dirección (debe ser menor a 51 caracteres)";
             }
 
             if (string.IsNullOrWhiteSpace(telefono) || telefono.Length > 12)
             {
                 txtBoxTelefono.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
-                razones = (razones.Length > 0) ? razones + ", Teléfono " : "Teléfono";
+                razones = (razones.Length > 0) ? razones + ", " : "";
+                razones += "Teléfono (debe ser menor a 13 caracteres)";
             }
 
             if (!sonCamposValidos)
@@ -96,7 +98,7 @@ namespace WpfFinanciera.Vistas
         }
         private void EnviarReferenciaTrabajoFormulario()
         {
-            ReferenciaTrabajo referencia = new ReferenciaTrabajo { idReferenciaTrabajo = 0, nombre = txtBoxNombre.Text, direccion = txtBoxDireccion.Text, telefono = txtBoxTelefono.Text };
+            ReferenciaTrabajo referencia = new ReferenciaTrabajo { idReferenciaTrabajo = 0, nombre = txtBoxNombre.Text.Trim(), direccion = txtBoxDireccion.Text.Trim(), telefono = txtBoxTelefono.Text.Trim() };
             _formularioPagina.AgregarReferenciaTrabajo(referencia);
             MainWindow ventana = (MainWindow) Window.GetWindow(this);
             ventana.CambiarPagina(_formularioPagina);

@@ -195,15 +195,15 @@ namespace WpfFinanciera.Vistas
             bool sonCamposValidos = true;
             string razones = "";
 
-            string nombres = txtBoxNombreCliente.Text;
-            string apellidos = txtBoxApellidoCliente.Text;
-            string telefonoCasa = txtBoxTelefonoCasaCliente.Text;
-            string telefonoPersonal = txtBoxTelefonoPersonalCliente.Text;
+            string nombres = txtBoxNombreCliente.Text.Trim();
+            string apellidos = txtBoxApellidoCliente.Text.Trim();
+            string telefonoCasa = txtBoxTelefonoCasaCliente.Text.Trim();
+            string telefonoPersonal = txtBoxTelefonoPersonalCliente.Text.Trim();
             string rfc = txtBoxRFCCliente.Text.Trim();
-            string cuentaCobro = txtBoxCuentaCobroCliente.Text;
-            string cuentaDeposito = txtBoxCuentaDepositoCliente.Text;
-            string correoElectronico = txtBoxCorreoCliente.Text;
-            string direccion = txtBoxDireccionCliente.Text;
+            string cuentaCobro = txtBoxCuentaCobroCliente.Text.Trim();
+            string cuentaDeposito = txtBoxCuentaDepositoCliente.Text.Trim();
+            string correoElectronico = txtBoxCorreoCliente.Text.Trim();
+            string direccion = txtBoxDireccionCliente.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(nombres) || nombres.Length > 50)
             {
@@ -232,7 +232,8 @@ namespace WpfFinanciera.Vistas
                 razones = (razones.Length > 0) ? razones + ", " : razones;
                 razones += "Teléfono personal (debe ser menor a 16 caracteres)";
             }
-            if (string.IsNullOrWhiteSpace(rfc) || rfc.Length != 13)
+
+            if (string.IsNullOrWhiteSpace(rfc) || !Regex.IsMatch(rfc, @"^[a-zA-Z]{4}[0-9]{6}[a-zA-Z0-9]{3}$"))
             {
                 txtBoxRFCCliente.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
@@ -450,14 +451,14 @@ namespace WpfFinanciera.Vistas
 
             Cliente cliente = new Cliente
             {
-                 nombres = txtBoxNombreCliente.Text,
+                 nombres = txtBoxNombreCliente.Text.Trim(),
                  esDeudor = false,
-                 apellidos = txtBoxApellidoCliente.Text,
+                 apellidos = txtBoxApellidoCliente.Text.Trim(),
                  rfc = txtBoxRFCCliente.Text.Trim(),
-                 cuentaCobro = txtBoxCuentaCobroCliente.Text,
-                 cuentaDeposito = txtBoxCuentaDepositoCliente.Text,
-                 correoElectronico = txtBoxCorreoCliente.Text,
-                 direccion = txtBoxDireccionCliente.Text,
+                 cuentaCobro = txtBoxCuentaCobroCliente.Text.Trim(),
+                 cuentaDeposito = txtBoxCuentaDepositoCliente.Text.Trim(),
+                 correoElectronico = txtBoxCorreoCliente.Text.Trim(),
+                 direccion = txtBoxDireccionCliente.Text.Trim(),
                  Telefono = telefonos
             };
 

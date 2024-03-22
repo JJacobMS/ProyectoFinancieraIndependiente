@@ -117,10 +117,10 @@ namespace WpfFinanciera.Vistas
             bool sonCamposValidos = true;
             string razones = "";
 
-            string nombre = txtBoxNombreReferencia.Text;
-            string apellidos = txtBoxApellidosReferencia.Text;
-            string telefono = txtBoxTelefonoReferencia.Text;
-            string descripcion = txtBoxDescripcionReferencia.Text;
+            string nombre = txtBoxNombreReferencia.Text.Trim();
+            string apellidos = txtBoxApellidosReferencia.Text.Trim();
+            string telefono = txtBoxTelefonoReferencia.Text.Trim();
+            string descripcion = txtBoxDescripcionReferencia.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(nombre) || nombre.Length > 50)
             {
@@ -139,13 +139,16 @@ namespace WpfFinanciera.Vistas
             {
                 txtBoxTelefonoReferencia.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
-                razones = (razones.Length > 0) ? razones + ", Teléfono" : "Teléfono";
+                razones = (razones.Length > 0) ? razones + ", " : razones;
+                razones += "Teléfono (debe ser menor a 13 caracteres)";
             }
             if (string.IsNullOrWhiteSpace(descripcion) || descripcion.Length > 35)
             {
                 txtBoxDescripcionReferencia.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
-                razones = (razones.Length > 0) ? razones + ", Descripción" : "Descripción";
+                razones = (razones.Length > 0) ? razones + ", " : razones;
+                razones += "Descripción (debe ser menor a 36 caracteres)";
+
             }
             if (_documentoReferencia == null || _nombreArchivo.Length > 50)
             {
@@ -219,10 +222,10 @@ namespace WpfFinanciera.Vistas
             ReferenciaCliente referenciaCliente = new ReferenciaCliente
             {
                 idReferenciaCliente = 0,
-                nombres = txtBoxNombreReferencia.Text,
-                apellidos = txtBoxApellidosReferencia.Text,
-                descripcion = txtBoxDescripcionReferencia.Text,
-                telefono = txtBoxTelefonoReferencia.Text
+                nombres = txtBoxNombreReferencia.Text.Trim(),
+                apellidos = txtBoxApellidosReferencia.Text.Trim(),
+                descripcion = txtBoxDescripcionReferencia.Text.Trim(),
+                telefono = txtBoxTelefonoReferencia.Text.Trim()
             };
             _formularioCliente.AgregarReferenciaCliente(referenciaCliente, documentoReferencia, _numeroReferenciaCliente);
             MainWindow ventana = (MainWindow)Window.GetWindow(this);
