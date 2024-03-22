@@ -96,7 +96,6 @@ namespace WpfFinanciera.Vistas
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Error. No existen politicas actualmente, Intentelo mas tarde", Mensaje.ERROR);
             mensajeError.Mostrar();
-
         }
         private void MostrarVentanaErrorServidor()
         {
@@ -170,17 +169,20 @@ namespace WpfFinanciera.Vistas
             DateTime? fechavigencia = dtPickerFechaVigencia.SelectedDate;
 
             string politicaBusqueda = txtBoxBarraBuscar.Text.ToLower();
-            Politica[] politicasFiltradasNombre = politicas_.Where(politica => politica.nombre.ToLower().Contains(politicaBusqueda)).ToArray();
-            Politica[] politicasFiltradasDescripcion = politicas_.Where(politica => politica.descripcion.ToLower().Contains(politicaBusqueda)).ToArray();
-            Politica[] politicasFiltradasPorFecha = politicas_.Where(politica => politica.vigencia == fechavigencia).ToArray();
+            if(politicas_ != null && politicas_.Count() > 0 )
+            {
+                Politica[] politicasFiltradasNombre = politicas_.Where(politica => politica.nombre.ToLower().Contains(politicaBusqueda)).ToArray();
+                Politica[] politicasFiltradasDescripcion = politicas_.Where(politica => politica.descripcion.ToLower().Contains(politicaBusqueda)).ToArray();
+                Politica[] politicasFiltradasPorFecha = politicas_.Where(politica => politica.vigencia == fechavigencia).ToArray();
 
-            HashSet<Politica> conjuntoPoliticas = new HashSet<Politica>(politicasFiltradasNombre);
-            conjuntoPoliticas.UnionWith(politicasFiltradasDescripcion);
-            conjuntoPoliticas.UnionWith(politicasFiltradasPorFecha);
+                HashSet<Politica> conjuntoPoliticas = new HashSet<Politica>(politicasFiltradasNombre);
+                conjuntoPoliticas.UnionWith(politicasFiltradasDescripcion);
+                conjuntoPoliticas.UnionWith(politicasFiltradasPorFecha);
 
-            List<Politica> politicasUnicas = conjuntoPoliticas.ToList();
+                List<Politica> politicasUnicas = conjuntoPoliticas.ToList();
 
-            lstViewPoliticasOtorgamiento.ItemsSource = politicasUnicas;
+                lstViewPoliticasOtorgamiento.ItemsSource = politicasUnicas;
+            }
         }
 
         private void LimpiarCampos()

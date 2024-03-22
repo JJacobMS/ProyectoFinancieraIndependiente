@@ -31,49 +31,51 @@ namespace WpfFinanciera.Vistas
 
         private void ClicAceptar(object sender, RoutedEventArgs e)
         {
-            Codigo codigo = new Codigo();
-            try 
+            bool sonCamposValidos = ValidarCampos();
+            if (sonCamposValidos)
             {
-                bool sonCamposValidos = ValidarCampos();
-                if (sonCamposValidos)
+                Codigo codigo = new Codigo();
+                try 
                 {
-                    DateTime? fechaVigencia = dtPickerFechaVigencia.SelectedDate;
-                    DateTime fechaActual = DateTime.Now.Date;
-                    DateTime fechaSeleccionada = fechaVigencia.Value.Date;
-                    bool estaActiva = fechaSeleccionada > fechaActual ? true : false;
-                    Politica politicaNueva = new Politica
-                    {
-                        nombre = txtBoxNombre.Text,
-                        descripcion = txtBoxDescripcion.Text,
-                        vigencia = (DateTime)dtPickerFechaVigencia.SelectedDate,
-                        estaActiva = estaActiva
-                    };
-                    PoliticaOtorgamientoClient proxy = new PoliticaOtorgamientoClient();
-                    codigo = proxy.GuardarPoliticaOtorgamiento(politicaNueva);
+                
+                        DateTime? fechaVigencia = dtPickerFechaVigencia.SelectedDate;
+                        DateTime fechaActual = DateTime.Now.Date;
+                        DateTime fechaSeleccionada = fechaVigencia.Value.Date;
+                        bool estaActiva = fechaSeleccionada > fechaActual ? true : false;
+                        Politica politicaNueva = new Politica
+                        {
+                            nombre = txtBoxNombre.Text,
+                            descripcion = txtBoxDescripcion.Text,
+                            vigencia = (DateTime)dtPickerFechaVigencia.SelectedDate,
+                            estaActiva = estaActiva
+                        };
+                        PoliticaOtorgamientoClient proxy = new PoliticaOtorgamientoClient();
+                        codigo = proxy.GuardarPoliticaOtorgamiento(politicaNueva);
+                
                 }
-            }
-            catch (CommunicationException ex)
-            {
-                codigo = Codigo.ERROR_SERVIDOR;
-                Console.WriteLine(ex.ToString());
-            }
-            catch (TimeoutException ex)
-            {
-                codigo = Codigo.ERROR_SERVIDOR;
-                Console.WriteLine(ex.ToString());
-            }
-            switch (codigo)
-            {
-                case Codigo.EXITO:
-                    LimpiarCampos();
-                    MostrarVentanaExito();
-                    break;
-                case Codigo.ERROR_SERVIDOR:
-                    MostrarVentanaErrorServidor();
-                    break;
-                case Codigo.ERROR_BD:
-                    MostrarVentanaErrorBaseDatos();
-                    break;
+                catch (CommunicationException ex)
+                {
+                    codigo = Codigo.ERROR_SERVIDOR;
+                    Console.WriteLine(ex.ToString());
+                }
+                catch (TimeoutException ex)
+                {
+                    codigo = Codigo.ERROR_SERVIDOR;
+                    Console.WriteLine(ex.ToString());
+                }
+                switch (codigo)
+                {
+                    case Codigo.EXITO:
+                        LimpiarCampos();
+                        MostrarVentanaExito();
+                        break;
+                    case Codigo.ERROR_SERVIDOR:
+                        MostrarVentanaErrorServidor();
+                        break;
+                    case Codigo.ERROR_BD:
+                        MostrarVentanaErrorBaseDatos();
+                        break;
+                }
             }
         }
 
@@ -100,6 +102,7 @@ namespace WpfFinanciera.Vistas
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Se ha registrado la política de otorgamiento exitosamente", Mensaje.EXITO);
             mensajeError.Mostrar();
+            Cerrar();
         }
 
         private void MostrarVentanaErrorServidor()
@@ -189,6 +192,11 @@ namespace WpfFinanciera.Vistas
         }
 
         private void ClicRegresar(object sender, RoutedEventArgs e)
+        {
+            Cerrar();
+        }
+
+        private void Cerrar()
         {
             MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
             MenuPrincipalAdministradorPagina menu = new MenuPrincipalAdministradorPagina();
