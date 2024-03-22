@@ -29,7 +29,7 @@
     <MetadataFile FileName="item.disco" MetadataType="Disco" ID="8d6de525-2d2c-4273-8bca-3fb7822b6d25" SourceId="1" SourceUrl="http://localhost:8082/?disco" />
     <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="6db89d14-6d45-49fc-a69d-3db06e4a0147" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd4" />
     <MetadataFile FileName="ServiciosFinancieraIndependiente.wsdl" MetadataType="Wsdl" ID="be5542ea-96ae-4078-95dd-1de4eb41bca1" SourceId="1" SourceUrl="http://localhost:8082/?wsdl" />
-    <MetadataFile FileName="item41.xsd" MetadataType="Schema" ID="f346d712-8101-4c2a-8806-e42f3de6bf79" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd5" />
+    <MetadataFile FileName="item5.xsd" MetadataType="Schema" ID="45926684-e4a8-45a8-8d75-2e021576940d" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd5" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

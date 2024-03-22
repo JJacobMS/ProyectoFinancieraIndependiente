@@ -79,6 +79,9 @@
     <Compile Include="Vistas\FormularioCondicionCreditoPagina.xaml.cs">
       <DependentUpon>FormularioCondicionCreditoPagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FormularioDictamenPagina.xaml.cs">
+      <DependentUpon>FormularioDictamenPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\FormularioPoliticaOtorgamientoPagina.xaml.cs">
       <DependentUpon>FormularioPoliticaOtorgamientoPagina.xaml</DependentUpon>
     </Compile>
@@ -172,6 +175,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Vistas\FormularioDictamenPagina.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Vistas\FormularioPoliticaOtorgamientoPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -250,7 +257,7 @@
     <None Include="Connected Services\ServicioFinancieraIndependiente\item4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServicioFinancieraIndependiente\item41.xsd">
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item5.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\ServiciosFinancieraIndependiente.wsdl" />
@@ -326,6 +333,16 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\calculo.png" />
+    <Resource Include="Recursos\checklist.png" />
+    <Resource Include="Recursos\cliente.png" />
+    <Resource Include="Recursos\condicion.png" />
+    <Resource Include="Recursos\credito.png" />
+    <Resource Include="Recursos\politica.png" />
+    <Resource Include="Recursos\solicitud.png" />
+    <Resource Include="Recursos\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

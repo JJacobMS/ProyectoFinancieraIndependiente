@@ -187,5 +187,12 @@ namespace WpfFinanciera.Vistas
                 txtBoxNombre.SelectionStart = txtBoxNombre.Text.Length;
             }
         }
+
+        private void ClicRegresar(object sender, RoutedEventArgs e)
+        {
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            MenuPrincipalAdministradorPagina menu = new MenuPrincipalAdministradorPagina();
+            ventanaPrincipal.CambiarPagina(menu);
+        }
     }
 }
