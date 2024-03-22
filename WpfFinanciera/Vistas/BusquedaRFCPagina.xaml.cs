@@ -194,9 +194,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicRegresar(object sender, MouseButtonEventArgs e)
         {
-            MenuPrincipalAnalistaCreditoPagina menuPrincipal = new MenuPrincipalAnalistaCreditoPagina();
-
-            NavigationService.Navigate(menuPrincipal);
+            MenuPrincipalAsesorCreditoPagina menuPrincipal = new MenuPrincipalAsesorCreditoPagina();
+            MainWindow ventana = (MainWindow) Window.GetWindow(this);
+            ventana.CambiarPagina(menuPrincipal);
         }
     }
 }

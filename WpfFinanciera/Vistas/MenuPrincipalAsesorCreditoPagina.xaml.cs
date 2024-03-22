@@ -46,7 +46,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicRegistrarSolicitud(object sender, RoutedEventArgs e)
         {
-
+            BusquedaRFCCliente paginaBusqueda = new BusquedaRFCCliente();
+            MainWindow ventana = (MainWindow)Window.GetWindow(this);
+            ventana.CambiarPagina(paginaBusqueda);
         }
 
         private void ClicConsultarCalculoEficiencias(object sender, RoutedEventArgs e)
