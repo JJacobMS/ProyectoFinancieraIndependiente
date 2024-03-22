@@ -48,6 +48,30 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_ICondicionCredito_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_ICredito_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsp:Policy wsu:Id="NetTcpBinding_ICliente_policy">
     <wsp:ExactlyOne>
       <wsp:All>
@@ -90,7 +114,8 @@
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
-      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ServidorFinancieraIndependiente" />
+      <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_InputMessage">
@@ -98,12 +123,6 @@
   </wsdl:message>
   <wsdl:message name="IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_OutputMessage">
     <wsdl:part name="parameters" element="tns:GuardarPoliticaOtorgamientoResponse" />
-  </wsdl:message>
-  <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticasChecklist_InputMessage">
-    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklist" />
-  </wsdl:message>
-  <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklistResponse" />
   </wsdl:message>
   <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticas_InputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarPoliticas" />
@@ -129,6 +148,30 @@
   <wsdl:message name="IReferenciaTrabajo_RecuperarReferenciasTrabajo_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarReferenciasTrabajoResponse" />
   </wsdl:message>
+  <wsdl:message name="ICondicionCredito_GuardarCondicionCredito_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarCondicionCredito" />
+  </wsdl:message>
+  <wsdl:message name="ICondicionCredito_GuardarCondicionCredito_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarCondicionCreditoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICondicionCredito_ObtenerCondicionesCreditoActivas_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCondicionesCreditoActivas" />
+  </wsdl:message>
+  <wsdl:message name="ICondicionCredito_ObtenerCondicionesCreditoActivas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCondicionesCreditoActivasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICredito_GuardarInformacionSolicitud_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarInformacionSolicitud" />
+  </wsdl:message>
+  <wsdl:message name="ICredito_GuardarInformacionSolicitud_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarInformacionSolicitudResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICredito_ObtenerSolicitudesCredito_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerSolicitudesCredito" />
+  </wsdl:message>
+  <wsdl:message name="ICredito_ObtenerSolicitudesCredito_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerSolicitudesCreditoResponse" />
+  </wsdl:message>
   <wsdl:message name="ICliente_ValidarRfcClienteUnico_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidarRfcClienteUnico" />
   </wsdl:message>
@@ -141,11 +184,23 @@
   <wsdl:message name="ICliente_GuardarInformacionCliente_OutputMessage">
     <wsdl:part name="parameters" element="tns:GuardarInformacionClienteResponse" />
   </wsdl:message>
+  <wsdl:message name="ICliente_BuscarClientePorRFC_InputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarClientePorRFC" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_BuscarClientePorRFC_OutputMessage">
+    <wsdl:part name="parameters" element="tns:BuscarClientePorRFCResponse" />
+  </wsdl:message>
   <wsdl:message name="IDictamen_GuardarDictamen_InputMessage">
     <wsdl:part name="parameters" element="tns:GuardarDictamen" />
   </wsdl:message>
   <wsdl:message name="IDictamen_GuardarDictamen_OutputMessage">
     <wsdl:part name="parameters" element="tns:GuardarDictamenResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDictamen_RecuperarPoliticasChecklist_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklist" />
+  </wsdl:message>
+  <wsdl:message name="IDictamen_RecuperarPoliticasChecklist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklistResponse" />
   </wsdl:message>
   <wsdl:message name="IChecklist_RecuperarChecklist_InputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarChecklist" />
@@ -159,14 +214,16 @@
   <wsdl:message name="IChecklist_GuardarChecklist_OutputMessage">
     <wsdl:part name="parameters" element="tns:GuardarChecklistResponse" />
   </wsdl:message>
+  <wsdl:message name="IChecklist_ObtenerChecklists_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerChecklists" />
+  </wsdl:message>
+  <wsdl:message name="IChecklist_ObtenerChecklists_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerChecklistsResponse" />
+  </wsdl:message>
   <wsdl:portType name="IPoliticaOtorgamiento">
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamientoResponse" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="RecuperarPoliticasChecklist">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklistResponse" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RecuperarPoliticas">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticas" message="tns:IPoliticaOtorgamiento_RecuperarPoliticas_InputMessage" />
@@ -191,6 +248,26 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajoResponse" message="tns:IReferenciaTrabajo_RecuperarReferenciasTrabajo_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
+  <wsdl:portType name="ICondicionCredito">
+    <wsdl:operation name="GuardarCondicionCredito">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICondicionCredito/GuardarCondicionCredito" message="tns:ICondicionCredito_GuardarCondicionCredito_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICondicionCredito/GuardarCondicionCreditoResponse" message="tns:ICondicionCredito_GuardarCondicionCredito_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCondicionesCreditoActivas">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICondicionCredito/ObtenerCondicionesCreditoActivas" message="tns:ICondicionCredito_ObtenerCondicionesCreditoActivas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICondicionCredito/ObtenerCondicionesCreditoActivasResponse" message="tns:ICondicionCredito_ObtenerCondicionesCreditoActivas_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ICredito">
+    <wsdl:operation name="GuardarInformacionSolicitud">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICredito/GuardarInformacionSolicitud" message="tns:ICredito_GuardarInformacionSolicitud_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICredito/GuardarInformacionSolicitudResponse" message="tns:ICredito_GuardarInformacionSolicitud_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerSolicitudesCredito">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICredito/ObtenerSolicitudesCredito" message="tns:ICredito_ObtenerSolicitudesCredito_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICredito/ObtenerSolicitudesCreditoResponse" message="tns:ICredito_ObtenerSolicitudesCredito_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
   <wsdl:portType name="ICliente">
     <wsdl:operation name="ValidarRfcClienteUnico">
       <wsdl:input wsaw:Action="http://tempuri.org/ICliente/ValidarRfcClienteUnico" message="tns:ICliente_ValidarRfcClienteUnico_InputMessage" />
@@ -200,11 +277,19 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICliente/GuardarInformacionCliente" message="tns:ICliente_GuardarInformacionCliente_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICliente/GuardarInformacionClienteResponse" message="tns:ICliente_GuardarInformacionCliente_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="BuscarClientePorRFC">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/BuscarClientePorRFC" message="tns:ICliente_BuscarClientePorRFC_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/BuscarClientePorRFCResponse" message="tns:ICliente_BuscarClientePorRFC_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IDictamen">
     <wsdl:operation name="GuardarDictamen">
       <wsdl:input wsaw:Action="http://tempuri.org/IDictamen/GuardarDictamen" message="tns:IDictamen_GuardarDictamen_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDictamen/GuardarDictamenResponse" message="tns:IDictamen_GuardarDictamen_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarPoliticasChecklist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDictamen/RecuperarPoliticasChecklist" message="tns:IDictamen_RecuperarPoliticasChecklist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDictamen/RecuperarPoliticasChecklistResponse" message="tns:IDictamen_RecuperarPoliticasChecklist_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IChecklist">
@@ -216,21 +301,16 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IChecklist/GuardarChecklist" message="tns:IChecklist_GuardarChecklist_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChecklist/GuardarChecklistResponse" message="tns:IChecklist_GuardarChecklist_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ObtenerChecklists">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChecklist/ObtenerChecklists" message="tns:IChecklist_ObtenerChecklists_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChecklist/ObtenerChecklistsResponse" message="tns:IChecklist_ObtenerChecklists_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPoliticaOtorgamiento" type="tns:IPoliticaOtorgamiento">
     <wsp:PolicyReference URI="#NetTcpBinding_IPoliticaOtorgamiento_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
       <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RecuperarPoliticasChecklist">
-      <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -287,6 +367,50 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_ICondicionCredito" type="tns:ICondicionCredito">
+    <wsp:PolicyReference URI="#NetTcpBinding_ICondicionCredito_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GuardarCondicionCredito">
+      <soap12:operation soapAction="http://tempuri.org/ICondicionCredito/GuardarCondicionCredito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCondicionesCreditoActivas">
+      <soap12:operation soapAction="http://tempuri.org/ICondicionCredito/ObtenerCondicionesCreditoActivas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_ICredito" type="tns:ICredito">
+    <wsp:PolicyReference URI="#NetTcpBinding_ICredito_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GuardarInformacionSolicitud">
+      <soap12:operation soapAction="http://tempuri.org/ICredito/GuardarInformacionSolicitud" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerSolicitudesCredito">
+      <soap12:operation soapAction="http://tempuri.org/ICredito/ObtenerSolicitudesCredito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_ICliente" type="tns:ICliente">
     <wsp:PolicyReference URI="#NetTcpBinding_ICliente_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
@@ -308,12 +432,30 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="BuscarClientePorRFC">
+      <soap12:operation soapAction="http://tempuri.org/ICliente/BuscarClientePorRFC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_IDictamen" type="tns:IDictamen">
     <wsp:PolicyReference URI="#NetTcpBinding_IDictamen_policy" />
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="GuardarDictamen">
       <soap12:operation soapAction="http://tempuri.org/IDictamen/GuardarDictamen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarPoliticasChecklist">
+      <soap12:operation soapAction="http://tempuri.org/IDictamen/RecuperarPoliticasChecklist" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -343,6 +485,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ObtenerChecklists">
+      <soap12:operation soapAction="http://tempuri.org/IChecklist/ObtenerChecklists" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="ServiciosFinancieraIndependiente">
     <wsdl:port name="NetTcpBinding_IPoliticaOtorgamiento" binding="tns:NetTcpBinding_IPoliticaOtorgamiento">
@@ -364,6 +515,18 @@
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IReferenciaTrabajo" binding="tns:NetTcpBinding_IReferenciaTrabajo">
+      <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_ICondicionCredito" binding="tns:NetTcpBinding_ICondicionCredito">
+      <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_ICredito" binding="tns:NetTcpBinding_ICredito">
       <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>

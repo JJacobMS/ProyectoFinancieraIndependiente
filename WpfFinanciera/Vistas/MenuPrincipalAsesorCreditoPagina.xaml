@@ -12,18 +12,54 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel>
-            <TextBlock FontSize="60">Menú Principal Asesor de Crédito</TextBlock>
-            <TextBlock Name="txtBlockNombre" FontSize="30"></TextBlock>
-        </StackPanel>
-        <StackPanel Grid.Row="1">
-            <Button FontSize="40">Registrar Solicitud de Crédito</Button>
-            <Button FontSize="40">Consultar Solcitides de Crédito</Button>
-            <Button FontSize="40">Registrar Nueva Condición de Crédito</Button>
-            <Button FontSize="40">Registrar Cliente</Button>
-            <Button FontSize="40">Evaluar Solicitud de Crédito</Button>
-            <Button FontSize="40">Registrar Política de Otorgmaiento de Crédito</Button>
-            <Button FontSize="40">Registrar Checklist</Button>
-        </StackPanel>
+        <Border Background="#01171C">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width=".9*"/>
+                </Grid.ColumnDefinitions>
+                <Button Style="{StaticResource estiloBtnSalirMenuPrincipal}" Click="ClicSalirInicioSesion"/>
+                <StackPanel Grid.Column="1">
+                    <TextBlock Style="{StaticResource estilotxtBlockTituloMenuPrincipal}">Menú Principal</TextBlock>
+                    <TextBlock Name="txtBlockNombre" Style="{StaticResource estilotxtBlockBienvenidaMenuPrincipal}" FontSize="30">Bienvenido</TextBlock>
+                </StackPanel>
+                <Border Grid.Column="2" Background="#ECFBFF" Width="490" CornerRadius="35" Height="80">
+                    <TextBlock Style="{StaticResource estilotxtBlockTipoUsuarioMenuPrincipal}">Asesor de Crédito</TextBlock>
+                </Border>
+            </Grid>
+        </Border>
+        
+        <Grid Grid.Row="1" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width=".8*"/>
+            </Grid.ColumnDefinitions>
+            <Viewbox>
+                <Grid VerticalAlignment="Center" Width="740" Height="620">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Button Click="ClicConsultarClientes" Style="{StaticResource estiloBtnMenuPrincipalPequenioDos}" Margin="60 20 30 20" DataContext="Consultar a los clientes ya registrados" CommandParameter="Clientes">
+                        <Image Source="/Recursos/cliente.png" HorizontalAlignment="Center"></Image>
+                    </Button>
+                    <Button Click="ClicRegistrarCliente" Grid.Row="1" Style="{StaticResource estiloBtnMenuPrincipalSinImagen}" Margin="60 0 30 0">Registrar Nuevo Cliente</Button>
+                    <Button Click="ClicConsultarCreditos" Grid.Row="2" Style="{StaticResource estiloBtnMenuPrincipalPequenioDos}" Margin="60 0 30 0" DataContext="Consultar la tabla de pagos, el dictamen o realizar un cobro de algún crédito aprobado" CommandParameter="Créditos"
+                            Background="#EBEBEB" BorderBrush="#000000">
+                        <Image Source="/Recursos/credito.png" HorizontalAlignment="Center"></Image>
+                    </Button>
+                    <Button Click="ClicRegistrarSolicitud" Grid.Row="3" Style="{StaticResource estiloBtnMenuPrincipalSinImagen}" Background="#EBEBEB" BorderBrush="#000000"
+                            Margin="60 0 30 20">Registrar Solicitud de Crédito</Button>
+                </Grid>
+            </Viewbox>
+            <Viewbox Grid.Column="1" >
+                <Grid VerticalAlignment="Center" Width="595" Height="620">
+                    <Button Click="ClicConsultarCalculoEficiencias" Style="{StaticResource estiloBtnMenuPrincipalGrande}" Margin="0 0 50 0">Cálculo de Eficiencias Mensuales</Button>
+                </Grid>
+            </Viewbox>
+        </Grid>
     </Grid>
 </Page>

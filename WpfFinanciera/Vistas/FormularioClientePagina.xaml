@@ -72,7 +72,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Background="#065758">
-            <Button Style="{StaticResource estiloBtnRegresar}"/>
+            <Button Style="{StaticResource estiloBtnRegresar}" Click="ClicRegresar"/>
             <TextBlock FontFamily="{StaticResource LeagueSpartanFont}" FontSize="50" Foreground="#FFFFFF" FontWeight="Medium"
                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18">Registro de Cliente</TextBlock>
         </Grid>

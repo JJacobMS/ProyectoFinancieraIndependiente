@@ -42,7 +42,7 @@ namespace WpfFinanciera.Vistas
 
         private void MostrarVentanaConfirmacion()
         {
-            VentanaMensaje ventana = new VentanaMensaje("¿Desea registrar el Dictamen?", Mensaje.CONFIRMACION);
+            VentanaMensaje ventana = new VentanaMensaje("¿Desea registrar el Checklist?", Mensaje.CONFIRMACION);
             if (ventana.MostrarConfirmacion())
             {
                 GuardarChecklist();
@@ -181,7 +181,9 @@ namespace WpfFinanciera.Vistas
         {
             MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
             ListaSeleccionPoliticasPagina seleccionPoliticas = new ListaSeleccionPoliticasPagina();
-            seleccionPoliticas.EnviarDatos(listIdPoliticas_,listNombrePoliticas_,txtBoxNombreChecklist.Text,txtBoxDescripcionChecklist.Text);
+            string nombre = txtBoxNombreChecklist.Text;
+            string descripcion = txtBoxDescripcionChecklist.Text;
+            seleccionPoliticas.EnviarDatos(listIdPoliticas_,listNombrePoliticas_,nombre,descripcion);
             ventanaPrincipal.CambiarPagina(seleccionPoliticas);
         }
 
@@ -207,7 +209,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicRegresar(object sender, RoutedEventArgs e)
         {
-
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            MenuPrincipalAdministradorPagina menu = new MenuPrincipalAdministradorPagina();
+            ventanaPrincipal.CambiarPagina(menu);
         }
     }
 }

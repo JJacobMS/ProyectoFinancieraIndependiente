@@ -60,16 +60,17 @@
       <xs:element minOccurs="0" name="fechaSolicitud" type="xs:dateTime" />
       <xs:element minOccurs="0" name="folioCredito" type="xs:int" />
       <xs:element minOccurs="0" name="monto" type="xs:double" />
-      <xs:element minOccurs="0" name="porcentajeAumento" type="xs:double" />
       <xs:element minOccurs="0" name="saldoPendiente" type="xs:double" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="Credito" nillable="true" type="tns:Credito" />
   <xs:complexType name="Cliente">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Credito" nillable="true" type="tns:ArrayOfCredito" />
       <xs:element minOccurs="0" name="Documento" nillable="true" type="tns:ArrayOfDocumento" />
       <xs:element minOccurs="0" name="ReferenciaCliente" nillable="true" type="tns:ArrayOfReferenciaCliente" />
       <xs:element minOccurs="0" name="ReferenciaTrabajo" nillable="true" type="tns:ReferenciaTrabajo" />
+      <xs:element minOccurs="0" name="ReferenciaTrabajo_idReferenciaTrabajo" type="xs:int" />
       <xs:element minOccurs="0" name="Telefono" nillable="true" type="tns:ArrayOfTelefono" />
       <xs:element minOccurs="0" name="apellidos" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="correoElectronico" nillable="true" type="xs:string" />
@@ -91,10 +92,8 @@
   <xs:element name="ArrayOfDocumento" nillable="true" type="tns:ArrayOfDocumento" />
   <xs:complexType name="Documento">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Cliente" nillable="true" type="tns:Cliente" />
       <xs:element minOccurs="0" name="Cliente_idCliente" type="xs:int" />
       <xs:element minOccurs="0" name="TipoDocumento" nillable="true" type="tns:TipoDocumento" />
-      <xs:element minOccurs="0" name="TipoDocumento_idTipoDocumento" type="xs:int" />
       <xs:element minOccurs="0" name="archivo" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="extension" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idDocumento" type="xs:int" />
@@ -104,7 +103,6 @@
   <xs:element name="Documento" nillable="true" type="tns:Documento" />
   <xs:complexType name="TipoDocumento">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Documento" nillable="true" type="tns:ArrayOfDocumento" />
       <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idTipoDocumento" type="xs:int" />
     </xs:sequence>
@@ -118,7 +116,6 @@
   <xs:element name="ArrayOfReferenciaCliente" nillable="true" type="tns:ArrayOfReferenciaCliente" />
   <xs:complexType name="ReferenciaCliente">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Cliente" nillable="true" type="tns:Cliente" />
       <xs:element minOccurs="0" name="Cliente_idCliente" type="xs:int" />
       <xs:element minOccurs="0" name="apellidos" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
@@ -130,7 +127,6 @@
   <xs:element name="ReferenciaCliente" nillable="true" type="tns:ReferenciaCliente" />
   <xs:complexType name="ReferenciaTrabajo">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Cliente" nillable="true" type="tns:ArrayOfCliente" />
       <xs:element minOccurs="0" name="direccion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idReferenciaTrabajo" type="xs:int" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
@@ -138,12 +134,6 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ReferenciaTrabajo" nillable="true" type="tns:ReferenciaTrabajo" />
-  <xs:complexType name="ArrayOfCliente">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cliente" nillable="true" type="tns:Cliente" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfCliente" nillable="true" type="tns:ArrayOfCliente" />
   <xs:complexType name="ArrayOfTelefono">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Telefono" nillable="true" type="tns:Telefono" />
@@ -209,7 +199,6 @@
   <xs:element name="Dictamen" nillable="true" type="tns:Dictamen" />
   <xs:complexType name="Usuario">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Dictamen" nillable="true" type="tns:ArrayOfDictamen" />
       <xs:element minOccurs="0" name="TipoUsuario" nillable="true" type="tns:TipoUsuario" />
       <xs:element minOccurs="0" name="TipoUsuario_idTipoUsuario" type="xs:int" />
       <xs:element minOccurs="0" name="apellidos" nillable="true" type="xs:string" />
@@ -222,18 +211,11 @@
   <xs:element name="Usuario" nillable="true" type="tns:Usuario" />
   <xs:complexType name="TipoUsuario">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Usuario" nillable="true" type="tns:ArrayOfUsuario" />
       <xs:element minOccurs="0" name="idTipoUsuario" type="xs:int" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="TipoUsuario" nillable="true" type="tns:TipoUsuario" />
-  <xs:complexType name="ArrayOfUsuario">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="Usuario" nillable="true" type="tns:Usuario" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfUsuario" nillable="true" type="tns:ArrayOfUsuario" />
   <xs:complexType name="EstatusCredito">
     <xs:sequence>
       <xs:element minOccurs="0" name="Credito" nillable="true" type="tns:ArrayOfCredito" />
@@ -268,4 +250,16 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfReferenciaTrabajo" nillable="true" type="tns:ArrayOfReferenciaTrabajo" />
+  <xs:complexType name="ArrayOfCondicionCredito">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CondicionCredito" nillable="true" type="tns:CondicionCredito" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCondicionCredito" nillable="true" type="tns:ArrayOfCondicionCredito" />
+  <xs:complexType name="ArrayOfChecklist">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Checklist" nillable="true" type="tns:Checklist" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfChecklist" nillable="true" type="tns:ArrayOfChecklist" />
 </xs:schema>

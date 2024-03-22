@@ -29,30 +29,29 @@ namespace WpfFinanciera.Vistas
         private String nombreSolicitante_;
         private List<int> listIdPoliticas_ = new List<int>();
         private String nombreChecklist_;
-        private Politica[] politicas_;
+        private Politica[] arrayPoliticas_;
         bool esAprobado_;
-        public FormularioDictamenPagina()
+        public FormularioDictamenPagina(int folio, string nombreSolicitante)
         {
-            folio_ = 1;
-            idUsuario_ = 1;
-            nombreSolicitante_ = "Jesus Jacob";
+            folio_ = folio;
+            nombreSolicitante_ = nombreSolicitante;
+            idUsuario_ = UsuarioSingleton.ObtenerUsuario().idUsuario;
             InitializeComponent();
-            RecuperarDatosPagina();
+            RecuperarPoliticasChecklist();
         }
 
         
-        private void RecuperarDatosPagina()
+        private void RecuperarPoliticasChecklist()
         {
             Codigo codigo = new Codigo();
-            politicas_ = new Politica[]{};
+            arrayPoliticas_ = new Politica[]{};
 
             try
             {
-                PoliticaOtorgamientoClient proxy = new PoliticaOtorgamientoClient();
-                (codigo, politicas_) = proxy.RecuperarPoliticasChecklist(1);
+                DictamenClient proxy = new DictamenClient();
+                (codigo, arrayPoliticas_) = proxy.RecuperarPoliticasChecklist(folio_);
                 ChecklistClient proxyChecklist = new ChecklistClient();
-                (codigo, nombreChecklist_) = proxyChecklist.RecuperarChecklist(1);
-                Console.WriteLine(nombreChecklist_ + " ");
+                (codigo, nombreChecklist_) = proxyChecklist.RecuperarChecklist(folio_);
             }
             catch (CommunicationException ex)
             {
@@ -67,7 +66,7 @@ namespace WpfFinanciera.Vistas
             switch (codigo)
             {
                 case Codigo.EXITO:
-                    CargarDatosPagina(politicas_);
+                    CargarDatosPagina();
                     break;
                 case Codigo.ERROR_SERVIDOR:
                     MostrarVentanaErrorServidor();
@@ -78,11 +77,11 @@ namespace WpfFinanciera.Vistas
             }
         }
         
-        private void CargarDatosPagina(Politica[] politicas)
+        private void CargarDatosPagina()
         {
-            if (politicas!=null && politicas.Length > 0)
+            if (arrayPoliticas_!= null && arrayPoliticas_.Length > 0)
             {
-                lstViewPoliticasOtorgamiento.ItemsSource = politicas;
+                lstViewPoliticasOtorgamiento.ItemsSource = arrayPoliticas_;
                 txtBlockSolicitante.Text = "Solicitante: " + nombreSolicitante_;
                 txtBlockFolio.Text = "Folio de Solicitud: " + folio_;
                 txtBlockChecklist.Text = "Checklist: "+ nombreChecklist_;
@@ -184,7 +183,7 @@ namespace WpfFinanciera.Vistas
         private bool ValidarAprobacion() 
         {
             bool esAprobado = true;
-            if (listIdPoliticas_.Count==politicas_.Length) 
+            if (listIdPoliticas_.Count==arrayPoliticas_.Length) 
             {
                 esAprobado = true;
             } else 
@@ -242,7 +241,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicRegresar(object sender, RoutedEventArgs e)
         {
-
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            SolicitudesCreditoPagina listaSolicitudes = new SolicitudesCreditoPagina();
+            ventanaPrincipal.CambiarPagina(listaSolicitudes);
         }
     }
 }
