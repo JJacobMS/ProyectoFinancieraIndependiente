@@ -95,6 +95,7 @@ namespace WpfFinanciera.Vistas
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Se ha registrado el checklist exitosamente", Mensaje.EXITO);
             mensajeError.Mostrar();
+            Cerrar();
         }
 
         private void MostrarVentanaErrorServidor()
@@ -208,6 +209,11 @@ namespace WpfFinanciera.Vistas
         }
 
         private void ClicRegresar(object sender, RoutedEventArgs e)
+        {
+            Cerrar();
+        }
+
+        private void Cerrar()
         {
             MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
             MenuPrincipalAdministradorPagina menu = new MenuPrincipalAdministradorPagina();
