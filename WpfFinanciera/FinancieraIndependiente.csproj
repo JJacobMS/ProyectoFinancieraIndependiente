@@ -151,6 +151,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Recursos\Diccionarios\MenuPrincipalDiccionario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Recursos\Diccionarios\VentanaMensajeDiccionario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -343,6 +347,9 @@
     <Resource Include="Recursos\politica.png" />
     <Resource Include="Recursos\solicitud.png" />
     <Resource Include="Recursos\user.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\salir.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

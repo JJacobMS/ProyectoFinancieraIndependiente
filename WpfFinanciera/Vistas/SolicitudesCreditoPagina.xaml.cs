@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,7 +23,7 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class SolicitudesCreditoPagina : Page
     {
-        SolicitudCredito[] listaSolicitudesCredito;
+        SolicitudCredito[] _listaSolicitudesCredito;
 
         public SolicitudesCreditoPagina()
         {
@@ -31,15 +32,33 @@ namespace WpfFinanciera.Vistas
 
         private void CargarPagina(object sender, RoutedEventArgs e)
         {
-            CreditoClient creditoClient = new CreditoClient();
-            var respuesta = creditoClient.ObtenerSolicitudesCredito();
-            var (codigo, solicitudesCredito) = respuesta;
+            Codigo codigoRespuesta = new Codigo();
+            SolicitudCredito[] listaSolicitudes = new SolicitudCredito[0];
 
-            switch (codigo)
+            try
+            {
+                CreditoClient creditoClient = new CreditoClient();
+                var respuesta = creditoClient.ObtenerSolicitudesCredito();
+                var (codigo, solicitudesCredito) = respuesta;
+
+                codigoRespuesta = codigo;
+                listaSolicitudes = solicitudesCredito;
+            }
+            catch (CommunicationException ex)
+            {
+                codigoRespuesta = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex.ToString());
+            }
+            catch (TimeoutException ex)
+            {
+                codigoRespuesta = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex.ToString());
+            }
+            switch (codigoRespuesta)
             {
                 case Codigo.EXITO:
-                    lstBoxSolicitudesCredito.ItemsSource = solicitudesCredito;
-                    listaSolicitudesCredito = solicitudesCredito;
+                    lstBoxSolicitudesCredito.ItemsSource = listaSolicitudes;
+                    _listaSolicitudesCredito = listaSolicitudes;
                     break;
                 case Codigo.ERROR_SERVIDOR:
                     MostrarVentanaErrorServidor();
@@ -52,7 +71,15 @@ namespace WpfFinanciera.Vistas
 
         private void ClicEvaluarSolicitud(object sender, RoutedEventArgs e)
         {
-           
+            Button btn = sender as Button;
+
+            SolicitudCredito solicitudSeleccionada = btn.DataContext as SolicitudCredito;
+
+            string nombreSolicitante = solicitudSeleccionada.Nombres + " " + solicitudSeleccionada.Apellidos;
+
+            FormularioDictamenPagina formularioDictamen = new FormularioDictamenPagina(solicitudSeleccionada.FolioCredito, nombreSolicitante);
+
+            NavigationService.Navigate(formularioDictamen);
         }
 
         private void MostrarVentanaErrorBD()
@@ -82,9 +109,9 @@ namespace WpfFinanciera.Vistas
         {
             List<SolicitudCredito> listaFiltrada = new List<SolicitudCredito>();
 
-            if (listaSolicitudesCredito != null && !string.IsNullOrEmpty(filtro))
+            if (_listaSolicitudesCredito != null && !string.IsNullOrEmpty(filtro))
             {
-                foreach (var solicitud in listaSolicitudesCredito)
+                foreach (var solicitud in _listaSolicitudesCredito)
                 {
                     if (solicitud.RfcCliente.ToLower().Contains(filtro))
                     {
@@ -94,7 +121,7 @@ namespace WpfFinanciera.Vistas
             }
             else
             {
-                listaFiltrada = new List<SolicitudCredito>(listaSolicitudesCredito);
+                listaFiltrada = new List<SolicitudCredito>(_listaSolicitudesCredito);
             }
 
             return listaFiltrada;
@@ -102,19 +129,22 @@ namespace WpfFinanciera.Vistas
 
         private void IngresarFecha(object sender, SelectionChangedEventArgs e)
         {
-            DateTime fechaSeleccionada = dtPickerBusquedaFechaSolicitudCredito.SelectedDate ?? DateTime.MinValue;
-            List<SolicitudCredito> listaFiltrada = FiltrarListaPorFecha(fechaSeleccionada);
+            if (dtPickerBusquedaFechaSolicitudCredito.SelectedDate.HasValue)
+            {
+                DateTime fechaSeleccionada = dtPickerBusquedaFechaSolicitudCredito.SelectedDate.Value;
+                List<SolicitudCredito> listaFiltrada = FiltrarListaPorFecha(fechaSeleccionada);
 
-            lstBoxSolicitudesCredito.ItemsSource = listaFiltrada;
+                lstBoxSolicitudesCredito.ItemsSource = listaFiltrada;
+            }
         }
 
         private List<SolicitudCredito> FiltrarListaPorFecha(DateTime fecha)
         {
             List<SolicitudCredito> listaFiltrada = new List<SolicitudCredito>();
 
-            if (listaSolicitudesCredito != null)
+            if (_listaSolicitudesCredito != null)
             {
-                foreach (var solicitud in listaSolicitudesCredito)
+                foreach (var solicitud in _listaSolicitudesCredito)
                 {
                     if (solicitud.TiempoSolicitud.Date == fecha.Date)
                     {
@@ -124,11 +154,17 @@ namespace WpfFinanciera.Vistas
             }
             else
             {
-                listaFiltrada = new List<SolicitudCredito>(listaSolicitudesCredito);
+                listaFiltrada = new List<SolicitudCredito>(_listaSolicitudesCredito);
             }
 
             return listaFiltrada;
         }
 
+        private void ClicRegresar(object sender, MouseButtonEventArgs e)
+        {
+            MenuPrincipalAnalistaCreditoPagina menuPrincipal = new MenuPrincipalAnalistaCreditoPagina();
+
+            NavigationService.Navigate(menuPrincipal);
+        }
     }
 }

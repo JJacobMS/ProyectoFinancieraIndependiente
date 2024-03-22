@@ -91,7 +91,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
+            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Cursor="Hand" MouseDown="ClicRegresar" Margin="30 0 0 0"/>
             <TextBlock Grid.Column="1" FontFamily="{StaticResource LeagueSpartanFont}" FontSize="50" Foreground="#FFFFFF" FontWeight="Medium" 
                        HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18" Text="Registro de Solicitud de Crédito"/>
         </Grid>
@@ -138,7 +138,7 @@
                             </Grid>
                         </Border>
                         <TextBlock Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" HorizontalAlignment="Center" Margin="20,20,0,10"><Run Text="Ingrese el monto del préstamo:"/></TextBlock>
-                        <TextBox x:Name="txtBoxMonto" Style="{StaticResource estiloTxtBoxFormularioSolicitudCredito}" MaxWidth="210" MinWidth="100" PreviewTextInput="PrevenirTextoNoNumerico"/>
+                        <TextBox x:Name="txtBoxMonto" Style="{StaticResource estiloTxtBoxFormularioSolicitudCredito}" MaxLength="7" MaxWidth="210" MinWidth="100" PreviewTextInput="PrevenirTextoNoNumerico"/>
                         <TextBlock Style="{StaticResource estiloTxtBlockSolicitudCreditoCampo}" HorizontalAlignment="Center" Margin="20,20,0,10"><Run Text="Seleccione la condición de crédito"/></TextBlock>
                         <Border x:Name="bdrCondicionesCreditoTabla" BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Margin="20 0" Width="753" Height="126" Background="Transparent" Padding="2" >
                             <Grid Height="120">

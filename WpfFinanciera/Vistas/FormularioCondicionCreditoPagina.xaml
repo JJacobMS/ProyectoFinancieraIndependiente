@@ -116,7 +116,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <Image Source="/Recursos/arrow.png" Height="50" HorizontalAlignment="Left" Margin="30 0 0 0"/>
+            <Image Source="/Recursos/arrow.png" Height="50" MouseDown="ClicRegresar" Cursor="Hand" HorizontalAlignment="Left" Margin="30 0 0 0"/>
             <TextBlock Grid.Column="1" FontFamily="{StaticResource LeagueSpartanFont}" FontSize="50" Foreground="#FFFFFF" FontWeight="Medium" 
                HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18">Registro de Condición de Crédito</TextBlock>
         </Grid>

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +23,9 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class FormularioCondicionCreditoPagina : Page
     {
+        private static readonly int _PLAZO_MINIMO = 1;
+        private static readonly int _PLAZO_MAXIMO = 240;
+
         public FormularioCondicionCreditoPagina()
         {
             InitializeComponent();
@@ -85,6 +89,16 @@ namespace WpfFinanciera.Vistas
                 sonValidos = false;
                 razones = (razones.Length < 0) ? razones + ", Plazo" : "Plazo";
             }
+            else
+            {
+                if(double.Parse(plazo) <= _PLAZO_MINIMO || double.Parse(plazo) > _PLAZO_MAXIMO)
+                {
+                    txtBoxPlazo.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
+                    sonValidos = false;
+                    razones = (razones.Length < 0) ? razones + ", Plazo no válido" : "Plazo no válido";
+                }
+            }
+
             if (string.IsNullOrEmpty(tasa))
             {
                 txtBoxInteres.Background = (SolidColorBrush) new BrushConverter().ConvertFrom("#C46960");
@@ -134,10 +148,23 @@ namespace WpfFinanciera.Vistas
             condicionCredito.tieneIVA = (bool)chkBoxIVA.IsChecked;
             condicionCredito.estaActiva = true;
 
-            CondicionCreditoClient condicionCreditoClient = new CondicionCreditoClient();
-            codigo = condicionCreditoClient.GuardarCondicionCredito(condicionCredito);
+            try
+            {
+                CondicionCreditoClient condicionCreditoClient = new CondicionCreditoClient();
+                codigo = condicionCreditoClient.GuardarCondicionCredito(condicionCredito);
+            }
+            catch (CommunicationException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex.ToString());
+            }
+            catch (TimeoutException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex.ToString());
+            }
 
-            switch(codigo)
+            switch (codigo)
             {
                 case Codigo.EXITO:
                     MostrarVentanaRegistroExito();
@@ -180,6 +207,13 @@ namespace WpfFinanciera.Vistas
             txtBoxPlazo.Text = "";
 
             chkBoxIVA.IsChecked = false;
+        }
+
+        private void ClicRegresar(object sender, MouseButtonEventArgs e)
+        {
+            MenuPrincipalAnalistaCreditoPagina menuPrincipal = new MenuPrincipalAnalistaCreditoPagina();
+
+            NavigationService.Navigate(menuPrincipal);
         }
     }
 }

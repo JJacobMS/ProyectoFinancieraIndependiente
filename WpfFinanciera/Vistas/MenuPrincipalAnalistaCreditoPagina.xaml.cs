@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfFinanciera.Utilidades;
 
 namespace WpfFinanciera.Vistas
 {
@@ -23,6 +24,32 @@ namespace WpfFinanciera.Vistas
         public MenuPrincipalAnalistaCreditoPagina()
         {
             InitializeComponent();
+            txtBlockNombre.Text = "Bienvenido " + UsuarioSingleton.ObtenerUsuario().nombres;
+        }
+
+        private void ClicConsultarSolicitudes(object sender, RoutedEventArgs e)
+        {
+            SolicitudesCreditoPagina paginaSolicitudCredito = new SolicitudesCreditoPagina();
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            ventanaPrincipal.CambiarPagina(paginaSolicitudCredito);
+        }
+
+        private void ClicConsultarClientes(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClicConsultarCalculo(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ClicSalirInicioSesion(object sender, RoutedEventArgs e)
+        {
+            UsuarioSingleton.SettearUsuario(null);
+            InicioSesionPagina paginaInicio = new InicioSesionPagina();
+            MainWindow ventana = (MainWindow)Window.GetWindow(this);
+            ventana.CambiarPagina(paginaInicio);
         }
     }
 }
