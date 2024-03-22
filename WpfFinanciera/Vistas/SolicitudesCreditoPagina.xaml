@@ -285,7 +285,7 @@
                                 <ColumnDefinition/>
                                 <ColumnDefinition Width=".1*"/>
                             </Grid.ColumnDefinitions>
-                            <TextBox x:Name="txtBoxBusquedaRFCSolicitudCredito" Style="{StaticResource estiloTxtBoxBusquedaSolicitudCredito}"></TextBox>
+                            <TextBox x:Name="txtBoxBusquedaRFCSolicitudCredito" MaxLength="13" Style="{StaticResource estiloTxtBoxBusquedaSolicitudCredito}"></TextBox>
                             <Button Click="ClicBuscar" Grid.Column="1" Style="{StaticResource estiloBtnBuscarSolicitudCredito}">
                             </Button>
                         </Grid>
