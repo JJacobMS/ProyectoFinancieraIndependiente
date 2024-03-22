@@ -2447,12 +2447,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamientoResponse")]
         System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarPoliticaOtorgamientoAsync(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklistResponse")]
-        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticasChecklist(int folioCredito);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklistResponse")]
-        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasChecklistAsync(int folioCredito);
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticas", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasResponse")]
         System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticas();
         
@@ -2493,14 +2487,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarPoliticaOtorgamientoAsync(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica) {
             return base.Channel.GuardarPoliticaOtorgamientoAsync(politica);
-        }
-        
-        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticasChecklist(int folioCredito) {
-            return base.Channel.RecuperarPoliticasChecklist(folioCredito);
-        }
-        
-        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasChecklistAsync(int folioCredito) {
-            return base.Channel.RecuperarPoliticasChecklistAsync(folioCredito);
         }
         
         public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticas() {
@@ -2859,6 +2845,12 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictamen/GuardarDictamen", ReplyAction="http://tempuri.org/IDictamen/GuardarDictamenResponse")]
         System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarDictamenAsync(WpfFinanciera.ServicioFinancieraIndependiente.Dictamen dictamen);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictamen/RecuperarPoliticasChecklist", ReplyAction="http://tempuri.org/IDictamen/RecuperarPoliticasChecklistResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticasChecklist(int folioCredito);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDictamen/RecuperarPoliticasChecklist", ReplyAction="http://tempuri.org/IDictamen/RecuperarPoliticasChecklistResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasChecklistAsync(int folioCredito);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2894,6 +2886,14 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarDictamenAsync(WpfFinanciera.ServicioFinancieraIndependiente.Dictamen dictamen) {
             return base.Channel.GuardarDictamenAsync(dictamen);
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticasChecklist(int folioCredito) {
+            return base.Channel.RecuperarPoliticasChecklist(folioCredito);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasChecklistAsync(int folioCredito) {
+            return base.Channel.RecuperarPoliticasChecklistAsync(folioCredito);
         }
     }
     

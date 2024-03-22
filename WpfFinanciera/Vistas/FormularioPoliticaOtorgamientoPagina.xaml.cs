@@ -190,7 +190,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicRegresar(object sender, RoutedEventArgs e)
         {
-
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            MenuPrincipalAdministradorPagina menu = new MenuPrincipalAdministradorPagina();
+            ventanaPrincipal.CambiarPagina(menu);
         }
     }
 }

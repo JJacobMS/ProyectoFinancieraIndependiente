@@ -124,12 +124,6 @@
   <wsdl:message name="IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_OutputMessage">
     <wsdl:part name="parameters" element="tns:GuardarPoliticaOtorgamientoResponse" />
   </wsdl:message>
-  <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticasChecklist_InputMessage">
-    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklist" />
-  </wsdl:message>
-  <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage">
-    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklistResponse" />
-  </wsdl:message>
   <wsdl:message name="IPoliticaOtorgamiento_RecuperarPoliticas_InputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarPoliticas" />
   </wsdl:message>
@@ -202,6 +196,12 @@
   <wsdl:message name="IDictamen_GuardarDictamen_OutputMessage">
     <wsdl:part name="parameters" element="tns:GuardarDictamenResponse" />
   </wsdl:message>
+  <wsdl:message name="IDictamen_RecuperarPoliticasChecklist_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklist" />
+  </wsdl:message>
+  <wsdl:message name="IDictamen_RecuperarPoliticasChecklist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarPoliticasChecklistResponse" />
+  </wsdl:message>
   <wsdl:message name="IChecklist_RecuperarChecklist_InputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarChecklist" />
   </wsdl:message>
@@ -224,10 +224,6 @@
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamientoResponse" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="RecuperarPoliticasChecklist">
-      <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklistResponse" message="tns:IPoliticaOtorgamiento_RecuperarPoliticasChecklist_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="RecuperarPoliticas">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticas" message="tns:IPoliticaOtorgamiento_RecuperarPoliticas_InputMessage" />
@@ -291,6 +287,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IDictamen/GuardarDictamen" message="tns:IDictamen_GuardarDictamen_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDictamen/GuardarDictamenResponse" message="tns:IDictamen_GuardarDictamen_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RecuperarPoliticasChecklist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDictamen/RecuperarPoliticasChecklist" message="tns:IDictamen_RecuperarPoliticasChecklist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDictamen/RecuperarPoliticasChecklistResponse" message="tns:IDictamen_RecuperarPoliticasChecklist_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IChecklist">
     <wsdl:operation name="RecuperarChecklist">
@@ -311,15 +311,6 @@
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
       <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento" style="document" />
-      <wsdl:input>
-        <soap12:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap12:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="RecuperarPoliticasChecklist">
-      <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasChecklist" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -456,6 +447,15 @@
     <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
     <wsdl:operation name="GuardarDictamen">
       <soap12:operation soapAction="http://tempuri.org/IDictamen/GuardarDictamen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarPoliticasChecklist">
+      <soap12:operation soapAction="http://tempuri.org/IDictamen/RecuperarPoliticasChecklist" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
