@@ -29,6 +29,7 @@ namespace WpfFinanciera.Vistas
         private Dictionary<string, Documento> _documentos = new Dictionary<string, Documento>();
         private ReferenciaCliente[] _referenciasCliente = new ReferenciaCliente[2];
         private ReferenciaTrabajo _referenciaTrabajo;
+        private bool _esRedirigidoBusquedaRFC = false;
         public FormularioClientePagina()
         {
             InitializeComponent();
@@ -41,6 +42,7 @@ namespace WpfFinanciera.Vistas
             CargarPaginaFormularioCliente();
 
             txtBoxRFCCliente.Text = rfcClienteNuevo;
+            _esRedirigidoBusquedaRFC = true;
         }
 
         private void CargarPaginaFormularioCliente()
@@ -508,6 +510,20 @@ namespace WpfFinanciera.Vistas
             ventana.Mostrar();
         }
 
+        private void ClicRegresar(object sender, RoutedEventArgs e)
+        {
+            if (_esRedirigidoBusquedaRFC == true)
+            {
+                BusquedaRFCCliente busquedaRFCCliente = new BusquedaRFCCliente();
+
+                NavigationService.Navigate(busquedaRFCCliente);
+            }
+            else
+            {
+                MenuPrincipalAsesorCreditoPagina menuAsesor = new MenuPrincipalAsesorCreditoPagina();
+                NavigationService.Navigate(menuAsesor);
+            }
+        }
     }
 
 }
