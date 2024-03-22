@@ -23,7 +23,7 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class SolicitudesCreditoPagina : Page
     {
-        SolicitudCredito[] listaSolicitudesCredito;
+        SolicitudCredito[] _listaSolicitudesCredito;
 
         public SolicitudesCreditoPagina()
         {
@@ -58,7 +58,7 @@ namespace WpfFinanciera.Vistas
             {
                 case Codigo.EXITO:
                     lstBoxSolicitudesCredito.ItemsSource = listaSolicitudes;
-                    listaSolicitudesCredito = listaSolicitudes;
+                    _listaSolicitudesCredito = listaSolicitudes;
                     break;
                 case Codigo.ERROR_SERVIDOR:
                     MostrarVentanaErrorServidor();
@@ -109,9 +109,9 @@ namespace WpfFinanciera.Vistas
         {
             List<SolicitudCredito> listaFiltrada = new List<SolicitudCredito>();
 
-            if (listaSolicitudesCredito != null && !string.IsNullOrEmpty(filtro))
+            if (_listaSolicitudesCredito != null && !string.IsNullOrEmpty(filtro))
             {
-                foreach (var solicitud in listaSolicitudesCredito)
+                foreach (var solicitud in _listaSolicitudesCredito)
                 {
                     if (solicitud.RfcCliente.ToLower().Contains(filtro))
                     {
@@ -121,7 +121,7 @@ namespace WpfFinanciera.Vistas
             }
             else
             {
-                listaFiltrada = new List<SolicitudCredito>(listaSolicitudesCredito);
+                listaFiltrada = new List<SolicitudCredito>(_listaSolicitudesCredito);
             }
 
             return listaFiltrada;
@@ -142,9 +142,9 @@ namespace WpfFinanciera.Vistas
         {
             List<SolicitudCredito> listaFiltrada = new List<SolicitudCredito>();
 
-            if (listaSolicitudesCredito != null)
+            if (_listaSolicitudesCredito != null)
             {
-                foreach (var solicitud in listaSolicitudesCredito)
+                foreach (var solicitud in _listaSolicitudesCredito)
                 {
                     if (solicitud.TiempoSolicitud.Date == fecha.Date)
                     {
@@ -154,7 +154,7 @@ namespace WpfFinanciera.Vistas
             }
             else
             {
-                listaFiltrada = new List<SolicitudCredito>(listaSolicitudesCredito);
+                listaFiltrada = new List<SolicitudCredito>(_listaSolicitudesCredito);
             }
 
             return listaFiltrada;

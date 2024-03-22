@@ -24,8 +24,8 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class BusquedaRFCCliente : Page
     {
-        private ClienteRFC clienteActual = new ClienteRFC();
-        private string[] clienteTelefonos = new string[0];
+        private ClienteRFC _clienteActual = new ClienteRFC();
+        private string[] _clienteTelefonos = new string[0];
 
         public BusquedaRFCCliente()
         {
@@ -75,7 +75,7 @@ namespace WpfFinanciera.Vistas
                 case Codigo.EXITO:
                     if(clienteRespuesta != null)
                     {
-                        clienteActual = new ClienteRFC
+                        _clienteActual = new ClienteRFC
                         {
                             IdCliente = clienteRespuesta.IdCliente,
                             Apellidos = clienteRespuesta.Apellidos,
@@ -88,7 +88,7 @@ namespace WpfFinanciera.Vistas
                             Nombres = clienteRespuesta.Nombres
                         };
 
-                        clienteTelefonos = clienteRespuesta.Telefonos;
+                        _clienteTelefonos = clienteRespuesta.Telefonos;
 
                         MostrarOpciones();
                     }
@@ -133,7 +133,7 @@ namespace WpfFinanciera.Vistas
         private void ClicSolicitarCredito(object sender, RoutedEventArgs e)
         {
             FormularioSolicitudCreditoPagina paginaSolicitudCredito = 
-                new FormularioSolicitudCreditoPagina(clienteActual, clienteTelefonos);
+                new FormularioSolicitudCreditoPagina(_clienteActual, _clienteTelefonos);
 
             NavigationService.Navigate(paginaSolicitudCredito);
         }

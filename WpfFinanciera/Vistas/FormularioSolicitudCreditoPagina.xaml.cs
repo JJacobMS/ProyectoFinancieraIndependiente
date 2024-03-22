@@ -23,33 +23,32 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class FormularioSolicitudCreditoPagina : Page
     {
-        private static readonly string PREFIJO_DATOS_OCULTOS = "••••";
+        private static readonly string _PREFIJO_DATOS_OCULTOS = "••••";
 
-        private ClienteRFC clienteActual = new ClienteRFC();
-        private string[] clienteTelefonos = new string[0];
-        private string[] clienteTelefonos = new string[0];
-        private bool seMostroVentanaErrorBD = false;
-        private bool seMostroVentanaErrorServidor = false;
-        private CondicionCredito condicionCreditoActual;
-        private Checklist checklistActual;
-        private int montoActual;
+        private ClienteRFC _clienteActual = new ClienteRFC();
+        private string[] _clienteTelefonos = new string[0];
+        private bool _seMostroVentanaErrorBD = false;
+        private bool _seMostroVentanaErrorServidor = false;
+        private CondicionCredito _condicionCreditoActual;
+        private Checklist _checklistActual;
+        private int _montoActual;
 
-        public FormularioSolicitudCreditoPagina(ClienteRFC clienteActual, string[] clienteTelefonos)
+        public FormularioSolicitudCreditoPagina(ClienteRFC _clienteActual, string[] _clienteTelefonos)
         {
             InitializeComponent();
 
-            this.clienteActual = clienteActual;
-            this.clienteTelefonos = clienteTelefonos;
+            this._clienteActual = _clienteActual;
+            this._clienteTelefonos = _clienteTelefonos;
         }
 
         private void CargarPagina(object sender, RoutedEventArgs e)
         {
-            txtBlockCorreo.Text = clienteActual.CorreoElectronico;
-            txtBlockCuentaCobro.Text = PREFIJO_DATOS_OCULTOS + clienteActual.CuentaCobro;
-            txtBlockCuentaDeposito.Text = PREFIJO_DATOS_OCULTOS + clienteActual.CuentaDeposito;
-            txtBlockNombre.Text = clienteActual.Nombres + " " + clienteActual.Apellidos;
-            txtBlockTelefonoCasa.Text = PREFIJO_DATOS_OCULTOS + clienteTelefonos[1];
-            txtBlockTelefonoPersonal.Text = PREFIJO_DATOS_OCULTOS + clienteTelefonos[3];
+            txtBlockCorreo.Text = _clienteActual.CorreoElectronico;
+            txtBlockCuentaCobro.Text = _PREFIJO_DATOS_OCULTOS + _clienteActual.CuentaCobro;
+            txtBlockCuentaDeposito.Text = _PREFIJO_DATOS_OCULTOS + _clienteActual.CuentaDeposito;
+            txtBlockNombre.Text = _clienteActual.Nombres + " " + _clienteActual.Apellidos;
+            txtBlockTelefonoCasa.Text = _PREFIJO_DATOS_OCULTOS + _clienteTelefonos[1];
+            txtBlockTelefonoPersonal.Text = _PREFIJO_DATOS_OCULTOS + _clienteTelefonos[3];
 
             ObtenerCondicionesCredito();
             ObtenerChecklists();
@@ -108,25 +107,25 @@ namespace WpfFinanciera.Vistas
 
         private void MostrarVentanaErrorBD()
         {
-            if (seMostroVentanaErrorBD)
+            if (_seMostroVentanaErrorBD)
             {
                 VentanaMensaje errorServidor = new VentanaMensaje(
                 "Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
                 errorServidor.Mostrar();
 
-                seMostroVentanaErrorBD = true;
+                _seMostroVentanaErrorBD = true;
             }
         }
 
         private void MostrarVentanaErrorServidor()
         {
-            if (seMostroVentanaErrorServidor)
+            if (_seMostroVentanaErrorServidor)
             {
                 VentanaMensaje errorBaseDatos = new VentanaMensaje(
                "Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
                 errorBaseDatos.Mostrar();
 
-                seMostroVentanaErrorServidor = true;
+                _seMostroVentanaErrorServidor = true;
             }
         }
 
@@ -172,12 +171,12 @@ namespace WpfFinanciera.Vistas
             CondicionCredito condicionSeleccionada = lstBoxCondicionesCredito.SelectedItem as CondicionCredito;
             Checklist checklistSeleccionada = lstBoxChecklists.SelectedItem as Checklist;
 
-            condicionCreditoActual = condicionSeleccionada;
-            checklistActual = checklistSeleccionada;
-            SolicitarCredito(clienteActual, monto, condicionSeleccionada, checklistSeleccionada);
+            _condicionCreditoActual = condicionSeleccionada;
+            _checklistActual = checklistSeleccionada;
+            SolicitarCredito(_clienteActual, monto, condicionSeleccionada, checklistSeleccionada);
         }
 
-        private void SolicitarCredito(ClienteRFC clienteActual, string monto, CondicionCredito condicionSeleccionada, Checklist checklistSeleccionada)
+        private void SolicitarCredito(ClienteRFC _clienteActual, string monto, CondicionCredito condicionSeleccionada, Checklist checklistSeleccionada)
         {
             if (ValidarDatos(monto))
             {
@@ -198,7 +197,7 @@ namespace WpfFinanciera.Vistas
             }
             else
             {
-                montoActual = int.Parse(monto);
+                _montoActual = int.Parse(monto);
             }
 
             return esValido;
@@ -212,7 +211,7 @@ namespace WpfFinanciera.Vistas
 
         private void MostrarVentanaConfirmacion()
         {
-            VentanaMensaje ventana = new VentanaMensaje($"Crédito {condicionCreditoActual.descripcion}  por ${montoActual}", 
+            VentanaMensaje ventana = new VentanaMensaje($"Crédito {_condicionCreditoActual.descripcion}  por ${_montoActual}", 
                 Mensaje.CONFIRMACION);
             if (ventana.MostrarConfirmacion())
             {
@@ -225,12 +224,12 @@ namespace WpfFinanciera.Vistas
             Codigo codigo;
 
             Credito credito = new Credito();
-            credito.Cliente_idCliente = clienteActual.IdCliente;
-            credito.Checklist_idChecklist = checklistActual.idChecklist;
-            credito.CondicionCredito_idCondicionCredito = condicionCreditoActual.idCondicionCredito;
-            credito.monto = montoActual;
+            credito.Cliente_idCliente = _clienteActual.IdCliente;
+            credito.Checklist_idChecklist = _checklistActual.idChecklist;
+            credito.CondicionCredito_idCondicionCredito = _condicionCreditoActual.idCondicionCredito;
+            credito.monto = _montoActual;
             credito.fechaSolicitud = DateTime.Now;
-            credito.saldoPendiente = montoActual;
+            credito.saldoPendiente = _montoActual;
             credito.deudaExtra = 0;
 
             CreditoClient creditoClient = new CreditoClient();
