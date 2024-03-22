@@ -52,7 +52,15 @@ namespace WpfFinanciera.Vistas
 
         private void ClicEvaluarSolicitud(object sender, RoutedEventArgs e)
         {
-           
+            Button btn = sender as Button;
+
+            SolicitudCredito solicitudSeleccionada = btn.DataContext as SolicitudCredito;
+
+            string nombreSolicitante = solicitudSeleccionada.Nombres + " " + solicitudSeleccionada.Apellidos;
+
+            FormularioDictamenPagina formularioDictamen = new FormularioDictamenPagina(solicitudSeleccionada.FolioCredito, nombreSolicitante);
+
+            NavigationService.Navigate(formularioDictamen);
         }
 
         private void MostrarVentanaErrorBD()
