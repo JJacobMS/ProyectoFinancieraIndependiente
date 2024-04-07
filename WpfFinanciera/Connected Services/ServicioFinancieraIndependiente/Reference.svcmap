@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="0df27ef4-b78e-4a9c-81df-78abb285ee75" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="21d45849-f3f5-475f-960f-90e99a72e157" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -19,17 +19,17 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://localhost:8082" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://172.20.10.5:8082" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="8519c22f-0f29-4f55-b5b8-cd6fed34511a" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd0" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="ac3ab34e-dfa8-446c-aa2a-bd2a8da75123" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd1" />
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="1e3a5bfc-71d9-4f16-ba92-ac4e78b1e693" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd2" />
-    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="5e75335d-8f6f-41fa-965a-1ad2022fc7ec" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd3" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="8d6de525-2d2c-4273-8bca-3fb7822b6d25" SourceId="1" SourceUrl="http://localhost:8082/?disco" />
-    <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="6db89d14-6d45-49fc-a69d-3db06e4a0147" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd4" />
-    <MetadataFile FileName="ServiciosFinancieraIndependiente.wsdl" MetadataType="Wsdl" ID="be5542ea-96ae-4078-95dd-1de4eb41bca1" SourceId="1" SourceUrl="http://localhost:8082/?wsdl" />
-    <MetadataFile FileName="item5.xsd" MetadataType="Schema" ID="45926684-e4a8-45a8-8d75-2e021576940d" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd5" />
+    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="eb11f08e-3275-435b-976a-9013389c207c" SourceId="1" SourceUrl="http://172.20.10.5:8082/?xsd=xsd5" />
+    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="500433f8-ca36-4b34-bd7b-737c309521a7" SourceId="1" SourceUrl="http://172.20.10.5:8082/?xsd=xsd4" />
+    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="2049c12e-0997-47f7-8066-66f7049adb8e" SourceId="1" SourceUrl="http://172.20.10.5:8082/?xsd=xsd3" />
+    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="ab5aca6c-3eb4-432b-95cd-991b87a92899" SourceId="1" SourceUrl="http://172.20.10.5:8082/?xsd=xsd2" />
+    <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="f3de7d6e-a266-48ea-bb7f-2f763bf120eb" SourceId="1" SourceUrl="http://172.20.10.5:8082/?xsd=xsd1" />
+    <MetadataFile FileName="item5.xsd" MetadataType="Schema" ID="faca18ec-53ae-4d26-99a3-e091a750528d" SourceId="1" SourceUrl="http://172.20.10.5:8082/?xsd=xsd0" />
+    <MetadataFile FileName="ServiciosFinancieraIndependiente.wsdl" MetadataType="Wsdl" ID="4b137655-275c-4eea-9455-998dbf28e474" SourceId="1" SourceUrl="http://172.20.10.5:8082/?wsdl" />
+    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="84f52215-1215-4b88-b99d-8378910ea48f" SourceId="1" SourceUrl="http://172.20.10.5:8082/?disco" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
