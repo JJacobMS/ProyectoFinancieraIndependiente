@@ -95,23 +95,36 @@ namespace WpfFinanciera.Vistas
 
         private void ClicBuscarReferenciaTrabajo(object sender, RoutedEventArgs e)
         {
-            FiltrarReferenciasTrabajo(txtBoxBarraBuscar.Text);
-        }
-
-        private void FiltrarReferenciasTrabajo(string busqueda)
-        {
-            lstBoxReferenciasTrabajo.Style = (Style)FindResource("estiloLstBoxReferenciaTrabajo");
-            if (string.IsNullOrWhiteSpace(busqueda))
+            List<ReferenciaTrabajo> referencias = FiltrarReferenciasTrabajo(txtBoxBarraBuscar.Text);
+            CargarListaReferenciasTrabajo(referencias);
+            if (referencias.Count == 0)
             {
-                CargarListaReferenciasTrabajo(_listaReferenciasTrabajo);
+                MostrarReferenciasTrabajoNoEncontradas();
             }
             else
             {
-                List<ReferenciaTrabajo> referenciaTrabajos = _listaReferenciasTrabajo.Where(
+                CargarListaReferenciasTrabajo(referencias);
+            }
+
+        }
+
+        private List<ReferenciaTrabajo> FiltrarReferenciasTrabajo(string busqueda)
+        {
+            List<ReferenciaTrabajo> referenciasFiltradas = _listaReferenciasTrabajo;
+            if (!string.IsNullOrWhiteSpace(busqueda))
+            {
+                referenciasFiltradas = _listaReferenciasTrabajo.Where(
                     referencia => referencia.nombre.Contains(busqueda) || referencia.direccion.Contains(busqueda) || referencia.telefono.Contains(busqueda))
                     .ToList();
-                CargarListaReferenciasTrabajo(referenciaTrabajos);
             }
+
+            return referenciasFiltradas;
+        }
+
+        private void MostrarReferenciasTrabajoNoEncontradas()
+        {
+            lstBoxReferenciasTrabajo.ItemsSource = new List<ReferenciaTrabajo>();
+            lstBoxReferenciasTrabajo.Style = (Style)FindResource("estiloLstBoxReferenciaTrabajo");
         }
 
         private void ClicAdjuntarReferenciaAlCliente(object sender, RoutedEventArgs e)

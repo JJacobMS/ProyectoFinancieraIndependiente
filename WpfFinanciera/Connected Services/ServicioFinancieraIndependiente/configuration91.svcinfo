@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="I2mgq9KPd1vgrBbMnqzw0di4mRiT17mtcUScB2xlKMw=">
+<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="DJ5n4VfREQ6nzACAAyqYDPCL4O7kM11CKJbPXdaDPMw=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="netTcpBinding" name="NetTcpBinding_IPoliticaOtorgamiento1">
       <properties>
@@ -1065,10 +1065,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="NetTcpBinding_IPoliticaOtorgamiento" contract="ServicioFinancieraIndependiente.IPoliticaOtorgamiento" bindingType="netTcpBinding" address="net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_IPoliticaOtorgamiento1">
+    <endpoint name="NetTcpBinding_IPoliticaOtorgamiento" contract="ServicioFinancieraIndependiente.IPoliticaOtorgamiento" bindingType="netTcpBinding" address="net.tcp://localhost:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_IPoliticaOtorgamiento1">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente</serializedValue>
+          <serializedValue>net.tcp://localhost:8081/ServidorFinancieraIndependiente</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1150,10 +1150,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IUsuario" contract="ServicioFinancieraIndependiente.IUsuario" bindingType="netTcpBinding" address="net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_IUsuario">
+    <endpoint name="NetTcpBinding_IUsuario" contract="ServicioFinancieraIndependiente.IUsuario" bindingType="netTcpBinding" address="net.tcp://localhost:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_IUsuario">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente</serializedValue>
+          <serializedValue>net.tcp://localhost:8081/ServidorFinancieraIndependiente</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1235,10 +1235,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_ITipoUsuario" contract="ServicioFinancieraIndependiente.ITipoUsuario" bindingType="netTcpBinding" address="net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_ITipoUsuario">
+    <endpoint name="NetTcpBinding_ITipoUsuario" contract="ServicioFinancieraIndependiente.ITipoUsuario" bindingType="netTcpBinding" address="net.tcp://localhost:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_ITipoUsuario">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente</serializedValue>
+          <serializedValue>net.tcp://localhost:8081/ServidorFinancieraIndependiente</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1320,10 +1320,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IReferenciaTrabajo" contract="ServicioFinancieraIndependiente.IReferenciaTrabajo" bindingType="netTcpBinding" address="net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_IReferenciaTrabajo">
+    <endpoint name="NetTcpBinding_IReferenciaTrabajo" contract="ServicioFinancieraIndependiente.IReferenciaTrabajo" bindingType="netTcpBinding" address="net.tcp://localhost:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_IReferenciaTrabajo">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente</serializedValue>
+          <serializedValue>net.tcp://localhost:8081/ServidorFinancieraIndependiente</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1405,10 +1405,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_ICondicionCredito" contract="ServicioFinancieraIndependiente.ICondicionCredito" bindingType="netTcpBinding" address="net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_ICondicionCredito">
+    <endpoint name="NetTcpBinding_ICondicionCredito" contract="ServicioFinancieraIndependiente.ICondicionCredito" bindingType="netTcpBinding" address="net.tcp://localhost:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_ICondicionCredito">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente</serializedValue>
+          <serializedValue>net.tcp://localhost:8081/ServidorFinancieraIndependiente</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1490,10 +1490,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_ICredito" contract="ServicioFinancieraIndependiente.ICredito" bindingType="netTcpBinding" address="net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_ICredito">
+    <endpoint name="NetTcpBinding_ICredito" contract="ServicioFinancieraIndependiente.ICredito" bindingType="netTcpBinding" address="net.tcp://localhost:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_ICredito">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente</serializedValue>
+          <serializedValue>net.tcp://localhost:8081/ServidorFinancieraIndependiente</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1575,10 +1575,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_ICliente" contract="ServicioFinancieraIndependiente.ICliente" bindingType="netTcpBinding" address="net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_ICliente">
+    <endpoint name="NetTcpBinding_ICliente" contract="ServicioFinancieraIndependiente.ICliente" bindingType="netTcpBinding" address="net.tcp://localhost:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_ICliente">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente</serializedValue>
+          <serializedValue>net.tcp://localhost:8081/ServidorFinancieraIndependiente</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1660,10 +1660,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IDictamen" contract="ServicioFinancieraIndependiente.IDictamen" bindingType="netTcpBinding" address="net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_IDictamen">
+    <endpoint name="NetTcpBinding_IDictamen" contract="ServicioFinancieraIndependiente.IDictamen" bindingType="netTcpBinding" address="net.tcp://localhost:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_IDictamen">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente</serializedValue>
+          <serializedValue>net.tcp://localhost:8081/ServidorFinancieraIndependiente</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -1745,10 +1745,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="NetTcpBinding_IChecklist" contract="ServicioFinancieraIndependiente.IChecklist" bindingType="netTcpBinding" address="net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_IChecklist">
+    <endpoint name="NetTcpBinding_IChecklist" contract="ServicioFinancieraIndependiente.IChecklist" bindingType="netTcpBinding" address="net.tcp://localhost:8081/ServidorFinancieraIndependiente" bindingConfiguration="NetTcpBinding_IChecklist">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>net.tcp://172.20.10.5:8081/ServidorFinancieraIndependiente</serializedValue>
+          <serializedValue>net.tcp://localhost:8081/ServidorFinancieraIndependiente</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

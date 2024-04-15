@@ -43,16 +43,16 @@
                         <RowDefinition />
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
-                    <Button Click="ClicConsultarClientes" Style="{StaticResource estiloBtnMenuPrincipalPequenioDos}" Margin="60 20 30 20" DataContext="Consultar a los clientes ya registrados" CommandParameter="Clientes">
+                    <Button Click="ClicConsultarClientes" Style="{StaticResource estiloBtnMenuPrincipalPequenioDos}" Margin="60 20 30 20" DataContext="Consultar a los clientes ya registrados" CommandParameter="Búsqueda de Clientes">
                         <Image Source="/Recursos/cliente.png" HorizontalAlignment="Center"></Image>
                     </Button>
                     <Button Click="ClicRegistrarCliente" Grid.Row="1" Style="{StaticResource estiloBtnMenuPrincipalSinImagen}" Margin="60 0 30 0">Registrar Nuevo Cliente</Button>
-                    <Button Click="ClicConsultarCreditos" Grid.Row="2" Style="{StaticResource estiloBtnMenuPrincipalPequenioDos}" Margin="60 0 30 0" DataContext="Consultar la tabla de pagos, el dictamen o realizar un cobro de algún crédito aprobado" CommandParameter="Créditos"
+                    <Button Click="ClicConsultarCreditos" Grid.Row="2" Style="{StaticResource estiloBtnMenuPrincipalPequenioDos}" Margin="60 0 30 0" DataContext="Consultar la tabla de pagos, el dictamen de algún crédito aprobado" CommandParameter="Créditos"
                             Background="#EBEBEB" BorderBrush="#000000">
                         <Image Source="/Recursos/credito.png" HorizontalAlignment="Center"></Image>
                     </Button>
-                    <Button Click="ClicRegistrarSolicitud" Grid.Row="3" Style="{StaticResource estiloBtnMenuPrincipalSinImagen}" Background="#EBEBEB" BorderBrush="#000000"
-                            Margin="60 0 30 20">Registrar Solicitud de Crédito</Button>
+                    <Button Click="ClicRegistrarCobro" Grid.Row="3" Style="{StaticResource estiloBtnMenuPrincipalSinImagen}" Background="#EBEBEB" BorderBrush="#000000"
+                            Margin="60 0 30 20">Registrar Cobro Realizado</Button>
                 </Grid>
             </Viewbox>
             <Viewbox Grid.Column="1" >

@@ -1,0 +1,267 @@
+﻿<Page x:Class="WpfFinanciera.Vistas.DetallesCreditoPagina"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:WpfFinanciera.Vistas"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1336">
+
+    <Page.Resources>
+        <Style x:Key="estiloTxtBlockCampoCredito" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 5"/>
+        </Style>
+        <Style x:Key="estiloTxtBlockInfoCredito" TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0 5"/>
+        </Style>
+
+        <Style x:Key="estiloBtnGenerarDocumento" TargetType="Button">
+            <Setter Property="Background" Value="#000000"/>
+            <Setter Property="Foreground" Value="#ffffff"/>
+            <Setter Property="FontSize" Value="26"/>
+            <Setter Property="Margin" Value="0 20 0 0"/>
+            <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="10" Height="84" Width="280">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15 0">
+                                    <ContentPresenter.ContentTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center"/>
+                                        </DataTemplate>
+                                    </ContentPresenter.ContentTemplate>
+                                </ContentPresenter>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#004545"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#939393"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid Background="#065758">
+            <Button Style="{StaticResource estiloBtnRegresar}" Click="ClicRegresar"/>
+            <TextBlock FontFamily="{StaticResource LeagueSpartanFont}" FontSize="50" Foreground="#FFFFFF" FontWeight="Medium"
+           HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18">Detalles del Crédito</TextBlock>
+        </Grid>
+        <ScrollViewer Grid.Row="1">
+            
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Viewbox Grid.ColumnSpan="2">
+                <Grid Width="1336">
+                <Border Background="#E2FEF0" CornerRadius="20" Margin="20" BorderBrush="#065758" BorderThickness="1" 
+                    Width="1050" Height="145">
+                <Grid Margin="20 15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width=".8*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{StaticResource estiloTxtBlockCampoCredito}">Folio:</TextBlock>
+                    <TextBlock Name="txtBlockFolio" Grid.Row="0" Grid.Column="1" Style="{StaticResource estiloTxtBlockInfoCredito}"></TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource estiloTxtBlockCampoCredito}">Fecha de solicitud:</TextBlock>
+                    <TextBlock Name="txtBlockFecha" Grid.Row="1" Grid.Column="1" Style="{StaticResource estiloTxtBlockInfoCredito}"></TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource estiloTxtBlockCampoCredito}">Estatus:</TextBlock>
+                                <TextBlock Name="txtBlockEstatusCodigo" Grid.Row="2" Grid.Column="1" Style="{StaticResource estiloTxtBlockInfoCredito}"></TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource estiloTxtBlockCampoCredito}">Monto:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource estiloTxtBlockInfoCredito}">
+                        <Run>$</Run>
+                        <Run Name="rnMonto"></Run>
+                    </TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="2" Style="{StaticResource estiloTxtBlockCampoCredito}">Saldo pendiente:</TextBlock>
+                    <TextBlock Grid.Row="1" Grid.Column="3" Style="{StaticResource estiloTxtBlockInfoCredito}">
+                        <Run>$</Run>
+                        <Run Name="rnSaldoPendiente"></Run>
+                    </TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="2" Style="{StaticResource estiloTxtBlockCampoCredito}">Deuda extra:</TextBlock>
+                    <TextBlock Grid.Row="2" Grid.Column="3" Style="{StaticResource estiloTxtBlockInfoCredito}">
+                        <Run>$</Run>
+                        <Run Name="rnDeudaExtra"></Run>
+                    </TextBlock>
+
+                </Grid>
+            </Border>
+            </Grid>
+            </Viewbox>
+
+            <Viewbox Grid.Row="1">
+            <Grid Grid.Row="1" Height="500">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.2*"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+            
+            <Grid Height="200" Width="730">
+                <Border Background="#E2FEF0" CornerRadius="20" Margin="30 0 20 0" BorderBrush="#065758" BorderThickness="1">
+                    <Grid Margin="25 15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid Margin="0 5 0 5">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Style="{StaticResource estiloTxtBlockCampoCredito}">Cliente</TextBlock>
+                            <TextBlock Grid.Column="1" Style="{StaticResource estiloTxtBlockCampoCredito}" FontWeight="Light" HorizontalAlignment="Right" Margin="0 0 10 0">RFC:</TextBlock>
+                            <TextBlock Name="txtBlockRfc" Grid.Column="2" Style="{StaticResource estiloTxtBlockInfoCredito}"></TextBlock>
+                        </Grid>
+                        <TextBlock Grid.Row="1" Style="{StaticResource estiloTxtBlockCampoCredito}" FontWeight="Light">Nombre Completo:</TextBlock>
+                        <TextBlock Name="txtBlockNombre" Grid.Row="2" Style="{StaticResource estiloTxtBlockInfoCredito}" TextWrapping="Wrap" Margin="15 5 0 5"></TextBlock>
+                    </Grid>
+                </Border>
+            </Grid>
+
+            <Grid Grid.Row="2">
+                <Border Width="678" Height="240"
+                        Background="#E2FEF0" CornerRadius="20" Margin="30 20 20 0" BorderBrush="#065758" BorderThickness="1">
+                    <Grid Margin="20 15">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Style="{StaticResource estiloTxtBlockCampoCredito}">Condición de crédito</TextBlock>
+                            <TextBlock Grid.Column="1" Style="{StaticResource estiloTxtBlockInfoCredito}" HorizontalAlignment="Right">Estado de la condición:</TextBlock>
+                            <StackPanel Grid.Column="2" Margin="15 0 0 0">
+                                <Ellipse Name="llpCondicionCreditoEstado" Width="30" Height="30" Fill="#0DB07F"></Ellipse>
+                                            <TextBlock Name="txtBlockEstadoCondicionCredito" FontFamily="{StaticResource LeagueSpartanFont}" FontSize="22"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+                        <Grid Grid.Row="1" Margin="0 10 0 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel VerticalAlignment="Center" Margin="20 0 0 0">
+                                <TextBlock Style="{StaticResource estiloTxtBlockCampoCredito}" FontWeight="Light">Identificador:</TextBlock>
+                                <TextBlock Name="txtBlockIdentificadorCondicion" Style="{StaticResource estiloTxtBlockInfoCredito}"></TextBlock>
+                                <TextBlock Style="{StaticResource estiloTxtBlockCampoCredito}" FontWeight="Light">Descripción:</TextBlock>
+                                <TextBlock Name="txtBlockDescripcionCondicion" Style="{StaticResource estiloTxtBlockInfoCredito}"></TextBlock>
+                            </StackPanel>
+                            <Grid Grid.Column="1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width=".4*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                    <RowDefinition/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Style="{StaticResource estiloTxtBlockCampoCredito}" FontWeight="Light">Plazo Meses:</TextBlock>
+                                <TextBlock Name="txtBlockPlazoMesesCondicion" Grid.Row="0" Grid.Column="1" Style="{StaticResource estiloTxtBlockInfoCredito}"></TextBlock>
+                                <TextBlock Grid.Row="1" Style="{StaticResource estiloTxtBlockCampoCredito}" FontWeight="Light">Tasa de interés:</TextBlock>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource estiloTxtBlockInfoCredito}">
+                                    <Run Name="rnTasaInteres"></Run>
+                                    <Run>%</Run>
+                                </TextBlock>
+                                <TextBlock Grid.Row="2" Style="{StaticResource estiloTxtBlockCampoCredito}" FontWeight="Light">Aplica IVA:</TextBlock>
+                                <StackPanel Grid.Row="2" Grid.Column="1" HorizontalAlignment="Left">
+                                    <Ellipse Name="llpAplicaIva" Width="30" Height="30" Fill="#9B2E24" ></Ellipse>
+                                                <TextBlock Name="txtBlockAplicaIva" FontFamily="{StaticResource LeagueSpartanFont}" FontSize="22"></TextBlock>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                </Border>
+            </Grid>
+            <Grid Grid.Column="1" Grid.RowSpan="2" Margin="0 0 30 0" Height="465" Width="575">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Border Background="#E2FEF0" CornerRadius="20" BorderBrush="#065758" BorderThickness="1">
+                    <Grid Margin="20">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="auto"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Style="{StaticResource estiloTxtBlockCampoCredito}">Dictamen</TextBlock>
+                            <TextBlock Grid.Column="1" Style="{StaticResource estiloTxtBlockCampoCredito}" FontWeight="Light" HorizontalAlignment="Right">Estado:</TextBlock>
+                            <StackPanel Grid.Column="2" Margin="15 0 0 0">
+                                <Ellipse Name="llpEstadoDictamen" Height="30" Width="30" Fill="#9B2E24"></Ellipse>
+                                <TextBlock Name="txtBlockEstadoDictamen" FontFamily="{StaticResource LeagueSpartanFont}" FontSize="22"></TextBlock>
+                            </StackPanel>
+                        </Grid>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0 10">
+                            <TextBlock Style="{StaticResource estiloTxtBlockCampoCredito}" FontWeight="Light" VerticalAlignment="Center" Margin="0">Fecha:</TextBlock>
+                            <TextBlock Name="txtBlockFechaDictamen" Style="{StaticResource estiloTxtBlockInfoCredito}" VerticalAlignment="Center" Margin="10 0"></TextBlock>
+                        </StackPanel>
+                        <TextBlock Grid.Row="2" Style="{StaticResource estiloTxtBlockCampoCredito}" FontWeight="Light">Observaciones:</TextBlock>
+                        <ScrollViewer Height="100" Grid.Row="3" VerticalScrollBarVisibility="Visible" Background="#FFFFFF" BorderBrush="#000000" BorderThickness="1" Margin="0 0 0 10">
+                            <TextBlock Name="txtBlockObservacionesDictamen" TextWrapping="Wrap" Style="{StaticResource estiloTxtBlockInfoCredito}"></TextBlock>
+                        </ScrollViewer>
+                        <TextBlock Grid.Row="4" Style="{StaticResource estiloTxtBlockCampoCredito}" FontWeight="Light">Examinado por:</TextBlock>
+                        <TextBlock Name="txtBlockUsuarioDictamen" Grid.Row="5" Style="{StaticResource estiloTxtBlockInfoCredito}"></TextBlock>
+                    </Grid>
+                </Border>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Name="btnGenerarDocumento" Style="{StaticResource estiloBtnGenerarDocumento}" Click="ClicGenerarDocumento">Generar Documento del Dictamen en PDF</Button>
+                    <Button Name="btnConsultarTablaPagos" Grid.Column="1" Style="{StaticResource estiloBtnGenerarDocumento}">Consultar tabla de pagos programados</Button>
+                </Grid>
+            </Grid>
+            </Grid>
+            </Viewbox>
+        </Grid>
+
+        </ScrollViewer>
+    </Grid>
+</Page>

@@ -232,7 +232,7 @@
             <Viewbox Grid.Row="1">
                 <Border BorderBrush="#000000"  Margin="0 10 0 20" Height="520" Width="1300">
                     <Grid>
-                        <ListBox HorizontalAlignment="Center" Name="lstBoxReferenciasTrabajo" Width="1290"
+                        <ListBox HorizontalAlignment="Center" Name="lstBoxReferenciasTrabajo" Width="1290" 
                                  ItemContainerStyle="{StaticResource estiloLstItemReferenciaTrabajo}" ScrollViewer.VerticalScrollBarVisibility="Visible">
                         </ListBox>
                     </Grid>
