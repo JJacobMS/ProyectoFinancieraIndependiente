@@ -52,6 +52,52 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
+
+        <Style x:Key="estiloBtnDescargarDocumento" TargetType="Button">
+            <Setter Property="Background" Value="#065758"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" Height="50" Width="50" CornerRadius="25">
+                            <Image Source="/Recursos/descargar.png" Margin="10"></Image>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#A9D4D6"/>
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="estiloBtnArchivoAdjuntado" TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="#FFFFFF" BorderBrush="#065758" BorderThickness="3" CornerRadius="10">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width="auto"/>
+                                </Grid.ColumnDefinitions>
+                                <ContentPresenter>
+                                    <ContentPresenter.ContentTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding}" Style="{StaticResource estiloTxtBlockFormularioCliente}" FontSize="22"
+                                                       TextWrapping="Wrap" Width="200" HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+                                        </DataTemplate>
+                                    </ContentPresenter.ContentTemplate>
+                                </ContentPresenter>
+                                <Button Grid.Column="1" Style="{StaticResource estiloBtnDescargarDocumento}" 
+                                    CommandParameter="{TemplateBinding CommandParameter}" Margin="5"></Button>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </Page.Resources>
 
     <Grid Background="White">
@@ -243,7 +289,7 @@
                         </StackPanel>
                         <TextBlock Grid.Row="2" Style="{StaticResource estiloTxtBlockCampoCredito}" FontWeight="Light">Observaciones:</TextBlock>
                         <ScrollViewer Height="100" Grid.Row="3" VerticalScrollBarVisibility="Visible" Background="#FFFFFF" BorderBrush="#000000" BorderThickness="1" Margin="0 0 0 10">
-                            <TextBlock Name="txtBlockObservacionesDictamen" TextWrapping="Wrap" Style="{StaticResource estiloTxtBlockInfoCredito}"></TextBlock>
+                            <TextBlock Name="txtBlockObservacionesDictamen" TextWrapping="Wrap" Style="{StaticResource estiloTxtBlockInfoCredito}" Margin="10 0 10 0"></TextBlock>
                         </ScrollViewer>
                         <TextBlock Grid.Row="4" Style="{StaticResource estiloTxtBlockCampoCredito}" FontWeight="Light">Examinado por:</TextBlock>
                         <TextBlock Name="txtBlockUsuarioDictamen" Grid.Row="5" Style="{StaticResource estiloTxtBlockInfoCredito}"></TextBlock>
@@ -254,7 +300,7 @@
                         <ColumnDefinition/>
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
-                    <Button Name="btnGenerarDocumento" Style="{StaticResource estiloBtnGenerarDocumento}" Click="ClicGenerarDocumento">Generar Documento del Dictamen en PDF</Button>
+                    <Button Name="btnGenerarDocumento" Style="{StaticResource estiloBtnGenerarDocumento}" Click="ClicGenerarDocumento" Margin="0 20 0 0">Generar Documento del Dictamen en PDF</Button>
                     <Button Name="btnConsultarTablaPagos" Grid.Column="1" Style="{StaticResource estiloBtnGenerarDocumento}">Consultar tabla de pagos programados</Button>
                 </Grid>
             </Grid>

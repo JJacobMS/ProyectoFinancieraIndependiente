@@ -216,8 +216,7 @@ namespace WpfFinanciera.Vistas
             TipoDocumento tipo = new TipoDocumento { descripcion = "Referencia Cliente " +  _numeroReferenciaCliente};
             Documento documentoReferencia = new Documento
             {
-                idDocumento = 0, archivo = _documentoReferencia, nombre = Path.GetFileNameWithoutExtension(_nombreArchivo), 
-                extension = Path.GetExtension(_nombreArchivo), TipoDocumento = tipo
+                idDocumento = 0, archivo = _documentoReferencia, nombre = Path.GetFileName(_nombreArchivo), TipoDocumento = tipo
             };
             ReferenciaCliente referenciaCliente = new ReferenciaCliente
             {

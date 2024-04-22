@@ -30,6 +30,9 @@ namespace WpfFinanciera.Vistas
         private ReferenciaCliente[] _referenciasCliente = new ReferenciaCliente[2];
         private ReferenciaTrabajo _referenciaTrabajo;
         private bool _esRedirigidoBusquedaRFC = false;
+
+        private Cliente _clienteFormulario;
+
         public FormularioClientePagina()
         {
             InitializeComponent();
@@ -43,6 +46,235 @@ namespace WpfFinanciera.Vistas
 
             txtBoxRFCCliente.Text = rfcClienteNuevo;
             _esRedirigidoBusquedaRFC = true;
+        }
+
+        public FormularioClientePagina(Cliente cliente)
+        {
+            InitializeComponent();
+            CargarPaginaFormularioActualizar(cliente);
+        }
+
+        private void CargarPaginaFormularioActualizar(Cliente cliente)
+        {
+            _documentos.Add("Identificación Oficial", null);
+            _documentos.Add("Comprobante Domicilio", null);
+            _documentos.Add("Comprobante Ingreso", null);
+            _documentos.Add("Comprobante Trabajo", null);
+            _documentos.Add("Referencia Cliente 1", null);
+            _documentos.Add("Referencia Cliente 2", null);
+
+            _botonesTipoArchivo.Add("Identificación Oficial", btnAgregarArchivoIdentificacion);
+            _botonesTipoArchivo.Add("Comprobante Domicilio", btnAgregarComprobanteDomicilio);
+            _botonesTipoArchivo.Add("Comprobante Ingreso", btnAgregarComprobanteIngreso);
+            _botonesTipoArchivo.Add("Comprobante Trabajo", btnAgregarComprobanteTrabajo);
+
+            btnGuardarCambios.Content = "Guardar Cambios del Cliente";
+            btnGuardarCambios.Click -= ClicRegistrarCliente;
+            btnGuardarCambios.Click += ClicGuardarCambiosCliente;
+            
+            btnActualizarReferenciaTrabajo.Content = "Actualizar Referencia de Trabajo";
+            btnActualizarReferenciaTrabajo.Click -= ClicSeleccionarReferenciaTrabajo;
+            btnActualizarReferenciaTrabajo.Click += ClicActualizarReferenciaTrabajo;
+
+            txtBlockActualizarReferencia1.Text = "Actualizar Referencia del Cliente";
+            btnActualizarReferenciaCliente1.Click -= ClicRegistrarReferenciaCliente;
+            btnActualizarReferenciaCliente1.Click += ClicActualizarReferenciaCliente;
+
+            txtBlockActualizarReferencia2.Text = "Actualizar Referencia del Cliente";
+            btnActualizarReferenciaCliente2.Click -= ClicRegistrarReferenciaCliente;
+            btnActualizarReferenciaCliente2.Click += ClicActualizarReferenciaCliente;
+
+            txtBlockTituloPagina.Text = "Actualización del Cliente";
+
+            txtBoxRFCCliente.IsEnabled = false;
+
+            RecuperarDetallesCliente(cliente.rfc);
+        }
+
+        private void RecuperarDetallesCliente(string rfc)
+        {
+            _clienteFormulario = new Cliente();
+            Codigo codigo;
+            try
+            {
+                Cliente clienteRecuperado;
+                ClienteClient proxy = new ClienteClient();
+                (clienteRecuperado, codigo) = proxy.RecuperarDetallesClienteFormulario(rfc);
+
+                if (clienteRecuperado != null)
+                {
+                    _clienteFormulario = clienteRecuperado;
+                }
+            }
+            catch (CommunicationException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    MostrarInformacionCliente();
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBaseDatos();
+                    break;
+            }
+
+        }
+
+        private void MostrarInformacionCliente()
+        {
+            txtBoxNombreCliente.Text = _clienteFormulario.nombres;
+            txtBoxApellidoCliente.Text = _clienteFormulario.apellidos;
+            txtBoxTelefonoCasaCliente.Text = _clienteFormulario.Telefono[0].numeroTelefonico;
+            txtBoxTelefonoPersonalCliente.Text = _clienteFormulario.Telefono[1].numeroTelefonico;
+            txtBoxRFCCliente.Text = _clienteFormulario.rfc;
+            txtBoxCuentaCobroCliente.Text = _clienteFormulario.cuentaCobro;
+            txtBoxCuentaDepositoCliente.Text = _clienteFormulario.cuentaDeposito;
+            txtBoxCorreoCliente.Text = _clienteFormulario.correoElectronico;
+            txtBoxDireccionCliente.Text = _clienteFormulario.direccion;
+
+            txtBoxNombreReferenciaTrabajo.Text = _clienteFormulario.ReferenciaTrabajo.nombre;
+            txtBoxDireccionReferenciaTrabajo.Text = _clienteFormulario.ReferenciaTrabajo.direccion;
+            txtBoxTelefonoReferenciaTrabajo.Text = _clienteFormulario.ReferenciaTrabajo.telefono;
+
+            txtBoxNombreReferenciaCliente1.Text = _clienteFormulario.ReferenciaCliente[0].nombres + _clienteFormulario.ReferenciaCliente[0].apellidos;
+            txtBoxDescripcionReferenciaCliente1.Text = _clienteFormulario.ReferenciaCliente[0].descripcion;
+            txtBoxTelefonoReferenciaCliente1.Text = _clienteFormulario.ReferenciaCliente[0].telefono;
+
+            txtBoxNombreReferenciaCliente2.Text = _clienteFormulario.ReferenciaCliente[1].nombres + _clienteFormulario.ReferenciaCliente[1].apellidos;
+            txtBoxDescripcionReferenciaCliente2.Text = _clienteFormulario.ReferenciaCliente[1].descripcion;
+            txtBoxTelefonoReferenciaCliente2.Text = _clienteFormulario.ReferenciaCliente[1].telefono;
+
+            for (int i=0; i < _clienteFormulario.Documento.Length; i++)
+            {
+                Documento documento = _clienteFormulario.Documento[i];
+                if (_botonesTipoArchivo.ContainsKey(documento.TipoDocumento.descripcion))
+                {
+                    Button btnDocumento = _botonesTipoArchivo[documento.TipoDocumento.descripcion];
+                    _botonesTipoArchivo[documento.TipoDocumento.descripcion].Style = (Style)FindResource("estiloBtnArchivoAdjuntado");
+                    btnDocumento.Click -= ClicAgregarArchivo;
+                    btnDocumento.DataContext = documento.nombre;
+                    btnDocumento.CommandParameter = documento.TipoDocumento.descripcion;
+                }
+
+                _documentos[documento.TipoDocumento.descripcion] = documento;
+            }
+
+            _referenciaTrabajo = _clienteFormulario.ReferenciaTrabajo;
+            _referenciasCliente = _clienteFormulario.ReferenciaCliente;
+        }
+
+        private void ClicActualizarReferenciaTrabajo(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Waos");
+        }
+
+        private void ClicActualizarReferenciaCliente(object sender, RoutedEventArgs e)
+        {
+            Console.WriteLine("Waos");
+        }
+
+        private void ClicGuardarCambiosCliente(object sender, RoutedEventArgs e)
+        {
+            bool sonCamposValidos = ValidarCamposVaciosYValidos();
+            if (sonCamposValidos)
+            {
+                bool documentoExcedeTamanio = ValidarTamanioArchivo();
+                if (!documentoExcedeTamanio)
+                {
+                    MostrarVentanaConfirmacionActualizar();
+                }
+            }
+        }
+
+        private void MostrarVentanaConfirmacionActualizar()
+        {
+            VentanaMensaje ventana = new VentanaMensaje("¿Desea actualizar al cliente " + txtBoxNombreCliente.Text + " ?", Mensaje.CONFIRMACION);
+            if (ventana.MostrarConfirmacion())
+            {
+                ActualizarInformacionRegistrada();
+            }
+        }
+
+        private void ActualizarInformacionRegistrada()
+        {
+            Telefono[] telefonos = new Telefono[2];
+            telefonos[0] = new Telefono { numeroTelefonico = txtBoxTelefonoCasaCliente.Text };
+            telefonos[1] = new Telefono { numeroTelefonico = txtBoxTelefonoPersonalCliente.Text };
+
+
+            Cliente cliente = new Cliente
+            {
+                nombres = txtBoxNombreCliente.Text.Trim(),
+                esDeudor = false,
+                apellidos = txtBoxApellidoCliente.Text.Trim(),
+                rfc = txtBoxRFCCliente.Text.Trim(),
+                cuentaCobro = txtBoxCuentaCobroCliente.Text.Trim(),
+                cuentaDeposito = txtBoxCuentaDepositoCliente.Text.Trim(),
+                correoElectronico = txtBoxCorreoCliente.Text.Trim(),
+                direccion = txtBoxDireccionCliente.Text.Trim(),
+                Telefono = telefonos
+            };
+
+            Documento[] documentosCliente = new Documento[6];
+            int i = 0;
+            foreach (KeyValuePair<string, Documento> entrada in _documentos)
+            {
+                documentosCliente[i] = entrada.Value;
+                i++;
+            }
+
+            cliente.Documento = documentosCliente;
+
+            Codigo codigo;
+            try
+            {
+                ClienteClient proxy = new ClienteClient();
+                codigo = proxy.ActualizarInformacionCliente(cliente);
+            }
+            catch (CommunicationException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    MostrarVentanaExitoActualizacion();
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBaseDatos();
+                    break;
+            }
+        }
+        private void MostrarVentanaExitoActualizacion()
+        {
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            BusquedaRFCCliente busqueda = new BusquedaRFCCliente();
+            ventanaPrincipal.CambiarPagina(busqueda);
+
+            VentanaMensaje ventana = new VentanaMensaje("Se ha actualizado al cliente exitosamente", Mensaje.EXITO);
+            ventana.Mostrar();
         }
 
         private void CargarPaginaFormularioCliente()
@@ -105,8 +337,7 @@ namespace WpfFinanciera.Vistas
                     {
                         idDocumento = 0,
                         archivo = archivo,
-                        nombre = Path.GetFileNameWithoutExtension(nombreArchivo),
-                        extension = Path.GetExtension(nombreArchivo),
+                        nombre = Path.GetFileName(nombreArchivo),
                         TipoDocumento = tipo
                     };
 
@@ -504,8 +735,8 @@ namespace WpfFinanciera.Vistas
         private void MostrarVentanaExitoRegistro()
         {
             MainWindow ventanaPrincipal = (MainWindow) Window.GetWindow(this);
-            MenuPrincipalAsesorCreditoPagina menuAsesor = new MenuPrincipalAsesorCreditoPagina();
-            ventanaPrincipal.CambiarPagina(menuAsesor);
+            BusquedaRFCCliente busqueda = new BusquedaRFCCliente();
+            ventanaPrincipal.CambiarPagina(busqueda);
 
             VentanaMensaje ventana = new VentanaMensaje("Se ha registrado al cliente exitosamente", Mensaje.EXITO);
             ventana.Mostrar();

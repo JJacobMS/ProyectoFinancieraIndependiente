@@ -1,13 +1,18 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -22,7 +27,9 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class DetallesCreditoPagina : Page
     {
-        private Credito credito;
+        private Credito _credito;
+        private byte[] _dictamen;
+
         public DetallesCreditoPagina(Credito credito)
         {
             InitializeComponent();
@@ -31,95 +38,108 @@ namespace WpfFinanciera.Vistas
 
         private void ClicRegresar(object sender, RoutedEventArgs e)
         {
-
+            ListaCreditosPagina lista = new ListaCreditosPagina();
+            MainWindow main = (MainWindow)Window.GetWindow(this);
+            main.CambiarPagina(lista);
         }
 
         private void CargarDetallesCredito(Credito credito)
         {
-            this.credito = credito;
-            RecuperarDetallesCredito();
-            CargarDetallesCredito();
-            if (this.credito.Dictamen == null)
-            {
-                DeshabilitarBotones();
-            }
+            RecuperarDetallesCredito(credito.folioCredito);
         }
 
-        private void RecuperarDetallesCredito()
+        private void RecuperarDetallesCredito(int folio)
         {
-            EstatusCredito estatusA = new EstatusCredito { nombre = "Aprobado" };
-            Usuario us = new Usuario
+            _credito = new Credito();
+            Codigo codigo;
+            try
             {
-                nombres = "Jazmin", apellidos = "Matinez Aguilar"
-            };
-            Dictamen dictamen = new Dictamen
+                Credito creditoRecuperado;
+                CreditoClient proxy = new CreditoClient();
+                (creditoRecuperado, codigo) = proxy.RecuperarTodosDetallesCredito(folio);
+
+                if (creditoRecuperado != null)
+                {
+                    _credito = creditoRecuperado;
+                }
+            }
+            catch (CommunicationException ex)
             {
-                estaAprobado = true, fechaHora = DateTime.Now, Usuario = us,
-                observaciones = "dvsvs vsfv sf e dvsvs vsfv sf e dvsvs vsfv sf e dvsvs vsfv sf e dvsvs vsfv sf e dvsvs vsfv sf e dvsvs vsfv sf e dvsvs vsfv sf e dvsvs vsfv sf e dvsvs sf e"
-            };
-
-
-            Cliente cl = new Cliente
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+            catch (TimeoutException ex)
             {
-                rfc = "QU27805274802", nombres = "Sulem", apellidos = "Martinez Aguilar"
-
-            };
-
-            CondicionCredito con = new CondicionCredito
-            {
-                estaActiva = true, identificador = "CC-01", descripcion = "dvsvs vsfv sf e", plazoMeses = 10, tasaInteres = 10,
-                tieneIVA = true
-            };
-
-            Credito creditoNuevo = new Credito
-            {
-                folioCredito = 163913951, fechaSolicitud = DateTime.Now, EstatusCredito = estatusA, monto = 200020, saldoPendiente = 9892,
-                deudaExtra = 68, Cliente = cl, CondicionCredito = con, Dictamen = new Dictamen[1]
-            };
-
-            if (creditoNuevo.Dictamen != null)
-            {
-                creditoNuevo.Dictamen[0] = dictamen;
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
             }
 
-            credito = creditoNuevo;
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    CargarDetallesCredito();
+                    if (_credito.Dictamen == null)
+                    {
+                        DeshabilitarBotones();
+                    }
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBaseDatos();
+                    break;
+            }
+
         }
+        private void MostrarVentanaErrorServidor()
+        {
+            VentanaMensaje ventana = new VentanaMensaje("Error. No se pudo conectar con el servidor.Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            ventana.Mostrar();
+        }
+
+        private void MostrarVentanaErrorBaseDatos()
+        {
+            VentanaMensaje ventana = new VentanaMensaje("Error. No se pudo conectar con la base de datos.Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            ventana.Mostrar();
+        }
+
 
         private void CargarDetallesCredito()
         {
-            txtBlockRfc.Text = credito.Cliente.rfc;
-            txtBlockNombre.Text = credito.Cliente.nombres + " " + credito.Cliente.apellidos;
+            txtBlockRfc.Text = _credito.Cliente.rfc;
+            txtBlockNombre.Text = _credito.Cliente.nombres + " " + _credito.Cliente.apellidos;
 
-            txtBlockEstadoCondicionCredito.Text = (credito.CondicionCredito.estaActiva) ? "Activa" : "No activa";
-            llpCondicionCreditoEstado.Fill = credito.CondicionCredito.estaActiva ?
+            txtBlockEstadoCondicionCredito.Text = (_credito.CondicionCredito.estaActiva) ? "Activa" : "No activa";
+            llpCondicionCreditoEstado.Fill = _credito.CondicionCredito.estaActiva ?
                 (SolidColorBrush)new BrushConverter().ConvertFromString("#0DB07F") :
                 (SolidColorBrush)new BrushConverter().ConvertFromString("#9B2E24");
 
-            txtBlockIdentificadorCondicion.Text = credito.CondicionCredito.identificador;
-            txtBlockDescripcionCondicion.Text = credito.CondicionCredito.descripcion;
-            txtBlockPlazoMesesCondicion.Text = credito.CondicionCredito.plazoMeses.ToString();
-            rnTasaInteres.Text = credito.CondicionCredito.tasaInteres.ToString();
-            txtBlockAplicaIva.Text = (credito.CondicionCredito.tieneIVA) ? "Aplica" : "No aplica";
-            llpAplicaIva.Fill = credito.CondicionCredito.tieneIVA ?
+            txtBlockIdentificadorCondicion.Text = _credito.CondicionCredito.identificador;
+            txtBlockDescripcionCondicion.Text = _credito.CondicionCredito.descripcion;
+            txtBlockPlazoMesesCondicion.Text = _credito.CondicionCredito.plazoMeses.ToString();
+            rnTasaInteres.Text = _credito.CondicionCredito.tasaInteres.ToString();
+            txtBlockAplicaIva.Text = (_credito.CondicionCredito.tieneIVA) ? "Aplica" : "No aplica";
+            llpAplicaIva.Fill = _credito.CondicionCredito.tieneIVA ?
                 (SolidColorBrush)new BrushConverter().ConvertFromString("#0DB07F") :
                 (SolidColorBrush)new BrushConverter().ConvertFromString("#9B2E24");
 
-            txtBlockFolio.Text = credito.folioCredito.ToString();
-            txtBlockFecha.Text = credito.fechaSolicitud.ToString("dd/MM/yyyy HH:mm");
-            txtBlockEstatusCodigo.Text = credito.EstatusCredito.nombre;
-            rnMonto.Text = credito.monto.ToString("#,##0");
-            rnSaldoPendiente.Text = credito.saldoPendiente.ToString("#,##0"); ;
-            rnDeudaExtra.Text = credito.deudaExtra.ToString("#,##0");
+            txtBlockFolio.Text = _credito.folioCredito.ToString();
+            txtBlockFecha.Text = _credito.fechaSolicitud.ToString("dd/MM/yyyy HH:mm");
+            txtBlockEstatusCodigo.Text = _credito.EstatusCredito.nombre;
+            rnMonto.Text = _credito.monto.ToString("#,##0");
+            rnSaldoPendiente.Text = _credito.saldoPendiente.ToString("#,##0"); ;
+            rnDeudaExtra.Text = _credito.deudaExtra.ToString("#,##0");
 
-            if (credito.Dictamen != null)
+            if (_credito.Dictamen != null)
             {
-                txtBlockEstadoDictamen.Text = (credito.Dictamen[0].estaAprobado) ? "Activo" : "No activo";
-                llpEstadoDictamen.Fill = credito.Dictamen[0].estaAprobado ?
+                txtBlockEstadoDictamen.Text = (_credito.Dictamen[0].estaAprobado) ? "Activo" : "No activo";
+                llpEstadoDictamen.Fill = _credito.Dictamen[0].estaAprobado ?
                     (SolidColorBrush)new BrushConverter().ConvertFromString("#0DB07F") :
                     (SolidColorBrush)new BrushConverter().ConvertFromString("#9B2E24");
-                txtBlockFechaDictamen.Text = credito.Dictamen[0].fechaHora.ToString("dd/MM/yyyy HH:mm");
-                txtBlockObservacionesDictamen.Text = credito.Dictamen[0].observaciones.ToString();
-                txtBlockUsuarioDictamen.Text = credito.Dictamen[0].Usuario.nombres + " " + credito.Dictamen[0].Usuario.apellidos;
+                txtBlockFechaDictamen.Text = _credito.Dictamen[0].fechaHora.ToString("dd/MM/yyyy HH:mm");
+                txtBlockObservacionesDictamen.Text = _credito.Dictamen[0].observaciones.ToString();
+                txtBlockUsuarioDictamen.Text = _credito.Dictamen[0].Usuario.nombres + " " + _credito.Dictamen[0].Usuario.apellidos;
             }
             else
             {
@@ -140,7 +160,39 @@ namespace WpfFinanciera.Vistas
 
         private void GenerarDocumento()
         {
-            GeneracionDictamen.GenerarDictamen();
+            _dictamen = GeneracionDictamen.GenerarDictamen(_credito);
+            MostrarDescargaDocumento();
+        }
+
+        private void MostrarDescargaDocumento()
+        {
+            btnGenerarDocumento.Content = "DICTAMEN_CREDITO_" + _credito.folioCredito + ".pdf";
+            btnGenerarDocumento.Style = (Style)FindResource("estiloBtnArchivoAdjuntado");
+            btnGenerarDocumento.Click -= ClicGenerarDocumento;
+            btnGenerarDocumento.Click += ClicDescargarDocumento;
+        }
+
+        private void ClicDescargarDocumento(object sender, RoutedEventArgs e)
+        {
+            DescargarDocumento();
+        }
+
+        private void DescargarDocumento()
+        {
+            FolderBrowserDialog dialog = new FolderBrowserDialog();
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                string ruta = dialog.SelectedPath + "/" + btnGenerarDocumento.Content;
+                File.WriteAllBytes(ruta, _dictamen);
+                MostrarVentanaExitoDescarga();
+
+            }
+        }
+
+        private void MostrarVentanaExitoDescarga()
+        {
+            VentanaMensaje ventana = new VentanaMensaje("Se ha descargado el documento del dictamen exitosamente", Mensaje.EXITO);
+            ventana.Mostrar();
         }
     }
 }

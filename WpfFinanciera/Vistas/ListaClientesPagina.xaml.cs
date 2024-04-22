@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfFinanciera.ServicioFinancieraIndependiente;
+using WpfFinanciera.Utilidades;
 
 namespace WpfFinanciera.Vistas
 {
@@ -21,7 +23,8 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class ListaClientesPagina : Page
     {
-        private List<Cliente> clientes;
+        private List<Cliente> _clientes;
+
         public ListaClientesPagina()
         {
             InitializeComponent();
@@ -35,25 +38,62 @@ namespace WpfFinanciera.Vistas
 
         private void RecuperarClientes()
         {
-            List<Cliente> clientes = new List<Cliente>
+            _clientes = new List<Cliente>();
+            Codigo codigo;
+            try
             {
-                new Cliente{nombres = "Sulem A", apellidos = "Martinez Aguilar aaaaaa", rfc = "Q83891bvnab3"},
-                new Cliente{nombres = "Jamzin A", apellidos = "Martinez Aguilar aaaaaa", rfc = "R7948fidnsjnj"},
-                new Cliente{nombres = "Jacobo A", apellidos = "Monyiel ifivsofv aaaaaa", rfc = "Sbvjoda82990"}
-            };
-
-            this.clientes = clientes;
-
-            if (clientes.Count == 0)
-            {
-                MostrarNoHayClientesRegistrados();
+                Cliente[] clientesRecuperados;
+                ClienteClient proxy = new ClienteClient();
+                (clientesRecuperados, codigo) = proxy.RecuperarClientesRegistrados();
+                if (clientesRecuperados != null)
+                {
+                    _clientes = clientesRecuperados.ToList();
+                }
             }
-            else
+            catch (CommunicationException ex)
             {
-                CargarListaClientes(clientes);
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
             }
-                        
+            catch (TimeoutException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    if (_clientes.Count == 0)
+                    {
+                        MostrarNoHayClientesRegistrados();
+                    }
+                    else
+                    {
+                        CargarListaClientes(_clientes);
+                    }
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBaseDatos();
+                    break;
+            }                        
         }
+
+        private void MostrarVentanaErrorServidor()
+        {
+            VentanaMensaje ventana = new VentanaMensaje("Error. No se pudo conectar con el servidor.Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            ventana.Mostrar();
+        }
+
+        private void MostrarVentanaErrorBaseDatos()
+        {
+            VentanaMensaje ventana = new VentanaMensaje("Error. No se pudo conectar con la base de datos.Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            ventana.Mostrar();
+        }
+
 
         private void MostrarNoHayClientesRegistrados()
         {
@@ -83,11 +123,11 @@ namespace WpfFinanciera.Vistas
 
         private List<Cliente> FiltrarClientes()
         {
-            List<Cliente> clientesFiltrados = clientes;
+            List<Cliente> clientesFiltrados = _clientes;
             string busqueda = txtBoxBarraBuscar.Text.Trim();
             if (!string.IsNullOrWhiteSpace(busqueda))
             {
-                clientesFiltrados = clientes.Where(
+                clientesFiltrados = _clientes.Where(
                    cliente => cliente.rfc.Contains(busqueda) || (cliente.nombres + " " + cliente.apellidos).Contains(busqueda)).ToList();
             }
 
@@ -101,14 +141,18 @@ namespace WpfFinanciera.Vistas
 
         private void ClicVerMas(object sender, RoutedEventArgs e)
         {
-            DetallesClientePagina clienteDetalles = new DetallesClientePagina();
+            Button btn = sender as Button;
+            Cliente cliente = btn.CommandParameter as Cliente;
+            DetallesClientePagina clienteDetalles = new DetallesClientePagina(cliente);
             MainWindow ventanaPrincipal = (MainWindow) Window.GetWindow(this);
             ventanaPrincipal.CambiarPagina(clienteDetalles);
         }
 
         private void ClicRegresar(object sender, RoutedEventArgs e)
         {
-
+            MenuPrincipalAnalistaCreditoPagina menu = new MenuPrincipalAnalistaCreditoPagina();
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            ventanaPrincipal.CambiarPagina(menu);
         }
     }
 }

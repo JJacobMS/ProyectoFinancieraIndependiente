@@ -55,32 +55,16 @@
                                     <ColumnDefinition/>
                                     <ColumnDefinition Width="auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Margin="10 10 10 10" Width="100" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
-                                        Style="{StaticResource estiloTxtBlockFormularioCliente}" FontSize="16" TextWrapping="Wrap" Text="{Binding}"></TextBlock>
-                                <Button Grid.Column="1" Style="{StaticResource estiloBtnDescargarDocumento}" 
-                                     CommandParameter="{TemplateBinding CommandParameter}" Margin="5"></Button>
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="estiloBtnAgregarArchivo" TargetType="Button">
-            <Setter Property="Background" Value="#127B7C"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}" BorderBrush="#000000" BorderThickness="1" CornerRadius="10" Height="84" Width="161">
-                            <Button Style="{StaticResource estiloBtnAgregarDocumentoFormularioCliente}" >
                                 <ContentPresenter>
                                     <ContentPresenter.ContentTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding}" TextWrapping="Wrap" TextAlignment="Center"/>
+                                            <TextBlock Margin="10 10 10 10" Width="180" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center"
+                                                    Style="{StaticResource estiloTxtBlockFormularioCliente}" FontSize="19" TextWrapping="Wrap" Text="{Binding}"></TextBlock>
                                         </DataTemplate>
                                     </ContentPresenter.ContentTemplate>
                                 </ContentPresenter>
-                            </Button>
+                                <Button Grid.Column="1" Style="{StaticResource estiloBtnDescargarDocumento}" Margin="5"></Button>
+                            </Grid>
                         </Border>
                     </ControlTemplate>
                 </Setter.Value>
@@ -99,9 +83,7 @@
                     HorizontalAlignment="Center" VerticalAlignment="Center" Margin="18">Datos del Cliente</TextBlock>
         </Grid>
         <ScrollViewer Grid.Row="1">
-            
-        
-        <Grid Grid.Row="1">
+            <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
@@ -126,9 +108,9 @@
                                     <RowDefinition/>
                                 </Grid.RowDefinitions>
                                 <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Nombre(s):</TextBlock>
-                                <TextBox Grid.Row="1" Name="txtBoxNombreCliente" Style="{StaticResource estiloTxtBoxDetallesCliente}">Sulem</TextBox>
+                            <TextBox Grid.Row="1" Name="txtBoxNombreCliente" Style="{StaticResource estiloTxtBoxDetallesCliente}"></TextBox>
                                 <TextBlock Grid.Row="2" Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Apellidos:</TextBlock>
-                                <TextBox Grid.Row="3" Name="txtBoxApellidoCliente" Style="{StaticResource estiloTxtBoxDetallesCliente}">Martinez</TextBox>
+                            <TextBox Grid.Row="3" Name="txtBoxApellidoCliente" Style="{StaticResource estiloTxtBoxDetallesCliente}"></TextBox>
                                 <Grid Grid.Row="0" Grid.Column="1" Margin="20 0 0 0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="1.3*"/>
@@ -179,17 +161,17 @@
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
                                     <StackPanel Margin="0 0 20 0">
-                                        <TextBox Name="txtBlockCuentaCobroCliente" Style="{StaticResource estiloTxtBoxDetallesCliente}"></TextBox>
+                                        <TextBox Name="txtBoxCuentaCobroCliente" Style="{StaticResource estiloTxtBoxDetallesCliente}"></TextBox>
                                     </StackPanel>
                                     <StackPanel Grid.Column="1" Margin="10 0 0 0">
-                                        <TextBox Name="txtBlockCuentaDepositoCliente" Style="{StaticResource estiloTxtBoxDetallesCliente}" ></TextBox>
+                                        <TextBox Name="txtBoxCuentaDepositoCliente" Style="{StaticResource estiloTxtBoxDetallesCliente}" ></TextBox>
                                     </StackPanel>
                                 </Grid>
                                 <StackPanel Grid.Row="4">
                                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Correo Electrónico:</TextBlock>
                                     <TextBox Name="txtBoxCorreoCliente" Style="{StaticResource estiloTxtBoxDetallesCliente}"></TextBox>
                                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Dirección:</TextBlock>
-                                    <TextBox Name="txtBoxDireccionCliente" Style="{StaticResource estiloTxtBoxDetallesCliente}"></TextBox>
+                                    <TextBox Name="txtBoxDireccionCliente" Style="{StaticResource estiloTxtBoxDetallesCliente}" TextWrapping="Wrap" Height="60"></TextBox>
                                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Estado:</TextBlock>
                                     <Grid>
                                         <Grid.ColumnDefinitions>
@@ -215,7 +197,7 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Identificación oficial:</TextBlock>
-                                    <Button Grid.Row="1" Style="{StaticResource estiloBtnArchivoAdjuntado}"></Button>
+                                    <Button Name="btnDescargarIdentificacion" Grid.Row="1" Style="{StaticResource estiloBtnArchivoAdjuntado}" Click="ClicDescargarDocumento"></Button>
                                 </Grid>
                                 <Grid Grid.Row="1" Margin="0 0 10 0">
                                     <Grid.RowDefinitions>
@@ -223,7 +205,7 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Comprobante de ingreso:</TextBlock>
-                                    <Button Grid.Row="1" Style="{StaticResource estiloBtnArchivoAdjuntado}"></Button>
+                                    <Button x:Name="btnDescargarComprobanteIngreso" Grid.Row="1" Style="{StaticResource estiloBtnArchivoAdjuntado}" Click="ClicDescargarDocumento"></Button>
                                 </Grid>
                                 <Grid Grid.Row="1" Grid.Column="1" Margin="10 0 0 0">
                                     <Grid.RowDefinitions>
@@ -231,7 +213,7 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Comprobante de trabajo:</TextBlock>
-                                    <Button Grid.Row="1" Style="{StaticResource estiloBtnArchivoAdjuntado}"></Button>
+                                    <Button Name="btnDescargarComprobanteTrabajo" Grid.Row="1" Style="{StaticResource estiloBtnArchivoAdjuntado}" Click="ClicDescargarDocumento"></Button>
                                 </Grid>
                                 <Grid Grid.Row="0" Grid.Column="1" Margin="10 0 0 0">
                                     <Grid.RowDefinitions>
@@ -239,51 +221,59 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
                                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Comprobante de domicilio:</TextBlock>
-                                    <Button Grid.Row="1" Style="{StaticResource estiloBtnArchivoAdjuntado}"></Button>
+                                    <Button Name="btnDescargarComprobanteDomicilio" Grid.Row="1" Style="{StaticResource estiloBtnArchivoAdjuntado}" Click="ClicDescargarDocumento"></Button>
                                 </Grid>
                             </Grid>
                             </Grid>
                         
                 </Border>
             </StackPanel>
-            <StackPanel Grid.Row="1" Margin="0 0 20 0" VerticalAlignment="Center">
-                <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}">Referencia de Trabajo</TextBlock>
-                <Border Name="brdReferenciaTrabajoBackground" Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000" Margin="0 0 0 15">
-                    <Grid Margin="15 5">
+            <StackPanel Grid.Row="1" Margin="40 0 40 20" VerticalAlignment="Center">
+                <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" Margin="60 0 0 10">Referencia de Trabajo</TextBlock>
+                <Border Name="brdReferenciaTrabajoBackground" Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
+                    <Grid Margin="25 20">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition/>
-                            <ColumnDefinition Width="2*"/>
-                        </Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition/>
                             <RowDefinition/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}">Nombre:</TextBlock>
-                        <TextBlock Grid.Row="1" Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" VerticalAlignment="Top" Margin="0 8 0 0">Dirección:</TextBlock>
-                        <TextBlock Grid.Row="2" Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" >Teléfono:</TextBlock>
-                        <TextBox Name="txtBoxNombreReferenciaTrabajo" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="5"></TextBox>
-                        <TextBox Name="txtBoxDireccionReferenciaTrabajo" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" Margin="5" TextWrapping="Wrap" Height="49"
-                              Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}"></TextBox>
-                        <TextBox Name="txtBoxTelefonoReferenciaTrabajo" Grid.Row="2" Grid.Column="1" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="5"></TextBox>
-                        <Button Grid.Row="2" Grid.Column="2" Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}" >Seleccionar referencia de trabajo</Button>
+                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}" Margin="0 0 0 10">Nombre:</TextBlock>
+                        <TextBox Name="txtBoxDireccionReferenciaTrabajo" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" Margin="20 0 0 0" TextWrapping="Wrap" Height="90"
+      Style="{StaticResource estiloTxtBoxDetallesCliente}"></TextBox>
+                            <TextBox Name="txtBoxNombreReferenciaTrabajo" Grid.Row="1" Grid.Column="0" Style="{StaticResource estiloTxtBoxDetallesCliente}" Margin="0 0 0 10"></TextBox>
+                            <TextBlock Margin="20 0 0 0" Grid.Row="0" Grid.Column="1" Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Dirección:</TextBlock>
+                            <Grid Grid.Row="2">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="auto"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteCampos}" Margin="0 0 20 0">Teléfono:</TextBlock>
+                                <TextBox Name="txtBoxTelefonoReferenciaTrabajo" Grid.Column="1" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Margin="5"></TextBox>
+                            </Grid>
+                        
                     </Grid>
                 </Border>
             </StackPanel>
-            <Grid Grid.Row="2">
+            <Grid Grid.Row="2" Margin="40 0 40 20">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
-                    <RowDefinition/>
-                </Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
+                    <ColumnDefinition Width=".5*"/>
+                    <ColumnDefinition Width=".5*"/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" Margin="20 0 0 5">Referencia del Cliente:</TextBlock>
-                <StackPanel Grid.Row="1" Margin="0 0 10 0">
-                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" FontSize="22" HorizontalAlignment="Center" Margin="0 0 0 5">Referencia #1:</TextBlock>
+                <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" Margin="60 0 0 5" Grid.ColumnSpan="2">Referencia del Cliente:</TextBlock>
+                <TextBlock Grid.Row="1" Style="{StaticResource estiloTxtBlockFormularioCliente}" FontSize="22" Margin="20 0 0 5">Referencia #1:</TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource estiloTxtBlockFormularioCliente}" FontSize="22" Margin="20 0 0 5">Referencia #2:</TextBlock>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Grid.RowSpan="2" Style="{StaticResource estiloTxtBlockFormularioCliente}" Margin="20 0 0 5" VerticalAlignment="Bottom">Historial de Créditos:</TextBlock>
+                    <StackPanel Grid.Row="2" Margin="0 0 0 0">
                         <Border Name="brdReferenciaCliente1" Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
                             <StackPanel Margin="15">
                                 <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" >Nombre:</TextBlock>
@@ -294,14 +284,12 @@
                                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" Margin="0 0 8 0" >Teléfono:</TextBlock>
                                     <TextBox Name="txtBoxTelefonoReferenciaCliente1" Width="150" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Padding="5 0 5 0"></TextBox>
                                 </StackPanel>
-                                <Button Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}" Margin="20 0">
-                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center">Registrar Referencia del Cliente</TextBlock>
+                                <Button Name="btnDescargarReferenciaCliente1" Style="{StaticResource estiloBtnArchivoAdjuntado}" Margin="20 0" Click="ClicDescargarDocumento">
                                 </Button>
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="10 0 0 0">
-                        <TextBlock Style="{StaticResource estiloTxtBlockFormularioCliente}" FontSize="22" HorizontalAlignment="Center" Margin="0 0 0 5">Referencia #2:</TextBlock>
+                    <StackPanel Grid.Row="2" Grid.Column="1" Margin="10 0 0 0">
                         <Border Name="brdReferenciaCliente2" Background="#E2F0EF" CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
                             <StackPanel Margin="15">
                                 <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}">Nombre:</TextBlock>
@@ -312,29 +300,27 @@
                                     <TextBlock Style="{StaticResource estiloTxtBlockFormularioClienteReferenciasCampos}" Margin="0 0 8 0">Teléfono:</TextBlock>
                                     <TextBox Name="txtBoxTelefonoReferenciaCliente2" Width="150" Style="{StaticResource estiloTxtBoxFormularioClienteReferencias}" Padding="5 0 5 0"></TextBox>
                                 </StackPanel>
-                                <Button Style="{StaticResource estiloBtnAgregarReferenciaFormularioCliente}" Margin="20 0" >
-                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center">Registrar Referencia del Cliente</TextBlock>
+                                <Button Name="btnDescargarReferenciaCliente2" Style="{StaticResource estiloBtnArchivoAdjuntado}" Margin="20 0" Click="ClicDescargarDocumento">
                                 </Button>
                             </StackPanel>
                         </Border>
                     </StackPanel>
-                <Grid Grid.Row="2" Grid.Column="2">
-                    <DataGrid>
-                        <DataGrid.Columns>
-                            <DataGridTextColumn>
-                                <DataGridTextColumn.Header>Folio</DataGridTextColumn.Header></DataGridTextColumn>
-                            <DataGridTextColumn>
-                                <DataGridTextColumn.Header>Monto</DataGridTextColumn.Header>
-                            </DataGridTextColumn>
-                            <DataGridTextColumn>
-                                <DataGridTextColumn.Header>Fecha de solicitud</DataGridTextColumn.Header>
-                            </DataGridTextColumn>
-                            <DataGridTextColumn>
-                                <DataGridTextColumn.Header>Estatus</DataGridTextColumn.Header>
-                            </DataGridTextColumn>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Grid>
+                <Grid Grid.Row="2" Grid.Column="2" Margin="10 0 0 0">
+                        <Border CornerRadius="10" BorderThickness="1" BorderBrush="#000000">
+                            <DataGrid Name="dtGridHistorialCreditos" Margin="15" RowHeaderWidth="0"
+                        Style="{DynamicResource estiloDtGridHistorialCreditos}" CellStyle="{DynamicResource estiloDtGridCellHistorialCreditos}" ColumnHeaderStyle="{DynamicResource estiloDtGridColumnHeader}" RowStyle="{DynamicResource estiloDtGridRowStyle}">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Width=".8*" Header="Folio" Binding="{Binding folioCredito}"/>
+                                    <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Width=".6*" Header="Monto" Binding="{Binding monto}"/>
+
+                                    <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Width="*" Header="Fecha de solicitud" Binding="{Binding fechaSolicitud}"/>
+
+                                    <DataGridTextColumn CanUserResize="False" IsReadOnly="True" Width=".6*" Header="Estatus" Binding="{Binding EstatusCredito.nombre}"/>
+
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                    </Grid>
             </Grid>
         </Grid>
         </ScrollViewer>

@@ -146,7 +146,7 @@
                                     </StackPanel>
                                     <StackPanel Orientation="Vertical" Grid.Row="0" Grid.Column="3" Grid.RowSpan="2" Margin="20 10" VerticalAlignment="Center">
                                         <TextBlock Style="{StaticResource estiloTxtBlockItemCreditoCampo}" HorizontalAlignment="Center">Fecha de solicitud:</TextBlock>
-                                        <TextBlock Style="{StaticResource estiloTxtBlockItemCreditoInfo}" HorizontalAlignment="Center" Margin="0 15 0 0" Text="{Binding fechaSolicitud}"></TextBlock>
+                                        <TextBlock Style="{StaticResource estiloTxtBlockItemCreditoInfo}" HorizontalAlignment="Center" Margin="0 15 0 0" Text="{Binding fechaSolicitud}" FontSize="18"></TextBlock>
                                     </StackPanel>
                                     <Button Grid.Row="0" Grid.Column="4" Grid.RowSpan="2" Style="{StaticResource estiloBtnVerMasCredito}" CommandParameter="{Binding}" Click="ClicVerMas">Ver más</Button>
                                 </Grid>

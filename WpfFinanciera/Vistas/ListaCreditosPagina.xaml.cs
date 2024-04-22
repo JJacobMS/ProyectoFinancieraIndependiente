@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfFinanciera.ServicioFinancieraIndependiente;
+using WpfFinanciera.Utilidades;
 
 namespace WpfFinanciera.Vistas
 {
@@ -21,36 +23,83 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class ListaCreditosPagina : Page
     {
-        private List<Credito> creditos;
+        private List<Credito> _creditos;
         public ListaCreditosPagina()
         {
             InitializeComponent();
-            RecuperarCreditos();
+            CargarPaginaLista();
         }
         private void ClicRegresar(object sender, RoutedEventArgs e)
         {
-
+            MenuPrincipalAsesorCreditoPagina menu = new MenuPrincipalAsesorCreditoPagina();
+            MainWindow main = (MainWindow) Window.GetWindow(this);
+            main.CambiarPagina(menu);
         }
+
+        private void CargarPaginaLista()
+        {
+            RecuperarCreditos();
+        }
+
         private void RecuperarCreditos()
         {
-            Cliente cl = new Cliente
+            _creditos = new List<Credito>();
+            Codigo codigo;
+            try
             {
-                rfc = "QU27805274802"
-            };
-            EstatusCredito estatusA = new EstatusCredito { nombre = "Aprobado"};
-            EstatusCredito estatusR = new EstatusCredito { nombre = "Rechazado" };
+                Credito[] creditos;
+                CreditoClient proxy = new CreditoClient();
+                (creditos, codigo) = proxy.RecuperarCreditosRegistrados();
+                if (creditos != null)
+                {
+                    _creditos = creditos.ToList();
+                }
+            }
+            catch (CommunicationException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
 
-            creditos = new List<Credito> { new Credito { folioCredito = 163913951, Cliente = cl, monto = 202109, fechaSolicitud = DateTime.Now, EstatusCredito = estatusR },
-            new Credito { folioCredito = 2, Cliente = cl, monto = 109, fechaSolicitud = DateTime.Now, EstatusCredito = estatusA }};
-            //creditos = new List<Credito>();
-            if (creditos.Count == 0)
+
+            switch (codigo)
             {
-                MostrarNoHayCreditosRegistrados();
+                case Codigo.EXITO:
+                    if (_creditos.Count == 0)
+                    {
+                        MostrarNoHayCreditosRegistrados();
+                    }
+                    else
+                    {
+                        CargarListaCreditos(_creditos);
+                    }
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBaseDatos();
+                    break;
             }
-            else
-            {
-                CargarListaCreditos(creditos);
-            }
+
+            
+        }
+
+        private void MostrarVentanaErrorServidor()
+        {
+            VentanaMensaje ventana = new VentanaMensaje("Error. No se pudo conectar con el servidor.Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            ventana.Mostrar();
+        }
+
+        private void MostrarVentanaErrorBaseDatos()
+        {
+            VentanaMensaje ventana = new VentanaMensaje("Error. No se pudo conectar con la base de datos.Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            ventana.Mostrar();
         }
 
         private void MostrarNoHayCreditosRegistrados()
@@ -80,12 +129,12 @@ namespace WpfFinanciera.Vistas
 
         private List<Credito> FiltrarCreditosRegistrados()
         {
-            List<Credito> creditosFiltrados = creditos;
+            List<Credito> creditosFiltrados = _creditos;
             ComboBoxItem estatus = (ComboBoxItem) cmbBoxEstatus.SelectedItem;
             string busqueda = txtBoxBarraBuscar.Text.Trim();
             if (!string.IsNullOrWhiteSpace(busqueda))
             {
-                 creditosFiltrados = creditos.Where(
+                 creditosFiltrados = _creditos.Where(
                     credito => credito.folioCredito.ToString().Contains(busqueda)).ToList();
             }
 

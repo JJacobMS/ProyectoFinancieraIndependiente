@@ -92,10 +92,11 @@
   <xs:element name="ArrayOfDocumento" nillable="true" type="tns:ArrayOfDocumento" />
   <xs:complexType name="Documento">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Cliente" nillable="true" type="tns:Cliente" />
       <xs:element minOccurs="0" name="Cliente_idCliente" type="xs:int" />
       <xs:element minOccurs="0" name="TipoDocumento" nillable="true" type="tns:TipoDocumento" />
+      <xs:element minOccurs="0" name="TipoDocumento_idTipoDocumento" type="xs:int" />
       <xs:element minOccurs="0" name="archivo" nillable="true" type="xs:base64Binary" />
-      <xs:element minOccurs="0" name="extension" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idDocumento" type="xs:int" />
       <xs:element minOccurs="0" name="nombre" nillable="true" type="xs:string" />
     </xs:sequence>
@@ -103,6 +104,7 @@
   <xs:element name="Documento" nillable="true" type="tns:Documento" />
   <xs:complexType name="TipoDocumento">
     <xs:sequence>
+      <xs:element minOccurs="0" name="Documento" nillable="true" type="tns:ArrayOfDocumento" />
       <xs:element minOccurs="0" name="descripcion" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="idTipoDocumento" type="xs:int" />
     </xs:sequence>
@@ -256,6 +258,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfCondicionCredito" nillable="true" type="tns:ArrayOfCondicionCredito" />
+  <xs:complexType name="ArrayOfCliente">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Cliente" nillable="true" type="tns:Cliente" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCliente" nillable="true" type="tns:ArrayOfCliente" />
   <xs:complexType name="ArrayOfChecklist">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="Checklist" nillable="true" type="tns:Checklist" />
