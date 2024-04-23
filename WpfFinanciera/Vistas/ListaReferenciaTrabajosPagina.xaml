@@ -58,10 +58,9 @@
         <Style x:Key="estiloBtnAgregarNuevaReferencia" TargetType="Button">
             <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
             <Setter Property="Foreground" Value="#FFFFFF"/>
-            <Setter Property="Width" Value="280"/>
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="Background" Value="#B46058"/>
-            <Setter Property="Margin" Value="10 20"/>
+            <Setter Property="Margin" Value="20"/>
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
@@ -169,6 +168,55 @@
             </Setter>
         </Style>
 
+        <Style x:Key="estiloLstItemReferenciaTrabajoActualizar" TargetType="ListBoxItem">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border Name="BackgroundBorder">
+                            <Border Name="Border" BorderThickness="1" BorderBrush="#065758" CornerRadius="10" Margin="10 5">
+                                <Border.Background>
+                                    <LinearGradientBrush>
+                                        <GradientStop Color="#E2F0EF" Offset="0"/>
+                                        <GradientStop Color="#E2F0EF" Offset="0.5"/>
+                                        <GradientStop Color="#A9D4D6" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Grid Margin="10 10">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="550"/>
+                                        <ColumnDefinition Width="450"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="45"/>
+                                        <RowDefinition Height="20"/>
+                                        <RowDefinition Height="20"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Background="#065758" Height="100" Width="8" VerticalAlignment="Center" Grid.RowSpan="4" Margin="5 0"/>
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoCampo}" Height="20">Nombre:</TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=nombre}" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Margin="10 0 0 0" TextWrapping="Wrap" ></TextBlock>
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoCampo}">Teléfono:</TextBlock>
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Text="{Binding Path=telefono}"></TextBlock>
+                                    <TextBlock Grid.Row="0" Grid.Column="2" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoCampo}" Margin="10 0 0 0">Dirección:</TextBlock>
+                                    <TextBlock Grid.Row="1" Grid.Column="2" Grid.RowSpan="3" Style="{StaticResource estiloTxtBlockItemReferenciaTrabajoInfo}" Margin="20 0 15 10" TextWrapping="Wrap" Text="{Binding Path=direccion}"></TextBlock>
+                                    <Button Grid.Row="0" Grid.Column="3" Grid.RowSpan="4" Style="{StaticResource estiloBtnAdjuntarReferencia}" Click="ClicAdjuntarReferenciaTrabajoActualizar" CommandParameter="{Binding}">
+                                        <TextBlock TextWrapping="Wrap" TextAlignment="Center">Adjuntar referencia al cliente</TextBlock>
+                                    </Button>
+                                </Grid>
+                            </Border>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsMouseOver, ElementName=Border}" Value="true">
+                                <Setter TargetName="BackgroundBorder" Property="Background" Value="Transparent"/>
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
         <Style x:Key="estiloLstBoxReferenciaTrabajo" TargetType="ListBox">
             <Style.Triggers>
                 <Trigger Property="HasItems" Value="False">
@@ -211,20 +259,36 @@
             </Grid.RowDefinitions>
             <Viewbox>
                 <StackPanel Orientation="Horizontal" Width="1336" Height="120">
-                    <Border Margin="60 30 20 20" Background="#EACBCB" CornerRadius="10" BorderThickness="3" BorderBrush="#B46058" Width="900">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition Width=".1*"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBox Style="{StaticResource estiloTxtBoxBusquedaReferenciaTrabajo}" Name="txtBoxBarraBuscar" ></TextBox>
-                            <Button Grid.Column="1" Style="{StaticResource estiloBtnBuscarReferenciaTrabajo}" Click="ClicBuscarReferenciaTrabajo">
-                            </Button>
-                        </Grid>
-                    </Border>
-                    <Button Grid.Column="1" Style="{StaticResource estiloBtnAgregarNuevaReferencia}" Margin="0 20 60 20" Click="ClicAgregarNuevaReferencia">
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center">Agregar nueva referencia de trabajo</TextBlock>
-                    </Button>
+                    <Grid Width="1336">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width=".4*"/>
+                            <ColumnDefinition Width=".4*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Margin="60 30 20 20" Background="#EACBCB" CornerRadius="10" BorderThickness="3" BorderBrush="#B46058">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition/>
+                                    <ColumnDefinition Width=".1*"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBox Style="{StaticResource estiloTxtBoxBusquedaReferenciaTrabajo}" Name="txtBoxBarraBuscar" ></TextBox>
+                                <Button Grid.Column="1" Style="{StaticResource estiloBtnBuscarReferenciaTrabajo}" Click="ClicBuscarReferenciaTrabajo">
+                                </Button>
+                            </Grid>
+                        </Border>
+                        <Button Name="btnActualizarActual" Grid.Column="1" Style="{StaticResource estiloBtnAgregarNuevaReferencia}" Click="ClicActualizarReferenciaTrabajoActual" Visibility="Collapsed">
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Center">Actualizar Referencia Trabajo Actual</TextBlock>
+                        </Button>
+                        <Button Name="btnRegistrarNueva" Grid.Column="2" Style="{StaticResource estiloBtnAgregarNuevaReferencia}" Click="ClicRegistrarNuevaReferenciaTrabajo" Visibility="Collapsed">
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Center">Registrar Nueva Referencia Trabajo</TextBlock>
+                        </Button>
+                        <Button Grid.ColumnSpan="2" Name="btnAdjuntar" Grid.Column="1" Style="{StaticResource estiloBtnAgregarNuevaReferencia}" Click="ClicAgregarNuevaReferencia" Margin="50 20">
+                            <TextBlock TextWrapping="Wrap" TextAlignment="Center">Agregar nueva referencia de trabajo</TextBlock>
+                        </Button>
+                    </Grid>
+                    
+                    
+                    
                 </StackPanel>
             </Viewbox>
             

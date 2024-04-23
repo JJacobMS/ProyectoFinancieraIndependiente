@@ -177,12 +177,17 @@ namespace WpfFinanciera.Vistas
 
         private void ClicActualizarReferenciaTrabajo(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Waos");
+            ListaReferenciaTrabajosPagina lista = new ListaReferenciaTrabajosPagina(this, _referenciaTrabajo, _clienteFormulario.rfc);
+            MainWindow ventana = (MainWindow)Window.GetWindow(this);
+            ventana.CambiarPagina(lista);
         }
 
         private void ClicActualizarReferenciaCliente(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("Waos");
+            Button btnReferenciaCliente = (Button)sender;
+            FormularioReferenciaClientePagina formularioReferenciaCliente = new FormularioReferenciaClientePagina(this, _clienteFormulario, btnReferenciaCliente.CommandParameter.ToString());
+            MainWindow ventana = (MainWindow)Window.GetWindow(this);
+            ventana.CambiarPagina(formularioReferenciaCliente);
         }
 
         private void ClicGuardarCambiosCliente(object sender, RoutedEventArgs e)
@@ -385,6 +390,11 @@ namespace WpfFinanciera.Vistas
         public void AgregarReferenciaCliente(ReferenciaCliente referenciaCliente, Documento documentoReferencia, string numeroReferencia)
         {
             int numReferenciaCliente = int.Parse(numeroReferencia) - 1;
+
+            _clienteFormulario.ReferenciaCliente[numReferenciaCliente] = referenciaCliente;
+            int numDocumento = _documentos.ToList().FindIndex(documento => documento.Value.TipoDocumento.descripcion.Equals("Referencia Cliente " + numeroReferencia));
+            _clienteFormulario.Documento[numDocumento] = documentoReferencia;
+
             _referenciasCliente[numReferenciaCliente] = referenciaCliente;
             _documentos[documentoReferencia.TipoDocumento.descripcion] = documentoReferencia;
             

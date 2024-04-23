@@ -2633,6 +2633,24 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajo", ReplyAction="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajoResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarReferenciasTrabajoAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaTrabajo/ActualizarYCambiarReferenciaTrabajo", ReplyAction="http://tempuri.org/IReferenciaTrabajo/ActualizarYCambiarReferenciaTrabajoResponse" +
+            "")]
+        System.ValueTuple<int, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarYCambiarReferenciaTrabajo(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo, string rfc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaTrabajo/ActualizarYCambiarReferenciaTrabajo", ReplyAction="http://tempuri.org/IReferenciaTrabajo/ActualizarYCambiarReferenciaTrabajoResponse" +
+            "")]
+        System.Threading.Tasks.Task<System.ValueTuple<int, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> ActualizarYCambiarReferenciaTrabajoAsync(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo, string rfc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaTrabajo/ActualizarInformacionReferenciaTrabajoActua" +
+            "l", ReplyAction="http://tempuri.org/IReferenciaTrabajo/ActualizarInformacionReferenciaTrabajoActua" +
+            "lResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarInformacionReferenciaTrabajoActual(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaTrabajo/ActualizarInformacionReferenciaTrabajoActua" +
+            "l", ReplyAction="http://tempuri.org/IReferenciaTrabajo/ActualizarInformacionReferenciaTrabajoActua" +
+            "lResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarInformacionReferenciaTrabajoActualAsync(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2668,6 +2686,22 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarReferenciasTrabajoAsync() {
             return base.Channel.RecuperarReferenciasTrabajoAsync();
+        }
+        
+        public System.ValueTuple<int, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarYCambiarReferenciaTrabajo(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo, string rfc) {
+            return base.Channel.ActualizarYCambiarReferenciaTrabajo(referenciaTrabajo, rfc);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<int, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> ActualizarYCambiarReferenciaTrabajoAsync(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo, string rfc) {
+            return base.Channel.ActualizarYCambiarReferenciaTrabajoAsync(referenciaTrabajo, rfc);
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarInformacionReferenciaTrabajoActual(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo) {
+            return base.Channel.ActualizarInformacionReferenciaTrabajoActual(referenciaTrabajo);
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarInformacionReferenciaTrabajoActualAsync(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo) {
+            return base.Channel.ActualizarInformacionReferenciaTrabajoActualAsync(referenciaTrabajo);
         }
     }
     
@@ -3085,6 +3119,53 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Checklist[]>> ObtenerChecklistsAsync() {
             return base.Channel.ObtenerChecklistsAsync();
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioFinancieraIndependiente.IReferenciaCliente")]
+    public interface IReferenciaCliente {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaCliente/ActualizarReferenciaCliente", ReplyAction="http://tempuri.org/IReferenciaCliente/ActualizarReferenciaClienteResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarReferenciaCliente(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento documento);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaCliente/ActualizarReferenciaCliente", ReplyAction="http://tempuri.org/IReferenciaCliente/ActualizarReferenciaClienteResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarReferenciaClienteAsync(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento documento);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IReferenciaClienteChannel : WpfFinanciera.ServicioFinancieraIndependiente.IReferenciaCliente, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ReferenciaClienteClient : System.ServiceModel.ClientBase<WpfFinanciera.ServicioFinancieraIndependiente.IReferenciaCliente>, WpfFinanciera.ServicioFinancieraIndependiente.IReferenciaCliente {
+        
+        public ReferenciaClienteClient() {
+        }
+        
+        public ReferenciaClienteClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ReferenciaClienteClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ReferenciaClienteClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ReferenciaClienteClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarReferenciaCliente(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento documento) {
+            return base.Channel.ActualizarReferenciaCliente(referenciaCliente, documento);
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarReferenciaClienteAsync(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento documento) {
+            return base.Channel.ActualizarReferenciaClienteAsync(referenciaCliente, documento);
         }
     }
 }

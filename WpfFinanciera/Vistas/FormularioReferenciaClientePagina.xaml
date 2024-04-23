@@ -147,8 +147,8 @@
                         <StackPanel Grid.Column="1">
                             <TextBlock Style="{StaticResource estiloTxtBlockFormularioReferenciaCliente}" Margin="30 15 0 15">Identificación oficial:</TextBlock>
                              <Button Height="130" Name="btnAgregarArchivo" Style="{StaticResource estiloBtnAgregarArchivo}" Margin="30 0 30 20" Click="ClicAdjuntarDocumento">Agregar documento</Button>
-                            <Button Style="{StaticResource estiloBtnAgregarReferenciaCliente}" Margin="7" Click="ClicAgregarReferenciaCliente">
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="10">Agregar Referencia Cliente #<Run Name="rnBtnAgregarReferencia"></Run></TextBlock>
+                            <Button Style="{StaticResource estiloBtnAgregarReferenciaCliente}" Margin="7" Click="ClicAgregarReferenciaCliente" Name="btnAgregarReferencia">
+                                <TextBlock TextWrapping="Wrap" TextAlignment="Center" Margin="10" Name="txtBlockBotonGuardar">Agregar Referencia Cliente #<Run Name="rnBtnAgregarReferencia"></Run></TextBlock>
                             </Button>
                         </StackPanel>
 
