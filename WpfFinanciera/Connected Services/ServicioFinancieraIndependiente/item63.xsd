@@ -35,6 +35,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ValueTupleOfUsuarioCodigoglhsIKFj" nillable="true" type="tns:ValueTupleOfUsuarioCodigoglhsIKFj" />
+  <xs:complexType name="ValueTupleOfCodigobooleanb9iN3L_Pt">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ValueTupleOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Codigo" Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
+          <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" />
+        </GenericType>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" type="q5:Codigo" />
+      <xs:element name="Item2" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValueTupleOfCodigobooleanb9iN3L_Pt" nillable="true" type="tns:ValueTupleOfCodigobooleanb9iN3L_Pt" />
   <xs:complexType name="ValueTupleOfArrayOfTipoUsuarioCodigoglhsIKFj">
     <xs:annotation>
       <xs:appinfo>
@@ -46,8 +62,8 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" nillable="true" type="q5:ArrayOfTipoUsuario" />
-      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" type="q6:Codigo" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" nillable="true" type="q6:ArrayOfTipoUsuario" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" type="q7:Codigo" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ValueTupleOfArrayOfTipoUsuarioCodigoglhsIKFj" nillable="true" type="tns:ValueTupleOfArrayOfTipoUsuarioCodigoglhsIKFj" />
@@ -62,27 +78,11 @@
       </xs:appinfo>
     </xs:annotation>
     <xs:sequence>
-      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" nillable="true" type="q7:ArrayOfReferenciaTrabajo" />
-      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" type="q8:Codigo" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ValueTupleOfArrayOfReferenciaTrabajoCodigoglhsIKFj" nillable="true" type="tns:ValueTupleOfArrayOfReferenciaTrabajoCodigoglhsIKFj" />
-  <xs:complexType name="ValueTupleOfintCodigo2hGfKC_Pq">
-    <xs:annotation>
-      <xs:appinfo>
-        <GenericType Name="ValueTupleOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
-          <GenericParameter Name="int" Namespace="http://www.w3.org/2001/XMLSchema" />
-          <GenericParameter Name="Codigo" Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
-        </GenericType>
-        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
-      </xs:appinfo>
-    </xs:annotation>
-    <xs:sequence>
-      <xs:element name="Item1" type="xs:int" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" nillable="true" type="q8:ArrayOfReferenciaTrabajo" />
       <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" type="q9:Codigo" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ValueTupleOfintCodigo2hGfKC_Pq" nillable="true" type="tns:ValueTupleOfintCodigo2hGfKC_Pq" />
+  <xs:element name="ValueTupleOfArrayOfReferenciaTrabajoCodigoglhsIKFj" nillable="true" type="tns:ValueTupleOfArrayOfReferenciaTrabajoCodigoglhsIKFj" />
   <xs:complexType name="ValueTupleOfCodigoArrayOfCondicionCreditoglhsIKFj">
     <xs:annotation>
       <xs:appinfo>

@@ -44,6 +44,34 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="EsCorreoUnico">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="correo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EsCorreoUnicoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="EsCorreoUnicoResult" type="q5:ValueTupleOfCodigobooleanb9iN3L_Pt" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuardarUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="usuario" nillable="true" type="q6:Usuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GuardarUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="GuardarUsuarioResult" type="q7:Codigo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="RecuperarTiposUsuario">
     <xs:complexType>
       <xs:sequence />
@@ -52,7 +80,7 @@
   <xs:element name="RecuperarTiposUsuarioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarTiposUsuarioResult" type="q5:ValueTupleOfArrayOfTipoUsuarioCodigoglhsIKFj" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarTiposUsuarioResult" type="q8:ValueTupleOfArrayOfTipoUsuarioCodigoglhsIKFj" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -64,50 +92,21 @@
   <xs:element name="RecuperarReferenciasTrabajoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarReferenciasTrabajoResult" type="q6:ValueTupleOfArrayOfReferenciaTrabajoCodigoglhsIKFj" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ActualizarYCambiarReferenciaTrabajo">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="referenciaTrabajo" nillable="true" type="q7:ReferenciaTrabajo" />
-        <xs:element minOccurs="0" name="rfc" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ActualizarYCambiarReferenciaTrabajoResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ActualizarYCambiarReferenciaTrabajoResult" type="q8:ValueTupleOfintCodigo2hGfKC_Pq" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ActualizarInformacionReferenciaTrabajoActual">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="referenciaTrabajo" nillable="true" type="q9:ReferenciaTrabajo" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ActualizarInformacionReferenciaTrabajoActualResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="ActualizarInformacionReferenciaTrabajoActualResult" type="q10:Codigo" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarReferenciasTrabajoResult" type="q9:ValueTupleOfArrayOfReferenciaTrabajoCodigoglhsIKFj" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GuardarCondicionCredito">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="condicionCredito" nillable="true" type="q11:CondicionCredito" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="condicionCredito" nillable="true" type="q10:CondicionCredito" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GuardarCondicionCreditoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="GuardarCondicionCreditoResult" type="q12:Codigo" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="GuardarCondicionCreditoResult" type="q11:Codigo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -119,21 +118,21 @@
   <xs:element name="ObtenerCondicionesCreditoActivasResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ObtenerCondicionesCreditoActivasResult" type="q13:ValueTupleOfCodigoArrayOfCondicionCreditoglhsIKFj" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ObtenerCondicionesCreditoActivasResult" type="q12:ValueTupleOfCodigoArrayOfCondicionCreditoglhsIKFj" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GuardarInformacionSolicitud">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="credito" nillable="true" type="q14:Credito" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="credito" nillable="true" type="q13:Credito" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GuardarInformacionSolicitudResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="GuardarInformacionSolicitudResult" type="q15:Codigo" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="GuardarInformacionSolicitudResult" type="q14:Codigo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -145,7 +144,7 @@
   <xs:element name="ObtenerSolicitudesCreditoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ObtenerSolicitudesCreditoResult" type="q16:ValueTupleOfCodigoArrayOfSolicitudCreditoHiDJ2AUE" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ObtenerSolicitudesCreditoResult" type="q15:ValueTupleOfCodigoArrayOfSolicitudCreditoHiDJ2AUE" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -157,7 +156,7 @@
   <xs:element name="RecuperarCreditosRegistradosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarCreditosRegistradosResult" type="q17:ValueTupleOfArrayOfCreditoCodigoglhsIKFj" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarCreditosRegistradosResult" type="q16:ValueTupleOfArrayOfCreditoCodigoglhsIKFj" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -171,7 +170,7 @@
   <xs:element name="RecuperarTodosDetallesCreditoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarTodosDetallesCreditoResult" type="q18:ValueTupleOfCreditoCodigoglhsIKFj" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarTodosDetallesCreditoResult" type="q17:ValueTupleOfCreditoCodigoglhsIKFj" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -185,24 +184,24 @@
   <xs:element name="ValidarRfcClienteUnicoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ValidarRfcClienteUnicoResult" type="q19:ValueTupleOfbooleanCodigo2hGfKC_Pq" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ValidarRfcClienteUnicoResult" type="q18:ValueTupleOfbooleanCodigo2hGfKC_Pq" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GuardarInformacionCliente">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="cliente" nillable="true" type="q20:Cliente" />
-        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="referenciaTrabajo" nillable="true" type="q21:ReferenciaTrabajo" />
-        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="referenciaCliente" nillable="true" type="q22:ArrayOfReferenciaCliente" />
-        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="documentos" nillable="true" type="q23:ArrayOfDocumento" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="cliente" nillable="true" type="q19:Cliente" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="referenciaTrabajo" nillable="true" type="q20:ReferenciaTrabajo" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="referenciaCliente" nillable="true" type="q21:ArrayOfReferenciaCliente" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="documentos" nillable="true" type="q22:ArrayOfDocumento" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GuardarInformacionClienteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="GuardarInformacionClienteResult" type="q24:Codigo" />
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="GuardarInformacionClienteResult" type="q23:Codigo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -216,7 +215,7 @@
   <xs:element name="BuscarClientePorRFCResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="BuscarClientePorRFCResult" type="q25:ValueTupleOfCodigoClienteRFCHiDJ2AUE" />
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="BuscarClientePorRFCResult" type="q24:ValueTupleOfCodigoClienteRFCHiDJ2AUE" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -228,7 +227,7 @@
   <xs:element name="RecuperarClientesRegistradosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarClientesRegistradosResult" type="q26:ValueTupleOfArrayOfClienteCodigoglhsIKFj" />
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarClientesRegistradosResult" type="q25:ValueTupleOfArrayOfClienteCodigoglhsIKFj" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -242,7 +241,7 @@
   <xs:element name="RecuperarTodosDetallesClienteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarTodosDetallesClienteResult" type="q27:ValueTupleOfClienteCodigoglhsIKFj" />
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarTodosDetallesClienteResult" type="q26:ValueTupleOfClienteCodigoglhsIKFj" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -256,35 +255,35 @@
   <xs:element name="RecuperarDetallesClienteFormularioResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarDetallesClienteFormularioResult" type="q28:ValueTupleOfClienteCodigoglhsIKFj" />
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarDetallesClienteFormularioResult" type="q27:ValueTupleOfClienteCodigoglhsIKFj" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ActualizarInformacionCliente">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="clienteActualizado" nillable="true" type="q29:Cliente" />
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="clienteActualizado" nillable="true" type="q28:Cliente" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ActualizarInformacionClienteResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="ActualizarInformacionClienteResult" type="q30:Codigo" />
+        <xs:element xmlns:q29="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="ActualizarInformacionClienteResult" type="q29:Codigo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GuardarDictamen">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="dictamen" nillable="true" type="q31:Dictamen" />
+        <xs:element xmlns:q30="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="dictamen" nillable="true" type="q30:Dictamen" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GuardarDictamenResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="GuardarDictamenResult" type="q32:Codigo" />
+        <xs:element xmlns:q31="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="GuardarDictamenResult" type="q31:Codigo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -298,7 +297,7 @@
   <xs:element name="RecuperarPoliticasChecklistResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarPoliticasChecklistResult" type="q33:ValueTupleOfCodigoArrayOfPoliticaglhsIKFj" />
+        <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarPoliticasChecklistResult" type="q32:ValueTupleOfCodigoArrayOfPoliticaglhsIKFj" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -312,22 +311,22 @@
   <xs:element name="RecuperarChecklistResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarChecklistResult" type="q34:ValueTupleOfCodigostringb9iN3L_Pt" />
+        <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarChecklistResult" type="q33:ValueTupleOfCodigostringb9iN3L_Pt" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GuardarChecklist">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="checklist" nillable="true" type="q35:Checklist" />
-        <xs:element xmlns:q36="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="listaIdPoliticas" nillable="true" type="q36:ArrayOfint" />
+        <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="checklist" nillable="true" type="q34:Checklist" />
+        <xs:element xmlns:q35="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="listaIdPoliticas" nillable="true" type="q35:ArrayOfint" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GuardarChecklistResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="GuardarChecklistResult" type="q37:Codigo" />
+        <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="GuardarChecklistResult" type="q36:Codigo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -339,22 +338,7 @@
   <xs:element name="ObtenerChecklistsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q38="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ObtenerChecklistsResult" type="q38:ValueTupleOfCodigoArrayOfChecklistglhsIKFj" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ActualizarReferenciaCliente">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q39="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="referenciaCliente" nillable="true" type="q39:ReferenciaCliente" />
-        <xs:element xmlns:q40="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="documento" nillable="true" type="q40:Documento" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="ActualizarReferenciaClienteResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q41="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="ActualizarReferenciaClienteResult" type="q41:Codigo" />
+        <xs:element xmlns:q37="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="ObtenerChecklistsResult" type="q37:ValueTupleOfCodigoArrayOfChecklistglhsIKFj" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
