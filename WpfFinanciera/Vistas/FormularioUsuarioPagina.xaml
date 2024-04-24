@@ -44,7 +44,6 @@
                         <Border Background="{TemplateBinding Background}" CornerRadius="10" BorderThickness="1" BorderBrush="#065758">
                             <Grid>
                                 <ScrollViewer Margin="15 10 35 10" x:Name="PART_ContentHost"/>
-                                <Image Source="/Recursos/slashed-eye.png" HorizontalAlignment="Right" MouseDown="VerContraseña" VerticalAlignment="Center" Margin="0 0 10 0" Width="30"/>
                             </Grid>
                         </Border>
                     </ControlTemplate>
@@ -105,7 +104,7 @@
                     <Border x:Name="bdrTiposUsuario" BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Margin="20 0" Width="640" Background="Transparent" Padding="2" Height="73" >
                         <Grid>
 
-                            <ListBox x:Name="lstBoxTiposUsuario" SelectionChanged="SeleccionarTipoUsuario" d:ItemsSource="{d:SampleData ItemCount=2}" Background="{x:Null}" BorderThickness="0">
+                            <ListBox x:Name="lstBoxTiposUsuario" SelectionChanged="VerificarSeleccionTipoUsuario" d:ItemsSource="{d:SampleData ItemCount=2}" Background="{x:Null}" BorderThickness="0">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Border Margin="0,0,2,2" BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Background="#E2F0EF" Padding="0,2,0,2" Width="620">
@@ -120,18 +119,18 @@
                                 </ListBox.ItemTemplate>
                             </ListBox>
 
-                            <TextBlock x:Name="txtBlockMensajeNoCondiciones" Grid.Row="1" Foreground="White" Visibility="Collapsed" Style="{StaticResource estiloTxtBlockRegistroUsuarioInfo}" Text="No se han encontrado condiciones de crédito activas o registradas en el sistema" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300"/>
+                            <TextBlock x:Name="txtBlockMensajeNoTiposUsuario" Grid.Row="1" Foreground="White" Visibility="Collapsed" Style="{StaticResource estiloTxtBlockRegistroUsuarioInfo}" Text="No se han encontrado condiciones de crédito activas o registradas en el sistema" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" Width="300"/>
                         </Grid>
                     </Border>
 
                     <TextBlock Style="{StaticResource estiloTxtBlockRegistroUsuarioInfo}" Margin="0,20,0,10" HorizontalAlignment="Center" FontSize="28"><Run Text="Nombre/s:"/></TextBlock>
-                    <TextBox x:Name="txtBoxNombre" Style="{StaticResource estiloTxtBoxFormularioUsuario}" Margin="20,0" Width="640" TextWrapping="Wrap" TextAlignment="Left" TextChanged="VerificarCambioTexto"/>
+                    <TextBox x:Name="txtBoxNombre" Style="{StaticResource estiloTxtBoxFormularioUsuario}" MaxLength="50" Margin="20,0" Width="640" TextWrapping="Wrap" TextAlignment="Left" TextChanged="VerificarCambioTexto"/>
 
                     <TextBlock Style="{StaticResource estiloTxtBlockRegistroUsuarioInfo}" Margin="0,20,0,10" HorizontalAlignment="Center" FontSize="28"><Run Text="Apellido/s:"/></TextBlock>
-                    <TextBox x:Name="txtBoxApellidos" Style="{StaticResource estiloTxtBoxFormularioUsuario}" Margin="20,0" Width="640" TextWrapping="Wrap" TextAlignment="Left" TextChanged="VerificarCambioTexto"/>
+                    <TextBox x:Name="txtBoxApellidos" Style="{StaticResource estiloTxtBoxFormularioUsuario}" MaxLength="50" Margin="20,0" Width="640" TextWrapping="Wrap" TextAlignment="Left" TextChanged="VerificarCambioTexto"/>
 
                     <TextBlock Style="{StaticResource estiloTxtBlockRegistroUsuarioInfo}" Margin="0,20,0,10" HorizontalAlignment="Center" FontSize="28"><Run Text="Correo electrónico:"/></TextBlock>
-                    <TextBox x:Name="txtBoxCorreo" Style="{StaticResource estiloTxtBoxFormularioUsuario}" Margin="20,0" Width="640" TextWrapping="Wrap" TextAlignment="Left" TextChanged="VerificarCambioTexto"/>
+                    <TextBox x:Name="txtBoxCorreo" Style="{StaticResource estiloTxtBoxFormularioUsuario}" MaxLength="100" Margin="20,0" Width="640" TextWrapping="Wrap" TextAlignment="Left" TextChanged="VerificarCambioTexto"/>
 
                     <Grid Margin="0,20,0,10" HorizontalAlignment="Center">
                         <Grid.ColumnDefinitions>
@@ -143,14 +142,74 @@
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
 
-                        <TextBlock Text="Contraseña:" Style="{StaticResource estiloTxtBlockRegistroUsuarioInfo}" Grid.Column="0" Grid.Row="0" Margin="0,0,10,10" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Left"/>
-                        <PasswordBox Style="{StaticResource estiloPwdBoxFormularioUsuario}" MaxLength="12" Grid.Column="0" Grid.Row="1" Margin="0,0,0,10" HorizontalAlignment="Left" Width="310"/>
+                        <TextBlock Text="Contraseña:" Style="{StaticResource estiloTxtBlockRegistroUsuarioInfo}" Grid.Column="0" Grid.Row="0" Margin="0,0,10,10" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Left" />
+                        <PasswordBox Name="pswBoxContraseña" MaxLength="12" Grid.Column="0" Grid.Row="1" Margin="0,0,0,10" HorizontalAlignment="Left" Width="310" PasswordChanged="VerificarCambioContraseña">
+                            <PasswordBox.Style>
+                                <Style TargetType="PasswordBox">
+                                    <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+                                    <Setter Property="FontSize" Value="22"/>
+                                    <Setter Property="Foreground" Value="#000000"/>
+                                    <Setter Property="FontWeight" Value="Light"/>
+                                    <Setter Property="Background" Value="#A9D4D6"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="PasswordBox">
+                                                <Border Background="{TemplateBinding Background}" CornerRadius="10" BorderThickness="1" BorderBrush="#065758">
+                                                    <ScrollViewer Margin="10,10,35,10" x:Name="PART_ContentHost"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </PasswordBox.Style>
+                        </PasswordBox>
+                        <Image Name="imgVerContraseña" Source="/Recursos/slashed-eye.png" Grid.Column="0" Grid.Row="1" Height="30" Width="30" HorizontalAlignment="Right" Margin="0,0,15,10" MouseDown="ClicVerContraseña" Cursor="Hand"/>
+                        <TextBox Name="txtBoxMostrarContraseña" Visibility="Hidden" Grid.Column="0" Margin="10,30,0,10" HorizontalAlignment="Left" Width="260" BorderThickness="0,0,0,0" Background="{x:Null}" Grid.RowSpan="2" BorderBrush="{x:Null}" VerticalAlignment="Center">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+                                    <Setter Property="FontSize" Value="22"/>
+                                    <Setter Property="Foreground" Value="#000000"/>
+                                    <Setter Property="FontWeight" Value="Light"/>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
 
                         <TextBlock Text="Repita la contraseña:" Style="{StaticResource estiloTxtBlockRegistroUsuarioInfo}" Grid.Column="1" Margin="10,0,0,10" HorizontalAlignment="Left" TextWrapping="Wrap" TextAlignment="Left"/>
-                        <PasswordBox Style="{StaticResource estiloPwdBoxFormularioUsuario}" MaxLength="12" Grid.Column="1" Grid.Row="1" Margin="10,0,0,10" HorizontalAlignment="Left" Width="310"/>
+                        <PasswordBox Name="pswBoxContraseñaRepetida" MaxLength="12" Grid.Column="1" Grid.Row="1" Margin="10,0,0,10" HorizontalAlignment="Left" Width="310" PasswordChanged="VerificarCambioContraseña">
+                            <PasswordBox.Style>
+                                <Style TargetType="PasswordBox">
+                                    <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+                                    <Setter Property="FontSize" Value="22"/>
+                                    <Setter Property="Foreground" Value="#000000"/>
+                                    <Setter Property="FontWeight" Value="Light"/>
+                                    <Setter Property="Background" Value="#A9D4D6"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="PasswordBox">
+                                                <Border Background="{TemplateBinding Background}" CornerRadius="10" BorderThickness="1" BorderBrush="#065758">
+                                                    <ScrollViewer Margin="10,10,35,10" x:Name="PART_ContentHost"/>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </PasswordBox.Style>
+                        </PasswordBox>
+                        <Image Name="imgVerContraseñaRepetida" Source="/Recursos/slashed-eye.png" Grid.Column="1" Grid.Row="1" Height="30" Width="30" HorizontalAlignment="Right" Margin="0,0,5,10" MouseDown="ClicVerContraseña" Cursor="Hand"/>
+                        <TextBox Name="txtBoxMostrarContraseñaRepetida" Visibility="Hidden" Grid.Column="1" Grid.Row="1" Margin="20,0,0,10" HorizontalAlignment="Left" Width="260" BorderThickness="0,0,0,0" Background="{x:Null}" Grid.RowSpan="2" BorderBrush="{x:Null}" VerticalAlignment="Center">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="FontFamily" Value="{StaticResource LeagueSpartanFont}"/>
+                                    <Setter Property="FontSize" Value="22"/>
+                                    <Setter Property="Foreground" Value="#000000"/>
+                                    <Setter Property="FontWeight" Value="Light"/>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
                     </Grid>
 
-                    <Button x:Name="btnSolicitarCredito" Style="{StaticResource estiloBtnRojoRegistrarUsuario}" IsEnabled="False" Click="ClicRegistrar" Content="Registrar" Width="230" HorizontalAlignment="Center" Margin="0,50,0,0"/>
+                    <Button x:Name="btnRegistrar" Style="{StaticResource estiloBtnRojoRegistrarUsuario}" IsEnabled="False" Click="ClicRegistrar" Content="Registrar" Width="230" HorizontalAlignment="Center" Margin="0,50,0,0"/>
                 </StackPanel>
             </Grid>
         </Grid>
