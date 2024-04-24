@@ -359,6 +359,8 @@ namespace WpfFinanciera.Vistas
             {
                 DeshabilitarRegistrar();
             }
+
+            Console.WriteLine(_idTipoUsuarioSeleccionado);
         }
 
         private void DeshabilitarRegistrar()
