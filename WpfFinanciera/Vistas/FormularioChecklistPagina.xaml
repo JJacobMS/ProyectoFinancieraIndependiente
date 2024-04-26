@@ -46,10 +46,10 @@
                             <StackPanel Name="stcPanelPolitica">
                             </StackPanel>
                         </ScrollViewer>
-                        <Button Grid.Column="1" Grid.Row="0" Style="{StaticResource estiloBtnFormulario}" Width="240" Height="65" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,5" Content="Añadir Politicas" FontSize="27" Click="ClicAñadirPoliticas" />
+                        <Button Name="btnAñadirPoliticas" Grid.Column="1" Grid.Row="0" Style="{StaticResource estiloBtnFormulario}" Width="240" Height="65" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,5" Content="Añadir Politicas" FontSize="27" Click="ClicAñadirPoliticas" />
                     </Grid>
                 </Border>
-                <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource estiloBtnFormulario}" Width="210" Height="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,15,15" Content="Aceptar" FontSize="27" Click="ClicAceptar" />
+                <Button x:Name="btnAceptar" Grid.Column="0" Grid.Row="1" Style="{StaticResource estiloBtnFormulario}" Width="210" Height="75" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,15,15" Content="Aceptar" FontSize="27" Click="ClicAceptar" />
             </Grid>
         </Grid>
     </Viewbox>

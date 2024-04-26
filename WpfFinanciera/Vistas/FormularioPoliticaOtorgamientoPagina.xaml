@@ -53,6 +53,9 @@
                     <StackPanel Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" Orientation="Horizontal" HorizontalAlignment="Right"  VerticalAlignment="Bottom" Margin="0,0,35,30" >
                         <Button Grid.Row="2" Grid.Column="2" Width="210" Height="75" Style="{StaticResource estiloBtnFormulario}" Click="ClicAceptar" Content="Aceptar" FontSize="27" Margin="0,10,35,10"/>
                     </StackPanel>
+                    <TextBlock Name="txtBlockPoliticaActiva"  Text="Politica Activa" Grid.Column="1" Grid.Row="2" Grid.ColumnSpan="2" FontSize="50" FontFamily="{StaticResource LeagueSpartanFont}" HorizontalAlignment="Center" Margin="0,25,150,0" />
+                        <CheckBox x:Name="ChkBoxPoliticaActiva"  Checked="Checked" Unchecked="Unchecked" Height="60" Width="60" Style="{StaticResource estiloChkBoxPolitica}" Grid.Column="1" Grid.Row="2" Margin="0,70,50,0" VerticalAlignment="Center"  BorderThickness="6" FontFamily="Segoe UI"  HorizontalAlignment="Right" HorizontalContentAlignment="Center"  />
+
                 </Grid>
             </Border>
         </Grid>

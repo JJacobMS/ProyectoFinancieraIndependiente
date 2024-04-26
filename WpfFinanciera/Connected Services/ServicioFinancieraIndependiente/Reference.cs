@@ -2452,6 +2452,12 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticas", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/ActualizarPoliticaOtorgamiento", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/ActualizarPoliticaOtorgamientoResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarPoliticaOtorgamiento(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/ActualizarPoliticaOtorgamiento", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/ActualizarPoliticaOtorgamientoResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarPoliticaOtorgamientoAsync(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2495,6 +2501,14 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasAsync() {
             return base.Channel.RecuperarPoliticasAsync();
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarPoliticaOtorgamiento(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica) {
+            return base.Channel.ActualizarPoliticaOtorgamiento(politica);
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarPoliticaOtorgamientoAsync(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica) {
+            return base.Channel.ActualizarPoliticaOtorgamientoAsync(politica);
         }
     }
     
@@ -2918,6 +2932,18 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/ObtenerChecklists", ReplyAction="http://tempuri.org/IChecklist/ObtenerChecklistsResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Checklist[]>> ObtenerChecklistsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/RecuperarPoliticasChecklistIdChecklist", ReplyAction="http://tempuri.org/IChecklist/RecuperarPoliticasChecklistIdChecklistResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticasChecklistIdChecklist(int idChecklist);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/RecuperarPoliticasChecklistIdChecklist", ReplyAction="http://tempuri.org/IChecklist/RecuperarPoliticasChecklistIdChecklistResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasChecklistIdChecklistAsync(int idChecklist);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/ActualizarChecklist", ReplyAction="http://tempuri.org/IChecklist/ActualizarChecklistResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarChecklist(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] arrayIdPoliticas);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/ActualizarChecklist", ReplyAction="http://tempuri.org/IChecklist/ActualizarChecklistResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarChecklistAsync(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] arrayIdPoliticas);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2969,6 +2995,22 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Checklist[]>> ObtenerChecklistsAsync() {
             return base.Channel.ObtenerChecklistsAsync();
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticasChecklistIdChecklist(int idChecklist) {
+            return base.Channel.RecuperarPoliticasChecklistIdChecklist(idChecklist);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasChecklistIdChecklistAsync(int idChecklist) {
+            return base.Channel.RecuperarPoliticasChecklistIdChecklistAsync(idChecklist);
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarChecklist(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] arrayIdPoliticas) {
+            return base.Channel.ActualizarChecklist(checklist, arrayIdPoliticas);
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarChecklistAsync(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] arrayIdPoliticas) {
+            return base.Channel.ActualizarChecklistAsync(checklist, arrayIdPoliticas);
         }
     }
 }

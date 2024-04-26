@@ -70,13 +70,20 @@ namespace WpfFinanciera.Vistas
                     break;
                 case Codigo.ERROR_SERVIDOR:
                     MostrarVentanaErrorServidor();
+                    DeshabilitarBotones();
                     break;
                 case Codigo.ERROR_BD:
                     MostrarVentanaErrorBaseDatos();
+                    DeshabilitarBotones();
                     break;
             }
         }
-        
+
+        private void DeshabilitarBotones()
+        {
+            btnAceptar.IsEnabled = false;
+        }
+
         private void CargarDatosPagina()
         {
             if (arrayPoliticas_!= null && arrayPoliticas_.Length > 0)
@@ -101,18 +108,11 @@ namespace WpfFinanciera.Vistas
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             mensajeError.Mostrar();
-            Cerrar();
         }
         private void MostrarVentanaErrorBaseDatos()
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             mensajeError.Mostrar();
-            Cerrar();
-        }
-
-        private void Cerrar()
-        {
-
         }
 
         private void ClicAceptar(object sender, RoutedEventArgs e)
@@ -164,20 +164,38 @@ namespace WpfFinanciera.Vistas
             {
                 case Codigo.EXITO:
                     MostrarVentanaExito();
+                    Cerrar();
                     break;
                 case Codigo.ERROR_SERVIDOR:
                     MostrarVentanaErrorServidor();
+                    Cerrar();
                     break;
                 case Codigo.ERROR_BD:
                     MostrarVentanaErrorBaseDatos();
+                    Cerrar();
                     break;
             }
         }
 
+        private void Cerrar()
+        {
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            MenuPrincipalAnalistaCreditoPagina menu = new MenuPrincipalAnalistaCreditoPagina();
+            ventanaPrincipal.CambiarPagina(menu);
+        }
+
         private void MostrarVentanaExito()
         {
-            VentanaMensaje mensajeError = new VentanaMensaje("Se ha registrado el dictamen exitosamente", Mensaje.EXITO);
-            mensajeError.Mostrar();
+            if (esAprobado_) 
+            {
+                VentanaMensaje mensajeError = new VentanaMensaje("Se ha registrado el dictamen exitosamente como aprobado", Mensaje.EXITO);
+                mensajeError.Mostrar();
+            }
+            else
+            {
+                VentanaMensaje mensajeError = new VentanaMensaje("Se ha registrado el dictamen exitosamente como rechazado", Mensaje.EXITO);
+                mensajeError.Mostrar();
+            }
         }
 
         private bool ValidarAprobacion() 
