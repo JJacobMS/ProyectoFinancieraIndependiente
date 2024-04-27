@@ -166,7 +166,7 @@
                                 <TextBlock Text="Tipo de usuario" Style="{StaticResource estiloTxtBlockUsuarioInfo}" Grid.Column="3" HorizontalAlignment="Center"/>
                             </Grid>
 
-                            <ListBox x:Name="lstBoxUsuarios" SelectionChanged="ClicRegistro" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" d:ItemsSource="{d:SampleData ItemCount=12}" Background="{x:Null}" BorderThickness="0">
+                            <ListBox x:Name="lstBoxUsuarios" MouseDoubleClick="ClicRegistro" Grid.Row="1" ScrollViewer.VerticalScrollBarVisibility="Visible" d:ItemsSource="{d:SampleData ItemCount=12}" Background="{x:Null}" BorderThickness="0">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
                                         <Border Margin="0,0,2,2" BorderBrush="#065758" BorderThickness="1" CornerRadius="10" Background="#E2F0EF" Padding="0,2,0,2" Width="1060" Height="45">

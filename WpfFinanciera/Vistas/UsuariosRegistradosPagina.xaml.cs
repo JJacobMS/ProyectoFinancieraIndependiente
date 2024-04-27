@@ -136,14 +136,27 @@ namespace WpfFinanciera.Vistas
             return listaFiltrada;
         }
 
-        private void ClicRegistro(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void ClicRegresar(object sender, MouseButtonEventArgs e)
         {
+            MenuPrincipalAdministradorPagina menuPrincipal = new MenuPrincipalAdministradorPagina();
 
+            NavigationService.Navigate(menuPrincipal);
+        }
+
+        private void ClicRegistro(object sender, MouseButtonEventArgs e)
+        {
+            if(e.ChangedButton == MouseButton.Left)
+            {
+                Usuario usuarioSeleccionado = (Usuario)lstBoxUsuarios.SelectedItem;
+
+                if(usuarioSeleccionado != null)
+                {
+                    FormularioUsuarioPagina formularioUsuario = new FormularioUsuarioPagina(usuarioSeleccionado);
+                    formularioUsuario.Loaded -= CargarPagina;
+
+                    NavigationService.Navigate(formularioUsuario);
+                }
+            }
         }
     }
 }

@@ -33,10 +33,55 @@ namespace WpfFinanciera.Vistas
         string _confirmarContraseña;
         bool _contraseñasIguales;
         int _idTipoUsuarioSeleccionado;
+        bool _esConsulta;
+        bool _esActualizacion;
+        Usuario _usuarioActualizacion;
 
         public FormularioUsuarioPagina()
         {
             InitializeComponent();
+        }
+
+        public FormularioUsuarioPagina(Usuario usuario)
+        {
+            InitializeComponent();
+            txtBlockTitulo.Text = "Consulta de Usuario";
+            _esConsulta = true;
+            CargarUsuario(usuario);
+        }
+
+        private void CargarUsuario(Usuario usuario)
+        {
+            stkPanelTipoUsuario.Visibility = Visibility.Visible;
+            txtBlockSeleccioneUsuario.Visibility = Visibility.Collapsed;
+            bdrTiposUsuario.Visibility = Visibility.Collapsed;
+            txtBoxNombre.Text = usuario.nombres;
+            txtBoxNombre.IsEnabled = false;
+            txtBoxNombre.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#065758");
+            txtBoxApellidos.Text = usuario.apellidos;
+            txtBoxApellidos.IsEnabled = false;
+            txtBoxApellidos.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#065758");
+            txtBoxCorreo.Text = usuario.correoElectronico;
+            txtBoxCorreo.IsEnabled = false;
+            txtBoxCorreo.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#065758");
+            grdContraseñas.Visibility = Visibility.Collapsed;
+            btnRegistrar.Visibility = Visibility.Collapsed;
+            btnModificar.Visibility = Visibility.Visible;
+            lstBoxTiposUsuario.SelectedIndex = usuario.TipoUsuario_idTipoUsuario - 1;
+            _usuarioActualizacion = usuario;
+
+            switch (usuario.TipoUsuario_idTipoUsuario)
+            {
+                case 1:
+                    txtBlockTipoUsuario.Text = "Asesor de Crédito";
+                    break;
+                case 2:
+                    txtBlockTipoUsuario.Text = "Analista de Crédito";
+                    break;
+                case 3:
+                    txtBlockTipoUsuario.Text = "Administrador";
+                    break;
+            }
         }
 
         private void CargarPagina(object sender, RoutedEventArgs e)
@@ -117,7 +162,15 @@ namespace WpfFinanciera.Vistas
 
         private void ClicRegresar(object sender, MouseButtonEventArgs e)
         {
-            RegresarAMenuPrincipal();
+            if (_esConsulta)
+            {
+                UsuariosRegistradosPagina usuariosRegistrados = new UsuariosRegistradosPagina();
+                NavigationService.Navigate(usuariosRegistrados);
+            }
+            else
+            {
+                RegresarAMenuPrincipal();
+            }
         }
 
         private void RegresarAMenuPrincipal()
@@ -176,10 +229,16 @@ namespace WpfFinanciera.Vistas
 
         private void MostrarVentanaConfirmacion()
         {
-            VentanaMensaje ventanaConfirmacion = new VentanaMensaje("¿Desea registrar el usuario ingresado?", Mensaje.CONFIRMACION);
-            if(ventanaConfirmacion.MostrarConfirmacion())
+            string mensaje = _esActualizacion ? "¿Desea actualizar los datos del usuario?" : "¿Desea registrar el usuario ingresado?";
+
+            VentanaMensaje ventanaConfirmacion = new VentanaMensaje(mensaje, Mensaje.CONFIRMACION);
+            if(ventanaConfirmacion.MostrarConfirmacion() && !_esActualizacion)
             {
                 RegistrarUsuario();
+            }
+            else if(ventanaConfirmacion.MostrarConfirmacion() && _esActualizacion)
+            {
+                ActualizarUsuario();
             }
         }
 
@@ -229,8 +288,6 @@ namespace WpfFinanciera.Vistas
 
         private void RegistrarUsuarioBD()
         {
-            Console.WriteLine(_idTipoUsuarioSeleccionado);
-
             Usuario usuarioNuevo = new Usuario
             {
                 nombres = _nombres,
@@ -275,7 +332,9 @@ namespace WpfFinanciera.Vistas
 
         private void MostrarVentanaExito()
         {
-            VentanaMensaje exito = new VentanaMensaje("Se ha registrado el usuario exitosamente", Mensaje.EXITO);
+            string operacion = _esActualizacion ? "actualizado" : "registrado";
+
+            VentanaMensaje exito = new VentanaMensaje("Se ha " + operacion + " el usuario exitosamente", Mensaje.EXITO);
             exito.Mostrar();
         }
 
@@ -344,10 +403,15 @@ namespace WpfFinanciera.Vistas
                 {
                     MarcarCampoRojo(textBox);
                     DeshabilitarRegistrar();
+                    DeshabilitarActualizar();
                 }
                 else
                 {
                     textBox.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#A9D4D6");
+                    if((_contraseña == "" && _confirmarContraseña == "") || (_contraseña != "" && _contraseñasIguales))
+                    {
+                        HabilitarActualizar();
+                    }
                 }
             }
 
@@ -359,8 +423,11 @@ namespace WpfFinanciera.Vistas
             {
                 DeshabilitarRegistrar();
             }
+        }
 
-            Console.WriteLine(_idTipoUsuarioSeleccionado);
+        private void DeshabilitarActualizar()
+        {
+            btnActualizar.IsEnabled = false;
         }
 
         private void DeshabilitarRegistrar()
@@ -439,7 +506,7 @@ namespace WpfFinanciera.Vistas
             PasswordBox passwordBox = sender as PasswordBox;
             ActualizarValoresCampos();
 
-            if (passwordBox.Password.Trim() == "")
+            if (passwordBox.Password.Trim() == "" && !_esActualizacion)
             {
                 passwordBox.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#FCC6C1");
                 DeshabilitarRegistrar();
@@ -449,6 +516,15 @@ namespace WpfFinanciera.Vistas
                 passwordBox.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#A9D4D6");
             }
 
+            if (_nombres != "" && _apellidos != "" && (_contraseña == "" && _contraseñasIguales || _contraseña != "" && _contraseñasIguales))
+            {
+                HabilitarActualizar();
+            }
+            else
+            {
+                DeshabilitarActualizar();
+            }
+
             if (_nombres != "" && _apellidos != "" && _correo != "" && _contraseña != "" && _confirmarContraseña != "" && _contraseñasIguales && lstBoxTiposUsuario.SelectedIndex != -1)
             {
                 HabilitarRegistrar();
@@ -456,6 +532,99 @@ namespace WpfFinanciera.Vistas
             else
             {
                 DeshabilitarRegistrar();
+            }
+
+            if ((_contraseña == "" && _confirmarContraseña == "") || (_contraseña != "" && _contraseñasIguales))
+            {
+                HabilitarActualizar();
+            }
+            else
+            {
+                DeshabilitarActualizar();
+            }
+        }
+
+        private void HabilitarActualizar()
+        {
+            btnActualizar.IsEnabled = true;
+        }
+
+        private void ClicModificar(object sender, RoutedEventArgs e)
+        {
+            txtBoxNombre.IsEnabled = true;
+            txtBoxNombre.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#A9D4D6");
+            txtBoxApellidos.IsEnabled = true;
+            txtBoxApellidos.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#A9D4D6");
+            grdContraseñas.Visibility = Visibility.Visible;
+            btnModificar.Visibility = Visibility.Collapsed;
+            btnActualizar.Visibility = Visibility.Visible;
+
+            _esActualizacion = true;
+        }
+
+        private void ClicActualizar(object sender, RoutedEventArgs e)
+        {
+            string motivos = "";
+
+            if (_contraseña != "")
+            {
+                motivos = ValidarContraseñaSegura();
+
+            }
+
+            if (motivos != "")
+            {
+                MostrarVentanaError(motivos);
+            }
+            else
+            {
+                MostrarVentanaConfirmacion();
+            }
+        }
+
+        private void ActualizarUsuario()
+        {
+            _usuarioActualizacion.nombres = _nombres;
+            _usuarioActualizacion.apellidos = _apellidos;
+            _usuarioActualizacion.contrasenha = _contraseña;
+
+            Codigo codigoRespuesta = new Codigo();
+
+            try
+            {
+                UsuarioClient usuarioClient = new UsuarioClient();
+
+                if(_usuarioActualizacion.contrasenha == "")
+                {
+                    codigoRespuesta = usuarioClient.ActualizarUsuarioSinContraseña(_usuarioActualizacion);
+                }
+                else
+                {
+                    codigoRespuesta = usuarioClient.ActualizarUsuarioContraseña(_usuarioActualizacion);
+                }
+            }
+            catch (CommunicationException)
+            {
+                codigoRespuesta = Codigo.ERROR_SERVIDOR;
+            }
+            catch (TimeoutException)
+            {
+                codigoRespuesta = Codigo.ERROR_SERVIDOR;
+            }
+
+            switch (codigoRespuesta)
+            {
+                case Codigo.EXITO:
+                    MostrarVentanaExito();
+                    UsuariosRegistradosPagina usuariosRegistrados = new UsuariosRegistradosPagina();
+                    NavigationService.Navigate(usuariosRegistrados);
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBD();
+                    break;
             }
         }
     }
