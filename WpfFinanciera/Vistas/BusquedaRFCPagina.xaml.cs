@@ -140,7 +140,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicActualizarDatos(object sender, RoutedEventArgs e)
         {
-            //TODO Redirección a Actualizar Datos de Cliente
+            FormularioClientePagina formulario = new FormularioClientePagina(new Cliente { rfc = _clienteActual.Rfc});
+            MainWindow ventana = (MainWindow)Window.GetWindow(this);
+            ventana.CambiarPagina(formulario);
         }
 
         private void CambioTextoRfc(object sender, TextChangedEventArgs e)
@@ -194,9 +196,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicRegresar(object sender, MouseButtonEventArgs e)
         {
-            MenuPrincipalAnalistaCreditoPagina menuPrincipal = new MenuPrincipalAnalistaCreditoPagina();
-
-            NavigationService.Navigate(menuPrincipal);
+            MenuPrincipalAsesorCreditoPagina menuPrincipal = new MenuPrincipalAsesorCreditoPagina();
+            MainWindow ventana = (MainWindow) Window.GetWindow(this);
+            ventana.CambiarPagina(menuPrincipal);
         }
     }
 }

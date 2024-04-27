@@ -145,6 +145,7 @@ namespace WpfFinanciera.Vistas
             condicionCredito.identificador = txtBoxIdentificador.Text.Trim();
             condicionCredito.descripcion = txtBoxDescripcion.Text.Trim();
             condicionCredito.plazoMeses = int.Parse(txtBoxPlazo.Text.Trim());
+            condicionCredito.tasaInteres = (int) double.Parse(txtBoxInteres.Text.Trim());
             condicionCredito.tieneIVA = (bool)chkBoxIVA.IsChecked;
             condicionCredito.estaActiva = true;
 
@@ -177,6 +178,7 @@ namespace WpfFinanciera.Vistas
                     break;
             }
         }
+
 
         private void MostrarVentanaErrorBD()
         {
@@ -211,7 +213,7 @@ namespace WpfFinanciera.Vistas
 
         private void ClicRegresar(object sender, MouseButtonEventArgs e)
         {
-            MenuPrincipalAnalistaCreditoPagina menuPrincipal = new MenuPrincipalAnalistaCreditoPagina();
+            MenuPrincipalAdministradorPagina menuPrincipal = new MenuPrincipalAdministradorPagina();
 
             NavigationService.Navigate(menuPrincipal);
         }

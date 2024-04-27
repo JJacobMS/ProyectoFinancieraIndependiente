@@ -108,6 +108,18 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_IReferenciaCliente_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -154,6 +166,18 @@
   <wsdl:message name="IReferenciaTrabajo_RecuperarReferenciasTrabajo_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarReferenciasTrabajoResponse" />
   </wsdl:message>
+  <wsdl:message name="IReferenciaTrabajo_ActualizarYCambiarReferenciaTrabajo_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarYCambiarReferenciaTrabajo" />
+  </wsdl:message>
+  <wsdl:message name="IReferenciaTrabajo_ActualizarYCambiarReferenciaTrabajo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarYCambiarReferenciaTrabajoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReferenciaTrabajo_ActualizarInformacionReferenciaTrabajoActual_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarInformacionReferenciaTrabajoActual" />
+  </wsdl:message>
+  <wsdl:message name="IReferenciaTrabajo_ActualizarInformacionReferenciaTrabajoActual_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarInformacionReferenciaTrabajoActualResponse" />
+  </wsdl:message>
   <wsdl:message name="ICondicionCredito_GuardarCondicionCredito_InputMessage">
     <wsdl:part name="parameters" element="tns:GuardarCondicionCredito" />
   </wsdl:message>
@@ -178,6 +202,18 @@
   <wsdl:message name="ICredito_ObtenerSolicitudesCredito_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerSolicitudesCreditoResponse" />
   </wsdl:message>
+  <wsdl:message name="ICredito_RecuperarCreditosRegistrados_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarCreditosRegistrados" />
+  </wsdl:message>
+  <wsdl:message name="ICredito_RecuperarCreditosRegistrados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarCreditosRegistradosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICredito_RecuperarTodosDetallesCredito_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarTodosDetallesCredito" />
+  </wsdl:message>
+  <wsdl:message name="ICredito_RecuperarTodosDetallesCredito_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarTodosDetallesCreditoResponse" />
+  </wsdl:message>
   <wsdl:message name="ICliente_ValidarRfcClienteUnico_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidarRfcClienteUnico" />
   </wsdl:message>
@@ -195,6 +231,30 @@
   </wsdl:message>
   <wsdl:message name="ICliente_BuscarClientePorRFC_OutputMessage">
     <wsdl:part name="parameters" element="tns:BuscarClientePorRFCResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_RecuperarClientesRegistrados_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarClientesRegistrados" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_RecuperarClientesRegistrados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarClientesRegistradosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_RecuperarTodosDetallesCliente_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarTodosDetallesCliente" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_RecuperarTodosDetallesCliente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarTodosDetallesClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_RecuperarDetallesClienteFormulario_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarDetallesClienteFormulario" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_RecuperarDetallesClienteFormulario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarDetallesClienteFormularioResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_ActualizarInformacionCliente_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarInformacionCliente" />
+  </wsdl:message>
+  <wsdl:message name="ICliente_ActualizarInformacionCliente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarInformacionClienteResponse" />
   </wsdl:message>
   <wsdl:message name="IDictamen_GuardarDictamen_InputMessage">
     <wsdl:part name="parameters" element="tns:GuardarDictamen" />
@@ -238,6 +298,12 @@
   <wsdl:message name="IChecklist_ActualizarChecklist_OutputMessage">
     <wsdl:part name="parameters" element="tns:ActualizarChecklistResponse" />
   </wsdl:message>
+  <wsdl:message name="IReferenciaCliente_ActualizarReferenciaCliente_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarReferenciaCliente" />
+  </wsdl:message>
+  <wsdl:message name="IReferenciaCliente_ActualizarReferenciaCliente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarReferenciaClienteResponse" />
+  </wsdl:message>
   <wsdl:portType name="IPoliticaOtorgamiento">
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_InputMessage" />
@@ -269,6 +335,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajo" message="tns:IReferenciaTrabajo_RecuperarReferenciasTrabajo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajoResponse" message="tns:IReferenciaTrabajo_RecuperarReferenciasTrabajo_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="ActualizarYCambiarReferenciaTrabajo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReferenciaTrabajo/ActualizarYCambiarReferenciaTrabajo" message="tns:IReferenciaTrabajo_ActualizarYCambiarReferenciaTrabajo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReferenciaTrabajo/ActualizarYCambiarReferenciaTrabajoResponse" message="tns:IReferenciaTrabajo_ActualizarYCambiarReferenciaTrabajo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarInformacionReferenciaTrabajoActual">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReferenciaTrabajo/ActualizarInformacionReferenciaTrabajoActual" message="tns:IReferenciaTrabajo_ActualizarInformacionReferenciaTrabajoActual_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReferenciaTrabajo/ActualizarInformacionReferenciaTrabajoActualResponse" message="tns:IReferenciaTrabajo_ActualizarInformacionReferenciaTrabajoActual_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ICondicionCredito">
     <wsdl:operation name="GuardarCondicionCredito">
@@ -289,6 +363,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICredito/ObtenerSolicitudesCredito" message="tns:ICredito_ObtenerSolicitudesCredito_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICredito/ObtenerSolicitudesCreditoResponse" message="tns:ICredito_ObtenerSolicitudesCredito_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RecuperarCreditosRegistrados">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICredito/RecuperarCreditosRegistrados" message="tns:ICredito_RecuperarCreditosRegistrados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICredito/RecuperarCreditosRegistradosResponse" message="tns:ICredito_RecuperarCreditosRegistrados_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarTodosDetallesCredito">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICredito/RecuperarTodosDetallesCredito" message="tns:ICredito_RecuperarTodosDetallesCredito_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICredito/RecuperarTodosDetallesCreditoResponse" message="tns:ICredito_RecuperarTodosDetallesCredito_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ICliente">
     <wsdl:operation name="ValidarRfcClienteUnico">
@@ -302,6 +384,22 @@
     <wsdl:operation name="BuscarClientePorRFC">
       <wsdl:input wsaw:Action="http://tempuri.org/ICliente/BuscarClientePorRFC" message="tns:ICliente_BuscarClientePorRFC_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICliente/BuscarClientePorRFCResponse" message="tns:ICliente_BuscarClientePorRFC_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarClientesRegistrados">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/RecuperarClientesRegistrados" message="tns:ICliente_RecuperarClientesRegistrados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/RecuperarClientesRegistradosResponse" message="tns:ICliente_RecuperarClientesRegistrados_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarTodosDetallesCliente">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/RecuperarTodosDetallesCliente" message="tns:ICliente_RecuperarTodosDetallesCliente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/RecuperarTodosDetallesClienteResponse" message="tns:ICliente_RecuperarTodosDetallesCliente_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarDetallesClienteFormulario">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/RecuperarDetallesClienteFormulario" message="tns:ICliente_RecuperarDetallesClienteFormulario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/RecuperarDetallesClienteFormularioResponse" message="tns:ICliente_RecuperarDetallesClienteFormulario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarInformacionCliente">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICliente/ActualizarInformacionCliente" message="tns:ICliente_ActualizarInformacionCliente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICliente/ActualizarInformacionClienteResponse" message="tns:ICliente_ActualizarInformacionCliente_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IDictamen">
@@ -334,6 +432,12 @@
     <wsdl:operation name="ActualizarChecklist">
       <wsdl:input wsaw:Action="http://tempuri.org/IChecklist/ActualizarChecklist" message="tns:IChecklist_ActualizarChecklist_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChecklist/ActualizarChecklistResponse" message="tns:IChecklist_ActualizarChecklist_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IReferenciaCliente">
+    <wsdl:operation name="ActualizarReferenciaCliente">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReferenciaCliente/ActualizarReferenciaCliente" message="tns:IReferenciaCliente_ActualizarReferenciaCliente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReferenciaCliente/ActualizarReferenciaClienteResponse" message="tns:IReferenciaCliente_ActualizarReferenciaCliente_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPoliticaOtorgamiento" type="tns:IPoliticaOtorgamiento">
@@ -405,6 +509,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ActualizarYCambiarReferenciaTrabajo">
+      <soap12:operation soapAction="http://tempuri.org/IReferenciaTrabajo/ActualizarYCambiarReferenciaTrabajo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarInformacionReferenciaTrabajoActual">
+      <soap12:operation soapAction="http://tempuri.org/IReferenciaTrabajo/ActualizarInformacionReferenciaTrabajoActual" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_ICondicionCredito" type="tns:ICondicionCredito">
     <wsp:PolicyReference URI="#NetTcpBinding_ICondicionCredito_policy" />
@@ -449,6 +571,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RecuperarCreditosRegistrados">
+      <soap12:operation soapAction="http://tempuri.org/ICredito/RecuperarCreditosRegistrados" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarTodosDetallesCredito">
+      <soap12:operation soapAction="http://tempuri.org/ICredito/RecuperarTodosDetallesCredito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_ICliente" type="tns:ICliente">
     <wsp:PolicyReference URI="#NetTcpBinding_ICliente_policy" />
@@ -473,6 +613,42 @@
     </wsdl:operation>
     <wsdl:operation name="BuscarClientePorRFC">
       <soap12:operation soapAction="http://tempuri.org/ICliente/BuscarClientePorRFC" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarClientesRegistrados">
+      <soap12:operation soapAction="http://tempuri.org/ICliente/RecuperarClientesRegistrados" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarTodosDetallesCliente">
+      <soap12:operation soapAction="http://tempuri.org/ICliente/RecuperarTodosDetallesCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarDetallesClienteFormulario">
+      <soap12:operation soapAction="http://tempuri.org/ICliente/RecuperarDetallesClienteFormulario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarInformacionCliente">
+      <soap12:operation soapAction="http://tempuri.org/ICliente/ActualizarInformacionCliente" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -552,6 +728,19 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_IReferenciaCliente" type="tns:IReferenciaCliente">
+    <wsp:PolicyReference URI="#NetTcpBinding_IReferenciaCliente_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="ActualizarReferenciaCliente">
+      <soap12:operation soapAction="http://tempuri.org/IReferenciaCliente/ActualizarReferenciaCliente" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="ServiciosFinancieraIndependiente">
     <wsdl:port name="NetTcpBinding_IPoliticaOtorgamiento" binding="tns:NetTcpBinding_IPoliticaOtorgamiento">
       <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
@@ -602,6 +791,12 @@
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IChecklist" binding="tns:NetTcpBinding_IChecklist">
+      <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_IReferenciaCliente" binding="tns:NetTcpBinding_IReferenciaCliente">
       <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>

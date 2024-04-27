@@ -36,7 +36,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicConsultarClientes(object sender, RoutedEventArgs e)
         {
-
+            ListaClientesPagina clientes = new ListaClientesPagina();
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            ventanaPrincipal.CambiarPagina(clientes);
         }
 
         private void ClicConsultarCalculo(object sender, RoutedEventArgs e)

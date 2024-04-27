@@ -3,12 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms.VisualStyles;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -28,6 +30,10 @@ namespace WpfFinanciera.Vistas
         private byte[] _documentoReferencia;
         private string _nombreArchivo;
         private string _numeroReferenciaCliente;
+
+        private ReferenciaCliente _referenciaClienteRegistrado;
+        private Documento _documentoRegistrado;
+
         public FormularioReferenciaClientePagina(FormularioClientePagina formularioCliente, string numeroReferenciaCliente)
         {
             InitializeComponent();
@@ -37,6 +43,140 @@ namespace WpfFinanciera.Vistas
             _numeroReferenciaCliente = numeroReferenciaCliente;
             CargarPaginaFormularioReferenciaCliente(numeroReferenciaCliente);
         }
+
+        public FormularioReferenciaClientePagina(FormularioClientePagina formularioCliente, Cliente cliente, string numeroReferenciaCliente)
+        {
+            InitializeComponent();
+            _formularioCliente = formularioCliente;
+            _numeroReferenciaCliente = numeroReferenciaCliente;
+           
+
+            int numReferenciaCliente = Int32.Parse(numeroReferenciaCliente);
+            Documento documentoCliente = cliente.Documento.Where(documento => documento.TipoDocumento.descripcion.Equals("Referencia Cliente " + numeroReferenciaCliente)).FirstOrDefault();
+            if (documentoCliente != null)
+            {
+                CargarPaginaFormularioActualizar(cliente.ReferenciaCliente[numReferenciaCliente - 1], documentoCliente);
+            }
+        }
+
+        private void CargarPaginaFormularioActualizar(ReferenciaCliente referenciaCliente, Documento documento)
+        {
+            _referenciaClienteRegistrado = referenciaCliente;
+            _documentoRegistrado = documento;
+            rnNumeroReferenciaCliente.Text = _numeroReferenciaCliente;
+
+            txtBoxNombreReferencia.Text = referenciaCliente.nombres;
+            txtBoxApellidosReferencia.Text = referenciaCliente.apellidos;
+            txtBoxDescripcionReferencia.Text = referenciaCliente.descripcion;
+            txtBoxTelefonoReferencia.Text = referenciaCliente.telefono;
+
+            btnAgregarArchivo.Style = (Style)FindResource("estiloBtnArchivoAdjuntado");
+            btnAgregarArchivo.Click -= ClicAdjuntarDocumento;
+            btnAgregarArchivo.DataContext = documento.nombre;
+            _documentoReferencia = documento.archivo;
+            _nombreArchivo = documento.nombre;
+
+            txtBlockBotonGuardar.Text = "Guardar Cambios de la Referencia Cliente #" + _numeroReferenciaCliente;
+            btnAgregarReferencia.Click -= ClicAgregarReferenciaCliente;
+            btnAgregarReferencia.Click += ClicGuardarCambiosReferenciaCliente;
+        }
+
+        private void ClicGuardarCambiosReferenciaCliente(object sender, RoutedEventArgs e)
+        {
+            bool sonCamposValidos = ValidarCamposVaciosYValidos();
+            if (sonCamposValidos)
+            {
+                bool documentoExcedeTamanio = ValidarTamanioArchivo();
+                if (!documentoExcedeTamanio)
+                {
+                    MostrarVentanaConfirmacionActualizacion();
+                }
+            }
+        }
+
+        private void MostrarVentanaConfirmacionActualizacion()
+        {
+            VentanaMensaje ventana = new VentanaMensaje("¿Desea actualizar la referencia de cliente?", Mensaje.CONFIRMACION);
+            if (ventana.MostrarConfirmacion())
+            {
+                ActualizarInformacionReferenciaCliente();
+            }
+        }
+
+        private void ActualizarInformacionReferenciaCliente()
+        {
+            ReferenciaCliente referenciaCliente = new ReferenciaCliente
+            {
+                idReferenciaCliente = _referenciaClienteRegistrado.idReferenciaCliente,
+                nombres = txtBoxNombreReferencia.Text.Trim(),
+                apellidos = txtBoxApellidosReferencia.Text.Trim(),
+                descripcion = txtBoxDescripcionReferencia.Text.Trim(),
+                telefono = txtBoxTelefonoReferencia.Text.Trim()
+            };
+
+            Documento documentoCliente = new Documento
+            {
+                idDocumento = _documentoRegistrado.idDocumento,
+                archivo = _documentoReferencia,
+                nombre = Path.GetFileName(_nombreArchivo),
+                TipoDocumento = _documentoRegistrado.TipoDocumento
+            };
+
+            Codigo codigo;
+            try
+            {
+                ReferenciaClienteClient proxy = new ReferenciaClienteClient();
+                codigo = proxy.ActualizarReferenciaCliente(referenciaCliente, documentoCliente);
+            }
+            catch (CommunicationException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    _referenciaClienteRegistrado = referenciaCliente;
+                    _documentoRegistrado = documentoCliente;
+                    MostrarVentanaExitoActualizacion();
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBaseDatos();
+                    break;
+            }
+        }
+
+        private void MostrarVentanaExitoActualizacion()
+        {
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            _formularioCliente.AgregarReferenciaCliente(_referenciaClienteRegistrado, _documentoRegistrado, _numeroReferenciaCliente);
+            ventanaPrincipal.CambiarPagina(_formularioCliente);
+
+            VentanaMensaje ventana = new VentanaMensaje("Se ha registrado al cliente exitosamente", Mensaje.EXITO);
+            ventana.Mostrar();
+        }
+
+        private void MostrarVentanaErrorServidor()
+        {
+            VentanaMensaje ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            ventanaMensaje.Mostrar();
+        }
+
+        private void MostrarVentanaErrorBaseDatos()
+        {
+            VentanaMensaje ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
+            ventanaMensaje.Mostrar();
+        }
+
 
         private void CargarPaginaFormularioReferenciaCliente(string numeroReferenciaCliente)
         {
@@ -95,7 +235,6 @@ namespace WpfFinanciera.Vistas
             btnAgregarArchivo.Style = (Style)FindResource("estiloBtnAgregarArchivo");
             btnAgregarArchivo.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#127B7C");
             btnAgregarArchivo.Click += ClicAdjuntarDocumento;
-
         }
 
         private void ClicAgregarReferenciaCliente(object sender, RoutedEventArgs e)
@@ -117,10 +256,10 @@ namespace WpfFinanciera.Vistas
             bool sonCamposValidos = true;
             string razones = "";
 
-            string nombre = txtBoxNombreReferencia.Text;
-            string apellidos = txtBoxApellidosReferencia.Text;
-            string telefono = txtBoxTelefonoReferencia.Text;
-            string descripcion = txtBoxDescripcionReferencia.Text;
+            string nombre = txtBoxNombreReferencia.Text.Trim();
+            string apellidos = txtBoxApellidosReferencia.Text.Trim();
+            string telefono = txtBoxTelefonoReferencia.Text.Trim();
+            string descripcion = txtBoxDescripcionReferencia.Text.Trim();
 
             if (string.IsNullOrWhiteSpace(nombre) || nombre.Length > 50)
             {
@@ -139,13 +278,16 @@ namespace WpfFinanciera.Vistas
             {
                 txtBoxTelefonoReferencia.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
-                razones = (razones.Length > 0) ? razones + ", Teléfono" : "Teléfono";
+                razones = (razones.Length > 0) ? razones + ", " : razones;
+                razones += "Teléfono (debe ser menor a 13 caracteres)";
             }
             if (string.IsNullOrWhiteSpace(descripcion) || descripcion.Length > 35)
             {
                 txtBoxDescripcionReferencia.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
-                razones = (razones.Length > 0) ? razones + ", Descripción" : "Descripción";
+                razones = (razones.Length > 0) ? razones + ", " : razones;
+                razones += "Descripción (debe ser menor a 36 caracteres)";
+
             }
             if (_documentoReferencia == null || _nombreArchivo.Length > 50)
             {
@@ -213,21 +355,19 @@ namespace WpfFinanciera.Vistas
             TipoDocumento tipo = new TipoDocumento { descripcion = "Referencia Cliente " +  _numeroReferenciaCliente};
             Documento documentoReferencia = new Documento
             {
-                idDocumento = 0, archivo = _documentoReferencia, nombre = Path.GetFileNameWithoutExtension(_nombreArchivo), 
-                extension = Path.GetExtension(_nombreArchivo), TipoDocumento = tipo
+                idDocumento = 0, archivo = _documentoReferencia, nombre = Path.GetFileName(_nombreArchivo), TipoDocumento = tipo
             };
             ReferenciaCliente referenciaCliente = new ReferenciaCliente
             {
                 idReferenciaCliente = 0,
-                nombres = txtBoxNombreReferencia.Text,
-                apellidos = txtBoxApellidosReferencia.Text,
-                descripcion = txtBoxDescripcionReferencia.Text,
-                telefono = txtBoxTelefonoReferencia.Text
+                nombres = txtBoxNombreReferencia.Text.Trim(),
+                apellidos = txtBoxApellidosReferencia.Text.Trim(),
+                descripcion = txtBoxDescripcionReferencia.Text.Trim(),
+                telefono = txtBoxTelefonoReferencia.Text.Trim()
             };
             _formularioCliente.AgregarReferenciaCliente(referenciaCliente, documentoReferencia, _numeroReferenciaCliente);
             MainWindow ventana = (MainWindow)Window.GetWindow(this);
             ventana.CambiarPagina(_formularioCliente);
-
         }
 
         private void PreviewKeyDownValidarNumero(object sender, KeyEventArgs e)

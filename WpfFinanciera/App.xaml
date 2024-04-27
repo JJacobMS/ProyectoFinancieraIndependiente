@@ -14,6 +14,8 @@
                 <ResourceDictionary Source="Recursos/Diccionarios/FormularioDictamenDiccionario.xaml"/>
                 <ResourceDictionary Source="Recursos/Diccionarios/BusquedaRFCDiccionario.xaml"/>
                 <ResourceDictionary Source="Recursos/Diccionarios/MenuPrincipalDiccionario.xaml"/>
+                <ResourceDictionary Source="Recursos/Diccionarios/ListaCreditosDiccionario.xaml"/>
+                <ResourceDictionary Source="Recursos/Diccionarios/DetallesClienteDiccionario.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

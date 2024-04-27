@@ -29,7 +29,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicConsultarClientes(object sender, RoutedEventArgs e)
         {
-
+            BusquedaRFCCliente paginaBusqueda = new BusquedaRFCCliente();
+            MainWindow ventana = (MainWindow)Window.GetWindow(this);
+            ventana.CambiarPagina(paginaBusqueda);
         }
 
         private void ClicRegistrarCliente(object sender, RoutedEventArgs e)
@@ -41,12 +43,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicConsultarCreditos(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void ClicRegistrarSolicitud(object sender, RoutedEventArgs e)
-        {
-
+            ListaCreditosPagina lista = new ListaCreditosPagina();
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            ventanaPrincipal.CambiarPagina(lista);
         }
 
         private void ClicConsultarCalculoEficiencias(object sender, RoutedEventArgs e)
@@ -60,6 +59,11 @@ namespace WpfFinanciera.Vistas
             InicioSesionPagina paginaInicio = new InicioSesionPagina();
             MainWindow ventana = (MainWindow)Window.GetWindow(this);
             ventana.CambiarPagina(paginaInicio);
+        }
+
+        private void ClicRegistrarCobro(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

@@ -66,6 +66,9 @@ namespace WpfFinanciera.Vistas
                 ChecklistClient checklistSolClient = new ChecklistClient();
                 var respuesta = checklistSolClient.ObtenerChecklists();
                 var (codigo, checklists) = respuesta;
+
+                codigoRespuesta = codigo;
+                listaChecklists = checklists;
             }
             catch (CommunicationException ex)
             {

@@ -35,8 +35,8 @@
                             <TextBlock Margin="30 15 0 15" Style="{StaticResource estiloTxtBlockFormularioClienteCampos}">Teléfono:</TextBlock>
                             <TextBox x:Name="txtBoxTelefono" Margin="30 0 20 15" Style="{StaticResource estiloTxtBoxFormularioCliente}" PreviewKeyDown="PreviewKeyDownValidarNumero"></TextBox>
                         </StackPanel>
-                        <Button Grid.Column="1" Style="{StaticResource estiloBtnRegistrarClienteFormulario}" Margin="7" Click="ClicAdjuntarReferenciaTrabajoCliente">
-                            <TextBlock TextWrapping="Wrap" TextAlignment="Center">Adjuntar referencia al cliente</TextBlock>
+                        <Button Name="btnGuardarReferencia" Grid.Column="1" Style="{StaticResource estiloBtnRegistrarClienteFormulario}" Margin="7" Click="ClicAdjuntarReferenciaTrabajoCliente">
+                            <TextBlock Name="txtBlockGuardarReferencia" TextWrapping="Wrap" TextAlignment="Center" Margin="10 0">Adjuntar referencia al cliente</TextBlock>
                         </Button>
                     </Grid>
                 </StackPanel>
