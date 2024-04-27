@@ -66,11 +66,20 @@ namespace WpfFinanciera.Vistas
                     break;
                 case Codigo.ERROR_BD:
                     MostrarVentanaErrorBD();
+                    IrMenuPrincipal();
                     break;
                 case Codigo.ERROR_SERVIDOR:
                     MostrarVentanaErrorServidor();
+                    IrMenuPrincipal();
                     break;
             }
+        }
+
+        private void IrMenuPrincipal()
+        {
+            MenuPrincipalAdministradorPagina menuPrincipal = new MenuPrincipalAdministradorPagina();
+
+            NavigationService.Navigate(menuPrincipal);
         }
 
         private void MostrarVentanaErrorBD()
