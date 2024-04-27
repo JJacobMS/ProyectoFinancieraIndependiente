@@ -31,6 +31,28 @@ namespace WpfFinanciera.Vistas
             InitializeComponent();
         }
 
+        public FormularioCondicionCreditoPagina(CondicionCredito condicionCredito)
+        {
+            InitializeComponent();
+
+            txtBoxIdentificador.Text = condicionCredito.identificador;
+            txtBoxIdentificador.IsEnabled = false;
+            txtBoxDescripcion.Text = condicionCredito.descripcion;
+            txtBoxDescripcion.IsEnabled = false;
+            txtBoxPlazo.Text = condicionCredito.plazoMeses.ToString();
+            txtBoxPlazo.IsEnabled = false;
+            txtBoxInteres.Text = condicionCredito.tasaInteres.ToString();
+            txtBoxInteres.IsEnabled = false;
+            chkBoxIVA.Visibility = Visibility.Collapsed;
+            txtBlockIva.Visibility = Visibility.Visible;
+            txtBlockIva.Text = condicionCredito.tieneIVA ? "Sí" : "No";
+            txtBlockEstadoCampo.Visibility = Visibility.Visible;
+            txtBlockEstadoInfo.Visibility = Visibility.Visible;
+            txtBlockEstadoInfo.Text = condicionCredito.estaActiva ? "Activa" : "Inactiva";
+            btnRegistrar.Visibility = Visibility.Collapsed;
+            btnModificar.Visibility = Visibility.Visible;
+        }
+
         private void PrevenirTextoNoNumerico(object sender, TextCompositionEventArgs e)
         {
             if (!EsNumerico(e.Text))
@@ -216,6 +238,11 @@ namespace WpfFinanciera.Vistas
             MenuPrincipalAdministradorPagina menuPrincipal = new MenuPrincipalAdministradorPagina();
 
             NavigationService.Navigate(menuPrincipal);
+        }
+
+        private void ClicModificar(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
