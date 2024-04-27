@@ -110,7 +110,7 @@ namespace WpfFinanciera.Vistas
 
             List<CondicionCredito> listaFiltrada = FiltrarLista(busqueda);
 
-            lstBoxCondicionesCredito.ItemsSource = _listaCondicionesCredito;
+            lstBoxCondicionesCredito.ItemsSource = listaFiltrada;
         }
 
         private List<CondicionCredito> FiltrarLista(string busqueda)
