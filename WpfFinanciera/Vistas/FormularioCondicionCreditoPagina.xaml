@@ -86,7 +86,7 @@
             </Setter>
         </Style>
 
-        <Style x:Key="estiloChkBoxCirularIVA" TargetType="CheckBox">
+        <Style x:Key="estiloChkBoxCirular" TargetType="CheckBox">
             <Setter Property="Background" Value="Black"/>
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="Template">
@@ -164,7 +164,7 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <CheckBox x:Name="chkBoxIVA" Margin="30,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="False" Style="{StaticResource estiloChkBoxCirularIVA}" Width="20" Height="20"/>
+                <CheckBox x:Name="chkBoxIVA" Margin="30,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="False" Style="{StaticResource estiloChkBoxCirular}" Width="20" Height="20"/>
                 <TextBlock x:Name="txtBlockEstadoCampo" Visibility="Collapsed" Style="{StaticResource estiloTxtBlockFormularioCondicionCreditoCampo}" Text="Estado:" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,0,0,0"/>
                 <TextBlock x:Name="txtBlockEstadoInfo" Visibility="Collapsed" Grid.Column="5" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,0,0,0">
                     <TextBlock.Style>
@@ -181,8 +181,10 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
+                <CheckBox x:Name="chkBoxActiva" Visibility="Collapsed" Margin="30,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="False" Style="{StaticResource estiloChkBoxCirular}" Width="20" Height="20"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10">
+                <Button x:Name="btnActualizar" Click="ClicActualizar" Style="{StaticResource estiloBtnCondicionCredito}" Content="Actualizar" Width="215" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Collapsed"/>
                 <Button x:Name="btnModificar" Click="ClicModificar" Style="{StaticResource estiloBtnCondicionCredito}" Content="Modificar" Width="215" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Collapsed"/>
                 <Button x:Name="btnRegistrar" Click="ClicRegistrarCondicionCredito" Style="{StaticResource estiloBtnCondicionCredito}" Content="Registrar" Width="215" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
             </StackPanel>

@@ -232,11 +232,13 @@ namespace WpfFinanciera.Vistas
             string mensaje = _esActualizacion ? "¿Desea actualizar los datos del usuario?" : "¿Desea registrar el usuario ingresado?";
 
             VentanaMensaje ventanaConfirmacion = new VentanaMensaje(mensaje, Mensaje.CONFIRMACION);
-            if(ventanaConfirmacion.MostrarConfirmacion() && !_esActualizacion)
+            bool respuesta = ventanaConfirmacion.MostrarConfirmacion();
+
+            if(respuesta && !_esActualizacion)
             {
                 RegistrarUsuario();
             }
-            else if(ventanaConfirmacion.MostrarConfirmacion() && _esActualizacion)
+            else if(respuesta && _esActualizacion)
             {
                 ActualizarUsuario();
             }
