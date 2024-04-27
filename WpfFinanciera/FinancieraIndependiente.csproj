@@ -99,6 +99,9 @@
     <Compile Include="Vistas\BusquedaRFCPagina.xaml.cs">
       <DependentUpon>BusquedaRFCPagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\CondicionesCreditoPagina.xaml.cs">
+      <DependentUpon>CondicionesCreditoPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\DetallesClientePagina.xaml.cs">
       <DependentUpon>DetallesClientePagina.xaml</DependentUpon>
     </Compile>
@@ -221,6 +224,10 @@
     <Page Include="Vistas\BusquedaRFCPagina.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vistas\CondicionesCreditoPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\DetallesClientePagina.xaml">
       <SubType>Designer</SubType>
