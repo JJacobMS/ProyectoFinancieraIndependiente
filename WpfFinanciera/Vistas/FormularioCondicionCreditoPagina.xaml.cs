@@ -181,7 +181,7 @@ namespace WpfFinanciera.Vistas
             try
             {
                 CondicionCreditoClient condicionCreditoClient = new CondicionCreditoClient();
-                var respuesta = condicionCreditoClient.esActivaCondicionCredito(_condicionCreditoActual.idCondicionCredito);
+                var respuesta = condicionCreditoClient.EsActivaCondicionCredito(_condicionCreditoActual.idCondicionCredito);
                 var (codigoRespuesta, esActivaRespuesta) = respuesta;
 
                 codigo = codigoRespuesta;
