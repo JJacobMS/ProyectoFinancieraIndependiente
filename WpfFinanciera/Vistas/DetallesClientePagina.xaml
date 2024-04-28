@@ -42,6 +42,9 @@
                     <Setter Property="Background" Value="#A9D4D6"/>
                     <Setter Property="Cursor" Value="Hand"/>
                 </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#5b5b5b"/>
+                </Trigger>
             </Style.Triggers>
         </Style>
 
@@ -178,8 +181,8 @@
                                             <ColumnDefinition/>
                                             <ColumnDefinition Width="auto"/>
                                         </Grid.ColumnDefinitions>
-                                        <TextBox Name="txtBlockEstadoCliente" Style="{StaticResource estiloTxtBoxDetallesCliente}">No es deudor</TextBox>
-                                        <Ellipse Margin="20 0 0 0" Grid.Column="1" Height="30" Width="30" Fill="#333333"></Ellipse>
+                                        <TextBox Name="txtBlockEstadoCliente" Style="{StaticResource estiloTxtBoxDetallesCliente}"></TextBox>
+                                        <Ellipse x:Name="llpEstadoCliente" Margin="20 0 0 0" Grid.Column="1" Height="30" Width="30" Fill="#333333"></Ellipse>
                                     </Grid>
                                 </StackPanel>
                             <Grid Grid.Row="4" Grid.Column="1" Margin="20 0 0 0">

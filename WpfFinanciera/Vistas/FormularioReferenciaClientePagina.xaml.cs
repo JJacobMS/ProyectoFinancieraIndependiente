@@ -377,5 +377,10 @@ namespace WpfFinanciera.Vistas
                 e.Handled = true;
             }
         }
+
+        private void DeshabilitarBotones()
+        {
+
+        }
     }
 }

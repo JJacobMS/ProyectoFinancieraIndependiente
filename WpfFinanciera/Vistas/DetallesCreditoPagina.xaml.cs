@@ -96,12 +96,14 @@ namespace WpfFinanciera.Vistas
         {
             VentanaMensaje ventana = new VentanaMensaje("Error. No se pudo conectar con el servidor.Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             ventana.Mostrar();
+            DeshabilitarBotonesError();
         }
 
         private void MostrarVentanaErrorBaseDatos()
         {
             VentanaMensaje ventana = new VentanaMensaje("Error. No se pudo conectar con la base de datos.Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             ventana.Mostrar();
+            DeshabilitarBotonesError();
         }
 
 
@@ -195,6 +197,15 @@ namespace WpfFinanciera.Vistas
         {
             VentanaMensaje ventana = new VentanaMensaje("Se ha descargado el documento del dictamen exitosamente", Mensaje.EXITO);
             ventana.Mostrar();
+        }
+
+        private void DeshabilitarBotonesError()
+        {
+            btnConsultarTablaPagos.IsEnabled = false;
+            btnGenerarDocumento.IsEnabled = false;
+            llpAplicaIva.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#939393");
+            llpEstadoDictamen.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#939393");
+            llpCondicionCreditoEstado.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#939393");
         }
     }
 }

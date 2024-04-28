@@ -52,6 +52,9 @@
                     <Setter Property="Background" Value="#9B2E24"/>
                     <Setter Property="Cursor" Value="Hand"/>
                 </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#5b5b5b"/>
+                </Trigger>
             </Style.Triggers>
         </Style>
 
@@ -77,6 +80,9 @@
                 <Trigger Property="IsMouseOver" Value="True">
                     <Setter Property="Background" Value="#9B2E24"/>
                     <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="#5b5b5b"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -272,7 +278,7 @@
                                     <ColumnDefinition Width=".1*"/>
                                 </Grid.ColumnDefinitions>
                                 <TextBox Style="{StaticResource estiloTxtBoxBusquedaReferenciaTrabajo}" Name="txtBoxBarraBuscar" ></TextBox>
-                                <Button Grid.Column="1" Style="{StaticResource estiloBtnBuscarReferenciaTrabajo}" Click="ClicBuscarReferenciaTrabajo">
+                                <Button Grid.Column="1" Style="{StaticResource estiloBtnBuscarReferenciaTrabajo}" Click="ClicBuscarReferenciaTrabajo" Name="btnBusqueda">
                                 </Button>
                             </Grid>
                         </Border>

@@ -670,12 +670,14 @@ namespace WpfFinanciera.Vistas
         {
             VentanaMensaje ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             ventanaMensaje.Mostrar();
+            DeshabilitarBotones();
         }
 
         private void MostrarVentanaErrorBaseDatos()
         {
             VentanaMensaje ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             ventanaMensaje.Mostrar();
+            DeshabilitarBotones();
         }
 
         private void MostrarVentanaConfirmacion()
@@ -769,6 +771,18 @@ namespace WpfFinanciera.Vistas
                 MenuPrincipalAsesorCreditoPagina menuAsesor = new MenuPrincipalAsesorCreditoPagina();
                 ventanaPrincipal.CambiarPagina(menuAsesor);
             }
+        }
+
+        private void DeshabilitarBotones()
+        {
+            btnActualizarReferenciaTrabajo.IsEnabled = false;
+            btnAgregarArchivoIdentificacion.IsEnabled = false;
+            btnAgregarComprobanteDomicilio.IsEnabled = false;
+            btnAgregarComprobanteIngreso.IsEnabled = false;
+            btnAgregarComprobanteTrabajo.IsEnabled=false;
+            btnActualizarReferenciaCliente1.IsEnabled = false;
+            btnActualizarReferenciaCliente2.IsEnabled = false;
+            btnGuardarCambios.IsEnabled = false;
         }
     }
 

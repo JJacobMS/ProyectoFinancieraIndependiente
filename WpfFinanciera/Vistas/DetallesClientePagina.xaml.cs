@@ -88,12 +88,14 @@ namespace WpfFinanciera.Vistas
         {
             VentanaMensaje ventana = new VentanaMensaje("Error. No se pudo conectar con el servidor.Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             ventana.Mostrar();
+            DeshabilitarBotones();
         }
 
         private void MostrarVentanaErrorBaseDatos()
         {
             VentanaMensaje ventana = new VentanaMensaje("Error. No se pudo conectar con la base de datos.Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             ventana.Mostrar();
+            DeshabilitarBotones();
         }
 
         private void CargarDetallesCliente()
@@ -103,6 +105,11 @@ namespace WpfFinanciera.Vistas
             txtBoxApellidoCliente.Text = _clienteDetalle.apellidos;
             txtBoxCorreoCliente.Text = _clienteDetalle.correoElectronico;
             txtBoxDireccionCliente.Text = _clienteDetalle.direccion;
+
+            txtBlockEstadoCliente.Text = (_clienteDetalle.esDeudor) ? "Es deudor" : "No es deudor";
+            llpEstadoCliente.Fill = _clienteDetalle.esDeudor ?
+                (SolidColorBrush)new BrushConverter().ConvertFromString("#9B2E24") :
+                (SolidColorBrush)new BrushConverter().ConvertFromString("#0DB07F");
 
             txtBoxTelefonoCasaCliente.Text = _clienteDetalle.Telefono[0].numeroTelefonico;
             txtBoxTelefonoPersonalCliente.Text = _clienteDetalle.Telefono[1].numeroTelefonico;
@@ -165,6 +172,16 @@ namespace WpfFinanciera.Vistas
             ListaClientesPagina lista = new ListaClientesPagina();
             MainWindow main = (MainWindow)Window.GetWindow(this);
             main.CambiarPagina(lista);
+        }
+
+        private void DeshabilitarBotones()
+        {
+            btnDescargarIdentificacion.IsEnabled = false;
+            btnDescargarComprobanteDomicilio.IsEnabled = false;
+            btnDescargarComprobanteIngreso.IsEnabled = false;
+            btnDescargarComprobanteTrabajo.IsEnabled = false;
+            btnDescargarReferenciaCliente1.IsEnabled = false;
+            btnDescargarReferenciaCliente2.IsEnabled = false;
         }
     }
 }

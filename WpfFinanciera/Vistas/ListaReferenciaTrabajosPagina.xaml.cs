@@ -228,14 +228,23 @@ namespace WpfFinanciera.Vistas
         {
             VentanaMensaje ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             ventanaMensaje.Mostrar();
+            DeshabilitarBotones();
         }
 
         private void MostrarVentanaErrorBaseDatos()
         {
             VentanaMensaje ventanaMensaje = new VentanaMensaje("Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             ventanaMensaje.Mostrar();
+            DeshabilitarBotones();
         }
 
+        private void DeshabilitarBotones()
+        {
+            btnBusqueda.IsEnabled = false;
+            btnActualizarActual.IsEnabled = false;
+            btnRegistrarNueva.IsEnabled = false;
+            btnAdjuntar.IsEnabled = false;
+        }
         
     }
 }
