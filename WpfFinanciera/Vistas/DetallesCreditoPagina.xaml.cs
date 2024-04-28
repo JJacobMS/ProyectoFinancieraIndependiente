@@ -140,10 +140,11 @@ namespace WpfFinanciera.Vistas
                 txtBlockFechaDictamen.Text = _credito.Dictamen[0].fechaHora.ToString("dd/MM/yyyy HH:mm");
                 txtBlockObservacionesDictamen.Text = _credito.Dictamen[0].observaciones.ToString();
                 txtBlockUsuarioDictamen.Text = _credito.Dictamen[0].Usuario.nombres + " " + _credito.Dictamen[0].Usuario.apellidos;
-            }
-            else
-            {
-                llpEstadoDictamen.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#939393");
+
+                if (!_credito.Dictamen[0].estaAprobado)
+                {
+                    btnConsultarTablaPagos.IsEnabled = false;
+                }
             }
         }
 
@@ -151,6 +152,7 @@ namespace WpfFinanciera.Vistas
         {
             btnConsultarTablaPagos.IsEnabled = false;
             btnGenerarDocumento.IsEnabled = false;
+            llpEstadoDictamen.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#939393");
         }
 
         private void ClicGenerarDocumento(object sender, RoutedEventArgs e)

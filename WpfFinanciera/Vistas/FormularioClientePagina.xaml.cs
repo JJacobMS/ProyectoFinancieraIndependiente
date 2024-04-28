@@ -391,10 +391,13 @@ namespace WpfFinanciera.Vistas
         {
             int numReferenciaCliente = int.Parse(numeroReferencia) - 1;
 
-            _clienteFormulario.ReferenciaCliente[numReferenciaCliente] = referenciaCliente;
-            int numDocumento = _documentos.ToList().FindIndex(documento => documento.Value.TipoDocumento.descripcion.Equals("Referencia Cliente " + numeroReferencia));
-            _clienteFormulario.Documento[numDocumento] = documentoReferencia;
-
+            if (_clienteFormulario != null)
+            {
+                _clienteFormulario.ReferenciaCliente[numReferenciaCliente] = referenciaCliente;
+                int numDocumento = _documentos.ToList().FindIndex(documento => documento.Value.TipoDocumento.descripcion.Equals("Referencia Cliente " + numeroReferencia));
+                _clienteFormulario.Documento[numDocumento] = documentoReferencia;
+            }
+           
             _referenciasCliente[numReferenciaCliente] = referenciaCliente;
             _documentos[documentoReferencia.TipoDocumento.descripcion] = documentoReferencia;
             
