@@ -35,6 +35,11 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="Background" Value="#073843"/>
+            </Trigger>
+        </Style.Triggers>
     </Style>
 
     <Style x:Key="estiloBtnAgregarDocumentoFormularioCliente" TargetType="Button">
@@ -56,6 +61,9 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#083838"/>
                 <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="#5b5b5b"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -79,6 +87,9 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#065758"/>
                 <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="#5b5b5b"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -119,6 +130,9 @@
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="#9B2E24"/>
                 <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="#5b5b5b"/>
             </Trigger>
         </Style.Triggers>
     </Style>

@@ -51,12 +51,12 @@
                                     <GridViewColumn x:Name="d" Width="Auto" >
                                         <GridViewColumn.HeaderTemplate>
                                             <DataTemplate>
-                                                <Border Background="#A9D4D6" Width="80" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                                <Border Background="#A9D4D6" Width="50" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.HeaderTemplate>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Border Background="#A9D4D6" Width="80" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                <Border Background="#A9D4D6" Width="50" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
                                                     <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
                                                         <CheckBox IsChecked="{Binding Path=checkbox}" Checked="Checked" Unchecked="Unchecked" VerticalAlignment="Center" CommandParameter="{Binding}"   Background="White"   BorderThickness="2" BorderBrush="#065758" FontFamily="Segoe UI"  HorizontalAlignment="Center" HorizontalContentAlignment="Center"  />
                                                     </Grid>
@@ -67,7 +67,7 @@
                                     <GridViewColumn x:Name="GrdViewColumnNombrePolitica" Width="Auto" >
                                         <GridViewColumn.HeaderTemplate  >
                                             <DataTemplate>
-                                                <Border Background="#A9D4D6" Width="340" Height="60" CornerRadius="6" BorderBrush="Black" BorderThickness="1">
+                                                <Border Background="#A9D4D6" Width="310" Height="60" CornerRadius="6" BorderBrush="Black" BorderThickness="1">
                                                     <Grid>
                                                         <TextBlock Text="Nombre Politica" TextAlignment="Center"  TextWrapping="Wrap" Foreground="Black" FontFamily="{StaticResource LeagueSpartanFont}" FontSize="30" Background="#A9D4D6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                     </Grid>
@@ -76,7 +76,7 @@
                                         </GridViewColumn.HeaderTemplate>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Border Background="#A9D4D6" Width="340" Height="60" CornerRadius="6" BorderBrush="Black" BorderThickness="1">
+                                                <Border Background="#A9D4D6" Width="310" Height="60" CornerRadius="6" BorderBrush="Black" BorderThickness="1">
                                                     <Grid>
                                                         <TextBlock Text="{Binding Path=nombre}" TextAlignment="Center" TextWrapping="Wrap" Foreground="Black" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource LeagueSpartanFont}" Background="#A9D4D6" />
                                                     </Grid>
@@ -88,7 +88,7 @@
                                     <GridViewColumn x:Name="GrdViewColumnDescripcionPolitica" Width="Auto">
                                         <GridViewColumn.HeaderTemplate>
                                             <DataTemplate>
-                                                <Border Background="#A9D4D6" Width="630" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1">
+                                                <Border Background="#A9D4D6" Width="600" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1">
                                                     <Grid>
                                                         <TextBlock Text="Descripción Politica" TextAlignment="Center"  TextWrapping="Wrap" Foreground="Black" FontFamily="{StaticResource LeagueSpartanFont}" FontSize="30" Background="#A9D4D6" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                                     </Grid>
@@ -97,7 +97,7 @@
                                         </GridViewColumn.HeaderTemplate>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Border Background="#A9D4D6" Width="630" CornerRadius="6"  Height="60"  BorderBrush="Black" BorderThickness="1">
+                                                <Border Background="#A9D4D6" Width="600" CornerRadius="6"  Height="60"  BorderBrush="Black" BorderThickness="1">
                                                     <TextBlock Text="{Binding Path=descripcion}" TextWrapping="Wrap" TextAlignment="Center" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontFamily="{StaticResource LeagueSpartanFont}" Background="#A9D4D6"  />
                                                 </Border>
                                             </DataTemplate>
@@ -106,15 +106,42 @@
                                     <GridViewColumn x:Name="GrdViewColumnFechaPolitica" Width="Auto">
                                         <GridViewColumn.HeaderTemplate>
                                             <DataTemplate>
-                                                <Border Background="#A9D4D6" Width="160" CornerRadius="6"  Height="60"  BorderBrush="Black" BorderThickness="1">
+                                                <Border Background="#A9D4D6" Width="150" CornerRadius="6"  Height="60"  BorderBrush="Black" BorderThickness="1">
                                                     <TextBlock Text="Fecha Vigencia" TextWrapping="Wrap" TextAlignment="Center" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" FontFamily="{StaticResource LeagueSpartanFont}" Background="#A9D4D6" />
                                                 </Border>
                                             </DataTemplate>
                                         </GridViewColumn.HeaderTemplate>
                                         <GridViewColumn.CellTemplate>
                                             <DataTemplate>
-                                                <Border Background="#A9D4D6" Width="160" CornerRadius="6"  Height="60"  BorderBrush="Black" BorderThickness="1">
+                                                <Border Background="#A9D4D6" Width="150" CornerRadius="6"  Height="60"  BorderBrush="Black" BorderThickness="1">
                                                     <TextBlock Text="{Binding Path=vigencia, StringFormat={}{0:dd/MM/yyyy}}"  TextWrapping="Wrap" TextAlignment="Center" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontFamily="{StaticResource LeagueSpartanFont}" Background="#A9D4D6" />
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                    </GridViewColumn>
+                                    <GridViewColumn x:Name="GrdViewColumnActiva" Width="Auto">
+                                        <GridViewColumn.HeaderTemplate>
+                                            <DataTemplate>
+                                                <Border Background="#A9D4D6" Width="100" CornerRadius="6"  Height="60"  BorderBrush="Black" BorderThickness="1">
+                                                    <TextBlock Text="Estado" TextWrapping="Wrap" TextAlignment="Center" FontSize="30" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black" FontFamily="{StaticResource LeagueSpartanFont}" Background="#A9D4D6" />
+                                                </Border>
+                                            </DataTemplate>
+                                        </GridViewColumn.HeaderTemplate>
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <Border Background="#A9D4D6" Width="100" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1">
+                                                    <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="20" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black" FontFamily="{StaticResource LeagueSpartanFont}" Background="#A9D4D6">
+                                                        <TextBlock.Style>
+                                                            <Style TargetType="TextBlock">
+                                                                <Setter Property="Text" Value="Inactiva" />
+                                                                <Style.Triggers>
+                                                                    <DataTrigger Binding="{Binding Path=estaActiva}" Value="True">
+                                                                        <Setter Property="Text" Value="Activa" />
+                                                                    </DataTrigger>
+                                                                </Style.Triggers>
+                                                            </Style>
+                                                        </TextBlock.Style>
+                                                    </TextBlock>
                                                 </Border>
                                             </DataTemplate>
                                         </GridViewColumn.CellTemplate>

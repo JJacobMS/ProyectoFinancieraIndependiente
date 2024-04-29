@@ -24,9 +24,38 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class FormularioPoliticaOtorgamientoPagina : Page
     {
+        private Politica _politica;
+        private bool _esModificar;
+        private bool _esIngresar;
+        private bool _estaActiva;
+
         public FormularioPoliticaOtorgamientoPagina()
         {
             InitializeComponent();
+            txtBlockTitulo.Text = "Registrar Politica de Otorgamiento";
+            ChkBoxPoliticaActiva.Visibility = Visibility.Hidden;
+            txtBlockPoliticaActiva.Visibility = Visibility.Hidden;
+            _esIngresar = true;
+        }
+
+        public FormularioPoliticaOtorgamientoPagina(Politica politica)
+        {
+            InitializeComponent();
+            _politica = politica;
+            txtBlockTitulo.Text = "Modificar Politica de Otorgamiento";
+            ChkBoxPoliticaActiva.Visibility = Visibility.Visible;
+            txtBlockPoliticaActiva.Visibility = Visibility.Visible;
+            _esModificar = true;
+            CargarPolitica(_politica);
+        }
+
+        private void CargarPolitica(Politica politica) 
+        {
+            txtBoxNombre.Text = politica.nombre;
+            txtBoxDescripcion.Text = politica.descripcion;
+            dtPickerFechaVigencia.SelectedDate = politica.vigencia.Date;
+            ChkBoxPoliticaActiva.IsChecked = politica.estaActiva;
+            _estaActiva = politica.estaActiva;
         }
 
         private void ClicAceptar(object sender, RoutedEventArgs e)
@@ -37,21 +66,31 @@ namespace WpfFinanciera.Vistas
                 Codigo codigo = new Codigo();
                 try 
                 {
-                
-                        DateTime? fechaVigencia = dtPickerFechaVigencia.SelectedDate;
-                        DateTime fechaActual = DateTime.Now.Date;
-                        DateTime fechaSeleccionada = fechaVigencia.Value.Date;
-                        bool estaActiva = fechaSeleccionada > fechaActual ? true : false;
-                        Politica politicaNueva = new Politica
-                        {
-                            nombre = txtBoxNombre.Text,
-                            descripcion = txtBoxDescripcion.Text,
-                            vigencia = (DateTime)dtPickerFechaVigencia.SelectedDate,
-                            estaActiva = estaActiva
-                        };
-                        PoliticaOtorgamientoClient proxy = new PoliticaOtorgamientoClient();
-                        codigo = proxy.GuardarPoliticaOtorgamiento(politicaNueva);
-                
+                    DateTime? fechaVigencia = dtPickerFechaVigencia.SelectedDate;
+                    DateTime fechaActual = DateTime.Now.Date;
+                    DateTime fechaSeleccionada = fechaVigencia.Value.Date;
+                    bool estaActiva = fechaSeleccionada > fechaActual ? true : false;
+                    if (_esModificar) 
+                    {
+                        estaActiva = ValidarPoliticaActiva(estaActiva, fechaActual, fechaSeleccionada);
+                    }
+                    Politica politica = new Politica
+                    {
+                         nombre = txtBoxNombre.Text,
+                         descripcion = txtBoxDescripcion.Text,
+                         vigencia = (DateTime)dtPickerFechaVigencia.SelectedDate,
+                         estaActiva = estaActiva
+                    };
+                    PoliticaOtorgamientoClient proxy = new PoliticaOtorgamientoClient();
+                    if (_esIngresar) 
+                    {
+                        codigo = proxy.GuardarPoliticaOtorgamiento(politica);
+                    }
+                    else if (_esModificar) 
+                    {
+                        politica.idPolitica = _politica.idPolitica;
+                        codigo = proxy.ActualizarPoliticaOtorgamiento(politica);
+                    }
                 }
                 catch (CommunicationException ex)
                 {
@@ -79,6 +118,19 @@ namespace WpfFinanciera.Vistas
             }
         }
 
+        private bool ValidarPoliticaActiva(bool estaActiva, DateTime fechaActual,DateTime fechaSeleccionada) 
+        {
+            if (!_estaActiva)
+            {
+                estaActiva = false;
+            }
+            if (fechaSeleccionada < fechaActual)
+            {
+                estaActiva = false;
+            }
+            return estaActiva;
+        }
+
         private void LimpiarCampos() 
         {
             txtBoxNombre.Text = "";
@@ -100,8 +152,16 @@ namespace WpfFinanciera.Vistas
         }
         private void MostrarVentanaExito()
         {
-            VentanaMensaje mensajeError = new VentanaMensaje("Se ha registrado la política de otorgamiento exitosamente", Mensaje.EXITO);
-            mensajeError.Mostrar();
+            VentanaMensaje mensajeExito;
+            if (_esIngresar) 
+            {
+                mensajeExito = new VentanaMensaje("Se ha registrado la política de otorgamiento exitosamente", Mensaje.EXITO);
+            }
+            else 
+            {
+                mensajeExito = new VentanaMensaje("Se ha actualizado la política de otorgamiento exitosamente", Mensaje.EXITO);
+            }
+            mensajeExito.Mostrar();
             Cerrar();
         }
 
@@ -122,9 +182,6 @@ namespace WpfFinanciera.Vistas
             string nombrePolitica = txtBoxNombre.Text;
             string descripcionPolitica = txtBoxDescripcion.Text;
             DateTime? fechaVigencia = dtPickerFechaVigencia.SelectedDate;
-
-            
-
             string razones = "";
 
             if (String.IsNullOrWhiteSpace(nombrePolitica))
@@ -155,7 +212,6 @@ namespace WpfFinanciera.Vistas
             }
             else
             {
-                Console.WriteLine(fechaVigencia);
                 dtPickerFechaVigencia.Style = (Style)FindResource("estiloDatePickerFormularioPoliticaOtorgamiento");
             }
             if (!sonCamposValidos)
@@ -201,6 +257,16 @@ namespace WpfFinanciera.Vistas
             MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
             MenuPrincipalAdministradorPagina menu = new MenuPrincipalAdministradorPagina();
             ventanaPrincipal.CambiarPagina(menu);
+        }
+
+        private void Checked(object sender, RoutedEventArgs e)
+        {
+            _estaActiva = true;
+        }
+
+        private void Unchecked(object sender, RoutedEventArgs e)
+        {
+            _estaActiva = false;
         }
     }
 }

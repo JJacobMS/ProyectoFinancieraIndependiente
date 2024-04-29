@@ -1513,16 +1513,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.Cliente ClienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int Cliente_idClienteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfFinanciera.ServicioFinancieraIndependiente.TipoDocumento TipoDocumentoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] archivoField;
+        private int TipoDocumento_idTipoDocumentoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string extensionField;
+        private byte[] archivoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idDocumentoField;
@@ -1537,6 +1540,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Cliente Cliente {
+            get {
+                return this.ClienteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ClienteField, value) != true)) {
+                    this.ClienteField = value;
+                    this.RaisePropertyChanged("Cliente");
+                }
             }
         }
         
@@ -1567,6 +1583,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
+        public int TipoDocumento_idTipoDocumento {
+            get {
+                return this.TipoDocumento_idTipoDocumentoField;
+            }
+            set {
+                if ((this.TipoDocumento_idTipoDocumentoField.Equals(value) != true)) {
+                    this.TipoDocumento_idTipoDocumentoField = value;
+                    this.RaisePropertyChanged("TipoDocumento_idTipoDocumento");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
         public byte[] archivo {
             get {
                 return this.archivoField;
@@ -1575,19 +1604,6 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
                 if ((object.ReferenceEquals(this.archivoField, value) != true)) {
                     this.archivoField = value;
                     this.RaisePropertyChanged("archivo");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string extension {
-            get {
-                return this.extensionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.extensionField, value) != true)) {
-                    this.extensionField = value;
-                    this.RaisePropertyChanged("extension");
                 }
             }
         }
@@ -1856,6 +1872,9 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.Documento[] DocumentoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string descripcionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1868,6 +1887,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Documento[] Documento {
+            get {
+                return this.DocumentoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DocumentoField, value) != true)) {
+                    this.DocumentoField = value;
+                    this.RaisePropertyChanged("Documento");
+                }
             }
         }
         
@@ -2452,6 +2484,12 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticas", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/RecuperarPoliticasResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/ActualizarPoliticaOtorgamiento", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/ActualizarPoliticaOtorgamientoResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarPoliticaOtorgamiento(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/ActualizarPoliticaOtorgamiento", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/ActualizarPoliticaOtorgamientoResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarPoliticaOtorgamientoAsync(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2495,6 +2533,14 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasAsync() {
             return base.Channel.RecuperarPoliticasAsync();
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarPoliticaOtorgamiento(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica) {
+            return base.Channel.ActualizarPoliticaOtorgamiento(politica);
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarPoliticaOtorgamientoAsync(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica) {
+            return base.Channel.ActualizarPoliticaOtorgamientoAsync(politica);
         }
     }
     
@@ -2601,6 +2647,24 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajo", ReplyAction="http://tempuri.org/IReferenciaTrabajo/RecuperarReferenciasTrabajoResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarReferenciasTrabajoAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaTrabajo/ActualizarYCambiarReferenciaTrabajo", ReplyAction="http://tempuri.org/IReferenciaTrabajo/ActualizarYCambiarReferenciaTrabajoResponse" +
+            "")]
+        System.ValueTuple<int, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarYCambiarReferenciaTrabajo(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo, string rfc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaTrabajo/ActualizarYCambiarReferenciaTrabajo", ReplyAction="http://tempuri.org/IReferenciaTrabajo/ActualizarYCambiarReferenciaTrabajoResponse" +
+            "")]
+        System.Threading.Tasks.Task<System.ValueTuple<int, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> ActualizarYCambiarReferenciaTrabajoAsync(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo, string rfc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaTrabajo/ActualizarInformacionReferenciaTrabajoActua" +
+            "l", ReplyAction="http://tempuri.org/IReferenciaTrabajo/ActualizarInformacionReferenciaTrabajoActua" +
+            "lResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarInformacionReferenciaTrabajoActual(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaTrabajo/ActualizarInformacionReferenciaTrabajoActua" +
+            "l", ReplyAction="http://tempuri.org/IReferenciaTrabajo/ActualizarInformacionReferenciaTrabajoActua" +
+            "lResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarInformacionReferenciaTrabajoActualAsync(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2636,6 +2700,22 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarReferenciasTrabajoAsync() {
             return base.Channel.RecuperarReferenciasTrabajoAsync();
+        }
+        
+        public System.ValueTuple<int, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarYCambiarReferenciaTrabajo(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo, string rfc) {
+            return base.Channel.ActualizarYCambiarReferenciaTrabajo(referenciaTrabajo, rfc);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<int, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> ActualizarYCambiarReferenciaTrabajoAsync(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo, string rfc) {
+            return base.Channel.ActualizarYCambiarReferenciaTrabajoAsync(referenciaTrabajo, rfc);
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarInformacionReferenciaTrabajoActual(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo) {
+            return base.Channel.ActualizarInformacionReferenciaTrabajoActual(referenciaTrabajo);
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarInformacionReferenciaTrabajoActualAsync(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaTrabajo referenciaTrabajo) {
+            return base.Channel.ActualizarInformacionReferenciaTrabajoActualAsync(referenciaTrabajo);
         }
     }
     
@@ -2715,6 +2795,18 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICredito/ObtenerSolicitudesCredito", ReplyAction="http://tempuri.org/ICredito/ObtenerSolicitudesCreditoResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.SolicitudCredito[]>> ObtenerSolicitudesCreditoAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICredito/RecuperarCreditosRegistrados", ReplyAction="http://tempuri.org/ICredito/RecuperarCreditosRegistradosResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarCreditosRegistrados();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICredito/RecuperarCreditosRegistrados", ReplyAction="http://tempuri.org/ICredito/RecuperarCreditosRegistradosResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarCreditosRegistradosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICredito/RecuperarTodosDetallesCredito", ReplyAction="http://tempuri.org/ICredito/RecuperarTodosDetallesCreditoResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarTodosDetallesCredito(int folio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICredito/RecuperarTodosDetallesCredito", ReplyAction="http://tempuri.org/ICredito/RecuperarTodosDetallesCreditoResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarTodosDetallesCreditoAsync(int folio);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2759,6 +2851,22 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.SolicitudCredito[]>> ObtenerSolicitudesCreditoAsync() {
             return base.Channel.ObtenerSolicitudesCreditoAsync();
         }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarCreditosRegistrados() {
+            return base.Channel.RecuperarCreditosRegistrados();
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarCreditosRegistradosAsync() {
+            return base.Channel.RecuperarCreditosRegistradosAsync();
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarTodosDetallesCredito(int folio) {
+            return base.Channel.RecuperarTodosDetallesCredito(folio);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarTodosDetallesCreditoAsync(int folio) {
+            return base.Channel.RecuperarTodosDetallesCreditoAsync(folio);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2782,6 +2890,30 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/BuscarClientePorRFC", ReplyAction="http://tempuri.org/ICliente/BuscarClientePorRFCResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.ClienteRFC>> BuscarClientePorRFCAsync(string rfc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/RecuperarClientesRegistrados", ReplyAction="http://tempuri.org/ICliente/RecuperarClientesRegistradosResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cliente[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarClientesRegistrados();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/RecuperarClientesRegistrados", ReplyAction="http://tempuri.org/ICliente/RecuperarClientesRegistradosResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cliente[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarClientesRegistradosAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/RecuperarTodosDetallesCliente", ReplyAction="http://tempuri.org/ICliente/RecuperarTodosDetallesClienteResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cliente, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarTodosDetallesCliente(string rfc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/RecuperarTodosDetallesCliente", ReplyAction="http://tempuri.org/ICliente/RecuperarTodosDetallesClienteResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cliente, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarTodosDetallesClienteAsync(string rfc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/RecuperarDetallesClienteFormulario", ReplyAction="http://tempuri.org/ICliente/RecuperarDetallesClienteFormularioResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cliente, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarDetallesClienteFormulario(string rfc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/RecuperarDetallesClienteFormulario", ReplyAction="http://tempuri.org/ICliente/RecuperarDetallesClienteFormularioResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cliente, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarDetallesClienteFormularioAsync(string rfc);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/ActualizarInformacionCliente", ReplyAction="http://tempuri.org/ICliente/ActualizarInformacionClienteResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarInformacionCliente(WpfFinanciera.ServicioFinancieraIndependiente.Cliente clienteActualizado);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICliente/ActualizarInformacionCliente", ReplyAction="http://tempuri.org/ICliente/ActualizarInformacionClienteResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarInformacionClienteAsync(WpfFinanciera.ServicioFinancieraIndependiente.Cliente clienteActualizado);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2833,6 +2965,38 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.ClienteRFC>> BuscarClientePorRFCAsync(string rfc) {
             return base.Channel.BuscarClientePorRFCAsync(rfc);
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cliente[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarClientesRegistrados() {
+            return base.Channel.RecuperarClientesRegistrados();
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cliente[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarClientesRegistradosAsync() {
+            return base.Channel.RecuperarClientesRegistradosAsync();
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cliente, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarTodosDetallesCliente(string rfc) {
+            return base.Channel.RecuperarTodosDetallesCliente(rfc);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cliente, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarTodosDetallesClienteAsync(string rfc) {
+            return base.Channel.RecuperarTodosDetallesClienteAsync(rfc);
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cliente, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarDetallesClienteFormulario(string rfc) {
+            return base.Channel.RecuperarDetallesClienteFormulario(rfc);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cliente, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarDetallesClienteFormularioAsync(string rfc) {
+            return base.Channel.RecuperarDetallesClienteFormularioAsync(rfc);
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarInformacionCliente(WpfFinanciera.ServicioFinancieraIndependiente.Cliente clienteActualizado) {
+            return base.Channel.ActualizarInformacionCliente(clienteActualizado);
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarInformacionClienteAsync(WpfFinanciera.ServicioFinancieraIndependiente.Cliente clienteActualizado) {
+            return base.Channel.ActualizarInformacionClienteAsync(clienteActualizado);
         }
     }
     
@@ -2918,6 +3082,18 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/ObtenerChecklists", ReplyAction="http://tempuri.org/IChecklist/ObtenerChecklistsResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Checklist[]>> ObtenerChecklistsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/RecuperarPoliticasChecklistIdChecklist", ReplyAction="http://tempuri.org/IChecklist/RecuperarPoliticasChecklistIdChecklistResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticasChecklistIdChecklist(int idChecklist);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/RecuperarPoliticasChecklistIdChecklist", ReplyAction="http://tempuri.org/IChecklist/RecuperarPoliticasChecklistIdChecklistResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasChecklistIdChecklistAsync(int idChecklist);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/ActualizarChecklist", ReplyAction="http://tempuri.org/IChecklist/ActualizarChecklistResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarChecklist(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] arrayIdPoliticas);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/ActualizarChecklist", ReplyAction="http://tempuri.org/IChecklist/ActualizarChecklistResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarChecklistAsync(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] arrayIdPoliticas);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2969,6 +3145,69 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Checklist[]>> ObtenerChecklistsAsync() {
             return base.Channel.ObtenerChecklistsAsync();
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]> RecuperarPoliticasChecklistIdChecklist(int idChecklist) {
+            return base.Channel.RecuperarPoliticasChecklistIdChecklist(idChecklist);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Politica[]>> RecuperarPoliticasChecklistIdChecklistAsync(int idChecklist) {
+            return base.Channel.RecuperarPoliticasChecklistIdChecklistAsync(idChecklist);
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarChecklist(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] arrayIdPoliticas) {
+            return base.Channel.ActualizarChecklist(checklist, arrayIdPoliticas);
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarChecklistAsync(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] arrayIdPoliticas) {
+            return base.Channel.ActualizarChecklistAsync(checklist, arrayIdPoliticas);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioFinancieraIndependiente.IReferenciaCliente")]
+    public interface IReferenciaCliente {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaCliente/ActualizarReferenciaCliente", ReplyAction="http://tempuri.org/IReferenciaCliente/ActualizarReferenciaClienteResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarReferenciaCliente(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento documento);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IReferenciaCliente/ActualizarReferenciaCliente", ReplyAction="http://tempuri.org/IReferenciaCliente/ActualizarReferenciaClienteResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarReferenciaClienteAsync(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento documento);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IReferenciaClienteChannel : WpfFinanciera.ServicioFinancieraIndependiente.IReferenciaCliente, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class ReferenciaClienteClient : System.ServiceModel.ClientBase<WpfFinanciera.ServicioFinancieraIndependiente.IReferenciaCliente>, WpfFinanciera.ServicioFinancieraIndependiente.IReferenciaCliente {
+        
+        public ReferenciaClienteClient() {
+        }
+        
+        public ReferenciaClienteClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public ReferenciaClienteClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ReferenciaClienteClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public ReferenciaClienteClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo ActualizarReferenciaCliente(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento documento) {
+            return base.Channel.ActualizarReferenciaCliente(referenciaCliente, documento);
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarReferenciaClienteAsync(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento documento) {
+            return base.Channel.ActualizarReferenciaClienteAsync(referenciaCliente, documento);
         }
     }
 }
