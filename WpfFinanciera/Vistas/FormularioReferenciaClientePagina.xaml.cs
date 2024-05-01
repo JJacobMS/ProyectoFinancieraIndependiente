@@ -122,37 +122,37 @@ namespace WpfFinanciera.Vistas
                 TipoDocumento = _documentoRegistrado.TipoDocumento
             };
 
-            //Codigo codigo;
-            //try
-            //{
-            //    ReferenciaClienteClient proxy = new ReferenciaClienteClient();
-            //    codigo = proxy.ActualizarReferenciaCliente(referenciaCliente, documentoCliente);
-            //}
-            //catch (CommunicationException ex)
-            //{
-            //    codigo = Codigo.ERROR_SERVIDOR;
-            //    Console.WriteLine(ex);
-            //}
-            //catch (TimeoutException ex)
-            //{
-            //    codigo = Codigo.ERROR_SERVIDOR;
-            //    Console.WriteLine(ex);
-            //}
+            Codigo codigo;
+            try
+            {
+                ReferenciaClienteClient proxy = new ReferenciaClienteClient();
+                codigo = proxy.ActualizarReferenciaCliente(referenciaCliente, documentoCliente);
+            }
+            catch (CommunicationException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
 
-            //switch (codigo)
-            //{
-            //    case Codigo.EXITO:
-            //        _referenciaClienteRegistrado = referenciaCliente;
-            //        _documentoRegistrado = documentoCliente;
-            //        MostrarVentanaExitoActualizacion();
-            //        break;
-            //    case Codigo.ERROR_SERVIDOR:
-            //        MostrarVentanaErrorServidor();
-            //        break;
-            //    case Codigo.ERROR_BD:
-            //        MostrarVentanaErrorBaseDatos();
-            //        break;
-            //}
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    _referenciaClienteRegistrado = referenciaCliente;
+                    _documentoRegistrado = documentoCliente;
+                    MostrarVentanaExitoActualizacion();
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBaseDatos();
+                    break;
+            }
         }
 
         private void MostrarVentanaExitoActualizacion()
@@ -378,9 +378,5 @@ namespace WpfFinanciera.Vistas
             }
         }
 
-        private void DeshabilitarBotones()
-        {
-
-        }
     }
 }

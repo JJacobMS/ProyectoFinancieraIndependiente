@@ -60,38 +60,38 @@ namespace WpfFinanciera.Vistas
 
         private void ActualizarReferenciaCliente(ReferenciaTrabajo referenciaTrabajo)
         {
-            //Codigo codigo;
-            //int idReferenciaTrabajo = 0;
-            //try
-            //{
-            //    ReferenciaTrabajoClient proxy = new ReferenciaTrabajoClient();
-            //    //(idReferenciaTrabajo,codigo) = proxy.ActualizarYCambiarReferenciaTrabajo(referenciaTrabajo, _rfcCliente);
-            //}
-            //catch (CommunicationException ex)
-            //{
-            //    codigo = Codigo.ERROR_SERVIDOR;
-            //    Console.WriteLine(ex);
-            //}
-            //catch (TimeoutException ex)
-            //{
-            //    codigo = Codigo.ERROR_SERVIDOR;
-            //    Console.WriteLine(ex);
-            //}
+            Codigo codigo;
+            int idReferenciaTrabajo = 0;
+            try
+            {
+                ReferenciaTrabajoClient proxy = new ReferenciaTrabajoClient();
+                (idReferenciaTrabajo, codigo) = proxy.ActualizarYCambiarReferenciaTrabajo(referenciaTrabajo, _rfcCliente);
+            }
+            catch (CommunicationException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
 
-            //switch (codigo)
-            //{
-            //    case Codigo.EXITO:
-            //        _referenciaTrabajoActual = referenciaTrabajo;
-            //        _referenciaTrabajoActual.idReferenciaTrabajo = idReferenciaTrabajo;
-            //        MostrarVentanaExitoActualizacion();
-            //        break;
-            //    case Codigo.ERROR_SERVIDOR:
-            //        MostrarVentanaErrorServidor();
-            //        break;
-            //    case Codigo.ERROR_BD:
-            //        MostrarVentanaErrorBaseDatos();
-            //        break;
-            //}
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    _referenciaTrabajoActual = referenciaTrabajo;
+                    _referenciaTrabajoActual.idReferenciaTrabajo = idReferenciaTrabajo;
+                    MostrarVentanaExitoActualizacion();
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBaseDatos();
+                    break;
+            }
         }
         private void MostrarVentanaExitoActualizacion()
         {

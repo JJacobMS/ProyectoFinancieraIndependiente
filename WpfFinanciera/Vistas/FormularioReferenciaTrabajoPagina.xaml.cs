@@ -69,6 +69,7 @@ namespace WpfFinanciera.Vistas
         private void ClicGuardarCambiosReferenciaTrabajoActual(object sender, RoutedEventArgs e)
         {
             bool sonCamposValidos = ValidarCampoVaciosYValidos();
+            txtBoxNombre.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#073843");
             if (sonCamposValidos)
             {
                 ActualizarReferenciaTrabajoActual();
@@ -77,44 +78,44 @@ namespace WpfFinanciera.Vistas
 
         private void ActualizarReferenciaTrabajoActual()
         {
-            //ReferenciaTrabajo referenciaActualizada = new ReferenciaTrabajo
-            //{
-            //    idReferenciaTrabajo = _referenciaTrabajo.idReferenciaTrabajo,
-            //    nombre = _referenciaTrabajo.nombre,
-            //    direccion = txtBoxDireccion.Text.Trim(),
-            //    telefono = txtBoxTelefono.Text.Trim()
-            //};
+            ReferenciaTrabajo referenciaActualizada = new ReferenciaTrabajo
+            {
+                idReferenciaTrabajo = _referenciaTrabajo.idReferenciaTrabajo,
+                nombre = _referenciaTrabajo.nombre,
+                direccion = txtBoxDireccion.Text.Trim(),
+                telefono = txtBoxTelefono.Text.Trim()
+            };
 
-            //Codigo codigo;
-            //try
-            //{
-            //    ReferenciaTrabajoClient proxy = new ReferenciaTrabajoClient();
-            //    // codigo = proxy.ActualizarInformacionReferenciaTrabajoActual(referenciaActualizada);
-            //}
-            //catch (CommunicationException ex)
-            //{
-            //    codigo = Codigo.ERROR_SERVIDOR;
-            //    Console.WriteLine(ex);
-            //}
-            //catch (TimeoutException ex)
-            //{
-            //    codigo = Codigo.ERROR_SERVIDOR;
-            //    Console.WriteLine(ex);
-            //}
+            Codigo codigo;
+            try
+            {
+                ReferenciaTrabajoClient proxy = new ReferenciaTrabajoClient();
+                codigo = proxy.ActualizarInformacionReferenciaTrabajoActual(referenciaActualizada);
+            }
+            catch (CommunicationException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
 
-            //switch (codigo)
-            //{
-            //    case Codigo.EXITO:
-            //        _referenciaTrabajo = referenciaActualizada;
-            //        MostrarVentanaExitoActualizacion();
-            //        break;
-            //    case Codigo.ERROR_SERVIDOR:
-            //        MostrarVentanaErrorServidor();
-            //        break;
-            //    case Codigo.ERROR_BD:
-            //        MostrarVentanaErrorBaseDatos();
-            //        break;
-            //}
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    _referenciaTrabajo = referenciaActualizada;
+                    MostrarVentanaExitoActualizacion();
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBaseDatos();
+                    break;
+            }
         }
 
         private void CargarFormularioReferenciaTrabajoRegistrar(ReferenciaTrabajo referenciaPrevia)
@@ -144,45 +145,45 @@ namespace WpfFinanciera.Vistas
 
         private void ActualizarReferenciaTrabajo()
         {
-            //ReferenciaTrabajo referenciaNueva = new ReferenciaTrabajo
-            //{
-            //    nombre = txtBoxNombre.Text.Trim(),
-            //    direccion = txtBoxDireccion.Text.Trim(),
-            //    telefono = txtBoxTelefono.Text.Trim()
-            //};
+            ReferenciaTrabajo referenciaNueva = new ReferenciaTrabajo
+            {
+                nombre = txtBoxNombre.Text.Trim(),
+                direccion = txtBoxDireccion.Text.Trim(),
+                telefono = txtBoxTelefono.Text.Trim()
+            };
 
-            //Codigo codigo;
-            //int idReferenciaTrabajo = 0;
-            //try
-            //{
-            //    ReferenciaTrabajoClient proxy = new ReferenciaTrabajoClient();
-            //    //(idReferenciaTrabajo, codigo) = proxy.ActualizarYCambiarReferenciaTrabajo(referenciaNueva, _rfcCliente);
-            //}
-            //catch (CommunicationException ex)
-            //{
-            //    codigo = Codigo.ERROR_SERVIDOR;
-            //    Console.WriteLine(ex);
-            //}
-            //catch (TimeoutException ex)
-            //{
-            //    codigo = Codigo.ERROR_SERVIDOR;
-            //    Console.WriteLine(ex);
-            //}
+            Codigo codigo;
+            int idReferenciaTrabajo = 0;
+            try
+            {
+                ReferenciaTrabajoClient proxy = new ReferenciaTrabajoClient();
+                (idReferenciaTrabajo, codigo) = proxy.ActualizarYCambiarReferenciaTrabajo(referenciaNueva, _rfcCliente);
+            }
+            catch (CommunicationException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
+            catch (TimeoutException ex)
+            {
+                codigo = Codigo.ERROR_SERVIDOR;
+                Console.WriteLine(ex);
+            }
 
-            //switch (codigo)
-            //{
-            //    case Codigo.EXITO:
-            //        _referenciaTrabajo = referenciaNueva;
-            //        _referenciaTrabajo.idReferenciaTrabajo = idReferenciaTrabajo;
-            //        MostrarVentanaExitoActualizacion();
-            //        break;
-            //    case Codigo.ERROR_SERVIDOR:
-            //        MostrarVentanaErrorServidor();
-            //        break;
-            //    case Codigo.ERROR_BD:
-            //        MostrarVentanaErrorBaseDatos();
-            //        break;
-            //}
+            switch (codigo)
+            {
+                case Codigo.EXITO:
+                    _referenciaTrabajo = referenciaNueva;
+                    _referenciaTrabajo.idReferenciaTrabajo = idReferenciaTrabajo;
+                    MostrarVentanaExitoActualizacion();
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBaseDatos();
+                    break;
+            }
         }
 
         private void MostrarVentanaExitoActualizacion()

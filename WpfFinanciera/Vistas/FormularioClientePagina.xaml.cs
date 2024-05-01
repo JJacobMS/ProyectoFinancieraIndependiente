@@ -148,11 +148,11 @@ namespace WpfFinanciera.Vistas
             txtBoxDireccionReferenciaTrabajo.Text = _clienteFormulario.ReferenciaTrabajo.direccion;
             txtBoxTelefonoReferenciaTrabajo.Text = _clienteFormulario.ReferenciaTrabajo.telefono;
 
-            txtBoxNombreReferenciaCliente1.Text = _clienteFormulario.ReferenciaCliente[0].nombres + _clienteFormulario.ReferenciaCliente[0].apellidos;
+            txtBoxNombreReferenciaCliente1.Text = _clienteFormulario.ReferenciaCliente[0].nombres + " " + _clienteFormulario.ReferenciaCliente[0].apellidos;
             txtBoxDescripcionReferenciaCliente1.Text = _clienteFormulario.ReferenciaCliente[0].descripcion;
             txtBoxTelefonoReferenciaCliente1.Text = _clienteFormulario.ReferenciaCliente[0].telefono;
 
-            txtBoxNombreReferenciaCliente2.Text = _clienteFormulario.ReferenciaCliente[1].nombres + _clienteFormulario.ReferenciaCliente[1].apellidos;
+            txtBoxNombreReferenciaCliente2.Text = _clienteFormulario.ReferenciaCliente[1].nombres + " " + _clienteFormulario.ReferenciaCliente[1].apellidos;
             txtBoxDescripcionReferenciaCliente2.Text = _clienteFormulario.ReferenciaCliente[1].descripcion;
             txtBoxTelefonoReferenciaCliente2.Text = _clienteFormulario.ReferenciaCliente[1].telefono;
 

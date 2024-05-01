@@ -142,9 +142,12 @@ namespace WpfFinanciera.Vistas
         private void ClicDescargarDocumento(object sender, RoutedEventArgs e)
         {
             Button btn = (Button) sender;
-            string nombreDocumento = btn.Content.ToString();
-            string tipoDocumento = _botonesTipoArchivo.FirstOrDefault(boton => boton.Value == btn).Key;
-            DescargarDocumento(nombreDocumento, tipoDocumento);
+            if (btn.Content != null)
+            {
+                string nombreDocumento = btn.Content.ToString();
+                string tipoDocumento = _botonesTipoArchivo.FirstOrDefault(boton => boton.Value == btn).Key;
+                DescargarDocumento(nombreDocumento, tipoDocumento);
+            }
         }
 
         private void DescargarDocumento(string nombreDocumento, string tipo)
