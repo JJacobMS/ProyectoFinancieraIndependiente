@@ -255,7 +255,7 @@ namespace WpfFinanciera.Vistas
 
             if (_condicionCreditoActual.tieneIVA)
             {
-                saldoPendiente += _montoActual * _IVA;
+                saldoPendiente += (_montoActual * tasaInteresDecimal) * _IVA;
             }
 
             saldoPendiente = Math.Round(saldoPendiente, 2);
