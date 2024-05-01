@@ -24,29 +24,22 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class FormularioChecklistPagina : Page
     {
-        private List<string> listNombrePoliticas_ = new List<string>() { };
-        private List<int> listIdPoliticas_ = new List<int>();
+        private List<string> _listNombrePoliticas = new List<string>() { };
+        private List<int> _listIdPoliticas = new List<int>();
         private Checklist _checklist;
-        private bool _esModificar = false;
-        private bool _esIngresar = false;
         private Politica[] politicas_;
+        private int _idChecklist;
 
-        //public FormularioChecklistPagina()
-        //{
-        //    InitializeComponent();
-        //    _esIngresar = true;
-        //}
-        public FormularioChecklistPagina()//Checklist checklist)
+        public FormularioChecklistPagina()
         {
             InitializeComponent();
-            Checklist checklist = new Checklist() 
-            {
-                idChecklist = 3,
-                nombre = "nombreC",
-                descripcion = "descC"
-            };
+        }
+        public FormularioChecklistPagina(Checklist checklist)
+        {
+            InitializeComponent();
             _checklist = checklist;
-            _esModificar = true;
+            _idChecklist = checklist.idChecklist;
+            Console.WriteLine(_idChecklist);
             RecuperarChecklist();
         }
 
@@ -89,10 +82,10 @@ namespace WpfFinanciera.Vistas
         {
             foreach (Politica politica in politicas_)
             {
-                listIdPoliticas_.Add(politica.idPolitica);
-                listNombrePoliticas_.Add(politica.nombre);
+                _listIdPoliticas.Add(politica.idPolitica);
+                _listNombrePoliticas.Add(politica.nombre);
             }
-            CargarPoliticasOtorgamiento(listIdPoliticas_, listNombrePoliticas_, _checklist.nombre, _checklist.descripcion);
+            CargarPoliticasOtorgamiento(_listIdPoliticas, _listNombrePoliticas, _checklist.nombre, _checklist.descripcion, _idChecklist);
         }
 
         private void DeshabilitarBotones()
@@ -113,7 +106,7 @@ namespace WpfFinanciera.Vistas
         private void MostrarVentanaConfirmacion()
         {
             VentanaMensaje ventana;
-            if (_esIngresar) 
+            if (_idChecklist==0) 
             {
                 ventana = new VentanaMensaje("¿Desea registrar el Checklist?", Mensaje.CONFIRMACION);
             }
@@ -127,14 +120,13 @@ namespace WpfFinanciera.Vistas
             }
         }
 
-
         private void GuardarChecklist()
         {
             Codigo codigo = new Codigo();
-            int[] arrayIdPoliticas = new int[listIdPoliticas_.Count];
-            for (int i = 0; i < listIdPoliticas_.Count; i++)
+            int[] arrayIdPoliticas = new int[_listIdPoliticas.Count];
+            for (int i = 0; i < _listIdPoliticas.Count; i++)
             {
-                arrayIdPoliticas[i] = listIdPoliticas_[i];
+                arrayIdPoliticas[i] = _listIdPoliticas[i];
             }
             try
             {
@@ -144,13 +136,13 @@ namespace WpfFinanciera.Vistas
                     descripcion = txtBoxDescripcionChecklist.Text
                 };
                 ChecklistClient proxy = new ChecklistClient();
-                if(_esIngresar)
+                if(_idChecklist==0)
                 {
                     codigo = proxy.GuardarChecklist(checklist, arrayIdPoliticas);
                 }
                 else 
                 {
-                    checklist.idChecklist = _checklist.idChecklist;
+                    checklist.idChecklist = _idChecklist;
                     codigo = proxy.ActualizarChecklist(checklist, arrayIdPoliticas);
                 }
             }
@@ -181,7 +173,7 @@ namespace WpfFinanciera.Vistas
         private void MostrarVentanaExito()
         {
             VentanaMensaje mensajeError;
-            if (_esIngresar) 
+            if (_idChecklist != 0) 
             {
                 mensajeError = new VentanaMensaje("Se ha registrado el checklist exitosamente", Mensaje.EXITO);
             }
@@ -198,6 +190,7 @@ namespace WpfFinanciera.Vistas
             VentanaMensaje mensajeError = new VentanaMensaje("Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             mensajeError.Mostrar();
         }
+        
         private void MostrarVentanaErrorBaseDatos()
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
@@ -232,7 +225,7 @@ namespace WpfFinanciera.Vistas
             {
                 txtBoxDescripcionChecklist.Style = (Style)FindResource("estiloTxtBoxFormulario");
             }
-            if (listIdPoliticas_.Count <= 0)
+            if (_listIdPoliticas.Count <= 0)
             {
                 sonCamposValidos = false;
                 sonPoliticasValidas = false;
@@ -254,26 +247,30 @@ namespace WpfFinanciera.Vistas
             
             return sonCamposValidos;
         }
+        
         private void MostrarVentanaCamposNoValidos(string razones)
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Los campos ingresados no son válidos", razones);
             mensajeError.Mostrar();
         }
+        
         private void MostrarVentanaPoliticasNoValidas()
         {
             VentanaMensaje mensajeError = new VentanaMensaje("“El checklist debe tener por lo menos una política de otorgamiento", Mensaje.ERROR);
             mensajeError.Mostrar();
         }
 
-        public void CargarPoliticasOtorgamiento(List<int> listIdPoliticas, List<string> listNombrePoliticas, string nombrePolitica, string descripcionPolitica)
+        public void CargarPoliticasOtorgamiento(List<int> listIdPoliticas, List<string> listNombrePoliticas, string nombrePolitica, string descripcionPolitica, int idChecklist)
         {
             stcPanelPolitica.Children.Clear();
             foreach (string politica in listNombrePoliticas)
             {
                 AgregarMensaje(politica);
             }
-            listIdPoliticas_ = listIdPoliticas;
-            listNombrePoliticas_ = listNombrePoliticas;
+            _listIdPoliticas = listIdPoliticas;
+            _listNombrePoliticas = listNombrePoliticas;
+            _idChecklist = idChecklist;
+            Console.WriteLine(_idChecklist);
             txtBoxNombreChecklist.Text = nombrePolitica;
             txtBoxDescripcionChecklist.Text = descripcionPolitica;
         }
@@ -292,7 +289,8 @@ namespace WpfFinanciera.Vistas
             ListaSeleccionPoliticasPagina seleccionPoliticas = new ListaSeleccionPoliticasPagina();
             string nombre = txtBoxNombreChecklist.Text;
             string descripcion = txtBoxDescripcionChecklist.Text;
-            seleccionPoliticas.EnviarDatos(listIdPoliticas_,listNombrePoliticas_,nombre,descripcion);
+            Console.WriteLine(_idChecklist);
+            seleccionPoliticas.EnviarDatos(_listIdPoliticas,_listNombrePoliticas,nombre,descripcion, _idChecklist);
             ventanaPrincipal.CambiarPagina(seleccionPoliticas);
         }
 

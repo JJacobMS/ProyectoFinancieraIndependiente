@@ -25,7 +25,7 @@
                     <TextBlock Name="txtBlockTitulo" Text="Politicas de Otorgamiento de Credito" FontSize="50" FontWeight="Medium" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" FontFamily="{StaticResource LeagueSpartanFont}" ></TextBlock>
                 </Border>
                 <Button Style="{StaticResource estiloBtnRegresar}" Click="ClicRegresar"/>
-                <Button Grid.Column="0" Grid.Row="1" Style="{StaticResource estiloBtnFormulario}" Width="195" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,15,20,0" Content="Aceptar Cambios" FontSize="20" Click="ClicAceptarCambios" />
+                <Button Name="btnAceptarCambios" Grid.Column="0" Grid.Row="1" Style="{StaticResource estiloBtnFormulario}" Width="195" Height="60" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,15,20,0" Content="Aceptar Cambios" FontSize="20" Click="ClicAceptarCambios" />
                 <DatePicker Name="dtPickerFechaVigencia" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,54,230,0" Width="290" Height="60" Style="{StaticResource estiloDatePickerFormularioListaSeleccionPagina}" />
                 <Border Margin="30,55,0,0" Background="#EACBCB" CornerRadius="10" VerticalAlignment="Top" HorizontalAlignment="Left" BorderThickness="3" BorderBrush="#B46058" Width="780" Height="60" Grid.Row="1"  >
                     <Grid>
@@ -48,17 +48,17 @@
                      BorderBrush="Transparent" Grid.Column="0" VerticalAlignment="Top" Padding="0,0,0,0" Height="516" Margin="0,-6,0,0"  >
                             <ListView.View>
                                 <GridView AllowsColumnReorder="False">
-                                    <GridViewColumn x:Name="d" Width="Auto" >
+                                    <GridViewColumn x:Name="GrdViewColumnCheckbox" Width="Auto" >
                                         <GridViewColumn.HeaderTemplate>
                                             <DataTemplate>
                                                 <Border Background="#A9D4D6" Width="50" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                             </DataTemplate>
                                         </GridViewColumn.HeaderTemplate>
                                         <GridViewColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <Border Background="#A9D4D6" Width="50" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                    <Grid HorizontalAlignment="Center" VerticalAlignment="Center">
-                                                        <CheckBox IsChecked="{Binding Path=checkbox}" Checked="Checked" Unchecked="Unchecked" VerticalAlignment="Center" CommandParameter="{Binding}"   Background="White"   BorderThickness="2" BorderBrush="#065758" FontFamily="Segoe UI"  HorizontalAlignment="Center" HorizontalContentAlignment="Center"  />
+                                            <DataTemplate x:Name="DtTemplateCheck">
+                                                <Border  Background="#A9D4D6" Width="50" CornerRadius="6" Height="60" BorderBrush="Black" BorderThickness="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                    <Grid x:Name="grdCheckBoxPolitica" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                                        <CheckBox x:Name="chckBoxPolitica" IsChecked="{Binding Path=checkbox}" Checked="Checked" Unchecked="Unchecked" VerticalAlignment="Center" CommandParameter="{Binding}"   Background="White"   BorderThickness="2" BorderBrush="#065758" FontFamily="Segoe UI"  HorizontalAlignment="Center" HorizontalContentAlignment="Center"  />
                                                     </Grid>
                                                 </Border>
                                             </DataTemplate>

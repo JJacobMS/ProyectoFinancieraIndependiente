@@ -2490,6 +2490,12 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/ActualizarPoliticaOtorgamiento", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/ActualizarPoliticaOtorgamientoResponse")]
         System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarPoliticaOtorgamientoAsync(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/EliminarPolitica", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/EliminarPoliticaResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, int> EliminarPolitica(int idPolitica);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IPoliticaOtorgamiento/EliminarPolitica", ReplyAction="http://tempuri.org/IPoliticaOtorgamiento/EliminarPoliticaResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, int>> EliminarPoliticaAsync(int idPolitica);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2541,6 +2547,14 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarPoliticaOtorgamientoAsync(WpfFinanciera.ServicioFinancieraIndependiente.Politica politica) {
             return base.Channel.ActualizarPoliticaOtorgamientoAsync(politica);
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, int> EliminarPolitica(int idPolitica) {
+            return base.Channel.EliminarPolitica(idPolitica);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, int>> EliminarPoliticaAsync(int idPolitica) {
+            return base.Channel.EliminarPoliticaAsync(idPolitica);
         }
     }
     
@@ -3094,6 +3108,12 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/ActualizarChecklist", ReplyAction="http://tempuri.org/IChecklist/ActualizarChecklistResponse")]
         System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarChecklistAsync(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] arrayIdPoliticas);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/EliminarChecklist", ReplyAction="http://tempuri.org/IChecklist/EliminarChecklistResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, int> EliminarChecklist(int idChecklist);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IChecklist/EliminarChecklist", ReplyAction="http://tempuri.org/IChecklist/EliminarChecklistResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, int>> EliminarChecklistAsync(int idChecklist);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -3161,6 +3181,14 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarChecklistAsync(WpfFinanciera.ServicioFinancieraIndependiente.Checklist checklist, int[] arrayIdPoliticas) {
             return base.Channel.ActualizarChecklistAsync(checklist, arrayIdPoliticas);
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, int> EliminarChecklist(int idChecklist) {
+            return base.Channel.EliminarChecklist(idChecklist);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, int>> EliminarChecklistAsync(int idChecklist) {
+            return base.Channel.EliminarChecklistAsync(idChecklist);
         }
     }
     

@@ -51,7 +51,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicConsultarChecklist(object sender, RoutedEventArgs e)
         {
-
+            ChecklistPagina paginaChecklist = new ChecklistPagina();
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            ventanaPrincipal.CambiarPagina(paginaChecklist);
         }
 
         private void ClicRegistrarNuevaChecklist(object sender, RoutedEventArgs e)
@@ -68,7 +70,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicConsultarPoliticas(object sender, RoutedEventArgs e)
         {
-
+            PoliticasOtorgamientoPagina politicaOtorgamientopPagina = new PoliticasOtorgamientoPagina();
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            ventanaPrincipal.CambiarPagina(politicaOtorgamientopPagina);
         }
 
         private void ClicRegistrarNuevaPolitica(object sender, RoutedEventArgs e)

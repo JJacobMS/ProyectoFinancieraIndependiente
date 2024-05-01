@@ -150,6 +150,7 @@ namespace WpfFinanciera.Vistas
                 }
             }
         }
+        
         private void MostrarVentanaExito()
         {
             VentanaMensaje mensajeExito;
@@ -170,6 +171,7 @@ namespace WpfFinanciera.Vistas
             VentanaMensaje mensajeError = new VentanaMensaje("Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             mensajeError.Mostrar();
         }
+        
         private void MostrarVentanaErrorBaseDatos()
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
@@ -259,12 +261,12 @@ namespace WpfFinanciera.Vistas
             ventanaPrincipal.CambiarPagina(menu);
         }
 
-        private void Checked(object sender, RoutedEventArgs e)
+        private void CheckedActiva(object sender, RoutedEventArgs e)
         {
             _estaActiva = true;
         }
 
-        private void Unchecked(object sender, RoutedEventArgs e)
+        private void UncheckedActiva(object sender, RoutedEventArgs e)
         {
             _estaActiva = false;
         }

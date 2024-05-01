@@ -24,48 +24,87 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class ListaSeleccionPoliticasPagina : Page
     {
-        private List<int> listIdPoliticas_;
-        private List<int> listIdPoliticasAntiguas_;
-        private List<string> listNombrePoliticas_;
-        private List<string> listNombrePoliticasAntiguas_;
-        private Politica[] politicas_;
-        private string descripcion_;
-        private string nombre_;
+        private List<int> _listIdPoliticas;
+        private List<int> _listIdPoliticasAntiguas;
+        private List<string> _listNombrePoliticas;
+        private List<string> _listNombrePoliticasAntiguas;
+        private Politica[] _politicas;
+        private Checklist _checklist;
+        private string _descripcion;
+        private string _nombre;
+        private bool _esVerPoliticas;
+        private int _idChecklist;
         public ListaSeleccionPoliticasPagina()
         {
             InitializeComponent();
+            btnAceptarCambios.Content = "Aceptar Cambios";
+        }
+
+        public ListaSeleccionPoliticasPagina(Checklist checklist)
+        {
+            InitializeComponent();
+            _esVerPoliticas = true;
+            _checklist = checklist;
+            Console.WriteLine(_idChecklist);
+            _idChecklist = checklist.idChecklist;
+            _politicas = new Politica[] { };
+            GrdViewColumnCheckbox.Width = 0;
+            GrdViewColumnCheckbox.CellTemplate = new DataTemplate(); 
+            btnAceptarCambios.Content = "Actualizar Checklist";
+            RecuperarPoliticas();
         }
 
         private void ClicAceptarCambios(object sender, RoutedEventArgs e)
         {
-            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
-            FormularioChecklistPagina formularioChecklist = new FormularioChecklistPagina();
-            formularioChecklist.CargarPoliticasOtorgamiento(listIdPoliticas_, listNombrePoliticas_, nombre_, descripcion_);
-            ventanaPrincipal.CambiarPagina(formularioChecklist);
+            if (_esVerPoliticas)
+            {
+                MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+                FormularioChecklistPagina formularioChecklist = new FormularioChecklistPagina(_checklist);
+                ventanaPrincipal.CambiarPagina(formularioChecklist);
+            }
+            else
+            {
+                Console.WriteLine(_idChecklist);
+                MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+                FormularioChecklistPagina formularioChecklist = new FormularioChecklistPagina();
+                formularioChecklist.CargarPoliticasOtorgamiento(_listIdPoliticas, _listNombrePoliticas, _nombre, _descripcion, _idChecklist);
+                ventanaPrincipal.CambiarPagina(formularioChecklist);
+            }
+            
         }
 
-        public void EnviarDatos(List<int> listIdPoliticas, List<string> listNombrePoliticas, string nombre, string descripcion)
+        public void EnviarDatos(List<int> listIdPoliticas, List<string> listNombrePoliticas, string nombre, string descripcion, int idChecklist)
         {
-            listIdPoliticas_ = new List<int>();
-            politicas_ = new Politica[] { };
-            listNombrePoliticasAntiguas_ = new List<string>(listNombrePoliticas);
-            listNombrePoliticas_ = listNombrePoliticas;
-            listIdPoliticas_ = listIdPoliticas;
-            listIdPoliticasAntiguas_ = new List<int>(listIdPoliticas);
-            nombre_ = nombre;
-            descripcion_ = descripcion;
+            _listIdPoliticas = new List<int>();
+            _politicas = new Politica[] { };
+            _listNombrePoliticasAntiguas = new List<string>(listNombrePoliticas);
+            _listNombrePoliticas = listNombrePoliticas;
+            _listIdPoliticas = listIdPoliticas;
+            _listIdPoliticasAntiguas = new List<int>(listIdPoliticas);
+            _nombre = nombre;
+            _descripcion = descripcion;
+            _idChecklist = idChecklist;
+            Console.WriteLine(_idChecklist);
             RecuperarPoliticas();
         }
 
         private void RecuperarPoliticas()
         {
             Codigo codigo = new Codigo();
-            politicas_ = new Politica[] { };
+            _politicas = new Politica[] { };
 
             try
             {
-                PoliticaOtorgamientoClient proxy = new PoliticaOtorgamientoClient();
-                (codigo, politicas_) = proxy.RecuperarPoliticas();
+                if (_esVerPoliticas)
+                {
+                    ChecklistClient proxy = new ChecklistClient();
+                    (codigo, _politicas) = proxy.RecuperarPoliticasChecklistIdChecklist(_checklist.idChecklist);
+                }
+                else
+                {
+                    PoliticaOtorgamientoClient proxy = new PoliticaOtorgamientoClient();
+                    (codigo, _politicas) = proxy.RecuperarPoliticas();
+                }
             }
             catch (CommunicationException ex)
             {
@@ -90,18 +129,19 @@ namespace WpfFinanciera.Vistas
                     break;
             }
         }
-
-
+        
         private void MostrarVentanaPoliticasVacias()
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Error. No existen politicas actualmente o no se encuentran vigentes, Intentelo mas tarde", Mensaje.ERROR);
             mensajeError.Mostrar();
         }
+        
         private void MostrarVentanaErrorServidor()
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             mensajeError.Mostrar();
         }
+        
         private void MostrarVentanaErrorBaseDatos()
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
@@ -110,33 +150,43 @@ namespace WpfFinanciera.Vistas
 
         private void Cerrar()
         {
-            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
-            FormularioChecklistPagina formularioChecklist = new FormularioChecklistPagina();
-            formularioChecklist.CargarPoliticasOtorgamiento(listIdPoliticasAntiguas_, listNombrePoliticasAntiguas_, nombre_, descripcion_);
-            ventanaPrincipal.CambiarPagina(formularioChecklist);
+            if (_esVerPoliticas) 
+            {
+                MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+                ChecklistPagina checklistPagina = new ChecklistPagina();
+                ventanaPrincipal.CambiarPagina(checklistPagina);
+            } 
+            else 
+            {
+                MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+                FormularioChecklistPagina formularioChecklist = new FormularioChecklistPagina();
+                formularioChecklist.CargarPoliticasOtorgamiento(_listIdPoliticasAntiguas, _listNombrePoliticasAntiguas, _nombre, _descripcion, _idChecklist);
+                ventanaPrincipal.CambiarPagina(formularioChecklist);
+            }
+
         }
 
         private void CargarPoliticasOtorgamiento()
         {
-            listNombrePoliticas_ = new List<string> { };
-            if (listIdPoliticas_ != null && listIdPoliticas_.Count() > 0 && politicas_ != null && politicas_.Length > 0)
+            _listNombrePoliticas = new List<string> { };
+            if (_listIdPoliticas != null && _listIdPoliticas.Count() > 0 && _politicas != null && _politicas.Length > 0)
             {
-                foreach (int idPolitica in listIdPoliticas_)
+                foreach (int idPolitica in _listIdPoliticas)
                 {
-                    foreach (Politica politica in politicas_)
+                    foreach (Politica politica in _politicas)
                     {
                         if (politica.idPolitica == idPolitica)
                         {
-                            listNombrePoliticas_.Add(politica.nombre);
+                            _listNombrePoliticas.Add(politica.nombre);
                             politica.checkbox = true;
                             break;
                         }
                     }
                 }
             }
-            if (politicas_ != null && politicas_.Length > 0)
+            if (_politicas != null && _politicas.Length > 0)
             {
-                lstViewPoliticasOtorgamiento.ItemsSource = politicas_;
+                lstViewPoliticasOtorgamiento.ItemsSource = _politicas;
             }
             else
             {
@@ -148,34 +198,42 @@ namespace WpfFinanciera.Vistas
         {
             CheckBox checkBox = sender as CheckBox;
             Politica politica = checkBox.CommandParameter as Politica;
-            listIdPoliticas_.Add(politica.idPolitica);
-            listNombrePoliticas_.Add(politica.nombre);
+            _listIdPoliticas.Add(politica.idPolitica);
+            _listNombrePoliticas.Add(politica.nombre);
+
         }
 
         private void Unchecked(object sender, RoutedEventArgs e)
         {
             CheckBox checkBox = sender as CheckBox;
             Politica politica = checkBox.CommandParameter as Politica;
-            listIdPoliticas_.Remove(politica.idPolitica);
-            listNombrePoliticas_.Remove(politica.nombre);
+            _listIdPoliticas.Remove(politica.idPolitica);
+            _listNombrePoliticas.Remove(politica.nombre);
+
         }
 
         private void FiltrarCampos() 
         {
             lstViewPoliticasOtorgamiento.ItemsSource = null;
             lstViewPoliticasOtorgamiento.Items.Clear();
-            DateTime? fechavigencia = dtPickerFechaVigencia.SelectedDate;
 
-            string politicaBusqueda = txtBoxBarraBuscar.Text.ToLower();
-            if(politicas_ != null && politicas_.Count() > 0 )
+            DateTime? fechavigencia = dtPickerFechaVigencia.SelectedDate?.Date;
+            DateTime fechaInicioDia = DateTime.MinValue;
+            DateTime fechaFinDia = DateTime.MinValue;
+            if (fechavigencia.HasValue)
             {
-                Politica[] politicasFiltradasNombre = politicas_.Where(politica => politica.nombre.ToLower().Contains(politicaBusqueda)).ToArray();
-                Politica[] politicasFiltradasDescripcion = politicas_.Where(politica => politica.descripcion.ToLower().Contains(politicaBusqueda)).ToArray();
-                Politica[] politicasFiltradasPorFecha = politicas_.Where(politica => politica.vigencia == fechavigencia).ToArray();
-
-                HashSet<Politica> conjuntoPoliticas = new HashSet<Politica>(politicasFiltradasNombre);
+                fechaInicioDia = new DateTime(fechavigencia.Value.Year, fechavigencia.Value.Month, fechavigencia.Value.Day);
+                fechaFinDia = fechaInicioDia.AddDays(1).AddTicks(-1);
+            }
+            string politicaBusqueda = txtBoxBarraBuscar.Text.ToLower();
+            if(_politicas != null && _politicas.Count() > 0 )
+            {
+                Politica[] politicasFiltradasNombre = _politicas.Where(politica => politica.nombre.ToLower().Contains(politicaBusqueda)).ToArray();
+                Politica[] politicasFiltradasDescripcion = _politicas.Where(politica => politica.descripcion.ToLower().Contains(politicaBusqueda)).ToArray();
+                Politica[] politicasFiltradasPorFecha = _politicas.Where(politica => politica.vigencia.Date >= fechaInicioDia && politica.vigencia.Date <= fechaFinDia).ToArray();
+                HashSet<Politica> conjuntoPoliticas = new HashSet<Politica>(politicasFiltradasPorFecha);
+                conjuntoPoliticas.UnionWith(politicasFiltradasNombre);
                 conjuntoPoliticas.UnionWith(politicasFiltradasDescripcion);
-                conjuntoPoliticas.UnionWith(politicasFiltradasPorFecha);
 
                 List<Politica> politicasUnicas = conjuntoPoliticas.ToList();
 

@@ -99,6 +99,9 @@
     <Compile Include="Vistas\BusquedaRFCPagina.xaml.cs">
       <DependentUpon>BusquedaRFCPagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\ChecklistPagina.xaml.cs">
+      <DependentUpon>ChecklistPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\DetallesClientePagina.xaml.cs">
       <DependentUpon>DetallesClientePagina.xaml</DependentUpon>
     </Compile>
@@ -152,6 +155,9 @@
     </Compile>
     <Compile Include="Vistas\MenuPrincipalAsesorCreditoPagina.xaml.cs">
       <DependentUpon>MenuPrincipalAsesorCreditoPagina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\PoliticasOtorgamientoPagina.xaml.cs">
+      <DependentUpon>PoliticasOtorgamientoPagina.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\SolicitudesCreditoPagina.xaml.cs">
       <DependentUpon>SolicitudesCreditoPagina.xaml</DependentUpon>
@@ -215,6 +221,10 @@
     <Page Include="Vistas\BusquedaRFCPagina.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vistas\ChecklistPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\DetallesClientePagina.xaml">
       <SubType>Designer</SubType>
@@ -285,6 +295,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\MenuPrincipalAsesorCreditoPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\PoliticasOtorgamientoPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
