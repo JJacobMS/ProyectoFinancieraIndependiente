@@ -160,6 +160,36 @@
   <wsdl:message name="IUsuario_ValidarUsuario_OutputMessage">
     <wsdl:part name="parameters" element="tns:ValidarUsuarioResponse" />
   </wsdl:message>
+  <wsdl:message name="IUsuario_EsCorreoUnico_InputMessage">
+    <wsdl:part name="parameters" element="tns:EsCorreoUnico" />
+  </wsdl:message>
+  <wsdl:message name="IUsuario_EsCorreoUnico_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EsCorreoUnicoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuario_GuardarUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IUsuario_GuardarUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuario_ObtenerUsuariosRegistrados_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuariosRegistrados" />
+  </wsdl:message>
+  <wsdl:message name="IUsuario_ObtenerUsuariosRegistrados_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerUsuariosRegistradosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuario_ActualizarUsuarioContraseña_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarUsuarioContraseña" />
+  </wsdl:message>
+  <wsdl:message name="IUsuario_ActualizarUsuarioContraseña_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarUsuarioContraseñaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IUsuario_ActualizarUsuarioSinContraseña_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarUsuarioSinContraseña" />
+  </wsdl:message>
+  <wsdl:message name="IUsuario_ActualizarUsuarioSinContraseña_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarUsuarioSinContraseñaResponse" />
+  </wsdl:message>
   <wsdl:message name="ITipoUsuario_RecuperarTiposUsuario_InputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarTiposUsuario" />
   </wsdl:message>
@@ -195,6 +225,24 @@
   </wsdl:message>
   <wsdl:message name="ICondicionCredito_ObtenerCondicionesCreditoActivas_OutputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerCondicionesCreditoActivasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICondicionCredito_ObtenerCondicionesCreditoRegistradas_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCondicionesCreditoRegistradas" />
+  </wsdl:message>
+  <wsdl:message name="ICondicionCredito_ObtenerCondicionesCreditoRegistradas_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerCondicionesCreditoRegistradasResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICondicionCredito_EsActivaCondicionCredito_InputMessage">
+    <wsdl:part name="parameters" element="tns:EsActivaCondicionCredito" />
+  </wsdl:message>
+  <wsdl:message name="ICondicionCredito_EsActivaCondicionCredito_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EsActivaCondicionCreditoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICondicionCredito_ActualizarCondicionCredito_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarCondicionCredito" />
+  </wsdl:message>
+  <wsdl:message name="ICondicionCredito_ActualizarCondicionCredito_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarCondicionCreditoResponse" />
   </wsdl:message>
   <wsdl:message name="ICredito_GuardarInformacionSolicitud_InputMessage">
     <wsdl:part name="parameters" element="tns:GuardarInformacionSolicitud" />
@@ -339,6 +387,26 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IUsuario/ValidarUsuario" message="tns:IUsuario_ValidarUsuario_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IUsuario/ValidarUsuarioResponse" message="tns:IUsuario_ValidarUsuario_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="EsCorreoUnico">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuario/EsCorreoUnico" message="tns:IUsuario_EsCorreoUnico_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuario/EsCorreoUnicoResponse" message="tns:IUsuario_EsCorreoUnico_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GuardarUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuario/GuardarUsuario" message="tns:IUsuario_GuardarUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuario/GuardarUsuarioResponse" message="tns:IUsuario_GuardarUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuariosRegistrados">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuario/ObtenerUsuariosRegistrados" message="tns:IUsuario_ObtenerUsuariosRegistrados_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuario/ObtenerUsuariosRegistradosResponse" message="tns:IUsuario_ObtenerUsuariosRegistrados_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarUsuarioContraseña">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuario/ActualizarUsuarioContraseña" message="tns:IUsuario_ActualizarUsuarioContraseña_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuario/ActualizarUsuarioContraseñaResponse" message="tns:IUsuario_ActualizarUsuarioContraseña_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarUsuarioSinContraseña">
+      <wsdl:input wsaw:Action="http://tempuri.org/IUsuario/ActualizarUsuarioSinContraseña" message="tns:IUsuario_ActualizarUsuarioSinContraseña_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IUsuario/ActualizarUsuarioSinContraseñaResponse" message="tns:IUsuario_ActualizarUsuarioSinContraseña_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ITipoUsuario">
     <wsdl:operation name="RecuperarTiposUsuario">
@@ -368,6 +436,18 @@
     <wsdl:operation name="ObtenerCondicionesCreditoActivas">
       <wsdl:input wsaw:Action="http://tempuri.org/ICondicionCredito/ObtenerCondicionesCreditoActivas" message="tns:ICondicionCredito_ObtenerCondicionesCreditoActivas_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICondicionCredito/ObtenerCondicionesCreditoActivasResponse" message="tns:ICondicionCredito_ObtenerCondicionesCreditoActivas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCondicionesCreditoRegistradas">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICondicionCredito/ObtenerCondicionesCreditoRegistradas" message="tns:ICondicionCredito_ObtenerCondicionesCreditoRegistradas_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICondicionCredito/ObtenerCondicionesCreditoRegistradasResponse" message="tns:ICondicionCredito_ObtenerCondicionesCreditoRegistradas_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EsActivaCondicionCredito">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICondicionCredito/EsActivaCondicionCredito" message="tns:ICondicionCredito_EsActivaCondicionCredito_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICondicionCredito/EsActivaCondicionCreditoResponse" message="tns:ICondicionCredito_EsActivaCondicionCredito_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarCondicionCredito">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICondicionCredito/ActualizarCondicionCredito" message="tns:ICondicionCredito_ActualizarCondicionCredito_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICondicionCredito/ActualizarCondicionCreditoResponse" message="tns:ICondicionCredito_ActualizarCondicionCredito_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ICredito">
@@ -512,6 +592,51 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="EsCorreoUnico">
+      <soap12:operation soapAction="http://tempuri.org/IUsuario/EsCorreoUnico" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GuardarUsuario">
+      <soap12:operation soapAction="http://tempuri.org/IUsuario/GuardarUsuario" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerUsuariosRegistrados">
+      <soap12:operation soapAction="http://tempuri.org/IUsuario/ObtenerUsuariosRegistrados" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarUsuarioContraseña">
+      <soap12:operation soapAction="http://tempuri.org/IUsuario/ActualizarUsuarioContraseña" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarUsuarioSinContraseña">
+      <soap12:operation soapAction="http://tempuri.org/IUsuario/ActualizarUsuarioSinContraseña" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_ITipoUsuario" type="tns:ITipoUsuario">
     <wsp:PolicyReference URI="#NetTcpBinding_ITipoUsuario_policy" />
@@ -571,6 +696,33 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerCondicionesCreditoActivas">
       <soap12:operation soapAction="http://tempuri.org/ICondicionCredito/ObtenerCondicionesCreditoActivas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCondicionesCreditoRegistradas">
+      <soap12:operation soapAction="http://tempuri.org/ICondicionCredito/ObtenerCondicionesCreditoRegistradas" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EsActivaCondicionCredito">
+      <soap12:operation soapAction="http://tempuri.org/ICondicionCredito/EsActivaCondicionCredito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarCondicionCredito">
+      <soap12:operation soapAction="http://tempuri.org/ICondicionCredito/ActualizarCondicionCredito" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

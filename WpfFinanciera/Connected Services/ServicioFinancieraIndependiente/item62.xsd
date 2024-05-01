@@ -240,6 +240,12 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrayOfPolitica" nillable="true" type="tns:ArrayOfPolitica" />
+  <xs:complexType name="ArrayOfUsuario">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="Usuario" nillable="true" type="tns:Usuario" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUsuario" nillable="true" type="tns:ArrayOfUsuario" />
   <xs:complexType name="ArrayOfTipoUsuario">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="TipoUsuario" nillable="true" type="tns:TipoUsuario" />
