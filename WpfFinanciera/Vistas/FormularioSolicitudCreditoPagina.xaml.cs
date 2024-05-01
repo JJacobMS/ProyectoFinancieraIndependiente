@@ -26,6 +26,7 @@ namespace WpfFinanciera.Vistas
         private static readonly string _PREFIJO_DATOS_OCULTOS = "••••";
         private static readonly int _MONTO_MINIMO_CREDITO = 1;
         private static readonly int _MONTO_MAXIMO_CREDITO = 2700000;
+        private static readonly double _IVA = 0.16;
 
         private ClienteRFC _clienteActual = new ClienteRFC();
         private string[] _clienteTelefonos = new string[0];
@@ -247,13 +248,25 @@ namespace WpfFinanciera.Vistas
             credito.CondicionCredito_idCondicionCredito = _condicionCreditoActual.idCondicionCredito;
             credito.monto = _montoActual;
             credito.fechaSolicitud = DateTime.Now;
-            credito.saldoPendiente = _montoActual;
+
+            double tasaInteresDecimal = _condicionCreditoActual.tasaInteres / 100.0;
+
+            double saldoPendiente = _montoActual + (_montoActual * tasaInteresDecimal);
+
+            if (_condicionCreditoActual.tieneIVA)
+            {
+                saldoPendiente += (_montoActual * tasaInteresDecimal) * _IVA;
+            }
+
+            saldoPendiente = Math.Round(saldoPendiente, 2);
+
+            credito.saldoPendiente = saldoPendiente;
             credito.deudaExtra = 0;
 
             CreditoClient creditoClient = new CreditoClient();
             codigo = creditoClient.GuardarInformacionSolicitud(credito);
 
-            switch(codigo)
+            switch (codigo)
             {
                 case Codigo.EXITO:
                     MostrarVentanaRegistroExito();
@@ -266,6 +279,9 @@ namespace WpfFinanciera.Vistas
                     break;
             }
         }
+
+
+
 
         private void MostrarVentanaRegistroExito()
         {

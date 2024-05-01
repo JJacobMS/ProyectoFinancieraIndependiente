@@ -99,6 +99,9 @@
     <Compile Include="Vistas\BusquedaRFCPagina.xaml.cs">
       <DependentUpon>BusquedaRFCPagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\CondicionesCreditoPagina.xaml.cs">
+      <DependentUpon>CondicionesCreditoPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\DetallesClientePagina.xaml.cs">
       <DependentUpon>DetallesClientePagina.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,9 @@
     <Compile Include="Vistas\FormularioSolicitudCreditoPagina.xaml.cs">
       <DependentUpon>FormularioSolicitudCreditoPagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\FormularioUsuarioPagina.xaml.cs">
+      <DependentUpon>FormularioUsuarioPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\InicioSesionPagina.xaml.cs">
       <DependentUpon>InicioSesionPagina.xaml</DependentUpon>
     </Compile>
@@ -155,6 +161,9 @@
     </Compile>
     <Compile Include="Vistas\SolicitudesCreditoPagina.xaml.cs">
       <DependentUpon>SolicitudesCreditoPagina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\UsuariosRegistradosPagina.xaml.cs">
+      <DependentUpon>UsuariosRegistradosPagina.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -216,6 +225,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Vistas\CondicionesCreditoPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\DetallesClientePagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -256,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Vistas\FormularioUsuarioPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\InicioSesionPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -291,6 +308,10 @@
     <Page Include="Vistas\SolicitudesCreditoPagina.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Vistas\UsuariosRegistradosPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -433,6 +454,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\descargar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\slashed-eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\opened-eye.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\HarfBuzzSharp.NativeAssets.macOS.2.8.2.3\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets" Condition="Exists('..\packages\HarfBuzzSharp.NativeAssets.macOS.2.8.2.3\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets')" />
