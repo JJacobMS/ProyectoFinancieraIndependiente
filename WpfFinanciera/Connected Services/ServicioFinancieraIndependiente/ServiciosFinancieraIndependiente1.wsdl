@@ -148,6 +148,12 @@
   <wsdl:message name="IPoliticaOtorgamiento_ActualizarPoliticaOtorgamiento_OutputMessage">
     <wsdl:part name="parameters" element="tns:ActualizarPoliticaOtorgamientoResponse" />
   </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_EliminarPolitica_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarPolitica" />
+  </wsdl:message>
+  <wsdl:message name="IPoliticaOtorgamiento_EliminarPolitica_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarPoliticaResponse" />
+  </wsdl:message>
   <wsdl:message name="IUsuario_ValidarUsuario_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidarUsuario" />
   </wsdl:message>
@@ -298,6 +304,12 @@
   <wsdl:message name="IChecklist_ActualizarChecklist_OutputMessage">
     <wsdl:part name="parameters" element="tns:ActualizarChecklistResponse" />
   </wsdl:message>
+  <wsdl:message name="IChecklist_EliminarChecklist_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarChecklist" />
+  </wsdl:message>
+  <wsdl:message name="IChecklist_EliminarChecklist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarChecklistResponse" />
+  </wsdl:message>
   <wsdl:message name="IReferenciaCliente_ActualizarReferenciaCliente_InputMessage">
     <wsdl:part name="parameters" element="tns:ActualizarReferenciaCliente" />
   </wsdl:message>
@@ -316,6 +328,10 @@
     <wsdl:operation name="ActualizarPoliticaOtorgamiento">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/ActualizarPoliticaOtorgamiento" message="tns:IPoliticaOtorgamiento_ActualizarPoliticaOtorgamiento_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/ActualizarPoliticaOtorgamientoResponse" message="tns:IPoliticaOtorgamiento_ActualizarPoliticaOtorgamiento_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarPolitica">
+      <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/EliminarPolitica" message="tns:IPoliticaOtorgamiento_EliminarPolitica_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/EliminarPoliticaResponse" message="tns:IPoliticaOtorgamiento_EliminarPolitica_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUsuario">
@@ -433,6 +449,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IChecklist/ActualizarChecklist" message="tns:IChecklist_ActualizarChecklist_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IChecklist/ActualizarChecklistResponse" message="tns:IChecklist_ActualizarChecklist_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="EliminarChecklist">
+      <wsdl:input wsaw:Action="http://tempuri.org/IChecklist/EliminarChecklist" message="tns:IChecklist_EliminarChecklist_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IChecklist/EliminarChecklistResponse" message="tns:IChecklist_EliminarChecklist_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IReferenciaCliente">
     <wsdl:operation name="ActualizarReferenciaCliente">
@@ -463,6 +483,15 @@
     </wsdl:operation>
     <wsdl:operation name="ActualizarPoliticaOtorgamiento">
       <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/ActualizarPoliticaOtorgamiento" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarPolitica">
+      <soap12:operation soapAction="http://tempuri.org/IPoliticaOtorgamiento/EliminarPolitica" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -720,6 +749,15 @@
     </wsdl:operation>
     <wsdl:operation name="ActualizarChecklist">
       <soap12:operation soapAction="http://tempuri.org/IChecklist/ActualizarChecklist" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarChecklist">
+      <soap12:operation soapAction="http://tempuri.org/IChecklist/EliminarChecklist" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

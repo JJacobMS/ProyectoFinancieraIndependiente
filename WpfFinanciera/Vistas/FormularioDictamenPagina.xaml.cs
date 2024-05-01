@@ -39,8 +39,6 @@ namespace WpfFinanciera.Vistas
             InitializeComponent();
             RecuperarPoliticasChecklist();
         }
-
-        
         private void RecuperarPoliticasChecklist()
         {
             Codigo codigo = new Codigo();
@@ -98,17 +96,20 @@ namespace WpfFinanciera.Vistas
                 MostrarVentanaPoliticasVacias();
             }
         }
+        
         private void MostrarVentanaPoliticasVacias()
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Error. No existen politicas para este Checklist, Intentelo mas tarde", Mensaje.ERROR);
             mensajeError.Mostrar();
 
         }
+        
         private void MostrarVentanaErrorServidor()
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Error. No se pudo conectar con el servidor. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
             mensajeError.Mostrar();
         }
+        
         private void MostrarVentanaErrorBaseDatos()
         {
             VentanaMensaje mensajeError = new VentanaMensaje("Error. No se pudo conectar con la base de datos. Inténtelo de nuevo o hágalo más tarde", Mensaje.ERROR);
@@ -204,6 +205,7 @@ namespace WpfFinanciera.Vistas
             if (listIdPoliticas_.Count==arrayPoliticas_.Length) 
             {
                 esAprobado = true;
+
             } else 
             {
                 esAprobado = false;
@@ -240,8 +242,6 @@ namespace WpfFinanciera.Vistas
             VentanaMensaje mensajeError = new VentanaMensaje("Los campos ingresados no son válidos", razones);
             mensajeError.Mostrar();
         }
-
-   
 
         private void Checked(object sender, RoutedEventArgs e)
         {

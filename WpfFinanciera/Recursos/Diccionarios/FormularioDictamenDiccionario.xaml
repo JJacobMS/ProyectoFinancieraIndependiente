@@ -1,25 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     
-    <Style x:Key="estiloLstItemPoliticas" TargetType="ListBoxItem">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="ListBoxItem">
-                    <Border Name="BackgroundBorder">
-                        <Border Name="Border" BorderThickness="1" BorderBrush="#065758" CornerRadius="10" Margin="10 5">
-                            <Border.Background>
-                                <LinearGradientBrush>
-                                    <GradientStop Color="#E2F0EF" Offset="0"/>
-                                    <GradientStop Color="#E2F0EF" Offset="0.5"/>
-                                    <GradientStop Color="#A9D4D6" Offset="1"/>
-                                </LinearGradientBrush>
-                            </Border.Background>
-                        </Border>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
     <Style x:Key="estiloLstBoxPoliticas" TargetType="ListBox">
         <Style.Triggers>
