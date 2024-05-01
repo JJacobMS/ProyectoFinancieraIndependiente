@@ -29,17 +29,23 @@ namespace WpfFinanciera.Vistas
 
         private void ClicConsultarUsuarios(object sender, RoutedEventArgs e)
         {
-
+            UsuariosRegistradosPagina usuariosRegistradosPagina = new UsuariosRegistradosPagina();
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            ventanaPrincipal.CambiarPagina(usuariosRegistradosPagina);
         }
 
         private void ClicRegistrarNuevoUsuario(object sender, RoutedEventArgs e)
         {
-
+            FormularioUsuarioPagina formularioUsuarioPagina = new FormularioUsuarioPagina();
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            ventanaPrincipal.CambiarPagina(formularioUsuarioPagina);
         }
 
         private void ClicConsultarCondicionesCredito(object sender, RoutedEventArgs e)
         {
-
+            CondicionesCreditoPagina condicionesCreditoPagina = new CondicionesCreditoPagina();
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            ventanaPrincipal.CambiarPagina(condicionesCreditoPagina);
         }
 
         private void ClicRegistrarCondicionCredito(object sender, RoutedEventArgs e)
