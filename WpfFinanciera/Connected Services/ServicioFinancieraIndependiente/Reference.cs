@@ -2935,6 +2935,18 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICredito/RecuperarTodosDetallesCredito", ReplyAction="http://tempuri.org/ICredito/RecuperarTodosDetallesCreditoResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarTodosDetallesCreditoAsync(int folio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICredito/RecuperarCredito", ReplyAction="http://tempuri.org/ICredito/RecuperarCreditoResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarCredito(int folio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICredito/RecuperarCredito", ReplyAction="http://tempuri.org/ICredito/RecuperarCreditoResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarCreditoAsync(int folio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICredito/ActualizarCreditoDeudaExtra", ReplyAction="http://tempuri.org/ICredito/ActualizarCreditoDeudaExtraResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, bool> ActualizarCreditoDeudaExtra(int folio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICredito/ActualizarCreditoDeudaExtra", ReplyAction="http://tempuri.org/ICredito/ActualizarCreditoDeudaExtraResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, bool>> ActualizarCreditoDeudaExtraAsync(int folio);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -2994,6 +3006,22 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarTodosDetallesCreditoAsync(int folio) {
             return base.Channel.RecuperarTodosDetallesCreditoAsync(folio);
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito, WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarCredito(int folio) {
+            return base.Channel.RecuperarCredito(folio);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Credito, WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarCreditoAsync(int folio) {
+            return base.Channel.RecuperarCreditoAsync(folio);
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, bool> ActualizarCreditoDeudaExtra(int folio) {
+            return base.Channel.ActualizarCreditoDeudaExtra(folio);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, bool>> ActualizarCreditoDeudaExtraAsync(int folio) {
+            return base.Channel.ActualizarCreditoDeudaExtraAsync(folio);
         }
     }
     
@@ -3350,6 +3378,53 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> ActualizarReferenciaClienteAsync(WpfFinanciera.ServicioFinancieraIndependiente.ReferenciaCliente referenciaCliente, WpfFinanciera.ServicioFinancieraIndependiente.Documento documento) {
             return base.Channel.ActualizarReferenciaClienteAsync(referenciaCliente, documento);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ServicioFinancieraIndependiente.ICobro")]
+    public interface ICobro {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICobro/GuardarCobro", ReplyAction="http://tempuri.org/ICobro/GuardarCobroResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo GuardarCobro(WpfFinanciera.ServicioFinancieraIndependiente.Cobro cobro);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICobro/GuardarCobro", ReplyAction="http://tempuri.org/ICobro/GuardarCobroResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarCobroAsync(WpfFinanciera.ServicioFinancieraIndependiente.Cobro cobro);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ICobroChannel : WpfFinanciera.ServicioFinancieraIndependiente.ICobro, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class CobroClient : System.ServiceModel.ClientBase<WpfFinanciera.ServicioFinancieraIndependiente.ICobro>, WpfFinanciera.ServicioFinancieraIndependiente.ICobro {
+        
+        public CobroClient() {
+        }
+        
+        public CobroClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public CobroClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public CobroClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public CobroClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo GuardarCobro(WpfFinanciera.ServicioFinancieraIndependiente.Cobro cobro) {
+            return base.Channel.GuardarCobro(cobro);
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarCobroAsync(WpfFinanciera.ServicioFinancieraIndependiente.Cobro cobro) {
+            return base.Channel.GuardarCobroAsync(cobro);
         }
     }
 }

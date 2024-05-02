@@ -120,6 +120,18 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
+  <wsp:Policy wsu:Id="NetTcpBinding_ICobro_policy">
+    <wsp:ExactlyOne>
+      <wsp:All>
+        <wsrm:RMAssertion xmlns:wsrm="http://schemas.xmlsoap.org/ws/2005/02/rm/policy">
+          <wsrm:InactivityTimeout Milliseconds="600000" />
+          <wsrm:AcknowledgementInterval Milliseconds="200" />
+        </wsrm:RMAssertion>
+        <msb:BinaryEncoding xmlns:msb="http://schemas.microsoft.com/ws/06/2004/mspolicy/netbinary1" />
+        <wsaw:UsingAddressing />
+      </wsp:All>
+    </wsp:ExactlyOne>
+  </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
@@ -268,6 +280,18 @@
   <wsdl:message name="ICredito_RecuperarTodosDetallesCredito_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarTodosDetallesCreditoResponse" />
   </wsdl:message>
+  <wsdl:message name="ICredito_RecuperarCredito_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarCredito" />
+  </wsdl:message>
+  <wsdl:message name="ICredito_RecuperarCredito_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarCreditoResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICredito_ActualizarCreditoDeudaExtra_InputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarCreditoDeudaExtra" />
+  </wsdl:message>
+  <wsdl:message name="ICredito_ActualizarCreditoDeudaExtra_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarCreditoDeudaExtraResponse" />
+  </wsdl:message>
   <wsdl:message name="ICliente_ValidarRfcClienteUnico_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidarRfcClienteUnico" />
   </wsdl:message>
@@ -363,6 +387,12 @@
   </wsdl:message>
   <wsdl:message name="IReferenciaCliente_ActualizarReferenciaCliente_OutputMessage">
     <wsdl:part name="parameters" element="tns:ActualizarReferenciaClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICobro_GuardarCobro_InputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarCobro" />
+  </wsdl:message>
+  <wsdl:message name="ICobro_GuardarCobro_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GuardarCobroResponse" />
   </wsdl:message>
   <wsdl:portType name="IPoliticaOtorgamiento">
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
@@ -467,6 +497,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICredito/RecuperarTodosDetallesCredito" message="tns:ICredito_RecuperarTodosDetallesCredito_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICredito/RecuperarTodosDetallesCreditoResponse" message="tns:ICredito_RecuperarTodosDetallesCredito_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="RecuperarCredito">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICredito/RecuperarCredito" message="tns:ICredito_RecuperarCredito_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICredito/RecuperarCreditoResponse" message="tns:ICredito_RecuperarCredito_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarCreditoDeudaExtra">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICredito/ActualizarCreditoDeudaExtra" message="tns:ICredito_ActualizarCreditoDeudaExtra_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICredito/ActualizarCreditoDeudaExtraResponse" message="tns:ICredito_ActualizarCreditoDeudaExtra_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ICliente">
     <wsdl:operation name="ValidarRfcClienteUnico">
@@ -538,6 +576,12 @@
     <wsdl:operation name="ActualizarReferenciaCliente">
       <wsdl:input wsaw:Action="http://tempuri.org/IReferenciaCliente/ActualizarReferenciaCliente" message="tns:IReferenciaCliente_ActualizarReferenciaCliente_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IReferenciaCliente/ActualizarReferenciaClienteResponse" message="tns:IReferenciaCliente_ActualizarReferenciaCliente_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="ICobro">
+    <wsdl:operation name="GuardarCobro">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICobro/GuardarCobro" message="tns:ICobro_GuardarCobro_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICobro/GuardarCobroResponse" message="tns:ICobro_GuardarCobro_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPoliticaOtorgamiento" type="tns:IPoliticaOtorgamiento">
@@ -770,6 +814,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RecuperarCredito">
+      <soap12:operation soapAction="http://tempuri.org/ICredito/RecuperarCredito" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizarCreditoDeudaExtra">
+      <soap12:operation soapAction="http://tempuri.org/ICredito/ActualizarCreditoDeudaExtra" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_ICliente" type="tns:ICliente">
     <wsp:PolicyReference URI="#NetTcpBinding_ICliente_policy" />
@@ -931,6 +993,19 @@
       </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
+  <wsdl:binding name="NetTcpBinding_ICobro" type="tns:ICobro">
+    <wsp:PolicyReference URI="#NetTcpBinding_ICobro_policy" />
+    <soap12:binding transport="http://schemas.microsoft.com/soap/tcp" />
+    <wsdl:operation name="GuardarCobro">
+      <soap12:operation soapAction="http://tempuri.org/ICobro/GuardarCobro" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="ServiciosFinancieraIndependiente">
     <wsdl:port name="NetTcpBinding_IPoliticaOtorgamiento" binding="tns:NetTcpBinding_IPoliticaOtorgamiento">
       <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
@@ -987,6 +1062,12 @@
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IReferenciaCliente" binding="tns:NetTcpBinding_IReferenciaCliente">
+      <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
+      <wsa10:EndpointReference>
+        <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>
+      </wsa10:EndpointReference>
+    </wsdl:port>
+    <wsdl:port name="NetTcpBinding_ICobro" binding="tns:NetTcpBinding_ICobro">
       <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
         <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>
