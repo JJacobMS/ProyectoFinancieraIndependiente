@@ -63,7 +63,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicRegistrarCobro(object sender, RoutedEventArgs e)
         {
-
+            RegistrarCobroPagina cobroPagina = new RegistrarCobroPagina();
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            ventanaPrincipal.CambiarPagina(cobroPagina);
         }
     }
 }
