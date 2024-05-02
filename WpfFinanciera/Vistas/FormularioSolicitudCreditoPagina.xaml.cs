@@ -270,6 +270,8 @@ namespace WpfFinanciera.Vistas
             {
                 case Codigo.EXITO:
                     MostrarVentanaRegistroExito();
+                    MenuPrincipalAsesorCreditoPagina menuPrincipalAsesorCreditoPagina = new MenuPrincipalAsesorCreditoPagina();
+                    NavigationService.Navigate(menuPrincipalAsesorCreditoPagina);
                     break;
                 case Codigo.ERROR_SERVIDOR:
                     MostrarVentanaErrorServidor();
@@ -279,9 +281,6 @@ namespace WpfFinanciera.Vistas
                     break;
             }
         }
-
-
-
 
         private void MostrarVentanaRegistroExito()
         {
