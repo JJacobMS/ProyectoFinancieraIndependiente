@@ -178,21 +178,22 @@ namespace WpfFinanciera.Vistas
             switch (codigo)
             {
                 case Codigo.EXITO:
-                    MostrarVentanaExito();
-                    RecuperarChecklist();
-                    break;
-                case Codigo.ERROR_SERVIDOR:
-                    MostrarVentanaErrorServidor();
-                    break;
-                case Codigo.ERROR_BD:
-                    if (filasAfectadas == 0)
+                    if (filasAfectadas != 0)
                     {
                         MostrarVentanaChecklistOcupado();
                     }
                     else
                     {
-                        MostrarVentanaErrorBaseDatos();
+                        MostrarVentanaExito();
+                        RecuperarChecklist();
                     }
+                    break;
+                case Codigo.ERROR_SERVIDOR:
+                    MostrarVentanaErrorServidor();
+                    break;
+                case Codigo.ERROR_BD:
+                    MostrarVentanaErrorBaseDatos();
+                    
                     break;
             }
         }
@@ -205,7 +206,7 @@ namespace WpfFinanciera.Vistas
 
         private void MostrarVentanaChecklistOcupado()
         {
-            VentanaMensaje mensajeError = new VentanaMensaje("No se puede eliminar un checklist asociado a un dictamen", Mensaje.ERROR);
+            VentanaMensaje mensajeError = new VentanaMensaje("No se puede eliminar un checklist asociado a un crédito", Mensaje.ERROR);
             mensajeError.Mostrar();
         }
     }
