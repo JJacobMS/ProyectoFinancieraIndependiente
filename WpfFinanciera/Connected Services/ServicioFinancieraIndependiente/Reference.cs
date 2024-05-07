@@ -3390,6 +3390,12 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICobro/GuardarCobro", ReplyAction="http://tempuri.org/ICobro/GuardarCobroResponse")]
         System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarCobroAsync(WpfFinanciera.ServicioFinancieraIndependiente.Cobro cobro);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICobro/RecuperarCobros", ReplyAction="http://tempuri.org/ICobro/RecuperarCobrosResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cobro[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarCobros(int folio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICobro/RecuperarCobros", ReplyAction="http://tempuri.org/ICobro/RecuperarCobrosResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cobro[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarCobrosAsync(int folio);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -3425,6 +3431,14 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> GuardarCobroAsync(WpfFinanciera.ServicioFinancieraIndependiente.Cobro cobro) {
             return base.Channel.GuardarCobroAsync(cobro);
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cobro[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo> RecuperarCobros(int folio) {
+            return base.Channel.RecuperarCobros(folio);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cobro[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarCobrosAsync(int folio) {
+            return base.Channel.RecuperarCobrosAsync(folio);
         }
     }
 }

@@ -106,7 +106,6 @@ namespace WpfFinanciera.Vistas
             DeshabilitarBotonesError();
         }
 
-
         private void CargarDetallesCredito()
         {
             txtBlockRfc.Text = _credito.Cliente.rfc;
@@ -189,7 +188,6 @@ namespace WpfFinanciera.Vistas
                 string ruta = dialog.SelectedPath + "/" + btnGenerarDocumento.Content;
                 File.WriteAllBytes(ruta, _dictamen);
                 MostrarVentanaExitoDescarga();
-
             }
         }
 
@@ -206,6 +204,14 @@ namespace WpfFinanciera.Vistas
             llpAplicaIva.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#939393");
             llpEstadoDictamen.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#939393");
             llpCondicionCreditoEstado.Fill = (SolidColorBrush)new BrushConverter().ConvertFromString("#939393");
+        }
+
+        private void ClicConsultarTablaPagos(object sender, RoutedEventArgs e)
+        {
+            TablaPagosPagina tablaPagos = new TablaPagosPagina(_credito);
+            MainWindow ventana = (MainWindow)Window.GetWindow(this);
+            ventana.CambiarPagina(tablaPagos);
+
         }
     }
 }

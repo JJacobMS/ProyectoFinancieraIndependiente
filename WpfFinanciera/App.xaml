@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="Recursos/Diccionarios/MenuPrincipalDiccionario.xaml"/>
                 <ResourceDictionary Source="Recursos/Diccionarios/ListaCreditosDiccionario.xaml"/>
                 <ResourceDictionary Source="Recursos/Diccionarios/DetallesClienteDiccionario.xaml"/>
+                <ResourceDictionary Source="Recursos/Diccionarios/TablaPagosDiccionario.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
