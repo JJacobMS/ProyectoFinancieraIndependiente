@@ -109,6 +109,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Utilidades\Category.cs" />
     <Compile Include="Utilidades\GeneracionDictamen.cs" />
     <Compile Include="Utilidades\UsuarioSingleton.cs" />
     <Compile Include="Utilidades\VentanaMensaje.xaml.cs">
@@ -155,6 +156,9 @@
     </Compile>
     <Compile Include="Vistas\FormularioUsuarioPagina.xaml.cs">
       <DependentUpon>FormularioUsuarioPagina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\Grafico.xaml.cs">
+      <DependentUpon>Grafico.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\InicioSesionPagina.xaml.cs">
       <DependentUpon>InicioSesionPagina.xaml</DependentUpon>
@@ -301,6 +305,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Vistas\FormularioUsuarioPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\Grafico.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -484,9 +492,6 @@
     <Resource Include="Recursos\arrow-down.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServicioFinancieraIndependiente\item1.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Recursos\financiera.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -499,6 +504,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Recursos\opened-eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item1.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\HarfBuzzSharp.NativeAssets.macOS.2.8.2.3\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets" Condition="Exists('..\packages\HarfBuzzSharp.NativeAssets.macOS.2.8.2.3\build\net462\HarfBuzzSharp.NativeAssets.macOS.targets')" />

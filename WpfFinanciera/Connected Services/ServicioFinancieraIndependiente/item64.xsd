@@ -1,36 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/ServidorFinancieraIndependiente" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/ServidorFinancieraIndependiente" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost:8082/?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
-  <xs:complexType name="ArrayOfSolicitudCredito">
+<xs:schema xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/Arrays" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfstring">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="SolicitudCredito" nillable="true" type="tns:SolicitudCredito" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="string" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfSolicitudCredito" nillable="true" type="tns:ArrayOfSolicitudCredito" />
-  <xs:complexType name="SolicitudCredito">
+  <xs:element name="ArrayOfstring" nillable="true" type="tns:ArrayOfstring" />
+  <xs:complexType name="ArrayOfint">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Apellidos" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="FolioCredito" type="xs:int" />
-      <xs:element minOccurs="0" name="Monto" type="xs:double" />
-      <xs:element minOccurs="0" name="Nombres" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="RfcCliente" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="TiempoSolicitud" type="xs:dateTime" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="int" type="xs:int" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="SolicitudCredito" nillable="true" type="tns:SolicitudCredito" />
-  <xs:complexType name="ClienteRFC">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Apellidos" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CorreoElectronico" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CuentaCobro" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="CuentaDeposito" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EsDeudor" type="xs:boolean" />
-      <xs:element minOccurs="0" name="IdCliente" type="xs:int" />
-      <xs:element minOccurs="0" name="Nombres" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Rfc" nillable="true" type="xs:string" />
-      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Telefonos" nillable="true" type="q1:ArrayOfstring" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ClienteRFC" nillable="true" type="tns:ClienteRFC" />
+  <xs:element name="ArrayOfint" nillable="true" type="tns:ArrayOfint" />
 </xs:schema>
