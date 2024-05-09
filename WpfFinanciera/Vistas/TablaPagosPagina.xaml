@@ -538,6 +538,15 @@
                                         </StackPanel>
                                     </Border>
                                 </Grid>
+
+                                <Border x:Name="brdSinPagosProximos" Visibility="Collapsed" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Background="#FDC8C3" CornerRadius="40" BorderThickness="5" BorderBrush="#B46058">
+                                    <StackPanel Margin="10 20">
+                                        <TextBlock FontFamily="{StaticResource LeagueSpartanFont}" FontSize="32" Width="380" TextAlignment="Center" Margin="0 0 0 10" >Sin pagos próximos</TextBlock>
+                                        <TextBlock FontFamily="{StaticResource LeagueSpartanFont}" FontSize="20" Width="330" TextAlignment="Center"
+                                            TextWrapping="Wrap">El crédito termina en el mes vigente, por lo tanto, no hay pagos próximos</TextBlock>
+                                        <Image Source="/Recursos/empty.png" Width="100" Height="100" Margin="0 15 0 0"></Image>
+                                    </StackPanel>
+                                </Border>
                             </Grid>
                         </Border>
                     </Viewbox>

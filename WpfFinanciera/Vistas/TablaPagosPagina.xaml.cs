@@ -414,6 +414,8 @@ namespace WpfFinanciera.Vistas
             {
                 brdCreditoFinalizado.Visibility = Visibility.Collapsed;
                 brdSinCobrosRegistrados.Visibility = Visibility.Collapsed;
+                brdSinPagosProximos.Visibility = Visibility.Collapsed;
+
                 dtGridCobros.Visibility = Visibility.Visible;
                 brdDetallesMes.Visibility = Visibility.Visible;
                 lstBoxPagosProximos.Visibility = Visibility.Collapsed;
@@ -461,14 +463,14 @@ namespace WpfFinanciera.Vistas
             return filas;
         }
 
-        private void MostrarCobrosMes(List<FilaCobro> filasMesPrevio)
+        private void MostrarCobrosMes(List<FilaCobro> filasMes)
         {
-            if (filasMesPrevio.Count > 0)
+            if (filasMes.Count > 0)
             {
-                rnRestanteAPagarPorMes.Text = String.Format("{0:0.00}", filasMesPrevio[filasMesPrevio.Count - 1].RestanteAPagarPorMes);
+                rnRestanteAPagarPorMes.Text = String.Format("{0:0.00}", filasMes[filasMes.Count - 1].RestanteAPagarPorMes);
             }
 
-            dtGridCobros.ItemsSource = filasMesPrevio;
+            dtGridCobros.ItemsSource = filasMes;
             dtGridCobros.Items.Refresh();
         }
 
@@ -477,8 +479,30 @@ namespace WpfFinanciera.Vistas
             CheckBox chkBoxNueva = sender as CheckBox;
             ManejarCajaSeleccion(chkBoxNueva);
 
+            dtGridCobros.ItemsSource = null;
+            dtGridCobros.Items.Refresh();
+
+            dtGridCobros.Visibility = Visibility.Collapsed;
+            brdDetallesMes.Visibility = Visibility.Collapsed;
+            brdCreditoFinalizado.Visibility = Visibility.Collapsed;
+            brdSinCobrosRegistrados.Visibility = Visibility.Collapsed;
+
+            lstBoxPagosProximos.Visibility = Visibility.Visible;
+            
             List<FilaCobro> filasProximos = FiltrarPagosMesesProximos();
-            MostrarPagosMesesProximos(filasProximos);
+            if (filasProximos.Count == 0)
+            {
+                MostrarNoHayPagosMesesProximos();
+            }
+            else
+            {
+                MostrarPagosMesesProximos(filasProximos);
+            }
+        }
+
+        private void MostrarNoHayPagosMesesProximos()
+        {
+            brdSinPagosProximos.Visibility = Visibility.Visible;
         }
 
         private List<FilaCobro> FiltrarPagosMesesProximos()
@@ -497,13 +521,6 @@ namespace WpfFinanciera.Vistas
 
         private void MostrarPagosMesesProximos(List<FilaCobro> filasProximos)
         {
-            dtGridCobros.ItemsSource = null;
-            dtGridCobros.Items.Refresh();
-
-            dtGridCobros.Visibility = Visibility.Collapsed;
-            brdDetallesMes.Visibility = Visibility.Collapsed;
-
-            lstBoxPagosProximos.Visibility = Visibility.Visible;
             lstBoxPagosProximos.ItemsSource = filasProximos;
             lstBoxPagosProximos.Items.Refresh();
         }
@@ -513,11 +530,7 @@ namespace WpfFinanciera.Vistas
             {
                 _csvBytes = GeneracionTablaPagos.GenerarTablaPagos(_filasCobros);
 
-                if (_csvBytes == null)
-                {
-                    
-                }
-                else
+                if (_csvBytes != null)
                 {
                     btnGenerarDocumento.Click -= ClicGenerarDocumento;
                     btnGenerarDocumento.Content = "TABLA_PAGOS_DEL_CREDITO_" + _credito.folioCredito + "_FECHA_" + DateTime.Now.ToString("dd-MM-yyyy") + ".csv";
