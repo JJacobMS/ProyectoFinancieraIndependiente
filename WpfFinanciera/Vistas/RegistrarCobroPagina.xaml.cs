@@ -105,6 +105,11 @@ namespace WpfFinanciera.Vistas
                 MostrarVentanaErrorArchivo();
                 Console.WriteLine(ex);
             }
+            catch (IOException ex)
+            {
+                MostrarVentanaErrorArchivo();
+                Console.WriteLine(ex);
+            }
         }
 
         private void CargarCobro()
@@ -151,7 +156,7 @@ namespace WpfFinanciera.Vistas
                 txtImporteCredito.Style = (Style)FindResource("estiloTxtBoxFormularioRojo");
                 razones = (razones.Length > 0) ? razones + ", Importe" : "Importe";
             }
-            if (DateTime.TryParse(fechaImporte, out _fechaImporte))
+            if (DateTime.TryParse(fechaImporte, out _fechaImporte) && _fechaImporte <= DateTime.Now)
             {
                 txtFechaImporte.Style = (Style)FindResource("estiloTxtBoxFormulario");
             }

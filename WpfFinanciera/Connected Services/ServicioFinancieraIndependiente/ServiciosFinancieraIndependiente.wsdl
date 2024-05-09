@@ -134,12 +134,12 @@
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://192.168.56.1:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://192.168.56.1:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://192.168.56.1:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
-      <xsd:import schemaLocation="http://192.168.56.1:8082/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
-      <xsd:import schemaLocation="http://192.168.56.1:8082/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ServidorFinancieraIndependiente" />
-      <xsd:import schemaLocation="http://192.168.56.1:8082/?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+      <xsd:import schemaLocation="http://192.168.177.136:8082/?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://192.168.177.136:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://192.168.177.136:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
+      <xsd:import schemaLocation="http://192.168.177.136:8082/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+      <xsd:import schemaLocation="http://192.168.177.136:8082/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ServidorFinancieraIndependiente" />
+      <xsd:import schemaLocation="http://192.168.177.136:8082/?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_InputMessage">
@@ -1008,69 +1008,69 @@
   </wsdl:binding>
   <wsdl:service name="ServiciosFinancieraIndependiente">
     <wsdl:port name="NetTcpBinding_IPoliticaOtorgamiento" binding="tns:NetTcpBinding_IPoliticaOtorgamiento">
-      <soap12:address location="net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente" />
+      <soap12:address location="net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IUsuario" binding="tns:NetTcpBinding_IUsuario">
-      <soap12:address location="net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente" />
+      <soap12:address location="net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_ITipoUsuario" binding="tns:NetTcpBinding_ITipoUsuario">
-      <soap12:address location="net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente" />
+      <soap12:address location="net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IReferenciaTrabajo" binding="tns:NetTcpBinding_IReferenciaTrabajo">
-      <soap12:address location="net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente" />
+      <soap12:address location="net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_ICondicionCredito" binding="tns:NetTcpBinding_ICondicionCredito">
-      <soap12:address location="net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente" />
+      <soap12:address location="net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_ICredito" binding="tns:NetTcpBinding_ICredito">
-      <soap12:address location="net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente" />
+      <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_ICliente" binding="tns:NetTcpBinding_ICliente">
-      <soap12:address location="net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente" />
+      <soap12:address location="net.tcp://localhost:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente</wsa10:Address>
+        <wsa10:Address>net.tcp://localhost:8081/ServidorFinancieraIndependiente</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IDictamen" binding="tns:NetTcpBinding_IDictamen">
-      <soap12:address location="net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente" />
+      <soap12:address location="net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IChecklist" binding="tns:NetTcpBinding_IChecklist">
-      <soap12:address location="net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente" />
+      <soap12:address location="net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_IReferenciaCliente" binding="tns:NetTcpBinding_IReferenciaCliente">
-      <soap12:address location="net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente" />
+      <soap12:address location="net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
     <wsdl:port name="NetTcpBinding_ICobro" binding="tns:NetTcpBinding_ICobro">
-      <soap12:address location="net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente" />
+      <soap12:address location="net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente" />
       <wsa10:EndpointReference>
-        <wsa10:Address>net.tcp://192.168.56.1:8081/ServidorFinancieraIndependiente</wsa10:Address>
+        <wsa10:Address>net.tcp://192.168.177.136:8081/ServidorFinancieraIndependiente</wsa10:Address>
       </wsa10:EndpointReference>
     </wsdl:port>
   </wsdl:service>
