@@ -1163,6 +1163,9 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.DateTime fechaField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.DateTime> fechaRegistroField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idCobroField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1213,6 +1216,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
                 if ((this.fechaField.Equals(value) != true)) {
                     this.fechaField = value;
                     this.RaisePropertyChanged("fecha");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.DateTime> fechaRegistro {
+            get {
+                return this.fechaRegistroField;
+            }
+            set {
+                if ((this.fechaRegistroField.Equals(value) != true)) {
+                    this.fechaRegistroField = value;
+                    this.RaisePropertyChanged("fechaRegistro");
                 }
             }
         }
@@ -1420,6 +1436,9 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.Cliente[] ClienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string direccionField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1438,6 +1457,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Cliente[] Cliente {
+            get {
+                return this.ClienteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ClienteField, value) != true)) {
+                    this.ClienteField = value;
+                    this.RaisePropertyChanged("Cliente");
+                }
             }
         }
         
@@ -1654,6 +1686,9 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.Cliente ClienteField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int Cliente_idClienteField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1678,6 +1713,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Cliente Cliente {
+            get {
+                return this.ClienteField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.ClienteField, value) != true)) {
+                    this.ClienteField = value;
+                    this.RaisePropertyChanged("Cliente");
+                }
             }
         }
         
@@ -1949,6 +1997,9 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.Dictamen[] DictamenField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private WpfFinanciera.ServicioFinancieraIndependiente.TipoUsuario TipoUsuarioField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -1976,6 +2027,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Dictamen[] Dictamen {
+            get {
+                return this.DictamenField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DictamenField, value) != true)) {
+                    this.DictamenField = value;
+                    this.RaisePropertyChanged("Dictamen");
+                }
             }
         }
         
@@ -2090,6 +2154,9 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private WpfFinanciera.ServicioFinancieraIndependiente.Usuario[] UsuarioField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int idTipoUsuarioField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -2102,6 +2169,19 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
             }
             set {
                 this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public WpfFinanciera.ServicioFinancieraIndependiente.Usuario[] Usuario {
+            get {
+                return this.UsuarioField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsuarioField, value) != true)) {
+                    this.UsuarioField = value;
+                    this.RaisePropertyChanged("Usuario");
+                }
             }
         }
         
@@ -2947,6 +3027,12 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICredito/ActualizarCreditoDeudaExtra", ReplyAction="http://tempuri.org/ICredito/ActualizarCreditoDeudaExtraResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, bool>> ActualizarCreditoDeudaExtraAsync(int folio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICredito/CalcularMontoEsperado", ReplyAction="http://tempuri.org/ICredito/CalcularMontoEsperadoResponse")]
+        double CalcularMontoEsperado(int folio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICredito/CalcularMontoEsperado", ReplyAction="http://tempuri.org/ICredito/CalcularMontoEsperadoResponse")]
+        System.Threading.Tasks.Task<double> CalcularMontoEsperadoAsync(int folio);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -3022,6 +3108,14 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, bool>> ActualizarCreditoDeudaExtraAsync(int folio) {
             return base.Channel.ActualizarCreditoDeudaExtraAsync(folio);
+        }
+        
+        public double CalcularMontoEsperado(int folio) {
+            return base.Channel.CalcularMontoEsperado(folio);
+        }
+        
+        public System.Threading.Tasks.Task<double> CalcularMontoEsperadoAsync(int folio) {
+            return base.Channel.CalcularMontoEsperadoAsync(folio);
         }
     }
     
@@ -3396,6 +3490,18 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICobro/RecuperarCobros", ReplyAction="http://tempuri.org/ICobro/RecuperarCobrosResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cobro[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarCobrosAsync(int folio);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICobro/RecuperarCobrosPorFecha", ReplyAction="http://tempuri.org/ICobro/RecuperarCobrosPorFechaResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Cobro[]> RecuperarCobrosPorFecha(System.DateTime fechaSeleccionada);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICobro/RecuperarCobrosPorFecha", ReplyAction="http://tempuri.org/ICobro/RecuperarCobrosPorFechaResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Cobro[]>> RecuperarCobrosPorFechaAsync(System.DateTime fechaSeleccionada);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICobro/RecuperarMeses", ReplyAction="http://tempuri.org/ICobro/RecuperarMesesResponse")]
+        System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, System.DateTime, bool> RecuperarMeses();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICobro/RecuperarMeses", ReplyAction="http://tempuri.org/ICobro/RecuperarMesesResponse")]
+        System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, System.DateTime, bool>> RecuperarMesesAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -3439,6 +3545,22 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Cobro[], WpfFinanciera.ServicioFinancieraIndependiente.Codigo>> RecuperarCobrosAsync(int folio) {
             return base.Channel.RecuperarCobrosAsync(folio);
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Cobro[]> RecuperarCobrosPorFecha(System.DateTime fechaSeleccionada) {
+            return base.Channel.RecuperarCobrosPorFecha(fechaSeleccionada);
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, WpfFinanciera.ServicioFinancieraIndependiente.Cobro[]>> RecuperarCobrosPorFechaAsync(System.DateTime fechaSeleccionada) {
+            return base.Channel.RecuperarCobrosPorFechaAsync(fechaSeleccionada);
+        }
+        
+        public System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, System.DateTime, bool> RecuperarMeses() {
+            return base.Channel.RecuperarMeses();
+        }
+        
+        public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, System.DateTime, bool>> RecuperarMesesAsync() {
+            return base.Channel.RecuperarMesesAsync();
         }
     }
 }

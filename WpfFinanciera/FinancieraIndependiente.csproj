@@ -121,6 +121,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Utilidades\CategoriasGraficoPastel.cs" />
     <Compile Include="Utilidades\GeneracionDictamen.cs" />
     <Compile Include="Utilidades\GeneracionTablaPagos.cs" />
     <Compile Include="Utilidades\UsuarioSingleton.cs" />
@@ -207,6 +208,9 @@
     </Compile>
     <Compile Include="Vistas\UsuariosRegistradosPagina.xaml.cs">
       <DependentUpon>UsuariosRegistradosPagina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VerEficienciasPagina.xaml.cs">
+      <DependentUpon>VerEficienciasPagina.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -373,6 +377,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Vistas\UsuariosRegistradosPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VerEficienciasPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

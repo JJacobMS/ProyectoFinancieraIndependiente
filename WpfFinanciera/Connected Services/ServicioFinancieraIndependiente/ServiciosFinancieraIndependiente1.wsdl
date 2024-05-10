@@ -292,6 +292,12 @@
   <wsdl:message name="ICredito_ActualizarCreditoDeudaExtra_OutputMessage">
     <wsdl:part name="parameters" element="tns:ActualizarCreditoDeudaExtraResponse" />
   </wsdl:message>
+  <wsdl:message name="ICredito_CalcularMontoEsperado_InputMessage">
+    <wsdl:part name="parameters" element="tns:CalcularMontoEsperado" />
+  </wsdl:message>
+  <wsdl:message name="ICredito_CalcularMontoEsperado_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CalcularMontoEsperadoResponse" />
+  </wsdl:message>
   <wsdl:message name="ICliente_ValidarRfcClienteUnico_InputMessage">
     <wsdl:part name="parameters" element="tns:ValidarRfcClienteUnico" />
   </wsdl:message>
@@ -399,6 +405,18 @@
   </wsdl:message>
   <wsdl:message name="ICobro_RecuperarCobros_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarCobrosResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICobro_RecuperarCobrosPorFecha_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarCobrosPorFecha" />
+  </wsdl:message>
+  <wsdl:message name="ICobro_RecuperarCobrosPorFecha_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarCobrosPorFechaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICobro_RecuperarMeses_InputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarMeses" />
+  </wsdl:message>
+  <wsdl:message name="ICobro_RecuperarMeses_OutputMessage">
+    <wsdl:part name="parameters" element="tns:RecuperarMesesResponse" />
   </wsdl:message>
   <wsdl:portType name="IPoliticaOtorgamiento">
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
@@ -511,6 +529,10 @@
       <wsdl:input wsaw:Action="http://tempuri.org/ICredito/ActualizarCreditoDeudaExtra" message="tns:ICredito_ActualizarCreditoDeudaExtra_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICredito/ActualizarCreditoDeudaExtraResponse" message="tns:ICredito_ActualizarCreditoDeudaExtra_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="CalcularMontoEsperado">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICredito/CalcularMontoEsperado" message="tns:ICredito_CalcularMontoEsperado_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICredito/CalcularMontoEsperadoResponse" message="tns:ICredito_CalcularMontoEsperado_OutputMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="ICliente">
     <wsdl:operation name="ValidarRfcClienteUnico">
@@ -592,6 +614,14 @@
     <wsdl:operation name="RecuperarCobros">
       <wsdl:input wsaw:Action="http://tempuri.org/ICobro/RecuperarCobros" message="tns:ICobro_RecuperarCobros_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICobro/RecuperarCobrosResponse" message="tns:ICobro_RecuperarCobros_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarCobrosPorFecha">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICobro/RecuperarCobrosPorFecha" message="tns:ICobro_RecuperarCobrosPorFecha_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICobro/RecuperarCobrosPorFechaResponse" message="tns:ICobro_RecuperarCobrosPorFecha_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarMeses">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICobro/RecuperarMeses" message="tns:ICobro_RecuperarMeses_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICobro/RecuperarMesesResponse" message="tns:ICobro_RecuperarMeses_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPoliticaOtorgamiento" type="tns:IPoliticaOtorgamiento">
@@ -842,6 +872,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="CalcularMontoEsperado">
+      <soap12:operation soapAction="http://tempuri.org/ICredito/CalcularMontoEsperado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="NetTcpBinding_ICliente" type="tns:ICliente">
     <wsp:PolicyReference URI="#NetTcpBinding_ICliente_policy" />
@@ -1017,6 +1056,24 @@
     </wsdl:operation>
     <wsdl:operation name="RecuperarCobros">
       <soap12:operation soapAction="http://tempuri.org/ICobro/RecuperarCobros" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarCobrosPorFecha">
+      <soap12:operation soapAction="http://tempuri.org/ICobro/RecuperarCobrosPorFecha" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RecuperarMeses">
+      <soap12:operation soapAction="http://tempuri.org/ICobro/RecuperarMeses" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
