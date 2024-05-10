@@ -401,7 +401,7 @@ namespace WpfFinanciera.Vistas
 
         private void ClicRegresar(object sender, RoutedEventArgs e)
         {
-
+            NavigationService.GoBack();
         }
 
         private void CheckedMostrarMesPrevio(object sender, RoutedEventArgs e)
