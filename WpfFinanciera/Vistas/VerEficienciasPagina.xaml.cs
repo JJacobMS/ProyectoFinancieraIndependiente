@@ -19,6 +19,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfFinanciera.ServicioFinancieraIndependiente;
 using WpfFinanciera.Utilidades;
+using static QuestPDF.Helpers.Colors;
 using static WpfFinanciera.Vistas.VerEficienciasPagina;
 
 namespace WpfFinanciera.Vistas
@@ -79,8 +80,8 @@ namespace WpfFinanciera.Vistas
                     else
                     {
                         CargarMeses();
+                        RecuperarCobros();
                     }
-                    RecuperarCobros();
                     break;
                 case Codigo.ERROR_SERVIDOR:
                     MostrarVentanaErrorServidor();
@@ -161,8 +162,8 @@ namespace WpfFinanciera.Vistas
                     if (_arrayCobros == null)
                     {
                         MostrarVentanaCobrosNoExisten();
+                        CargarCobros();
                     }
-                    CargarCobros();
                     break;
                 case Codigo.ERROR_SERVIDOR:
                     MostrarVentanaErrorServidor();
@@ -232,8 +233,20 @@ namespace WpfFinanciera.Vistas
                     }
                     else
                     {
-                        CreditoClient proxy = new CreditoClient();
-                        double monto = proxy.CalcularMontoEsperado(cobro.Credito_folioCredito);
+                        double monto = 0;
+                        try
+                        {
+                            CreditoClient proxy = new CreditoClient();
+                            monto = proxy.CalcularMontoEsperado(cobro.Credito_folioCredito);
+                        }
+                        catch (CommunicationException ex)
+                        {
+                            Console.WriteLine(ex.ToString());
+                        }
+                        catch (TimeoutException ex)
+                        {
+                            Console.WriteLine(ex.ToString());
+                        }
                         var eficiencia = new CreditoEficiencias
                         {
                             folio = cobro.Credito_folioCredito,
