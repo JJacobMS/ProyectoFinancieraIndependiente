@@ -162,6 +162,9 @@ namespace WpfFinanciera.Vistas
                     if (_arrayCobros == null)
                     {
                         MostrarVentanaCobrosNoExisten();
+                    }
+                    else
+                    {
                         CargarCobros();
                     }
                     break;
