@@ -209,7 +209,6 @@ namespace WpfFinanciera.Vistas
                     Credito_folioCredito = _folio,
                     importe = _numeroImporte,
                     fecha = _fechaImporte,
-                    fechaRegistro = DateTime.Now
                 };
                 CobroClient proxy = new CobroClient();
                 codigo = proxy.GuardarCobro(cobro);
