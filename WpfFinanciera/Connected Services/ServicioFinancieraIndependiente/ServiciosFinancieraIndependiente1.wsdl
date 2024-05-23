@@ -418,6 +418,12 @@
   <wsdl:message name="ICobro_RecuperarMeses_OutputMessage">
     <wsdl:part name="parameters" element="tns:RecuperarMesesResponse" />
   </wsdl:message>
+  <wsdl:message name="ICobro_EliminarCobrosVacios_InputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarCobrosVacios" />
+  </wsdl:message>
+  <wsdl:message name="ICobro_EliminarCobrosVacios_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarCobrosVaciosResponse" />
+  </wsdl:message>
   <wsdl:portType name="IPoliticaOtorgamiento">
     <wsdl:operation name="GuardarPoliticaOtorgamiento">
       <wsdl:input wsaw:Action="http://tempuri.org/IPoliticaOtorgamiento/GuardarPoliticaOtorgamiento" message="tns:IPoliticaOtorgamiento_GuardarPoliticaOtorgamiento_InputMessage" />
@@ -622,6 +628,10 @@
     <wsdl:operation name="RecuperarMeses">
       <wsdl:input wsaw:Action="http://tempuri.org/ICobro/RecuperarMeses" message="tns:ICobro_RecuperarMeses_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ICobro/RecuperarMesesResponse" message="tns:ICobro_RecuperarMeses_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EliminarCobrosVacios">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICobro/EliminarCobrosVacios" message="tns:ICobro_EliminarCobrosVacios_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICobro/EliminarCobrosVaciosResponse" message="tns:ICobro_EliminarCobrosVacios_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="NetTcpBinding_IPoliticaOtorgamiento" type="tns:IPoliticaOtorgamiento">
@@ -1074,6 +1084,15 @@
     </wsdl:operation>
     <wsdl:operation name="RecuperarMeses">
       <soap12:operation soapAction="http://tempuri.org/ICobro/RecuperarMeses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EliminarCobrosVacios">
+      <soap12:operation soapAction="http://tempuri.org/ICobro/EliminarCobrosVacios" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

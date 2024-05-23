@@ -3502,6 +3502,12 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICobro/RecuperarMeses", ReplyAction="http://tempuri.org/ICobro/RecuperarMesesResponse")]
         System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, System.DateTime, bool>> RecuperarMesesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICobro/EliminarCobrosVacios", ReplyAction="http://tempuri.org/ICobro/EliminarCobrosVaciosResponse")]
+        WpfFinanciera.ServicioFinancieraIndependiente.Codigo EliminarCobrosVacios();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICobro/EliminarCobrosVacios", ReplyAction="http://tempuri.org/ICobro/EliminarCobrosVaciosResponse")]
+        System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> EliminarCobrosVaciosAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -3561,6 +3567,14 @@ namespace WpfFinanciera.ServicioFinancieraIndependiente {
         
         public System.Threading.Tasks.Task<System.ValueTuple<WpfFinanciera.ServicioFinancieraIndependiente.Codigo, System.DateTime, bool>> RecuperarMesesAsync() {
             return base.Channel.RecuperarMesesAsync();
+        }
+        
+        public WpfFinanciera.ServicioFinancieraIndependiente.Codigo EliminarCobrosVacios() {
+            return base.Channel.EliminarCobrosVacios();
+        }
+        
+        public System.Threading.Tasks.Task<WpfFinanciera.ServicioFinancieraIndependiente.Codigo> EliminarCobrosVaciosAsync() {
+            return base.Channel.EliminarCobrosVaciosAsync();
         }
     }
 }

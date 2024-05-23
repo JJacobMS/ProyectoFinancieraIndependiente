@@ -417,7 +417,25 @@ namespace WpfFinanciera.Vistas
 
         private void ClicRegresar(object sender, RoutedEventArgs e)
         {
+            EliminarCobros();
             NavigationService.GoBack();
+        }
+
+        private void EliminarCobros()
+        {
+            try
+            {
+                CobroClient proxy = new CobroClient();
+                proxy.EliminarCobrosVacios();
+            }
+            catch (CommunicationException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            catch (TimeoutException ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
         }
 
         private void CheckedMostrarMesPrevio(object sender, RoutedEventArgs e)

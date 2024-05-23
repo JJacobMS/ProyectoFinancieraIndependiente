@@ -633,4 +633,16 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="EliminarCobrosVacios">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarCobrosVaciosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="EliminarCobrosVaciosResult" type="q69:Codigo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>
