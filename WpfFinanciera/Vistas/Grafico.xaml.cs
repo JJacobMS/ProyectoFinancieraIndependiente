@@ -23,7 +23,7 @@ namespace WpfFinanciera.Vistas
     /// </summary>
     public partial class Grafico : Page
     {
-        private List<Category> Categorias { get; set; }
+        private List<CategoriasGraficoPastel> Categorias { get; set; }
 
 
         public Grafico()
@@ -34,16 +34,16 @@ namespace WpfFinanciera.Vistas
             mainCanvas.Width = ancho;
             mainCanvas.Height = largo;
 
-            Categorias = new List<Category>()
+            Categorias = new List<CategoriasGraficoPastel>()
             {
-                new Category
+                new CategoriasGraficoPastel
                 {
                     Titulo = "Porcentaje de Eficiencia",
                     Porcentaje = 99.5,
                     Color = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#146081")),
                 },
 
-                new Category
+                new CategoriasGraficoPastel
                 {
                     Titulo = "Porcentaje de Falta de Cobro",
                     Porcentaje = .5,

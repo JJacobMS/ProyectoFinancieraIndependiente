@@ -71,7 +71,9 @@ namespace WpfFinanciera.Vistas
 
         private void ClicCalculoEficienciasMensaules(object sender, RoutedEventArgs e)
         {
-
+            VerEficienciasPagina pagina = new VerEficienciasPagina();
+            MainWindow ventanaPrincipal = (MainWindow)Window.GetWindow(this);
+            ventanaPrincipal.CambiarPagina(pagina);
         }
 
         private void ClicConsultarPoliticas(object sender, RoutedEventArgs e)

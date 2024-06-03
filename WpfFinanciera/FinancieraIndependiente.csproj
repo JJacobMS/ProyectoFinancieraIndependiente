@@ -37,11 +37,20 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CsvHelper, Version=32.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
+      <HintPath>..\packages\CsvHelper.32.0.1\lib\net47\CsvHelper.dll</HintPath>
+    </Reference>
     <Reference Include="DocumentFormat.OpenXml, Version=2.11.3.0, Culture=neutral, PublicKeyToken=8fb06cb64d019a17, processorArchitecture=MSIL">
       <HintPath>..\packages\DocumentFormat.OpenXml.2.11.3\lib\net46\DocumentFormat.OpenXml.dll</HintPath>
     </Reference>
     <Reference Include="HarfBuzzSharp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
       <HintPath>..\packages\HarfBuzzSharp.7.3.0\lib\net462\HarfBuzzSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.HashCode, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.HashCode.1.1.1\lib\net461\Microsoft.Bcl.HashCode.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero2" />
     <Reference Include="QuestPDF, Version=2022.12.10.0, Culture=neutral, processorArchitecture=MSIL">
@@ -85,6 +94,9 @@
     </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -109,8 +121,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Utilidades\Category.cs" />
+    <Compile Include="Utilidades\CategoriasGraficoPastel.cs" />
     <Compile Include="Utilidades\GeneracionDictamen.cs" />
+    <Compile Include="Utilidades\GeneracionTablaPagos.cs" />
     <Compile Include="Utilidades\UsuarioSingleton.cs" />
     <Compile Include="Utilidades\VentanaMensaje.xaml.cs">
       <DependentUpon>VentanaMensaje.xaml</DependentUpon>
@@ -157,9 +170,6 @@
     <Compile Include="Vistas\FormularioUsuarioPagina.xaml.cs">
       <DependentUpon>FormularioUsuarioPagina.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\Grafico.xaml.cs">
-      <DependentUpon>Grafico.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Vistas\InicioSesionPagina.xaml.cs">
       <DependentUpon>InicioSesionPagina.xaml</DependentUpon>
     </Compile>
@@ -193,8 +203,14 @@
     <Compile Include="Vistas\SolicitudesCreditoPagina.xaml.cs">
       <DependentUpon>SolicitudesCreditoPagina.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\TablaPagosPagina.xaml.cs">
+      <DependentUpon>TablaPagosPagina.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\UsuariosRegistradosPagina.xaml.cs">
       <DependentUpon>UsuariosRegistradosPagina.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\VerEficienciasPagina.xaml.cs">
+      <DependentUpon>VerEficienciasPagina.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -241,6 +257,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Recursos\Diccionarios\MenuPrincipalDiccionario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Recursos\Diccionarios\TablaPagosDiccionario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -308,10 +328,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\Grafico.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Vistas\InicioSesionPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -356,7 +372,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Vistas\TablaPagosPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\UsuariosRegistradosPagina.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\VerEficienciasPagina.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -379,25 +403,25 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Connected Services\ServicioFinancieraIndependiente\item.xsd">
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item6.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServicioFinancieraIndependiente\item1.xsd">
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item61.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServicioFinancieraIndependiente\item2.xsd">
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item62.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServicioFinancieraIndependiente\item3.xsd">
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item63.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServicioFinancieraIndependiente\item4.xsd">
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item64.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServicioFinancieraIndependiente\item5.xsd">
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item65.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\ServicioFinancieraIndependiente\ServiciosFinancieraIndependiente.wsdl" />
+    <None Include="Connected Services\ServicioFinancieraIndependiente\ServiciosFinancieraIndependiente1.wsdl" />
     <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Checklist.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -405,6 +429,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.ClienteRFC.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Cobro.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\ServicioFinancieraIndependiente\WpfFinanciera.ServicioFinancieraIndependiente.Codigo.datasource">
@@ -506,7 +533,13 @@
     <Resource Include="Recursos\opened-eye.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServicioFinancieraIndependiente\item.disco" />
+    <None Include="Connected Services\ServicioFinancieraIndependiente\item1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\finalizado.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Recursos\noresult.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

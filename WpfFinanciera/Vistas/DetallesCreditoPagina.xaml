@@ -301,7 +301,7 @@
                         <ColumnDefinition/>
                     </Grid.ColumnDefinitions>
                     <Button Name="btnGenerarDocumento" Style="{StaticResource estiloBtnGenerarDocumento}" Click="ClicGenerarDocumento" Margin="0 20 0 0">Generar Documento del Dictamen en PDF</Button>
-                    <Button Name="btnConsultarTablaPagos" Grid.Column="1" Style="{StaticResource estiloBtnGenerarDocumento}">Consultar tabla de pagos programados</Button>
+                    <Button Name="btnConsultarTablaPagos" Grid.Column="1" Style="{StaticResource estiloBtnGenerarDocumento}" Click="ClicConsultarTablaPagos">Consultar tabla de pagos programados</Button>
                 </Grid>
             </Grid>
             </Grid>

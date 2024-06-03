@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/System" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/System" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://192.168.177.136:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
-  <xs:import schemaLocation="http://192.168.177.136:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:import schemaLocation="http://192.168.177.136:8082/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ServidorFinancieraIndependiente" />
+  <xs:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
+  <xs:import schemaLocation="http://localhost:8082/?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:8082/?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/ServidorFinancieraIndependiente" />
   <xs:complexType name="ValueTupleOfCodigoArrayOfPoliticaglhsIKFj">
     <xs:annotation>
       <xs:appinfo>
@@ -291,4 +291,54 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ValueTupleOfCodigoArrayOfChecklistglhsIKFj" nillable="true" type="tns:ValueTupleOfCodigoArrayOfChecklistglhsIKFj" />
+  <xs:complexType name="ValueTupleOfArrayOfCobroCodigoglhsIKFj">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ValueTupleOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfCobro" Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
+          <GenericParameter Name="Codigo" Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
+        </GenericType>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element xmlns:q32="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" nillable="true" type="q32:ArrayOfCobro" />
+      <xs:element xmlns:q33="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" type="q33:Codigo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValueTupleOfArrayOfCobroCodigoglhsIKFj" nillable="true" type="tns:ValueTupleOfArrayOfCobroCodigoglhsIKFj" />
+  <xs:complexType name="ValueTupleOfCodigoArrayOfCobroglhsIKFj">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ValueTupleOf{0}{1}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Codigo" Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
+          <GenericParameter Name="ArrayOfCobro" Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
+        </GenericType>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element xmlns:q34="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" type="q34:Codigo" />
+      <xs:element xmlns:q35="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item2" nillable="true" type="q35:ArrayOfCobro" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValueTupleOfCodigoArrayOfCobroglhsIKFj" nillable="true" type="tns:ValueTupleOfCodigoArrayOfCobroglhsIKFj" />
+  <xs:complexType name="ValueTupleOfCodigodateTimebooleanrSFRVbMR">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ValueTupleOf{0}{1}{2}{#}" Namespace="http://schemas.datacontract.org/2004/07/System" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="Codigo" Namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
+          <GenericParameter Name="dateTime" Namespace="http://www.w3.org/2001/XMLSchema" />
+          <GenericParameter Name="boolean" Namespace="http://www.w3.org/2001/XMLSchema" />
+        </GenericType>
+        <IsValueType xmlns="http://schemas.microsoft.com/2003/10/Serialization/">true</IsValueType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element xmlns:q36="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" name="Item1" type="q36:Codigo" />
+      <xs:element name="Item2" type="xs:dateTime" />
+      <xs:element name="Item3" type="xs:boolean" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ValueTupleOfCodigodateTimebooleanrSFRVbMR" nillable="true" type="tns:ValueTupleOfCodigodateTimebooleanrSFRVbMR" />
 </xs:schema>

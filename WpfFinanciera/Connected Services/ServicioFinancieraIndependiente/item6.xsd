@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://192.168.177.136:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
-  <xs:import schemaLocation="http://192.168.177.136:8082/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
-  <xs:import schemaLocation="http://192.168.177.136:8082/?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:import schemaLocation="http://localhost:8082/?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" />
+  <xs:import schemaLocation="http://localhost:8082/?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/System" />
+  <xs:import schemaLocation="http://localhost:8082/?xsd=xsd5" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="GuardarPoliticaOtorgamiento">
     <xs:complexType>
       <xs:sequence>
@@ -339,6 +339,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="CalcularMontoEsperado">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="folio" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CalcularMontoEsperadoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="CalcularMontoEsperadoResult" type="xs:double" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ValidarRfcClienteUnico">
     <xs:complexType>
       <xs:sequence>
@@ -576,6 +590,58 @@
     <xs:complexType>
       <xs:sequence>
         <xs:element xmlns:q65="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="GuardarCobroResult" type="q65:Codigo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarCobros">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="folio" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarCobrosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q66="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarCobrosResult" type="q66:ValueTupleOfArrayOfCobroCodigoglhsIKFj" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarCobrosPorFecha">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="fechaSeleccionada" type="xs:dateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarCobrosPorFechaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q67="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarCobrosPorFechaResult" type="q67:ValueTupleOfCodigoArrayOfCobroglhsIKFj" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarMeses">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RecuperarMesesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q68="http://schemas.datacontract.org/2004/07/System" minOccurs="0" name="RecuperarMesesResult" type="q68:ValueTupleOfCodigodateTimebooleanrSFRVbMR" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarCobrosVacios">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EliminarCobrosVaciosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q69="http://schemas.datacontract.org/2004/07/DatosFinancieraIndependiente" minOccurs="0" name="EliminarCobrosVaciosResult" type="q69:Codigo" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

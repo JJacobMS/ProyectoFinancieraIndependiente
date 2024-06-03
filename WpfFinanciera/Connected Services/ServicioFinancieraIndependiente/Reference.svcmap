@@ -19,17 +19,17 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://192.168.177.136:8082" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:8082" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="item.xsd" MetadataType="Schema" ID="c9a029db-0a6d-4c00-b47f-3b07c9bfc037" SourceId="1" SourceUrl="http://192.168.177.136:8082/?xsd=xsd5" />
-    <MetadataFile FileName="ServiciosFinancieraIndependiente.wsdl" MetadataType="Wsdl" ID="22b2e8aa-4ac9-4b7a-969d-b0d3c1bfb1bc" SourceId="1" SourceUrl="http://192.168.177.136:8082/?wsdl" />
-    <MetadataFile FileName="item1.xsd" MetadataType="Schema" ID="28f63982-f4a7-41ba-93b0-df75aa1773c1" SourceId="1" SourceUrl="http://192.168.177.136:8082/?xsd=xsd0" />
-    <MetadataFile FileName="item2.xsd" MetadataType="Schema" ID="f023f683-7a1f-47d1-839c-6f6b8920595e" SourceId="1" SourceUrl="http://192.168.177.136:8082/?xsd=xsd1" />
-    <MetadataFile FileName="item3.xsd" MetadataType="Schema" ID="1d9b0387-7a7f-4726-9d27-5c42bcd75ef1" SourceId="1" SourceUrl="http://192.168.177.136:8082/?xsd=xsd2" />
-    <MetadataFile FileName="item4.xsd" MetadataType="Schema" ID="f88a70af-e8f5-4c52-bd2a-d7b0d0e77f34" SourceId="1" SourceUrl="http://192.168.177.136:8082/?xsd=xsd3" />
-    <MetadataFile FileName="item.disco" MetadataType="Disco" ID="f1c7e44c-b465-48d4-9b53-0e8a3e0d2dbd" SourceId="1" SourceUrl="http://192.168.177.136:8082/?disco" />
-    <MetadataFile FileName="item5.xsd" MetadataType="Schema" ID="4b0dbc39-6d70-4d39-bdab-b185406d5881" SourceId="1" SourceUrl="http://192.168.177.136:8082/?xsd=xsd4" />
+    <MetadataFile FileName="item6.xsd" MetadataType="Schema" ID="8aeb7213-eb96-43b3-83dc-43ebd6d232c6" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd0" />
+    <MetadataFile FileName="item61.xsd" MetadataType="Schema" ID="c39c74f1-5424-4d2e-a820-8e3cc660ca43" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd1" />
+    <MetadataFile FileName="item62.xsd" MetadataType="Schema" ID="2556b4cf-9471-407d-9e50-e74f1e9c891b" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd2" />
+    <MetadataFile FileName="item63.xsd" MetadataType="Schema" ID="19b50944-3bab-4fed-b833-2bbd8b7f796c" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd3" />
+    <MetadataFile FileName="item1.disco" MetadataType="Disco" ID="6c44dd5b-15af-41d2-9cc0-2eff09e45d79" SourceId="1" SourceUrl="http://localhost:8082/?disco" />
+    <MetadataFile FileName="item64.xsd" MetadataType="Schema" ID="33e61e1e-2107-4085-a933-94bb184b3b50" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd4" />
+    <MetadataFile FileName="ServiciosFinancieraIndependiente1.wsdl" MetadataType="Wsdl" ID="4a0b0061-26e2-41da-95cc-5debbf5c8f5c" SourceId="1" SourceUrl="http://localhost:8082/?wsdl" />
+    <MetadataFile FileName="item65.xsd" MetadataType="Schema" ID="0fbc8a4b-ff35-42df-a851-99ae4f2e6f85" SourceId="1" SourceUrl="http://localhost:8082/?xsd=xsd5" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
