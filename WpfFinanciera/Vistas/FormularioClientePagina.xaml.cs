@@ -482,7 +482,7 @@ namespace WpfFinanciera.Vistas
                 txtBoxRFCCliente.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
                 razones = (razones.Length > 0) ? razones + ", " : razones;
-                razones += "RFC (debe ser igual a 13 caracteres)";
+                razones += "RFC (debe ser igual a 13 caracteres y tener un formato válido)";
             }
             if (string.IsNullOrWhiteSpace(cuentaCobro) || cuentaCobro.Length > 50)
             {
@@ -498,13 +498,24 @@ namespace WpfFinanciera.Vistas
                 razones = (razones.Length > 0) ? razones + ", " : razones;
                 razones += "Cuenta de depósito (debe ser menor a 51 caracteres)";
             }
-            if (string.IsNullOrWhiteSpace(correoElectronico) || correoElectronico.Length > 100 || !Regex.IsMatch(correoElectronico, @"^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com|outlook\.com|estudiantes\.uv\.mx|uv\.mx|yahoo\.com)$"))
+            if (string.IsNullOrWhiteSpace(correoElectronico) || correoElectronico.Length > 100)
             {
                 txtBoxCorreoCliente.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
                 sonCamposValidos = false;
                 razones = (razones.Length > 0) ? razones + ", " : razones;
                 razones += "Correo Electrónico (debe ser menor a 101 caracteres)";
             }
+            else
+            {
+                if (!Regex.IsMatch(correoElectronico, @"^[a-zA-Z0-9._%+-]+@(gmail\.com|hotmail\.com|outlook\.com|estudiantes\.uv\.mx|uv\.mx|yahoo\.com)$"))
+                {
+                    txtBoxCorreoCliente.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
+                    sonCamposValidos = false;
+                    razones = (razones.Length > 0) ? razones + ", " : razones;
+                    razones += "Correo Electrónico (no es válido, los dominios válidos son: gmail, hotmail, outlook, estudiantes.uv.mx y yahoo.com)";
+                }
+            }
+
             if (string.IsNullOrWhiteSpace(direccion) || direccion.Length > 50)
             {
                 txtBoxDireccionCliente.Background = (SolidColorBrush)new BrushConverter().ConvertFrom("#C46960");
